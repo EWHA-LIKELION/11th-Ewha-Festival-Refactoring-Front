@@ -1,12 +1,14 @@
 import styled from 'styled-components';
 
 import DetailTitle from '../../components/Detail/DetailTitle';
+import DetailInfo from '../../components/Detail/DetailInfo';
 
 const BoothDetailPage = () => {
   return (
     <Wrapper>
       <Content>
         <DetailTitle />
+        <DetailInfo event='부스' />
       </Content>
     </Wrapper>
   );
