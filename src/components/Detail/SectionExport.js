@@ -38,13 +38,15 @@ const SecTitleContainer = styled.div`
   height: 41px;
 
   display: flex;
+  justify-content: center;
+  align-items: center;
 
   img {
     position: absolute;
   }
 
   span {
-    margin: 10px 18px 7px 18px;
+    margin-top: 2px;
     z-index: 1;
     color: var(--white);
     font-size: 18px;
