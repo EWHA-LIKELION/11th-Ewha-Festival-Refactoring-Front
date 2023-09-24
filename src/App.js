@@ -1,7 +1,13 @@
 import './App.css';
 
+import BoothDetailPage from './pages/boothpage/BoothDetailPage';
+
 function App() {
-  return <></>;
+  return (
+    <>
+      <BoothDetailPage />
+    </>
+  );
 }
 
 export default App;
