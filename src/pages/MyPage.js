@@ -53,10 +53,26 @@ const Wrapper = styled.div`
 `;
 const NameCard = styled.div`
   position: absolute;
-  top: 15px;
+  top: 82px;
+  left: 47.5%;
+  text-align: center;
   .name {
+    color: var(--green1);
+    font-size: 31.2px;
+    font-style: normal;
+    font-weight: 700;
   }
   .nickname {
+    color: var(--green2);
+    font-size: 14.56px;
+    font-style: normal;
+    font-weight: 500;
+  }
+  button {
+    border: 0;
+    background-color: transparent;
+    color: var(--red);
+    text-decoration: underline;
   }
 `;
 const List = styled.div`
