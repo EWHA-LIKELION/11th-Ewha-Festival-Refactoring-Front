@@ -11,6 +11,17 @@ const BoothMenu = () => {
     <Section>
       <SecTitle sectitle={`메뉴`} />
       <Line />
+
+      {/* 메뉴 이미지 */}
+      <MenuImgList>
+        <MenuImgBox>
+          <MenuImg />
+          <MenuImg />
+          <MenuImg />
+        </MenuImgBox>
+      </MenuImgList>
+
+      {/* 메뉴 목록 */}
       <MenuList>
         {/* 나중에 필터링해서 띄우기 */}
         {/* 판매 중인 메뉴 */}
@@ -42,6 +53,35 @@ export default BoothMenu;
 
 const Section = styled.div`
   width: 100%;
+`;
+
+const MenuImgList = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  width: 100%;
+  overflow-x: scroll;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`;
+
+const MenuImgBox = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin: 24px 0 22px 0;
+  white-space: nowrap;
+  gap: 15px;
+`;
+
+const MenuImg = styled.div`
+  position: relative;
+  width: 126.88px;
+  height: 123.76px;
+  overflow: hidden;
+  background: var(--white);
+  border-radius: 10px;
 `;
 
 const MenuList = styled.div`
