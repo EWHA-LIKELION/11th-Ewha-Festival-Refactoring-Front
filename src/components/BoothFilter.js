@@ -8,6 +8,7 @@ import categoryClickedLong from "../assets/icons/categoryClickedLong.svg";
 const BoothFilter = () => {
   const [selectedDay, setSelectedDay] = useState(17);
   const [selectView, setSelectView] = useState("place");
+  const [selectedPlace, setSelectedPlace] = useState("정문");
 
   const dayClick = (day) => {
     setSelectedDay(day);
@@ -15,6 +16,10 @@ const BoothFilter = () => {
 
   const viewClick = (view) => {
     setSelectView(view);
+  };
+
+  const placeClick = (place) => {
+    setSelectedPlace(place);
   };
 
   return (
@@ -35,7 +40,6 @@ const BoothFilter = () => {
           </Day>
         </DayFilter>
       </Line>
-
       <ViewFilter>
         <View
           onClick={() => viewClick("place")}
@@ -57,6 +61,56 @@ const BoothFilter = () => {
           <span>전체 보기</span>
         </View>
       </ViewFilter>
+      <PlaceFilter>
+        <Place
+          onClick={() => placeClick("정문")}
+          isSelected={selectedPlace === "정문"}
+        >
+          정문
+        </Place>
+        <Place
+          onClick={() => placeClick("교육관")}
+          isSelected={selectedPlace === "교육관"}
+        >
+          교육관
+        </Place>
+        <Place
+          onClick={() => placeClick("대강당")}
+          isSelected={selectedPlace === "대강당"}
+        >
+          대강당
+        </Place>
+        <Place
+          onClick={() => placeClick("휴웃길")}
+          isSelected={selectedPlace === "휴웃길"}
+        >
+          휴웃길
+        </Place>
+        <Place
+          onClick={() => placeClick("포스코관")}
+          isSelected={selectedPlace === "포스코관"}
+        >
+          포스코관
+        </Place>
+        <Place
+          onClick={() => placeClick("학문관")}
+          isSelected={selectedPlace === "학문관"}
+        >
+          학문관
+        </Place>
+        <Place
+          onClick={() => placeClick("생활관")}
+          isSelected={selectedPlace === "생활관"}
+        >
+          생활관
+        </Place>
+        <Place
+          onClick={() => placeClick("신세계관")}
+          isSelected={selectedPlace === "신세계관"}
+        >
+          신세계관
+        </Place>
+      </PlaceFilter>
     </Wrapper>
   );
 };
@@ -141,4 +195,36 @@ const View = styled.div`
     font-weight: 400;
     line-height: 100%;
   }
+`;
+
+const PlaceFilter = styled.div`
+  width: 347px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-row-gap: 10px;
+  justify-content: center;
+  padding: 5px 0px 10px 0px;
+`;
+
+const Place = styled.div`
+  display: flex;
+  width: 75px;
+  height: 29px;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 104px;
+  border: 0.5px solid var(--2023-SWE_green2, #029c54);
+  background: ${(props) =>
+    props.isSelected ? "var(--2023-SWE_green2, #029c54)" : "#fff"};
+  cursor: pointer;
+
+  color: ${(props) =>
+    props.isSelected ? "#fff" : "var(--2023-SWE_green2, #029c54)"};
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 14.56px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 `;
