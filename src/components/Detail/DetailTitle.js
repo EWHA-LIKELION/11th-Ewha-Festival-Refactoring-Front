@@ -7,19 +7,21 @@ import noticeicon from '../../images/detail/notice.svg';
 // import emptyheart from '../../images/emptyheart.svg';
 import fullheart from '../../images/fullheart.svg';
 
-const DetailTitle = () => {
+const DetailTitle = ({event}) => {
   return (
     <Wrapper>
       {/* 혼잡도 */}
-      <div style={{marginTop: '16.68px'}}>
-        <Degree size='large' degree='light' />
-        <Degree size='large' degree='heavy' />
-      </div>
+      {event === '부스' && (
+        <div>
+          <Degree size='large' degree='light' />
+          <Degree size='large' degree='heavy' />
+        </div>
+      )}
 
       {/* 타이틀 */}
       <Container>
         <Left>
-          <div className='title'>부스 이름입니다</div>
+          <div className='title'>{event} 이름입니다</div>
           <div>
             <span className='category'>음식</span>
             <span className='hashtag'>#떡꼬치 #콜라 #떡꼬치 #콜라</span>
@@ -35,7 +37,7 @@ const DetailTitle = () => {
       <Notice>
         <img src={noticeicon} alt='noticeicon' />
         <ul>
-          <li className='header'>실시간 부스 공지사항</li>
+          <li className='header'>실시간 {event} 공지사항</li>
           <li className='content'>
             모든 국민은 근로의 권리를 가진다. 국가는 사회적·경제적 방법으로
             근로자의 고용의 증진과 적정임금의 보장에 노력하여야 하며, 법률이
@@ -66,6 +68,7 @@ const Container = styled.div`
 `;
 
 const Left = styled.div`
+  max-width: 300px;
   display: flex;
   flex-direction: column;
   gap: 8px;

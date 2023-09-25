@@ -6,7 +6,7 @@ import DetailTitle from '../../components/Detail/DetailTitle';
 import DetailInfo from '../../components/Detail/DetailInfo';
 import DetailReview from '../../components/Detail/DetailReview';
 
-const BoothDetailPage = () => {
+const PerfDetailPage = () => {
   return (
     <Wrapper>
       <DetailCover />
@@ -19,7 +19,7 @@ const BoothDetailPage = () => {
   );
 };
 
-export default BoothDetailPage;
+export default PerfDetailPage;
 
 const Wrapper = styled.div`
   min-height: 100vh;

@@ -29,6 +29,7 @@ const Wrapper = styled.div`
   position: relative;
   width: 100%;
   height: 300px;
+  margin-bottom: 15px;
 `;
 
 const Cover = styled.div`
