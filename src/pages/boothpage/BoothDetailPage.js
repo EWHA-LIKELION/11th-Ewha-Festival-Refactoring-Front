@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import DetailTitle from '../../components/Detail/DetailTitle';
 import DetailInfo from '../../components/Detail/DetailInfo';
 import BoothMenu from '../../components/Detail/BoothMenu';
+import DetailReview from '../../components/Detail/DetailReview';
 
 const BoothDetailPage = () => {
   return (
@@ -11,6 +12,7 @@ const BoothDetailPage = () => {
         <DetailTitle />
         <DetailInfo event='부스' />
         <BoothMenu />
+        <DetailReview />
       </Content>
     </Wrapper>
   );
