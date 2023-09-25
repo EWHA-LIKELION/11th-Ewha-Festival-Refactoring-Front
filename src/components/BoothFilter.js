@@ -19,20 +19,23 @@ const BoothFilter = () => {
 
   return (
     <Wrapper>
-      <DayFilter>
-        <Day onClick={() => dayClick(17)} isSelected={selectedDay === 17}>
-          <span id="date">17</span>
-          <span>수요일</span>
-        </Day>
-        <Day onClick={() => dayClick(18)} isSelected={selectedDay === 18}>
-          <span id="date">18</span>
-          <span>목요일</span>
-        </Day>
-        <Day onClick={() => dayClick(19)} isSelected={selectedDay === 19}>
-          <span id="date">19</span>
-          <span>금요일</span>
-        </Day>
-      </DayFilter>
+      <Line>
+        <DayFilter>
+          <Day onClick={() => dayClick(17)} isSelected={selectedDay === 17}>
+            <span id="date">17</span>
+            <span>수요일</span>
+          </Day>
+          <Day onClick={() => dayClick(18)} isSelected={selectedDay === 18}>
+            <span id="date">18</span>
+            <span>목요일</span>
+          </Day>
+          <Day onClick={() => dayClick(19)} isSelected={selectedDay === 19}>
+            <span id="date">19</span>
+            <span>금요일</span>
+          </Day>
+        </DayFilter>
+      </Line>
+
       <ViewFilter>
         <View
           onClick={() => viewClick("place")}
@@ -67,12 +70,19 @@ const Wrapper = styled.div`
   align-items: center;
 `;
 
+const Line = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 390px;
+  border-bottom: 1px solid #efefef;
+`;
+
 const DayFilter = styled.div`
+  width: 270px;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   gap: 20px;
-  border-bottom: 1px solid #efefef;
 `;
 
 const Day = styled.div`
