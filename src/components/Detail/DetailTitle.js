@@ -41,7 +41,11 @@ const DetailTitle = () => {
             근로자의 고용의 증진과 적정임금의 보장에 노력하여야 하며, 법률이
             정하는 바에 의하여 최저임금제를 시행하여야 한다.
           </li>
-          <li className='update'>update 05/10 16:34</li>
+          <li className='update'>
+            <span>update</span>
+            <span>05/10</span>
+            <span>16:34</span>
+          </li>
         </ul>
       </Notice>
     </Wrapper>
@@ -113,6 +117,7 @@ const Heart = styled.img`
   width: 20.769px;
   height: 18px;
 `;
+
 const Notice = styled.div`
   display: flex;
   padding: 16px;
@@ -153,9 +158,11 @@ const Notice = styled.div`
     }
 
     .update {
+      display: flex;
+      gap: 8px;
+      color: var(--green2);
       font-size: 0.9rem;
       font-weight: 300;
-      color: var(--green2);
     }
   }
 `;
