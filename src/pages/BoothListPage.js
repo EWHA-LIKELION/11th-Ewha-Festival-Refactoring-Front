@@ -2,11 +2,13 @@ import React from "react";
 import { styled } from "styled-components";
 
 import TopBar from "../components/TopBar";
+import BoothFilter from "../components/BoothFilter";
 
 const BoothListPage = () => {
   return (
     <Wrapper>
       <TopBar />
+      <BoothFilter />
     </Wrapper>
   );
 };
