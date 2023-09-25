@@ -22,22 +22,37 @@ const BoothFilter = () => {
     setSelectedPlace(place);
   };
 
+  const days = [
+    { date: 17, name: "수요일" },
+    { date: 18, name: "목요일" },
+    { date: 19, name: "금요일" },
+  ];
+
+  const places = [
+    "정문",
+    "교육관",
+    "대강당",
+    "휴웃길",
+    "포스코관",
+    "학문관",
+    "생활관",
+    "신세계관",
+  ];
+
   return (
     <Wrapper>
       <Line>
         <DayFilter>
-          <Day onClick={() => dayClick(17)} isSelected={selectedDay === 17}>
-            <span id="date">17</span>
-            <span>수요일</span>
-          </Day>
-          <Day onClick={() => dayClick(18)} isSelected={selectedDay === 18}>
-            <span id="date">18</span>
-            <span>목요일</span>
-          </Day>
-          <Day onClick={() => dayClick(19)} isSelected={selectedDay === 19}>
-            <span id="date">19</span>
-            <span>금요일</span>
-          </Day>
+          {days.map((day) => (
+            <Day
+              key={day.date}
+              onClick={() => dayClick(day.date)}
+              isSelected={selectedDay === day.date}
+            >
+              <span id="date">{day.date}</span>
+              <span>{day.name}</span>
+            </Day>
+          ))}
         </DayFilter>
       </Line>
       <ViewFilter>
@@ -62,54 +77,15 @@ const BoothFilter = () => {
         </View>
       </ViewFilter>
       <PlaceFilter>
-        <Place
-          onClick={() => placeClick("정문")}
-          isSelected={selectedPlace === "정문"}
-        >
-          정문
-        </Place>
-        <Place
-          onClick={() => placeClick("교육관")}
-          isSelected={selectedPlace === "교육관"}
-        >
-          교육관
-        </Place>
-        <Place
-          onClick={() => placeClick("대강당")}
-          isSelected={selectedPlace === "대강당"}
-        >
-          대강당
-        </Place>
-        <Place
-          onClick={() => placeClick("휴웃길")}
-          isSelected={selectedPlace === "휴웃길"}
-        >
-          휴웃길
-        </Place>
-        <Place
-          onClick={() => placeClick("포스코관")}
-          isSelected={selectedPlace === "포스코관"}
-        >
-          포스코관
-        </Place>
-        <Place
-          onClick={() => placeClick("학문관")}
-          isSelected={selectedPlace === "학문관"}
-        >
-          학문관
-        </Place>
-        <Place
-          onClick={() => placeClick("생활관")}
-          isSelected={selectedPlace === "생활관"}
-        >
-          생활관
-        </Place>
-        <Place
-          onClick={() => placeClick("신세계관")}
-          isSelected={selectedPlace === "신세계관"}
-        >
-          신세계관
-        </Place>
+        {places.map((place) => (
+          <Place
+            key={place}
+            onClick={() => placeClick(place)}
+            isSelected={selectedPlace === place}
+          >
+            {place}
+          </Place>
+        ))}
       </PlaceFilter>
     </Wrapper>
   );
