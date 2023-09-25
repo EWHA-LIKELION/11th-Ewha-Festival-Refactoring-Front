@@ -16,24 +16,20 @@ import yellowhover from "../images/yellowhover.svg";
 import greenline from "../images/greenline.png";
 
 const MyPage = () => {
-  const [isBooth, setIsBooth] = useState(true);
-  const [likeBooth, setLikeBooth] = useState(true);
-  const [isCategory, setIsCategory] = useState(false);
+  const [isBooth, setIsBooth] = useState("what");
+  const [likeBooth, setLikeBooth] = useState("like");
+  const [isCategory, setIsCategory] = useState("nav");
 
-  const clickBooth = () => {
-    setIsBooth(true);
+  const clickBooth = (what) => {
+    setIsBooth(what);
   };
-  const clickConcert = () => {
-    setIsBooth(false);
+
+  const clickLikeBooth = (like) => {
+    setLikeBooth(like);
   };
-  const clickLikeBooth = () => {
-    setLikeBooth(true);
-  };
-  const clickLikeConcert = () => {
-    setLikeBooth(false);
-  };
-  const selectedCategory = () => {
-    selectedCategory(true);
+
+  const selectedCategory = (nav) => {
+    selectedCategory(nav);
   };
 
   return (
@@ -45,34 +41,70 @@ const MyPage = () => {
         <button>로그아웃</button>
       </NameCard>
 
-      {/* 임시 */}
-      <TFAdmin />
-
       <Navigation>
         <Top>
-          <div className="booth" onClick={clickBooth}>
+          <div
+            className="booth"
+            onClick={() => clickBooth("booth")}
+            isSelected={isBooth === "booth"}
+          >
             부스
           </div>
-          <div className="concert" onClick={clickConcert}>
+          <div
+            className="concert"
+            onClick={() => clickBooth("concert")}
+            isSelected={isBooth === "concert"}
+          >
             공연
           </div>
         </Top>
+
         <hr></hr>
+
         <Bottom>
-          <div className="booth" onClick={clickLikeBooth}>
+          <div
+            className="booth"
+            onClick={() => clickLikeBooth("likeBooth")}
+            isSelected={likeBooth === "likeBooth"}
+          >
             좋아요한 부스
           </div>
-          <div className="menu" onClick={clickLikeConcert}>
+          <div
+            className="menu"
+            onClick={() => clickLikeBooth("likeMenu")}
+            isSelected={likeBooth === "likeMenu"}
+          >
             좋아요한 메뉴
           </div>
         </Bottom>
       </Navigation>
 
       <Category>
-        <span onClick={selectedCategory}>전체 · </span>
-        <span onClick={selectedCategory}>날짜 · </span>
-        <span onClick={selectedCategory}>장소 · </span>
-        <span onClick={selectedCategory}>카테고리</span>
+        <span
+          onClick={() => selectedCategory("all")}
+          isSelected={isCategory === "all"}
+        >
+          {" "}
+          전체 ·{" "}
+        </span>
+        <span
+          onClick={() => selectedCategory("day")}
+          isSelected={isCategory === "day"}
+        >
+          날짜 ·{" "}
+        </span>
+        <span
+          onClick={() => selectedCategory("place")}
+          isSelected={isCategory === "place"}
+        >
+          장소 ·{" "}
+        </span>
+        <span
+          onClick={() => selectedCategory("category")}
+          isSelected={isCategory === "category"}
+        >
+          카테고리
+        </span>
       </Category>
 
       <div className="count">총 100개의 부스</div>
@@ -135,7 +167,7 @@ const List = styled.div`
   margin-bottom: 64px;
 `;
 const Category = styled.div`
-  color: ${(props) => (props.isCategory ? "#F55B1D" : "#9B9B9B")};
+  color: ${(props) => (props.isSelected ? "#F55B1D" : "#9B9B9B")};
   text-align: center;
   font-size: 15px;
   font-style: normal;
@@ -161,15 +193,16 @@ const Top = styled.div`
   font-size: 16.64px;
   line-height: 2.5;
   font-weight: 500;
+
   .booth {
     text-align: center;
     width: 60px;
     background-image: ${(props) =>
-      props.isBooth ? `url(${yellowhover})` : "none"};
-    background-size: cover; // 배경 이미지 크기 조정
+      !props.isSelected ? `url(${yellowhover})` : "none"};
+    background-size: 59px 35.7px;
     background-repeat: no-repeat;
-    color: ${(props) => (props.isBooth ? "#ffffff" : "#9b9b9b")};
-
+    color: ${(props) => (!props.isSelected ? "#029C54" : "#9B9B9B")};
+    font-weight: ${(props) => (!props.isSelected ? "700" : "500")};
     margin-right: 25px;
   }
   .concert {
@@ -177,11 +210,11 @@ const Top = styled.div`
     width: 60px;
     margin-left: 25px;
     background-image: ${(props) =>
-      !props.isBooth ? `url(${yellowhover})` : "none"};
+      props.isSelected ? `url(${yellowhover})` : "none"};
     background-size: 59px 35.7px;
-    background-repeat: no-repeat; // 배경 이미지 반복 제거
-    color: ${(props) => (!props.isBooth ? "#029C54" : "#9B9B9B")};
-    font-weight: ${(props) => (!props.isBooth ? "700" : "500")};
+    background-repeat: no-repeat;
+    color: ${(props) => (props.isSelected ? "#029C54" : "#9B9B9B")};
+    font-weight: ${(props) => (props.isSelected ? "700" : "500")};
   }
 `;
 const Bottom = styled.div`
@@ -198,9 +231,9 @@ const Bottom = styled.div`
     height: 31px;
     margin-right: 12px;
     background-image: ${(props) =>
-      !props.isBooth ? `url(${redhover})` : "none"};
-    color: ${(props) => (!props.isBooth ? "#ffff" : "#9B9B9B")};
-    font-weight: ${(props) => (!props.isBooth ? "600" : "500")};
+      !props.isSelected ? `url(${redhover})` : "none"};
+    color: ${(props) => (!props.isSelected ? "#ffff" : "#9B9B9B")};
+    font-weight: ${(props) => (!props.isSelected ? "600" : "500")};
   }
   .menu {
     margin-left: 12px;
