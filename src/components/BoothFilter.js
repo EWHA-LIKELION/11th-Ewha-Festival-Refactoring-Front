@@ -8,7 +8,8 @@ import categoryClickedLong from "../assets/icons/categoryClickedLong.svg";
 const BoothFilter = () => {
   const [selectedDay, setSelectedDay] = useState(17);
   const [selectView, setSelectView] = useState("place");
-  const [selectedPlace, setSelectedPlace] = useState("정문");
+  const [selectPlace, setSelectPlace] = useState("정문");
+  const [selectCategory, setSelectCategory] = useState("음식");
 
   const dayClick = (day) => {
     setSelectedDay(day);
@@ -19,7 +20,11 @@ const BoothFilter = () => {
   };
 
   const placeClick = (place) => {
-    setSelectedPlace(place);
+    setSelectPlace(place);
+  };
+
+  const categoryClick = (category) => {
+    setSelectCategory(category);
   };
 
   const days = [
@@ -38,6 +43,8 @@ const BoothFilter = () => {
     "생활관",
     "신세계관",
   ];
+
+  const categories = ["음식", "굿즈", "체험", "기타"];
 
   return (
     <Wrapper>
@@ -76,17 +83,32 @@ const BoothFilter = () => {
           <span>전체 보기</span>
         </View>
       </ViewFilter>
-      <PlaceFilter>
-        {places.map((place) => (
-          <Place
-            key={place}
-            onClick={() => placeClick(place)}
-            isSelected={selectedPlace === place}
-          >
-            {place}
-          </Place>
-        ))}
-      </PlaceFilter>
+      {selectView === "place" && (
+        <PlaceFilter>
+          {places.map((place) => (
+            <Place
+              key={place}
+              onClick={() => placeClick(place)}
+              isSelected={selectPlace === place}
+            >
+              {place}
+            </Place>
+          ))}
+        </PlaceFilter>
+      )}
+      {selectView === "category" && (
+        <CategoryFilter>
+          {categories.map((category) => (
+            <Category
+              key={category}
+              onClick={() => categoryClick(category)}
+              isSelected={selectCategory === category}
+            >
+              {category}
+            </Category>
+          ))}
+        </CategoryFilter>
+      )}
     </Wrapper>
   );
 };
@@ -183,6 +205,38 @@ const PlaceFilter = styled.div`
 `;
 
 const Place = styled.div`
+  display: flex;
+  width: 75px;
+  height: 29px;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 104px;
+  border: 0.5px solid var(--2023-SWE_green2, #029c54);
+  background: ${(props) =>
+    props.isSelected ? "var(--2023-SWE_green2, #029c54)" : "#fff"};
+  cursor: pointer;
+
+  color: ${(props) =>
+    props.isSelected ? "#fff" : "var(--2023-SWE_green2, #029c54)"};
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 14.56px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+`;
+
+const CategoryFilter = styled.div`
+  width: 347px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-row-gap: 10px;
+  justify-content: center;
+  padding: 5px 0px 10px 0px;
+`;
+
+const Category = styled.div`
   display: flex;
   width: 75px;
   height: 29px;
