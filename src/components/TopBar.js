@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import { styled } from "styled-components";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import menu from "../assets/icons/menu.svg";
 import search from "../assets/icons/search.svg";
 import titleBackground from "../assets/icons/titleBackground.svg";
 
 const TopBar = () => {
-  //경로에 따라 타이틀 변경
-  const [title, setTitle] = useState("");
+  const { pathname } = useLocation();
+
+  let titleText = "";
+  if (pathname === "/boothlistpage") titleText = "부스 목록";
 
   return (
     <Wrapper>
@@ -15,7 +18,7 @@ const TopBar = () => {
         <img src={menu} />
         <Title>
           <img src={titleBackground} />
-          <span>부스 목록</span>
+          <span>{titleText}</span>
         </Title>
         <img src={search} />
       </Container>
