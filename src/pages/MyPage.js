@@ -4,6 +4,8 @@ import { styled } from "styled-components";
 import Booth from "../components/Booth";
 //부스관리자 전용
 import BoothAdmin from "../components/BoothAdmin";
+//공연관리자 전용
+import ConcertAdmin from "../components/ConcertAdmin";
 //image
 import { ReactComponent as Namecover } from "../images/nickname.svg";
 import redhover from "../images/redhover.svg";
@@ -41,7 +43,7 @@ const MyPage = () => {
       </NameCard>
 
       {/* 임시 */}
-      <BoothAdmin />
+      <ConcertAdmin />
 
       <Navigation>
         <Top>
