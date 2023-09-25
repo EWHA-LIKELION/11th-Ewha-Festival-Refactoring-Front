@@ -4,10 +4,12 @@ import DetailTitle from '../../components/Detail/DetailTitle';
 import DetailInfo from '../../components/Detail/DetailInfo';
 import BoothMenu from '../../components/Detail/BoothMenu';
 import DetailReview from '../../components/Detail/DetailReview';
+import DetailCover from '../../components/Detail/DetailCover';
 
 const BoothDetailPage = () => {
   return (
     <Wrapper>
+      <DetailCover />
       <Content>
         <DetailTitle />
         <DetailInfo event='부스' />
