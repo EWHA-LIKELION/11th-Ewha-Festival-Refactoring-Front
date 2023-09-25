@@ -46,8 +46,8 @@ const SecTitleContainer = styled.div`
   }
 
   span {
-    margin-top: 2px;
     z-index: 1;
+    margin-top: 3px;
     color: var(--white);
     font-size: 18px;
     font-style: normal;
