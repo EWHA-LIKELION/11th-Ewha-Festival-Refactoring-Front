@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { styled } from "styled-components";
 //component
 import Booth from "../components/Booth";
+//부스관리자 전용
+import BoothAdmin from "../components/BoothAdmin";
 //image
 import { ReactComponent as Namecover } from "../images/nickname.svg";
 import redhover from "../images/redhover.svg";
@@ -37,6 +39,9 @@ const MyPage = () => {
         <div className="nickname">likelion11TF</div>
         <button>로그아웃</button>
       </NameCard>
+
+      {/* 임시 */}
+      <BoothAdmin />
 
       <Navigation>
         <Top>
