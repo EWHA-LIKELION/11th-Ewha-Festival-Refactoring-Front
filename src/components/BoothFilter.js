@@ -7,9 +7,14 @@ import categoryClickedLong from "../assets/icons/categoryClickedLong.svg";
 
 const BoothFilter = () => {
   const [selectedDay, setSelectedDay] = useState(17);
+  const [selectView, setSelectView] = useState("place");
 
   const dayClick = (day) => {
     setSelectedDay(day);
+  };
+
+  const viewClick = (view) => {
+    setSelectView(view);
   };
 
   return (
@@ -28,7 +33,27 @@ const BoothFilter = () => {
           <span>금요일</span>
         </Day>
       </DayFilter>
-      <ViewFilter></ViewFilter>
+      <ViewFilter>
+        <View
+          onClick={() => viewClick("place")}
+          isSelected={selectView === "place"}
+        >
+          <span>장소별 보기</span>
+        </View>
+        <View
+          id="long"
+          onClick={() => viewClick("category")}
+          isSelected={selectView === "category"}
+        >
+          <span>카테고리별 보기</span>
+        </View>
+        <View
+          onClick={() => viewClick("all")}
+          isSelected={selectView === "all"}
+        >
+          <span>전체 보기</span>
+        </View>
+      </ViewFilter>
     </Wrapper>
   );
 };
@@ -82,4 +107,28 @@ const ViewFilter = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  padding: 18px 30px;
+`;
+
+const View = styled.div`
+  cursor: pointer;
+  #long {
+    background-image: ${(props) =>
+      props.isSelected ? `url(${categoryClickedLong})` : "none"};
+  }
+  span {
+    background-image: ${(props) =>
+      props.isSelected ? `url(${categoryClicked})` : "none"};
+    background-repeat: no-repeat;
+    background-position: center center;
+    padding: 16px 20px;
+    color: ${(props) =>
+      props.isSelected ? "#fff" : "var(--2023-SWE_gray2, #9b9b9b)"};
+    text-align: center;
+    font-family: Pretendard;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%;
+  }
 `;
