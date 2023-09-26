@@ -3,12 +3,12 @@ import { useNavigate } from "react-router-dom";
 import styled, { css } from "styled-components";
 
 //images
-import logo from "../images/login-signup/logo.svg";
-import id from "../images/login-signup/id-icon.svg";
-import passwordicon from "../images/login-signup/password-icon.svg";
-import infobtn from "../images/login-signup/infobtn.svg";
-import check from "../images/login-signup/check.svg";
-import checked from "../images/login-signup/checked.svg";
+import logo from "../assets/images/login-signup/logo.svg";
+import id from "../assets/images/login-signup/id-icon.svg";
+import passwordicon from "../assets/images/login-signup/password-icon.svg";
+import infobtn from "../assets/images/login-signup/infobtn.svg";
+import check from "../assets/images/login-signup/check.svg";
+import checked from "../assets/images/login-signup/checked.svg";
 
 //components
 import CompleteModal from "../components/SignupPage/CompleteModal";

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
 //img
-import warning from "../../images/login-signup/warning.svg";
+import warning from "../../assets/images/login-signup/warning.svg";
 
 const CompleteModal = ({ openCompleteModal, closeCompleteModal }) => {
   const navigate = useNavigate();

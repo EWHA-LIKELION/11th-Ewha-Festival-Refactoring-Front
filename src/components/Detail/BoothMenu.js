@@ -1,10 +1,10 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import {SecTitle, Line} from './SectionExport';
+import { SecTitle, Line } from "./SectionExport";
 
 //images
-import fullheart from '../../assets/images/detail/menu-fullheart.svg';
-import emptyheart from '../../assets/images/detail/menu-emptyheart.svg';
+import fullheart from "../../assets/images/detail/menu-fullheart.svg";
+import emptyheart from "../../assets/images/detail/menu-emptyheart.svg";
 
 const BoothMenu = () => {
   return (
@@ -29,19 +29,19 @@ const BoothMenu = () => {
           <div>이것은 메뉴이름입니다</div>
           <div>
             <span>2,000원</span>
-            <img src={fullheart} alt='fullheart' />
+            <img src={fullheart} alt="fullheart" />
           </div>
         </Menu>
         {/* 품절된 메뉴 */}
         <Menu>
-          <div style={{color: 'var(--gray2)', fontWeight: '500'}}>
+          <div style={{ color: "var(--gray2)", fontWeight: "500" }}>
             이것은 메뉴이름입니다
           </div>
           <div>
-            <span style={{color: 'var(--red)', fontWeight: '500'}}>
+            <span style={{ color: "var(--red)", fontWeight: "500" }}>
               sold out
             </span>
-            <img src={emptyheart} alt='emptyheart' />
+            <img src={emptyheart} alt="emptyheart" />
           </div>
         </Menu>
       </MenuList>
