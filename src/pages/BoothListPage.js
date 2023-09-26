@@ -1,8 +1,8 @@
 import React from "react";
 import { styled } from "styled-components";
 
-import TopBar from "../components/TopBar";
-import BoothFilter from "../components/BoothFilter";
+import TopBar from "../components/_common/TopBar";
+import BoothFilter from "../components/ListPage/BoothFilter";
 
 const BoothListPage = () => {
   return (

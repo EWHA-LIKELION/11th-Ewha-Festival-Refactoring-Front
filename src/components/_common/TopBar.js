@@ -2,9 +2,9 @@ import React from "react";
 import { styled } from "styled-components";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import menu from "../assets/icons/menu.svg";
-import search from "../assets/icons/search.svg";
-import titleBackground from "../assets/icons/titleBackground.svg";
+import menu from "../../assets/icons/menu.svg";
+import search from "../../assets/icons/search.svg";
+import titleBackground from "../../assets/icons/title-background.svg";
 
 const TopBar = () => {
   const { pathname } = useLocation();

@@ -1,18 +1,17 @@
 import React, { useState } from "react";
 import { styled } from "styled-components";
 
-import dayClicked from "../assets/icons/dayClicked.svg";
-import categoryClicked from "../assets/icons/categoryClicked.svg";
-import categoryClickedLong from "../assets/icons/categoryClickedLong.svg";
+import dayClicked from "../../assets/icons/highlight-yellow.svg";
+import categoryClicked from "../../assets/icons/highlight-red.svg";
 
 const BoothFilter = () => {
-  const [selectedDay, setSelectedDay] = useState(17);
+  const [selectDay, setSelectDay] = useState(17);
   const [selectView, setSelectView] = useState("place");
   const [selectPlace, setSelectPlace] = useState("정문");
   const [selectCategory, setSelectCategory] = useState("음식");
 
   const dayClick = (day) => {
-    setSelectedDay(day);
+    setSelectDay(day);
   };
 
   const viewClick = (view) => {
@@ -54,7 +53,7 @@ const BoothFilter = () => {
             <Day
               key={day.date}
               onClick={() => dayClick(day.date)}
-              isSelected={selectedDay === day.date}
+              isSelected={selectDay === day.date}
             >
               <span id="date">{day.date}</span>
               <span>{day.name}</span>
@@ -174,10 +173,6 @@ const ViewFilter = styled.div`
 
 const View = styled.div`
   cursor: pointer;
-  #long {
-    background-image: ${(props) =>
-      props.isSelected ? `url(${categoryClickedLong})` : "none"};
-  }
   span {
     background-image: ${(props) =>
       props.isSelected ? `url(${categoryClicked})` : "none"};
