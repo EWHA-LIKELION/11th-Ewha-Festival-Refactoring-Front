@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
 //images
-import cover from '../../images/detail/sample/cover.png'; //임시
-import hamBackground from '../../images/detail/ham-background.svg';
-import ham from '../../images/detail/ham.svg';
+import cover from '../../assets/images/detail/sample/cover.png'; //임시
+import hamBackground from '../../assets/images/detail/ham-background.svg';
+import ham from '../../assets/icons/menu.svg';
 
 const DetailCover = () => {
   return (

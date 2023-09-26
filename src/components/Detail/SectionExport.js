@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 //images
-import background from '../../images/detail/sec-title-background.svg';
-import secliststyle from '../../images/detail/sec-list-style.svg';
+import background from '../../assets/icons/title-background.svg';
+import secliststyle from '../../assets/images/detail/sec-list-style.svg';
 
 const SecTitle = ({sectitle}) => {
   return (

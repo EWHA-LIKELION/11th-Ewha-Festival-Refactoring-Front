@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import styled from 'styled-components';
 
 //images
-import deleteIcon from '../../images/detail/review-delete.svg';
+import deleteIcon from '../../assets/images/detail/review-delete.svg';
 
 const ReviewBox = () => {
   //부스 관리자 여부 관리
@@ -20,6 +20,7 @@ const ReviewBox = () => {
     <Box>
       <div>
         <div>
+          {/* 작성자가 부스관리자인지에 따른 글씨색 변화 */}
           <Nickname
             style={{
               color: detBooth('사용자 아이디') ? 'var(--red)' : 'var(--green2)',

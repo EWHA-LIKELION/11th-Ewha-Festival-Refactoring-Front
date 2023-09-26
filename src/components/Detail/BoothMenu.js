@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import {SecTitle, Line} from './SectionExport';
 
 //images
-import fullheart from '../../images/detail/menu-fullheart.svg';
-import emptyheart from '../../images/detail/menu-emptyheart.svg';
+import fullheart from '../../assets/images/detail/menu-fullheart.svg';
+import emptyheart from '../../assets/images/detail/menu-emptyheart.svg';
 
 const BoothMenu = () => {
   return (

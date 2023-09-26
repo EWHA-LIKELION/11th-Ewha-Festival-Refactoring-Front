@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
-import Degree from '../Degree';
+import Degree from '../_common/Degree';
 
 //images
-import noticeicon from '../../images/detail/notice.svg';
-// import emptyheart from '../../images/emptyheart.svg';
-import fullheart from '../../images/fullheart.svg';
+import noticeicon from '../../assets/icons/notice.svg';
+import fullheart from '../../assets/icons/heart-full.svg';
+// import emptyheart from '../../assets/icons/heart-empty.svg';
 
 const DetailTitle = ({event}) => {
   return (

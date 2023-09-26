@@ -6,7 +6,7 @@ import {SecTitle, Line} from './SectionExport';
 import ReviewBox from './ReviewBox';
 
 //images
-import summitIcon from '../../images/detail/review-summit.svg';
+import summitIcon from '../../assets/images/detail/review-summit.svg';
 
 const DetailReview = () => {
   const textareaRef = useRef(null);

@@ -3,14 +3,14 @@ import styled from 'styled-components';
 import {SecTitle, SecSub, Line} from './SectionExport';
 
 //images
-import popup from '../../images/detail/popup.svg';
+import arrow from '../../assets/icons/arrow-green3.svg';
 
 const DetailInfo = ({event}) => {
   return (
     <Section>
       <Header>
         <SecTitle sectitle={`${event} 정보`} />
-        <PopUpBtn src={popup} />
+        <PopUpBtn src={arrow} />
       </Header>
       <Line />
       <Content>
