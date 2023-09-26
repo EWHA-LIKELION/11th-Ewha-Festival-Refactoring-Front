@@ -1,8 +1,9 @@
 import React from "react";
 import "../../App.css";
 import { styled } from "styled-components";
+
 //부스 대표 사진
-import boothCover from "../../assets/images/boothCover.png";
+import boothCover from "../../assets/images/Mypage/boothcover.png";
 
 import { ReactComponent as PinkHeart } from "../../assets/icons/heart-empty.svg";
 

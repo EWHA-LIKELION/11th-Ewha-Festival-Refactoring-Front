@@ -1,19 +1,20 @@
 import React, { useState } from "react";
 import { styled } from "styled-components";
+
 //component
-import Booth from "../components/common/Booth";
+import Booth from "../components/_common/Booth";
 //부스관리자 전용
-import BoothAdmin from "../components/mypage/BoothAdmin";
+import BoothAdmin from "../components/Mypage/BoothAdmin";
 //공연관리자 전용
-import ConcertAdmin from "../components/mypage/ConcertAdmin";
+import ConcertAdmin from "../components/Mypage/ConcertAdmin";
 //TF관리자 전용
-import TFAdmin from "../components/mypage/TFAdmin";
+import TFAdmin from "../components/Mypage/TFAdmin";
 
 //image
-import { ReactComponent as Namecover } from "../assets/images/nickname.svg";
-import redhover from "../assets/images/redhover.svg";
-import yellowhover from "../assets/images/yellowhover.svg";
-import greenline from "../assets/images/greenline.png";
+import { ReactComponent as Namecover } from "../assets/images/Mypage/nickname.svg";
+import redhover from "../assets/images/Mypage/redhover.svg";
+import yellowhover from "../assets/images/Mypage/yellowhover.svg";
+import greenline from "../assets/images/Mypage/greenline.png";
 
 const MyPage = () => {
   const [isBooth, setIsBooth] = useState("booth"); //부스 vs 공연
