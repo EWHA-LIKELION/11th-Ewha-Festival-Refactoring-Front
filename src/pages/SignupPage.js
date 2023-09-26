@@ -10,6 +10,10 @@ import infobtn from "../images/login-signup/infobtn.svg";
 import check from "../images/login-signup/check.svg";
 import checked from "../images/login-signup/checked.svg";
 
+//components
+import CompleteModal from "../components/SignupPage/CompleteModal";
+import SecretModal from "../components/SignupPage/SecretModal";
+
 const SignupPage = () => {
   const navigate = useNavigate();
 
@@ -26,65 +30,99 @@ const SignupPage = () => {
     setPasswordsMatch(password === confirmPassword);
   };
 
+  //모달 관련 state
+  const [completemodal, setCompleteModal] = useState(false);
+  const [secretmodal, setSecretModal] = useState(false);
+
+  const openCompleteModal = () => {
+    setCompleteModal(true);
+  };
+
+  const closeCompleteModal = () => {
+    setCompleteModal(false);
+  };
+
+  const openSecretModal = () => {
+    setSecretModal(true);
+  };
+
+  const closeSecretModal = () => {
+    setSecretModal(false);
+  };
+
   return (
-    <Wrapper>
-      <Box />
-      <Container>
-        <Logo src={logo} />
-        <InputWrapper>
-          <InputDiv>
-            <Icon src={id} />
-            <InputS
-              type="text"
-              placeholder="아이디"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-            />
-          </InputDiv>
-          <InputDiv>
-            <Icon src={passwordicon} />
-            <InputB
-              type="password"
-              placeholder="비밀번호"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              onBlur={checkPasswordsMatch}
-            />
-          </InputDiv>
-          <InputDiv>
-            <Icon src={passwordicon} />
-            <InputS
-              type="password"
-              placeholder="비밀번호 확인"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              onBlur={checkPasswordsMatch}
-            />
-            <Info src={passwordsMatch ? checked : check} />
-          </InputDiv>
-          <InputDiv>
-            <Icon src={id} />
-            <InputB
-              type="text"
-              placeholder="닉네임"
-              value={nickname}
-              onChange={(e) => setNickname(e.target.value)}
-            />
-          </InputDiv>
-          <InputDiv>
-            <Icon src={id} />
-            <InputS
-              type="text"
-              placeholder="비밀단어"
-              value={secret}
-              onChange={(e) => setSecret(e.target.value)}
-            />
-            <Info src={infobtn} />
-          </InputDiv>
-        </InputWrapper>
-        <Btn>회원가입</Btn>
-      </Container>
-    </Wrapper>
+    <>
+      <Wrapper>
+        <Box />
+        <Container>
+          <Logo src={logo} />
+          <InputWrapper>
+            <InputDiv>
+              <Icon src={id} />
+              <InputS
+                type="text"
+                placeholder="아이디"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+              />
+            </InputDiv>
+            <InputDiv>
+              <Icon src={passwordicon} />
+              <InputB
+                type="password"
+                placeholder="비밀번호"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                onBlur={checkPasswordsMatch}
+              />
+            </InputDiv>
+            <InputDiv>
+              <Icon src={passwordicon} />
+              <InputS
+                type="password"
+                placeholder="비밀번호 확인"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                onBlur={checkPasswordsMatch}
+              />
+              <Info src={passwordsMatch ? checked : check} />
+            </InputDiv>
+            <InputDiv>
+              <Icon src={id} />
+              <InputB
+                type="text"
+                placeholder="닉네임"
+                value={nickname}
+                onChange={(e) => setNickname(e.target.value)}
+              />
+            </InputDiv>
+            <InputDiv>
+              <Icon src={id} />
+              <InputS
+                type="text"
+                placeholder="비밀단어"
+                value={secret}
+                onChange={(e) => setSecret(e.target.value)}
+              />
+              <Info src={infobtn} onClick={openSecretModal} />
+            </InputDiv>
+          </InputWrapper>
+          <Btn onClick={openCompleteModal}>회원가입</Btn>
+        </Container>
+      </Wrapper>
+      {secretmodal ? (
+        <SecretModal
+          openSecretModal={openSecretModal}
+          closeSecretModal={closeSecretModal}
+        />
+      ) : null}
+      {completemodal ? (
+        <CompleteModal
+          openCompleteModal={openCompleteModal}
+          closeCompleteModal={closeCompleteModal}
+        />
+      ) : null}
+    </>
   );
 };
 
@@ -196,6 +234,7 @@ const Info = styled.img`
   flex-shrink: 0;
 
   margin-left: 10px;
+  cursor: pointer;
 `;
 
 const Btn = styled.button`
