@@ -1,7 +1,8 @@
-import './App.css';
+import "./App.css";
 
-import BoothDetailPage from './pages/BoothDetailPage';
-import PerfDetailPage from './pages/PerfDetailPage';
+import BoothDetailPage from "./pages/BoothDetailPage";
+import PerfDetailPage from "./pages/PerfDetailPage";
+import BoothListPage from "./pages/BoothListPage";
 
 function App() {
   return (
