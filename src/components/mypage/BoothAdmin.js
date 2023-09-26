@@ -3,9 +3,9 @@ import "../../App.css";
 import { styled } from "styled-components";
 //image
 import arrowGreen1 from "../../assets/icons/arrow-green1.svg";
-import editIcon from "../../assets/images/editIcon.svg";
-import add from "../../assets/images/add.svg";
-import boothimg from "../../assets/images/boothimg.svg";
+import editIcon from "../../assets/images/Mypage/editIcon.svg";
+import add from "../../assets/images/Mypage/add.svg";
+import boothimg from "../../assets/images/Mypage/boothimg.svg";
 
 const BoothAdmin = () => {
   return (
