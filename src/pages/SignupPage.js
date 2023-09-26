@@ -7,14 +7,24 @@ import logo from "../images/login-signup/logo.svg";
 import id from "../images/login-signup/id_icon.svg";
 import passwordicon from "../images/login-signup/password-icon.svg";
 import infobtn from "../images/login-signup/infobtn.svg";
+import check from "../images/login-signup/check.svg";
+import checked from "../images/login-signup/checked.svg";
 
 const SignupPage = () => {
   const navigate = useNavigate();
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [nickname, setNickname] = useState("");
   const [secret, setSecret] = useState("");
+
+  const [passwordsMatch, setPasswordsMatch] = useState(false); // 비밀번호 일치 여부 추가
+
+  //비밀번호 확인 함수
+  const checkPasswordsMatch = () => {
+    setPasswordsMatch(password === confirmPassword);
+  };
 
   return (
     <Wrapper>
@@ -24,7 +34,12 @@ const SignupPage = () => {
         <InputWrapper>
           <InputDiv>
             <Icon src={id} />
-            <InputS type="text" placeholder="아이디" value={username} />
+            <InputS
+              type="text"
+              placeholder="아이디"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
           </InputDiv>
           <InputDiv>
             <Icon src={passwordicon} />
@@ -33,6 +48,7 @@ const SignupPage = () => {
               placeholder="비밀번호"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              onBlur={checkPasswordsMatch}
             />
           </InputDiv>
           <InputDiv>
@@ -40,8 +56,11 @@ const SignupPage = () => {
             <InputS
               type="password"
               placeholder="비밀번호 확인"
-              value={password}
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              onBlur={checkPasswordsMatch}
             />
+            <Info src={passwordsMatch ? checked : check} />
           </InputDiv>
           <InputDiv>
             <Icon src={id} />
@@ -60,7 +79,7 @@ const SignupPage = () => {
               value={secret}
               onChange={(e) => setSecret(e.target.value)}
             />
-            <SecretInfo src={infobtn} />
+            <Info src={infobtn} />
           </InputDiv>
         </InputWrapper>
         <Btn>회원가입</Btn>
@@ -129,7 +148,6 @@ const InputDiv = styled.div`
 
 const Input = styled.input`
   display: flex;
-  /* width: 201.5px; */
   height: 40px;
   align-items: center;
 
@@ -142,7 +160,7 @@ const Input = styled.input`
   font-family: "Pretendard-Regular";
   font-size: 12px;
   font-style: normal;
-  color: #fff;
+  color: var(--black);
   font-weight: 500;
 
   padding-left: 40.5px;
@@ -171,10 +189,9 @@ const Icon = styled.img`
   width: 18px;
   flex-shrink: 0;
   border-radius: 8px;
-  background: cover no-repeat;
 `;
 
-const SecretInfo = styled.img`
+const Info = styled.img`
   width: 18px;
   flex-shrink: 0;
 
