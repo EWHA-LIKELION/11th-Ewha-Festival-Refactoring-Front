@@ -1,10 +1,13 @@
 import "./App.css";
 
+
 import MainPage from "./pages/MainPage";
 import BoothDetailPage from "./pages/BoothDetailPage";
 import PerfDetailPage from "./pages/PerfDetailPage";
 import BoothListPage from "./pages/BoothListPage";
 import BoothEditPage from "./pages/BoothEditPage";
+import MyPage from "./pages/MyPage";
+
 
 function App() {
   return (
@@ -14,6 +17,7 @@ function App() {
       <PerfDetailPage />
       <BoothEditPage />
     </>
+
   );
 }
 
