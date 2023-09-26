@@ -292,7 +292,7 @@ const Top = styled.div`
   font-size: 16.64px;
   line-height: 2.5;
   font-weight: 500;
-
+  cursor: pointer;
   .booth {
     text-align: center;
     width: 60px;
@@ -326,6 +326,7 @@ const Bottom = styled.div`
   line-height: 2.5;
   font-size: 13px;
   font-weight: 400;
+  cursor: pointer;
   .booth {
     text-align: center;
     width: 86.295px;
