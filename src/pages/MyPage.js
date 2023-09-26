@@ -18,7 +18,7 @@ import greenline from "../assets/images/greenline.png";
 const MyPage = () => {
   const [isBooth, setIsBooth] = useState("booth"); //부스 vs 공연
   const [likeBooth, setLikeBooth] = useState("likeBooth"); //좋아요부스 vs 좋아요메뉴
-  const [selectMenu, setSelectMenu] = useState("전체"); //전체,날짜,장소,카테고리
+  const [selectMenu, setSelectMenu] = useState("all"); //전체,날짜,장소,카테고리
 
   const [selectDay, setSelectDay] = useState(17); //nav에서 날짜 선택
   const [selectPlace, setSelectPlace] = useState("정문"); //nav에서 장소 선택
@@ -102,26 +102,30 @@ const MyPage = () => {
         </Bottom>
       </Navigation>
 
-      <Menu>
+      <Menu isSelected={selectMenu}>
         <span
+          id="all"
           onClick={() => ClickMenu("all")}
           isSelected={selectMenu === "all"}
         >
           전체 ·
         </span>
         <span
+          id="day"
           onClick={() => ClickMenu("day")}
           isSelected={selectMenu === "day"}
         >
           날짜 ·
         </span>
         <span
+          id="place"
           onClick={() => ClickMenu("place")}
           isSelected={selectMenu === "place"}
         >
           장소 ·
         </span>
         <span
+          id="category"
           onClick={() => ClickMenu("category")}
           isSelected={selectMenu === "category"}
         >
@@ -233,13 +237,40 @@ const List = styled.div`
 const Menu = styled.div`
   span {
     margin-right: 5px;
+    cursor: pointer;
   }
-  color: ${(props) =>
-    props.isSelected ? "var(--red, #F55B1D);" : "var(--gray2, #9b9b9b)"};
+  #all {
+    color: ${(props) =>
+      props.isSelected === "all"
+        ? "var(--red, #F55B1D)"
+        : "var(--gray2, #9b9b9b)"};
+    font-weight: ${(props) => (props.isSelected === "all" ? "700" : "400")};
+  }
+  #day {
+    color: ${(props) =>
+      props.isSelected === "day"
+        ? "var(--red, #F55B1D)"
+        : "var(--gray2, #9b9b9b)"};
+    font-weight: ${(props) => (props.isSelected === "day" ? "700" : "400")};
+  }
+  #place {
+    color: ${(props) =>
+      props.isSelected === "place"
+        ? "var(--red, #F55B1D)"
+        : "var(--gray2, #9b9b9b)"};
+    font-weight: ${(props) => (props.isSelected === "place" ? "700" : "400")};
+  }
+  #category {
+    color: ${(props) =>
+      props.isSelected === "category"
+        ? "var(--red, #F55B1D)"
+        : "var(--gray2, #9b9b9b)"};
+    font-weight: ${(props) =>
+      props.isSelected === "category" ? "700" : "400"};
+  }
   text-align: center;
   font-size: 15px;
   font-style: normal;
-  font-weight: 400;
   margin-right: 179px;
 `;
 
