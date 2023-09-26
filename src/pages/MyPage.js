@@ -1,24 +1,28 @@
 import React, { useState } from "react";
 import { styled } from "styled-components";
 //component
-import Booth from "../components/Booth";
+import Booth from "../components/common/Booth";
 //부스관리자 전용
-import BoothAdmin from "../components/BoothAdmin";
+import BoothAdmin from "../components/mypage/BoothAdmin";
 //공연관리자 전용
-import ConcertAdmin from "../components/ConcertAdmin";
+import ConcertAdmin from "../components/mypage/ConcertAdmin";
 //TF관리자 전용
-import TFAdmin from "../components/TFAdmin";
+import TFAdmin from "../components/mypage/TFAdmin";
 
 //image
-import { ReactComponent as Namecover } from "../images/nickname.svg";
-import redhover from "../images/redhover.svg";
-import yellowhover from "../images/yellowhover.svg";
-import greenline from "../images/greenline.png";
+import { ReactComponent as Namecover } from "../assets/images/nickname.svg";
+import redhover from "../assets/images/redhover.svg";
+import yellowhover from "../assets/images/yellowhover.svg";
+import greenline from "../assets/images/greenline.png";
 
 const MyPage = () => {
-  const [isBooth, setIsBooth] = useState("what");
-  const [likeBooth, setLikeBooth] = useState("like");
-  const [isCategory, setIsCategory] = useState("nav");
+  const [isBooth, setIsBooth] = useState("booth"); //부스 vs 공연
+  const [likeBooth, setLikeBooth] = useState("likeBooth"); //좋아요부스 vs 좋아요메뉴
+  const [selectMenu, setSelectMenu] = useState("전체"); //전체,날짜,장소,카테고리
+
+  const [selectDay, setSelectDay] = useState(17); //nav에서 날짜 선택
+  const [selectPlace, setSelectPlace] = useState("정문"); //nav에서 장소 선택
+  const [selectCategory, setSelectCategory] = useState("음식"); //nav에서 카테고리 선택
 
   const clickBooth = (what) => {
     setIsBooth(what);
@@ -28,9 +32,40 @@ const MyPage = () => {
     setLikeBooth(like);
   };
 
-  const selectedCategory = (nav) => {
-    selectedCategory(nav);
+  const ClickMenu = (menu) => {
+    setSelectMenu(menu);
   };
+
+  const dayClick = (day) => {
+    setSelectDay(day);
+  };
+
+  const placeClick = (place) => {
+    setSelectPlace(place);
+  };
+
+  const categoryClick = (category) => {
+    setSelectCategory(category);
+  };
+
+  const days = [
+    { date: 17, name: "수요일" },
+    { date: 18, name: "목요일" },
+    { date: 19, name: "금요일" },
+  ];
+
+  const places = [
+    "정문",
+    "교육관",
+    "대강당",
+    "휴웃길",
+    "포스코관",
+    "학문관",
+    "생활관",
+    "신세계관",
+  ];
+
+  const categories = ["음식", "굿즈", "체험", "기타"];
 
   return (
     <Wrapper>
@@ -41,71 +76,100 @@ const MyPage = () => {
         <button>로그아웃</button>
       </NameCard>
 
+      {/* <BoothAdmin />
+      <ConcertAdmin />
+      <TFAdmin /> */}
+
       <Navigation>
-        <Top>
-          <div
-            className="booth"
-            onClick={() => clickBooth("booth")}
-            isSelected={isBooth === "booth"}
-          >
+        <Top isSelected={isBooth}>
+          <div className="booth" onClick={() => clickBooth("booth")}>
             부스
           </div>
-          <div
-            className="concert"
-            onClick={() => clickBooth("concert")}
-            isSelected={isBooth === "concert"}
-          >
+          <div className="concert" onClick={() => clickBooth("concert")}>
             공연
           </div>
         </Top>
 
         <hr></hr>
 
-        <Bottom>
-          <div
-            className="booth"
-            onClick={() => clickLikeBooth("likeBooth")}
-            isSelected={likeBooth === "likeBooth"}
-          >
+        <Bottom isSelected={likeBooth}>
+          <div className="booth" onClick={() => clickLikeBooth("likeBooth")}>
             좋아요한 부스
           </div>
-          <div
-            className="menu"
-            onClick={() => clickLikeBooth("likeMenu")}
-            isSelected={likeBooth === "likeMenu"}
-          >
+          <div className="menu" onClick={() => clickLikeBooth("likeMenu")}>
             좋아요한 메뉴
           </div>
         </Bottom>
       </Navigation>
 
-      <Category>
+      <Menu>
         <span
-          onClick={() => selectedCategory("all")}
-          isSelected={isCategory === "all"}
+          onClick={() => ClickMenu("all")}
+          isSelected={selectMenu === "all"}
         >
-          {" "}
-          전체 ·{" "}
+          전체 ·
         </span>
         <span
-          onClick={() => selectedCategory("day")}
-          isSelected={isCategory === "day"}
+          onClick={() => ClickMenu("day")}
+          isSelected={selectMenu === "day"}
         >
-          날짜 ·{" "}
+          날짜 ·
         </span>
         <span
-          onClick={() => selectedCategory("place")}
-          isSelected={isCategory === "place"}
+          onClick={() => ClickMenu("place")}
+          isSelected={selectMenu === "place"}
         >
-          장소 ·{" "}
+          장소 ·
         </span>
         <span
-          onClick={() => selectedCategory("category")}
-          isSelected={isCategory === "category"}
+          onClick={() => ClickMenu("category")}
+          isSelected={selectMenu === "category"}
         >
           카테고리
         </span>
-      </Category>
+      </Menu>
+
+      {selectMenu === "day" && (
+        <DayFilter>
+          {days.map((day) => (
+            <Day
+              key={day.date}
+              onClick={() => dayClick(day.date)}
+              isSelected={selectDay === day.date}
+            >
+              <span>{day.date}일</span>
+              <span>{day.name}</span>
+            </Day>
+          ))}
+        </DayFilter>
+      )}
+
+      {selectMenu === "place" && (
+        <PlaceFilter>
+          {places.map((place) => (
+            <Place
+              key={place}
+              onClick={() => placeClick(place)}
+              isSelected={selectPlace === place}
+            >
+              {place}
+            </Place>
+          ))}
+        </PlaceFilter>
+      )}
+      {selectMenu === "category" && (
+        <CategoryFilter>
+          {categories.map((category) => (
+            <Category
+              key={category}
+              onClick={() => categoryClick(category)}
+              isSelected={selectCategory === category}
+            >
+              {category}
+            </Category>
+          ))}
+        </CategoryFilter>
+      )}
 
       <div className="count">총 100개의 부스</div>
       <List>
@@ -166,8 +230,12 @@ const List = styled.div`
   grid-row-gap: 24px;
   margin-bottom: 64px;
 `;
-const Category = styled.div`
-  color: ${(props) => (props.isSelected ? "#F55B1D" : "#9B9B9B")};
+const Menu = styled.div`
+  span {
+    margin-right: 5px;
+  }
+  color: ${(props) =>
+    props.isSelected ? "var(--red, #F55B1D);" : "var(--gray2, #9b9b9b)"};
   text-align: center;
   font-size: 15px;
   font-style: normal;
@@ -198,23 +266,25 @@ const Top = styled.div`
     text-align: center;
     width: 60px;
     background-image: ${(props) =>
-      !props.isSelected ? `url(${yellowhover})` : "none"};
+      props.isSelected === "booth" ? `url(${yellowhover})` : "none"};
     background-size: 59px 35.7px;
     background-repeat: no-repeat;
-    color: ${(props) => (!props.isSelected ? "#029C54" : "#9B9B9B")};
-    font-weight: ${(props) => (!props.isSelected ? "700" : "500")};
+    color: ${(props) => (props.isSelected === "booth" ? "#029C54" : "#9B9B9B")};
+    font-weight: ${(props) => (props.isSelected === "booth" ? "700" : "500")};
     margin-right: 25px;
   }
+
   .concert {
     text-align: center;
     width: 60px;
-    margin-left: 25px;
+    margin-left: 10px;
     background-image: ${(props) =>
-      props.isSelected ? `url(${yellowhover})` : "none"};
+      props.isSelected === "concert" ? `url(${yellowhover})` : "none"};
     background-size: 59px 35.7px;
     background-repeat: no-repeat;
-    color: ${(props) => (props.isSelected ? "#029C54" : "#9B9B9B")};
-    font-weight: ${(props) => (props.isSelected ? "700" : "500")};
+    color: ${(props) =>
+      props.isSelected === "concert" ? "#029C54" : "#9B9B9B"};
+    font-weight: ${(props) => (props.isSelected === "concert" ? "700" : "500")};
   }
 `;
 const Bottom = styled.div`
@@ -229,13 +299,124 @@ const Bottom = styled.div`
     text-align: center;
     width: 86.295px;
     height: 31px;
-    margin-right: 12px;
+    margin-right: 40px;
     background-image: ${(props) =>
-      !props.isSelected ? `url(${redhover})` : "none"};
-    color: ${(props) => (!props.isSelected ? "#ffff" : "#9B9B9B")};
-    font-weight: ${(props) => (!props.isSelected ? "600" : "500")};
+      props.isSelected === "likeBooth" ? `url(${redhover})` : "none"};
+    color: ${(props) =>
+      props.isSelected === "likeBooth" ? "#ffff" : "#9B9B9B"};
+    font-weight: ${(props) =>
+      props.isSelected === "likeBooth" ? "600" : "500"};
   }
   .menu {
+    text-align: center;
     margin-left: 12px;
+    width: 86.295px;
+    height: 31px;
+    background-image: ${(props) =>
+      props.isSelected === "likeMenu" ? `url(${redhover})` : "none"};
+    color: ${(props) =>
+      props.isSelected === "likeMenu" ? "#ffff" : "#9B9B9B"};
+    font-weight: ${(props) =>
+      props.isSelected === "likeMenu" ? "600" : "500"};
   }
+`;
+
+const PlaceFilter = styled.div`
+  width: 347px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-row-gap: 10px;
+  justify-content: center;
+  padding: 5px 0px 10px 0px;
+`;
+
+//
+
+const Place = styled.div`
+  display: flex;
+  width: 75px;
+  height: 29px;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 104px;
+  border: 0.5px solid var(--green2, #029c54);
+  background: ${(props) =>
+    props.isSelected ? "var(--green2, #029c54)" : "#fff"};
+  cursor: pointer;
+  color: ${(props) => (props.isSelected ? "#fff" : "var(--green2, #029c54)")};
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 14.56px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+`;
+const DayFilter = styled.div`
+  width: 270px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 20px;
+`;
+
+const Day = styled.div`
+  display: flex;
+  width: 98px;
+  height: 29.12px;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+  background: ${(props) =>
+    props.isSelected ? "var(--green2, #029c54)" : "#fff"};
+  border-bottom: ${(props) =>
+    props.isSelected ? "1px solid #029C54" : "none"};
+
+  border-radius: 104px;
+  border: 1.04px solid var(--2023-SWE_green2, #029c54);
+  cursor: pointer;
+  span {
+    color: ${(props) => (props.isSelected ? "#ffff" : "var(--green2)")};
+    text-align: center;
+    font-family: Pretendard;
+    font-size: 14.56px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+  #date {
+    font-size: 12.48px;
+    font-weight: 300;
+  }
+`;
+const CategoryFilter = styled.div`
+  width: 347px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-row-gap: 10px;
+  justify-content: center;
+  padding: 5px 0px 10px 0px;
+`;
+
+const Category = styled.div`
+  display: flex;
+  width: 75px;
+  height: 29px;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 104px;
+  border: 0.5px solid var(--2023-SWE_green2, #029c54);
+  background: ${(props) =>
+    props.isSelected ? "var(--2023-SWE_green2, #029c54)" : "#fff"};
+  cursor: pointer;
+  color: ${(props) =>
+    props.isSelected ? "#fff" : "var(--2023-SWE_green2, #029c54)"};
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 14.56px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 `;

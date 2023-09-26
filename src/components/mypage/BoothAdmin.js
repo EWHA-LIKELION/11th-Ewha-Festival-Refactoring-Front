@@ -1,26 +1,34 @@
 import React from "react";
-import "../App.css";
+import "../../App.css";
 import { styled } from "styled-components";
-import greenArrow from "../images/greenArrow.svg";
-import editIcon from "../images/editIcon.svg";
-import boothimg from "../images/boothimg.svg";
-const ConcertAdmin = () => {
+//image
+import arrowGreen1 from "../../assets/icons/arrow-green1.svg";
+import editIcon from "../../assets/images/editIcon.svg";
+import add from "../../assets/images/add.svg";
+import boothimg from "../../assets/images/boothimg.svg";
+
+const BoothAdmin = () => {
   return (
     <Wrapper>
-      <div className="title">공연 관리</div>
+      <div className="title">부스 관리</div>
       <hr></hr>
 
       <BoxWrapper>
-        <div className="concertname">뉴진스~뉴티~</div>
+        <div className="boothname">둘이 먹다 죽어도 모를 덕고지</div>
         <div className="bar">
           <img id="icon" src={boothimg} />
-          내 공연 페이지 바로가기
-          <img id="arrow" src={greenArrow} />
+          내 부스 페이지 바로가기
+          <img id="arrow" src={arrowGreen1} />
         </div>
         <div className="bar">
           <img id="icon" src={editIcon} />
-          내 공연 정보 수정하기
-          <img id="arrow" src={greenArrow} />
+          내 부스 정보 수정하기
+          <img id="arrow" src={arrowGreen1} />
+        </div>
+        <div className="bar">
+          <img id="icon" src={add} />
+          내 메뉴 정보 수정하기
+          <img id="arrow" src={arrowGreen1} />
         </div>
       </BoxWrapper>
 
@@ -29,8 +37,7 @@ const ConcertAdmin = () => {
     </Wrapper>
   );
 };
-export default ConcertAdmin;
-
+export default BoothAdmin;
 const Wrapper = styled.div`
   width: 350px;
   .title {
@@ -57,7 +64,7 @@ const BoxWrapper = styled.div`
     border-radius: 4px;
     align-items: center;
   }
-  .concertname {
+  .boothname {
     display: flex;
     margin: auto;
     background-color: var(--green1);

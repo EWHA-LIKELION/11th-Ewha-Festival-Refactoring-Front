@@ -1,9 +1,9 @@
 import React from "react";
-import "../App.css";
+import "../../App.css";
 import { styled } from "styled-components";
-import greenArrow from "../images/greenArrow.svg";
-import editIcon from "../images/editIcon.svg";
-import megaphone from "../images/megaphone.svg";
+import arrowGreen1 from "../../assets/icons/arrow-green1.svg";
+import editIcon from "../../assets/images/editIcon.svg";
+import megaphone from "../../assets/images/megaphone.svg";
 
 const TFAdmin = () => {
   return (
@@ -15,12 +15,12 @@ const TFAdmin = () => {
         <div className="bar">
           <img id="icon" src={megaphone} />
           TF 공지사항 바로가기
-          <img id="arrow" src={greenArrow} />
+          <img id="arrow" src={arrowGreen1} />
         </div>
         <div className="bar">
           <img id="icon" src={editIcon} />
           TF 공지사항 작성하기
-          <img id="arrow" src={greenArrow} />
+          <img id="arrow" src={arrowGreen1} />
         </div>
       </BoxWrapper>
 
