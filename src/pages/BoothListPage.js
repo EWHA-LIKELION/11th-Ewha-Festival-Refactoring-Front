@@ -1,13 +1,13 @@
-import React from "react";
-import { styled } from "styled-components";
+import React from 'react';
+import {styled} from 'styled-components';
 
-import TopBar from "../components/_common/TopBar";
-import BoothFilter from "../components/ListPage/BoothFilter";
+import TopBar from '../components/_common/TopBar';
+import BoothFilter from '../components/ListPage/BoothFilter';
 
 const BoothListPage = () => {
   return (
     <Wrapper>
-      <TopBar />
+      <TopBar titleText='부스 목록' />
       <BoothFilter />
     </Wrapper>
   );

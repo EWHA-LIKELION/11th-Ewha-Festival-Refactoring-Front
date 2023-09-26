@@ -12,8 +12,6 @@ import BoothListPage from "./pages/BoothListPage";
 import BoothEditPage from "./pages/BoothEditPage";
 import MyPage from "./pages/MyPage";
 
-
-
 function App() {
   return (
     <>
