@@ -132,6 +132,7 @@ const Day = styled.div`
     props.isSelected ? `url(${dayClicked})` : "none"};
   background-repeat: no-repeat;
   background-position: center center;
+  background-size: 75px 110px;
   padding: 16px 16px;
   border-bottom: ${(props) =>
     props.isSelected ? "1px solid var(--green2)" : "none"};
@@ -180,11 +181,10 @@ const View = styled.div`
 `;
 
 const PlaceFilter = styled.div`
-  width: 347px;
+  width: 332px;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-row-gap: 10px;
-  justify-content: center;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 10px;
   padding: 5px 0px 10px 0px;
 `;
 
@@ -211,11 +211,10 @@ const Place = styled.div`
 `;
 
 const CategoryFilter = styled.div`
-  width: 347px;
+  width: 340px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-row-gap: 10px;
-  justify-content: center;
+  grid-column-gap: 10px;
   padding: 5px 0px 10px 0px;
 `;
 

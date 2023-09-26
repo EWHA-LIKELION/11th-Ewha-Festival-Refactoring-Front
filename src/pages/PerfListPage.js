@@ -2,13 +2,13 @@ import React from "react";
 import { styled } from "styled-components";
 
 import TopBar from "../components/_common/TopBar";
-import BoothFilter from "../components/ListPage/BoothFilter";
+import PerfFilter from "../components/ListPage/PerfFilter";
 
 const PerfListPage = () => {
   return (
     <Wrapper>
       <TopBar />
-      <BoothFilter />
+      <PerfFilter />
     </Wrapper>
   );
 };

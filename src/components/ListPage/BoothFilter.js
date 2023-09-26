@@ -139,6 +139,7 @@ const DayFilter = styled.div`
 const Day = styled.div`
   background-image: ${(props) =>
     props.isSelected ? `url(${dayClicked})` : "none"};
+  background-size: 75px 110px;
   background-repeat: no-repeat;
   background-position: center center;
   padding: 16px 16px;
@@ -189,11 +190,10 @@ const View = styled.div`
 `;
 
 const PlaceFilter = styled.div`
-  width: 347px;
+  width: 340px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-row-gap: 10px;
-  justify-content: center;
+  grid-gap: 10px 10px;
   padding: 5px 0px 10px 0px;
 `;
 
@@ -220,11 +220,10 @@ const Place = styled.div`
 `;
 
 const CategoryFilter = styled.div`
-  width: 347px;
+  width: 340px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-row-gap: 10px;
-  justify-content: center;
+  grid-column-gap: 10px;
   padding: 5px 0px 10px 0px;
 `;
 
@@ -236,7 +235,7 @@ const Category = styled.div`
   align-items: center;
   flex-shrink: 0;
   border-radius: 104px;
-  border: 0.5px solid var(--2023-SWE_green2, #029c54);
+  border: 0.5px solid var(--green2);
   background: ${(props) =>
     props.isSelected ? "var(--green2)" : "var(--white)"};
   cursor: pointer;

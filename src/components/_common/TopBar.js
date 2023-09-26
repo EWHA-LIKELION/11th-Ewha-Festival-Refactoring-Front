@@ -10,7 +10,8 @@ const TopBar = () => {
   const { pathname } = useLocation();
 
   let titleText = "";
-  if (pathname === "/boothlistpage") titleText = "부스 목록";
+  if (pathname === "/booth") titleText = "부스 목록";
+  else if (pathname === "/performance") titleText = "공연 목록";
 
   return (
     <Wrapper>
@@ -64,5 +65,9 @@ const Title = styled.div`
     font-weight: 700;
     line-height: 22.867px;
     letter-spacing: -0.424px;
+  }
+  img {
+    width: 165px;
+    height: 52px;
   }
 `;
