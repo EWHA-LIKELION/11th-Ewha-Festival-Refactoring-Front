@@ -7,7 +7,7 @@ import PerfFilter from "../components/ListPage/PerfFilter";
 const PerfListPage = () => {
   return (
     <Wrapper>
-      <TopBar />
+      <TopBar titleText="공연 목록" />
       <PerfFilter />
     </Wrapper>
   );

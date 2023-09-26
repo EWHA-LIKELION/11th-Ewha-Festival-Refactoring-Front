@@ -6,6 +6,7 @@ import DetailTitle from '../components/Detail/DetailTitle';
 import DetailInfo from '../components/Detail/DetailInfo';
 import BoothMenu from '../components/Detail/BoothMenu';
 import DetailReview from '../components/Detail/DetailReview';
+import Footer from '../components/_common/Footer';
 
 const BoothDetailPage = () => {
   return (
@@ -17,6 +18,7 @@ const BoothDetailPage = () => {
         <BoothMenu />
         <DetailReview />
       </Content>
+      <Footer />
     </Wrapper>
   );
 };

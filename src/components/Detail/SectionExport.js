@@ -42,6 +42,8 @@ const SecTitleContainer = styled.div`
   align-items: center;
 
   img {
+    width: 104px;
+    height: 41px;
     position: absolute;
   }
 

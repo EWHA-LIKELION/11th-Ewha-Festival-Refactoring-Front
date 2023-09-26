@@ -1,18 +1,11 @@
 import React from "react";
 import { styled } from "styled-components";
-import { useLocation, useNavigate } from "react-router-dom";
 
 import menu from "../../assets/icons/menu.svg";
 import search from "../../assets/icons/search.svg";
 import titleBackground from "../../assets/icons/title-background.svg";
 
-const TopBar = () => {
-  const { pathname } = useLocation();
-
-  let titleText = "";
-  if (pathname === "/booth") titleText = "부스 목록";
-  else if (pathname === "/performance") titleText = "공연 목록";
-
+const TopBar = ({ titleText }) => {
   return (
     <Wrapper>
       <Container>
