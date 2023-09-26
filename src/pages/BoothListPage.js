@@ -17,5 +17,5 @@ export default BoothListPage;
 
 const Wrapper = styled.div`
   width: 390px;
-  background: var(--2023-SWE_beige, #fff9f1);
+  background: var(--beige);
 `;

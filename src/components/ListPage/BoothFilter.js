@@ -125,7 +125,7 @@ const Line = styled.div`
   display: flex;
   justify-content: center;
   width: 390px;
-  border-bottom: 1px solid #efefef;
+  border-bottom: 1px solid var(--gray2);
 `;
 
 const DayFilter = styled.div`
@@ -143,14 +143,13 @@ const Day = styled.div`
   background-position: center center;
   padding: 16px 16px;
   border-bottom: ${(props) =>
-    props.isSelected ? "1px solid #029C54" : "none"};
+    props.isSelected ? "1px solid var(--green2)" : "none"};
   display: flex;
   flex-direction: column;
   justify-content: center;
   cursor: pointer;
   span {
-    color: ${(props) =>
-      props.isSelected ? "var(--2023-SWE_green2, #029c54)" : "#9B9B9B"};
+    color: ${(props) => (props.isSelected ? "var(--green2)" : "#9B9B9B")};
     text-align: center;
     font-family: Pretendard;
     font-size: 16.64px;
@@ -179,8 +178,7 @@ const View = styled.div`
     background-repeat: no-repeat;
     background-position: center center;
     padding: 16px 20px;
-    color: ${(props) =>
-      props.isSelected ? "#fff" : "var(--2023-SWE_gray2, #9b9b9b)"};
+    color: ${(props) => (props.isSelected ? "var(--white)" : "var(--gray2)")};
     text-align: center;
     font-family: Pretendard;
     font-size: 13px;
@@ -209,11 +207,10 @@ const Place = styled.div`
   border-radius: 104px;
   border: 0.5px solid var(--2023-SWE_green2, #029c54);
   background: ${(props) =>
-    props.isSelected ? "var(--2023-SWE_green2, #029c54)" : "#fff"};
+    props.isSelected ? "var(--green2)" : "var(--white)"};
   cursor: pointer;
 
-  color: ${(props) =>
-    props.isSelected ? "#fff" : "var(--2023-SWE_green2, #029c54)"};
+  color: ${(props) => (props.isSelected ? "var(--white)" : "var(--green2)")};
   text-align: center;
   font-family: Pretendard;
   font-size: 14.56px;
@@ -241,11 +238,10 @@ const Category = styled.div`
   border-radius: 104px;
   border: 0.5px solid var(--2023-SWE_green2, #029c54);
   background: ${(props) =>
-    props.isSelected ? "var(--2023-SWE_green2, #029c54)" : "#fff"};
+    props.isSelected ? "var(--green2)" : "var(--white)"};
   cursor: pointer;
 
-  color: ${(props) =>
-    props.isSelected ? "#fff" : "var(--2023-SWE_green2, #029c54)"};
+  color: ${(props) => (props.isSelected ? "var(--white)" : "var(--green2)")};
   text-align: center;
   font-family: Pretendard;
   font-size: 14.56px;

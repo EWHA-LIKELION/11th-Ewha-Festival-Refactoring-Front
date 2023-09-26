@@ -34,8 +34,8 @@ const Wrapper = styled.div`
   width: 390px;
   height: 117px;
   flex-shrink: 0;
-  border-bottom: 0.8px solid var(--2023-SWE_gray2, #9b9b9b);
-  background: var(--2023-SWE_beige, #fff9f1);
+  border-bottom: 0.8px solid var(--gray2);
+  background: var(--beige);
 `;
 
 const Container = styled.div`
@@ -56,7 +56,7 @@ const Title = styled.div`
     position: absolute;
     top: 34%;
     z-index: 20;
-    color: var(--2023-SWE_white, #fff);
+    color: var(--white);
     text-align: center;
     font-family: Pretendard;
     font-size: 18px;
