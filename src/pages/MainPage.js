@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import menu from "../assets/icons/menu.svg";
+import menu from ".././assets/icons/menu.svg";
 import mypageGreen from "../assets/images/Main/mypage-green.svg";
 import bannerMain from "../assets/images/Main/banner-main.svg";
 import bannerGreen from "../assets/images/Main/banner-green.svg";
