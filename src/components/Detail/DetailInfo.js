@@ -1,11 +1,16 @@
+import {useState} from 'react';
 import styled from 'styled-components';
 
+//components
 import {SecTitle, SecSub, Line} from './SectionExport';
+import Map from '../_common/Map';
 
 //images
 import arrow from '../../assets/icons/arrow-green3.svg';
 
 const DetailInfo = ({event}) => {
+  const [thisPlace, setThisPlace] = useState('포스코관'); //임시
+
   return (
     <Section>
       <Header>
@@ -17,6 +22,9 @@ const DetailInfo = ({event}) => {
         <SecSub subtitle={`${event} 위치`} color='var(--green1)'>
           포스코관 01
         </SecSub>
+        <MapContainer>
+          <Map page='detail' place={thisPlace} />
+        </MapContainer>
         <SecSub subtitle={`${event} 운영시간`} color='var(--green1)'>
           <div>10일 수요일 - AM 10:00 ~ PM 5:00</div>
           <div>11일 목요일 - AM 10:00 ~ PM 5:00</div>
@@ -29,7 +37,7 @@ const DetailInfo = ({event}) => {
             href='https://open.kakao.com/o/gJuiiXIf'
             style={{color: 'var(--green2'}}
           >
-            카카오톡오픈채팅/떡꼬치/연락하쇼/sgkimfcdjnoesui/kjnzvdcoe/kvfjngipqrdfkjdfsgjhbkuv
+            https://open.kakao.com/o/gJuiiXIf
           </a>
         </SecSub>
       </Content>
@@ -60,4 +68,10 @@ const Content = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
+`;
+
+const MapContainer = styled.div`
+  display: flex;
+  margin-top: -12px;
+  margin-left: 21.5px;
 `;
