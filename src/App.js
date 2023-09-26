@@ -1,14 +1,17 @@
 import "./App.css";
+
 import MainPage from "./pages/MainPage";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import BoothDetailPage from "./pages/BoothDetailPage";
+import PerfDetailPage from "./pages/PerfDetailPage";
+import BoothListPage from "./pages/BoothListPage";
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<MainPage />} />
-      </Routes>
-    </Router>
+    <>
+      <MainPage />
+      <BoothDetailPage />
+      <PerfDetailPage />
+    </>
   );
 }
 
