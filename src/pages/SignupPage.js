@@ -4,7 +4,7 @@ import styled, { css } from "styled-components";
 
 //images
 import logo from "../images/login-signup/logo.svg";
-import id from "../images/login-signup/id_icon.svg";
+import id from "../images/login-signup/id-icon.svg";
 import passwordicon from "../images/login-signup/password-icon.svg";
 import infobtn from "../images/login-signup/infobtn.svg";
 import check from "../images/login-signup/check.svg";
@@ -36,6 +36,7 @@ const SignupPage = () => {
 
   const openCompleteModal = () => {
     setCompleteModal(true);
+    console.log(completemodal);
   };
 
   const closeCompleteModal = () => {
@@ -112,6 +113,7 @@ const SignupPage = () => {
       </Wrapper>
       {secretmodal ? (
         <SecretModal
+          secretmodal={secretmodal}
           openSecretModal={openSecretModal}
           closeSecretModal={closeSecretModal}
         />

@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 //img
 import logo from "../images/login-signup/logo.svg";
-import id from "../images/login-signup/id_icon.svg";
+import id from "../images/login-signup/id-icon.svg";
 import passwordicon from "../images/login-signup/password-icon.svg";
 
 const LoginPage = () => {
