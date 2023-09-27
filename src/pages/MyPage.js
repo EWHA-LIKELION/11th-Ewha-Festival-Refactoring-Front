@@ -3,12 +3,13 @@ import { styled } from "styled-components";
 
 //component
 import Booth from "../components/_common/Booth";
+import TopBar from "../components/_common/TopBar";
 //부스관리자 전용
-import BoothAdmin from "../components/Mypage/BoothAdmin";
+import BoothAdmin from "../components/mypage/BoothAdmin";
 //공연관리자 전용
-import ConcertAdmin from "../components/Mypage/ConcertAdmin";
+import ConcertAdmin from "../components/mypage/ConcertAdmin";
 //TF관리자 전용
-import TFAdmin from "../components/Mypage/TFAdmin";
+import TFAdmin from "../components/mypage/TFAdmin";
 
 //image
 import { ReactComponent as Namecover } from "../assets/images/Mypage/nickname.svg";
@@ -70,6 +71,8 @@ const MyPage = () => {
 
   return (
     <Wrapper>
+      <TopBar titleText="마이페이지" />
+
       <Namecover width={260} />
       <NameCard>
         <div className="name">닉네임</div>
@@ -206,7 +209,7 @@ const Wrapper = styled.div`
 `;
 const NameCard = styled.div`
   position: absolute;
-  top: 82px;
+  top: 29.9%;
   left: 47.5%;
   text-align: center;
   .name {
