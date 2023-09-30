@@ -6,7 +6,11 @@ import { SecTitle, Line } from "./SectionExport";
 import fullheart from "../../assets/images/detail/menu-fullheart.svg";
 import emptyheart from "../../assets/images/detail/menu-emptyheart.svg";
 
-const BoothMenu = () => {
+const BoothMenu = ({ menuData }) => {
+  //메뉴 품절 여부에 따른 필터링
+  const soldoutMenus = menuData.filter((menu) => menu.is_soldout);
+  const availableMenus = menuData.filter((menu) => !menu.is_soldout);
+
   return (
     <Section>
       <SecTitle sectitle={`메뉴`} />
@@ -23,27 +27,38 @@ const BoothMenu = () => {
 
       {/* 메뉴 목록 */}
       <MenuList>
-        {/* 나중에 필터링해서 띄우기 */}
         {/* 판매 중인 메뉴 */}
-        <Menu>
-          <div>이것은 메뉴이름입니다</div>
-          <div>
-            <span>2,000원</span>
-            <img src={fullheart} alt="fullheart" />
-          </div>
-        </Menu>
+        {availableMenus.map((menu) => (
+          <Menu key={menu.id}>
+            <div>{menu.menu}</div>
+            <div>
+              <span>{menu.price}원</span>
+              {menu.is_liked ? (
+                <img src={fullheart} alt="fullheart" />
+              ) : (
+                <img src={emptyheart} alt="emptyheart" />
+              )}
+            </div>
+          </Menu>
+        ))}
         {/* 품절된 메뉴 */}
-        <Menu>
-          <div style={{ color: "var(--gray2)", fontWeight: "500" }}>
-            이것은 메뉴이름입니다
-          </div>
-          <div>
-            <span style={{ color: "var(--red)", fontWeight: "500" }}>
-              sold out
-            </span>
-            <img src={emptyheart} alt="emptyheart" />
-          </div>
-        </Menu>
+        {soldoutMenus.map((menu) => (
+          <Menu key={menu.id}>
+            <div style={{ color: "var(--gray2)", fontWeight: "500" }}>
+              {menu.menu}
+            </div>
+            <div>
+              <span style={{ color: "var(--red)", fontWeight: "500" }}>
+                sold out
+              </span>
+              {menu.is_liked ? (
+                <img src={fullheart} alt="fullheart" />
+              ) : (
+                <img src={emptyheart} alt="emptyheart" />
+              )}
+            </div>
+          </Menu>
+        ))}
       </MenuList>
     </Section>
   );

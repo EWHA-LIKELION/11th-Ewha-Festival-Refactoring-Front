@@ -1,20 +1,22 @@
-import React, {useState} from 'react';
-import styled from 'styled-components';
+import styled from "styled-components";
 
 //images
-import deleteIcon from '../../assets/images/detail/review-delete.svg';
+import deleteIcon from "../../assets/images/detail/review-delete.svg";
 
-const ReviewBox = () => {
+const ReviewBox = ({ comment, editerId }) => {
   //부스 관리자 여부 관리
-  const [thisBoothUserId, setThisBoothUserId] = useState('부스 관리자 아이디');
-
-  const detBooth = (cUserId) => {
-    if (thisBoothUserId === cUserId) {
+  const compareUserIds = (userId) => {
+    if (editerId === userId) {
       return true;
     } else {
       return false;
     }
   };
+
+  //방명록 작성 시간 형태 변환
+  const [temDatePart, timePart] = comment.created_at.split(" ");
+  const dateParts = temDatePart.split("-");
+  const formattedDate = `${parseInt(dateParts[1])}/${parseInt(dateParts[2])}`;
 
   return (
     <Box>
@@ -23,21 +25,20 @@ const ReviewBox = () => {
           {/* 작성자가 부스관리자인지에 따른 글씨색 변화 */}
           <Nickname
             style={{
-              color: detBooth('사용자 아이디') ? 'var(--red)' : 'var(--green2)',
+              color: compareUserIds(comment.user.id)
+                ? "var(--red)"
+                : "var(--green2)",
             }}
           >
-            으아
+            {comment.user.nickname}
           </Nickname>
-          <Date>5/10</Date>
-          <Date>14:25</Date>
+          <Date>{formattedDate}</Date>
+          <Date>{timePart}</Date>
         </div>
         {/* 작성자가 본인일 경우 삭제 버튼 활성화 */}
-        <img src={deleteIcon} alt='review delete icon' />
+        <img src={deleteIcon} alt="review delete icon" />
       </div>
-      <Content>
-        이런 맛은 처음이다 이런 맛은 처음이다 이런 맛은 처음이다 이런 맛은
-        처음이다
-      </Content>
+      <Content>{comment.content}</Content>
     </Box>
   );
 };
