@@ -3,6 +3,8 @@ import { styled } from "styled-components";
 
 //component
 import Booth from "../components/_common/Booth";
+import Concert from "../components/_common/Concert";
+import Menu from "../components/_common/Menu";
 import TopBar from "../components/_common/TopBar";
 //부스관리자 전용
 import BoothAdmin from "../components/mypage/BoothAdmin";
@@ -97,16 +99,25 @@ const MyPage = () => {
         <hr></hr>
 
         <Bottom isSelected={likeBooth}>
-          <div className="booth" onClick={() => clickLikeBooth("likeBooth")}>
-            좋아요한 부스
-          </div>
-          <div className="menu" onClick={() => clickLikeBooth("likeMenu")}>
-            좋아요한 메뉴
-          </div>
+          {isBooth === "booth" ? (
+            <>
+              <div
+                className="booth"
+                onClick={() => clickLikeBooth("likeBooth")}
+              >
+                좋아요한 부스
+              </div>
+              <div className="menu" onClick={() => clickLikeBooth("likeMenu")}>
+                좋아요한 메뉴
+              </div>
+            </>
+          ) : (
+            <div id="concert">좋아요한 공연</div>
+          )}
         </Bottom>
       </Navigation>
 
-      <Menu isSelected={selectMenu}>
+      <MenuWrapper isSelected={selectMenu}>
         <span
           id="all"
           onClick={() => ClickMenu("all")}
@@ -135,7 +146,7 @@ const MyPage = () => {
         >
           카테고리
         </span>
-      </Menu>
+      </MenuWrapper>
 
       {selectMenu === "day" && (
         <DayFilter>
@@ -180,14 +191,36 @@ const MyPage = () => {
       )}
 
       <div className="count">총 100개의 부스</div>
-      <List>
-        <Booth />
-        <Booth />
-        <Booth />
-        <Booth />
-        <Booth />
-        <Booth />
-      </List>
+      {isBooth === "booth" ? (
+        likeBooth === "likeBooth" ? (
+          <List>
+            <Booth />
+            <Booth />
+            <Booth />
+            <Booth />
+            <Booth />
+            <Booth />
+          </List>
+        ) : (
+          <List>
+            <Menu />
+            <Menu />
+            <Menu />
+            <Menu />
+            <Menu />
+            <Menu />
+          </List>
+        )
+      ) : (
+        <List>
+          <Concert />
+          <Concert />
+          <Concert />
+          <Concert />
+          <Concert />
+          <Concert />
+        </List>
+      )}
     </Wrapper>
   );
 };
@@ -238,7 +271,8 @@ const List = styled.div`
   grid-row-gap: 24px;
   margin-bottom: 64px;
 `;
-const Menu = styled.div`
+
+const MenuWrapper = styled.div`
   span {
     margin-right: 5px;
     cursor: pointer;
@@ -326,7 +360,6 @@ const Bottom = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 10px;
-  color: var(--gray2);
   line-height: 2.5;
   font-size: 13px;
   font-weight: 400;
@@ -354,6 +387,9 @@ const Bottom = styled.div`
       props.isSelected === "likeMenu" ? "#ffff" : "#9B9B9B"};
     font-weight: ${(props) =>
       props.isSelected === "likeMenu" ? "600" : "500"};
+  }
+  #concert {
+    color: white;
   }
 `;
 

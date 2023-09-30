@@ -5,7 +5,6 @@ import { styled } from "styled-components";
 //부스 대표 사진
 import concert from "../../assets/images/Mypage/concert.png";
 import { ReactComponent as PinkHeart } from "../../assets/icons/heart-empty.svg";
-import Degree from "../_common/Degree";
 
 const Concert = () => {
   return (
@@ -14,14 +13,11 @@ const Concert = () => {
 
       <InfoWrapper>
         <Place>
-          {" "}
-          학문관광장
-          <span>·</span>
+          학문관광장<span>·</span>
           <span>공연</span>
         </Place>
 
         <Heart>
-          <Degree size="small" degree="light" />
           <PinkHeart />
           <div className="like">1000</div>
         </Heart>
@@ -48,7 +44,7 @@ const InfoWrapper = styled.div`
   margin-top: 5px;
 `;
 const Place = styled.div`
-  margin-right: 33px;
+  margin-right: 40px;
   font-weight: 500;
   font-size: 12px;
   color: var(--red);
