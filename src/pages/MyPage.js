@@ -389,7 +389,14 @@ const Bottom = styled.div`
       props.isSelected === "likeMenu" ? "600" : "500"};
   }
   #concert {
+    text-align: center;
+    width: 86.295px;
+    height: 31px;
+    background-image: ${(props) =>
+      props.isSelected === "concert" ? `url(${redhover})` : `url(${redhover})`};
+    background-repeat: no-repeat;
     color: white;
+    font-weight: ${(props) => (props.isSelected === "concert" ? "700" : "500")};
   }
 `;
 
