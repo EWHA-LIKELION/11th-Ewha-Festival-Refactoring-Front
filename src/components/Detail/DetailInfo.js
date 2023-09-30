@@ -11,9 +11,11 @@ import arrow from "../../assets/icons/arrow-green3.svg";
 const DetailInfo = ({ event, thisData }) => {
   //정보 더보기(지도, 소개 전체보기) 토글 관리
   const [isToggleOpen, setIsToggleOpen] = useState(false);
+  const [rotation, setRotation] = useState(0); //아이콘 회전
 
   const toggleInfo = () => {
     setIsToggleOpen(!isToggleOpen);
+    setRotation(rotation + 180);
   };
 
   // 운영 시간 관리
@@ -51,7 +53,11 @@ const DetailInfo = ({ event, thisData }) => {
     <Section>
       <Header>
         <SecTitle sectitle={`${event} 정보`} />
-        <ToggleBtn src={arrow} onClick={toggleInfo} />
+        <ToggleBtn
+          src={arrow}
+          onClick={toggleInfo}
+          style={{ transform: `rotate(${rotation}deg)` }}
+        />
       </Header>
       <Line />
       <Content>
@@ -102,6 +108,8 @@ const ToggleBtn = styled.img`
   width: 12.48px;
   height: 7.28px;
   cursor: pointer;
+
+  transition: transform 0.3s ease;
 `;
 
 const Content = styled.div`
