@@ -6,7 +6,7 @@ import { SecTitle, Line } from "./SectionExport";
 import fullheart from "../../assets/images/detail/menu-fullheart.svg";
 import emptyheart from "../../assets/images/detail/menu-emptyheart.svg";
 
-const BoothMenu = ({ menuData }) => {
+const BoothMenu = ({ menuData, menuImgData }) => {
   //메뉴 품절 여부에 따른 필터링
   const soldoutMenus = menuData.filter((menu) => menu.is_soldout);
   const availableMenus = menuData.filter((menu) => !menu.is_soldout);
@@ -19,9 +19,10 @@ const BoothMenu = ({ menuData }) => {
       {/* 메뉴 이미지 */}
       <MenuImgList>
         <MenuImgBox>
-          <MenuImg />
-          <MenuImg />
-          <MenuImg />
+          {menuImgData &&
+            menuImgData.map((menu) => (
+              <MenuImg key={menu.id} src={menu.image} />
+            ))}
         </MenuImgBox>
       </MenuImgList>
 
@@ -90,7 +91,7 @@ const MenuImgBox = styled.div`
   gap: 15px;
 `;
 
-const MenuImg = styled.div`
+const MenuImg = styled.img`
   position: relative;
   width: 126.88px;
   height: 123.76px;

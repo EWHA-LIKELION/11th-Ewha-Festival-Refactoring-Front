@@ -63,7 +63,23 @@ const BoothDetailPage = () => {
       "images": [
         {
           "id": 1,
-          "image": "",
+          "image":
+            "https://dnvefa72aowie.cloudfront.net/origin/article/202309/eda7956ec89401541c52bad90007be5f13323f45ab79060e47b022238c081df3_0.webp?q=95&s=1440x1440&t=inside&f=webp",
+        },
+        {
+          "id": 2,
+          "image":
+            "https://dnvefa72aowie.cloudfront.net/origin/article/202309/eda7956ec89401541c52bad90007be5f13323f45ab79060e47b022238c081df3_0.webp?q=95&s=1440x1440&t=inside&f=webp",
+        },
+        {
+          "id": 3,
+          "image":
+            "https://dnvefa72aowie.cloudfront.net/origin/article/202309/eda7956ec89401541c52bad90007be5f13323f45ab79060e47b022238c081df3_0.webp?q=95&s=1440x1440&t=inside&f=webp",
+        },
+        {
+          "id": 4,
+          "image":
+            "https://dnvefa72aowie.cloudfront.net/origin/article/202309/eda7956ec89401541c52bad90007be5f13323f45ab79060e47b022238c081df3_0.webp?q=95&s=1440x1440&t=inside&f=webp",
         },
       ],
       "menus": [
@@ -121,7 +137,7 @@ const BoothDetailPage = () => {
       <Content>
         <DetailTitle event="부스" thisData={thisData} />
         <DetailInfo event="부스" thisData={thisData} />
-        <BoothMenu menuData={thisData.menus} />
+        <BoothMenu menuData={thisData.menus} menuImgData={thisData.images} />
         <DetailReview
           commentsData={thisData.comments}
           editerId={thisData.user}
