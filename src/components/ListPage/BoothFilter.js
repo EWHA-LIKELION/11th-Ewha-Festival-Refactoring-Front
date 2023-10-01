@@ -4,7 +4,7 @@ import { styled } from "styled-components";
 import dayClicked from "../../assets/icons/highlight-yellow.svg";
 import categoryClicked from "../../assets/icons/highlight-red.svg";
 
-const BoothFilter = () => {
+const BoothFilter = ({ placeSelect, setSelectedView }) => {
   const [selectDay, setSelectDay] = useState(17);
   const [selectView, setSelectView] = useState("place");
   const [selectPlace, setSelectPlace] = useState("정문");
@@ -16,10 +16,12 @@ const BoothFilter = () => {
 
   const viewClick = (view) => {
     setSelectView(view);
+    setSelectedView(view);
   };
 
   const placeClick = (place) => {
     setSelectPlace(place);
+    placeSelect(place);
   };
 
   const categoryClick = (category) => {
