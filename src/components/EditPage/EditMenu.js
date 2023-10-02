@@ -4,18 +4,20 @@ import styled from "styled-components";
 import TopBar from "../_common/TopBar";
 import Footer from "../_common/Footer";
 import EditMenuCard from "./EditMenuCard";
+import { useParams } from "react-router";
 
 const EditMenu = () => {
+  const params = useParams();
+  const itemId = parseInt(params.id, 10);
+
   return (
     <>
       <TopBar titleText={`메뉴 정보 수정`} />
       <Wrapper>
         <div className="order">수정할 메뉴를 선택하세요</div>
         <EditMenuCard />
-        <EditMenuCard />
-        <EditMenuCard />
-        <Footer />
       </Wrapper>
+      <Footer />
     </>
   );
 };

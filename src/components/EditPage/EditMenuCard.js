@@ -1,15 +1,30 @@
 import styled from "styled-components";
 import arrow_green3 from "../../assets/icons/arrow-green3.svg";
 
+import { Link } from "react-router-dom";
+import { MenuDetailData } from "../../_mock/MenuDetailData";
+import { useState } from "react";
+
 const EditMenuCard = () => {
+  const [isSelected, setIsSelected] = useState(false);
+  const handleClick = () => {
+    setIsSelected(true);
+  };
+
   return (
     <>
       <Wrapper>
         <Content>
-          <div className="name">이것은 메뉴 이름입니다</div>
+          {/* {MenuDetailData.map((id) => (
+            <Link key={id} to={`/booth/edit/1/${id}`}>
+              <div className="name">{MenuDetailData[id].name}</div>
+              <div className="price">{MenuDetailData[id].price}원</div>
+            </Link>
+          ))} */}
+          <div className="name">덕고지</div>
           <div className="price">2,000원</div>
         </Content>
-        <img src={arrow_green3} />
+        <img src={arrow_green3} onClick={handleClick} />
       </Wrapper>
     </>
   );

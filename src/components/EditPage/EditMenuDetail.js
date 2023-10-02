@@ -5,6 +5,8 @@ import { useState } from "react";
 import TopBar from "../_common/TopBar";
 import Footer from "../_common/Footer";
 
+import { MenuDetailData } from "../../_mock/MenuDetailData";
+
 const EditMenuDetail = () => {
   const isSoldOut = () => {
     const toggled = document.getElementById("toggle");
@@ -22,18 +24,14 @@ const EditMenuDetail = () => {
         <div className="title" style={{ marginTop: "30px" }}>
           메뉴 이름
         </div>
-        <input
-          className="inputbox"
-          type="text"
-          value={`이것은 메뉴 이름입니다`}
-        />
+        <input className="inputbox" type="text" value={`덕고지`} />
 
         {/* 메뉴가격 */}
         <div className="title" style={{ marginTop: "20px" }}>
           가격
         </div>
         <PriceWrapper>
-          <input className="inputbox" type="text" value={2000} />
+          <input className="inputbox" type="text" value={`2000`} />
           <div className="won">원</div>
 
           {/* sold out 스위치 */}
