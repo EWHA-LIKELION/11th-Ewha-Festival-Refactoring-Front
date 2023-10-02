@@ -15,6 +15,8 @@ import BoothEditPage from "./pages/BoothEditPage";
 import PerfDetailPage from "./pages/PerfDetailPage";
 import PerfEditPage from "./pages/PerfEditPage";
 
+import TrashBinPage from "./pages/TrashBinPage";
+
 function App() {
   return (
     <>
@@ -49,6 +51,9 @@ function App() {
             path={"/performance/edit/:id"}
             element={<PerfEditPage />}
           ></Route>
+
+          {/* 쓰레기통 페이지 */}
+          <Route path={"/trashbin"} element={<TrashBinPage />}></Route>
         </Routes>
       </Router>
     </>
