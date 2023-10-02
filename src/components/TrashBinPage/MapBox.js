@@ -1,17 +1,16 @@
 import styled from "styled-components";
 
-//images
-import maingate from "../../assets/images/trashbin/maingate-t.svg"; //임시
-
-const MapBox = () => {
+const MapBox = ({ id, header, description, mapimg }) => {
   return (
-    <Box>
+    <Box key={id}>
       <Header>
-        <span>정문 쓰레기통 위치</span>
+        <span>{header}</span>
       </Header>
-      <img src={maingate} alt="map" />
+      <img src={mapimg} alt={header} />
       <Description>
-        <span>잔디광장 24번 부스 옆</span>
+        {description.map((text, index) => (
+          <span key={index}>{text}</span>
+        ))}
       </Description>
     </Box>
   );
@@ -51,14 +50,16 @@ const Header = styled.div`
 `;
 
 const Description = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
   width: 348px;
-  height: 48px;
+  padding: 16px 0px;
   background: var(--white);
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
 
   span {
-    height: 48px;
     display: flex;
     justify-content: center;
     align-items: center;

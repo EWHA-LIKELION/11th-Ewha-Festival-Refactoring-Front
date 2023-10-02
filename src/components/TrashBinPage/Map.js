@@ -14,6 +14,7 @@ const center = {
 
 const OPTIONS = {
   minZoom: 14,
+  zoom: 16,
   maxZoom: 20,
 };
 
@@ -63,6 +64,7 @@ function MyComponent() {
   });
 
   const [map, setMap] = React.useState(null);
+  console.log(map);
 
   const onLoad = React.useCallback(function callback(map) {
     const bounds = new window.google.maps.LatLngBounds(center);
@@ -79,7 +81,6 @@ function MyComponent() {
     <GoogleMap
       mapContainerStyle={containerStyle}
       center={center}
-      zoom={17}
       onLoad={onLoad}
       onUnmount={onUnmount}
       options={OPTIONS}
