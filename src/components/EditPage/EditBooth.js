@@ -30,12 +30,16 @@ const EditBooth = () => {
 
         {/* 부스 운영시간 */}
         <div className="title">부스 운영시간</div>
-        {/* <textarea
-          className="time"
-          type="text"
-          value={`10일 수요일 - AM 10:00 ~ PM 5:00 11일
-                    목요일 - AM 10:00 ~ PM 5:00`}
-        /> */}
+        <div className="checkContainer">
+          <input type="checkbox" id="checkDay1" />
+          <label for="checkDay1" style={{ margin: "0 10px" }}>
+            10일 수요일
+          </label>
+          <input type="time" id="startTime" />
+          <div className="fromto">부터</div>
+          <input type="time" id="endTime" />
+          <div className="fromto">까지</div>
+        </div>
 
         {/* 부스 운영진 연락처 */}
         <div className="title">부스 운영진 연락처</div>
@@ -154,7 +158,28 @@ const Wrapper = styled.div`
   .contact {
     height: 70px;
   }
-
+  /*부스운영시간*/
+  .checkContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    input[type="time"] {
+      width: 78.5px;
+      height: 45px;
+      box-sizing: border-box;
+      padding: 16px;
+      border-radius: 4px;
+      border: 0.4px solid var(--green1);
+      background-color: var(--white);
+    }
+    .fromto {
+      color: var(--gray1);
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 160%;
+      margin: 0 8px;
+    }
+  }
   .explain {
     color: var(--gray2);
     font-size: 10px;
