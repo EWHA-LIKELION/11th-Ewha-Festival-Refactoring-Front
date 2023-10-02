@@ -94,3 +94,4 @@ const Title = styled.div`
     margin-top: 7px;
   }
 `;
+const Tag = styled.div``;
