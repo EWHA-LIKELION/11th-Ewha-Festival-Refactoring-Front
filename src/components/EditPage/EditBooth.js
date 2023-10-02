@@ -1,9 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import TopBar from "../_common/TopBar";
 import Footer from "../_common/Footer";
 
+import checkbox_empty from "../../assets/images/edit/checkbox_empty.svg";
+import checkbox_full from "../../assets/images/edit/checkbox_full.svg";
+
 const EditBooth = () => {
+  // $(".timepicker").timepicker({
+  //   timeFormat: "h:mm p",
+  //   interval: 15,
+  //   dynamic: false,
+  //   dropdown: true,
+  //   scrollbar: true,
+  // });
+
   return (
     <>
       <TopBar titleText={`내 부스 정보 수정`} />
@@ -31,14 +42,49 @@ const EditBooth = () => {
         {/* 부스 운영시간 */}
         <div className="title">부스 운영시간</div>
         <div className="checkContainer">
-          <input type="checkbox" id="checkDay1" />
-          <label for="checkDay1" style={{ margin: "0 10px" }}>
+          <input type="checkbox" id="checkDay1" className="timepicker" />
+          <div id="showCheckDay1"></div>
+          <label id="label" for="checkDay1" style={{ margin: "0 5px" }}>
             10일 수요일
           </label>
           <input type="time" id="startTime" />
-          <div className="fromto">부터</div>
+          <div className="fromto" style={{ margin: "0 8px" }}>
+            부터
+          </div>
           <input type="time" id="endTime" />
-          <div className="fromto">까지</div>
+          <div className="fromto" style={{ marginLeft: "8px" }}>
+            까지
+          </div>
+        </div>
+        <div className="checkContainer">
+          <input type="checkbox" id="checkDay1" className="timepicker" />
+          <div id="showCheckDay1"></div>
+          <label id="label" for="checkDay1" style={{ margin: "0 5px" }}>
+            10일 수요일
+          </label>
+          <input type="time" id="startTime" />
+          <div className="fromto" style={{ margin: "0 8px" }}>
+            부터
+          </div>
+          <input type="time" id="endTime" />
+          <div className="fromto" style={{ marginLeft: "8px" }}>
+            까지
+          </div>
+        </div>
+        <div className="checkContainer">
+          <input type="checkbox" id="checkDay1" className="timepicker" />
+          <div id="showCheckDay1"></div>
+          <label id="label" for="checkDay1" style={{ margin: "0 5px" }}>
+            10일 수요일
+          </label>
+          <input type="time" id="startTime" />
+          <div className="fromto" style={{ margin: "0 8px" }}>
+            부터
+          </div>
+          <input type="time" id="endTime" />
+          <div className="fromto" style={{ marginLeft: "8px" }}>
+            까지
+          </div>
         </div>
 
         {/* 부스 운영진 연락처 */}
@@ -163,6 +209,8 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
+    margin-bottom: 10px;
+
     input[type="time"] {
       width: 78.5px;
       height: 45px;
@@ -172,12 +220,36 @@ const Wrapper = styled.div`
       border: 0.4px solid var(--green1);
       background-color: var(--white);
     }
+    input[type="time"]::-webkit-calendar-picker-indicator {
+      display: block;
+      top: 0;
+      right: 0;
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      background: transparent;
+    }
     .fromto {
       color: var(--gray1);
       font-size: 15px;
       font-weight: 300;
       line-height: 160%;
-      margin: 0 8px;
+    }
+
+    #checkDay1 {
+      display: none;
+    }
+    #checkDay1:checked + #showCheckDay1 {
+      background-repeat: no-repeat;
+      background-image: url("../../assets/images/edit/checkbox_full.svg");
+      background-size: contain;
+    }
+    #showCheckDay1 {
+      width: 24px;
+      height: 24px;
+      background-repeat: no-repeat;
+      background-image: url("../../assets/images/edit/checkbox_empty.svg");
+      background-size: contain;
     }
   }
   .explain {
