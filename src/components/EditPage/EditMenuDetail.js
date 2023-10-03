@@ -1,11 +1,19 @@
 import React from "react";
 import styled from "styled-components";
-import { useState } from "react";
+import { useState, useNavigate } from "react";
 
 import TopBar from "../_common/TopBar";
 import Footer from "../_common/Footer";
 
 const EditMenuDetail = () => {
+  const navigate = useNavigate();
+  const complete = () => {
+    navigate("/mypage");
+  };
+  const cancel = () => {
+    navigate("/mypage");
+  };
+
   const isSoldOut = () => {
     const toggled = document.getElementById("toggle");
     if (toggled && toggled.checked) {
@@ -41,8 +49,12 @@ const EditMenuDetail = () => {
             </label>
           </PriceWrapper>
           <FinishBtn>
-            <div className="cancelBtn">취소</div>
-            <div className="completeBtn">완료</div>
+            <div className="cancelBtn" onClick={cancel}>
+              취소
+            </div>
+            <div className="completeBtn" onClick={complete}>
+              완료
+            </div>
           </FinishBtn>
         </Content>
       </Wrapper>

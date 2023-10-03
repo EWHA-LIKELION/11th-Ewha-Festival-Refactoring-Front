@@ -2,10 +2,11 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import TopBar from "../_common/TopBar";
 import Footer from "../_common/Footer";
+import { useNavigate } from "react-router";
 
 import checkbox_empty from "../../assets/images/edit/checkbox_empty.svg";
 import checkbox_full from "../../assets/images/edit/checkbox_full.svg";
-import { useNavigate } from "react-router";
+import TimeSelect from "./TimeSelect";
 
 const EditBooth = ({ event }) => {
   const navigate = useNavigate();
@@ -41,19 +42,28 @@ const EditBooth = ({ event }) => {
         {/* 부스 운영시간 */}
         <div className="title">{`${event} 운영시간`}</div>
         <div className="checkContainer">
-          <input type="checkbox" id="checkDay1" className="timepicker" />
+          <input type="checkbox" id="checkDay1" />
           <div id="showCheckDay1"></div>
           <label id="label" for="checkDay1" style={{ margin: "0 5px" }}>
             10일 수요일
           </label>
-          <input type="time" id="startTime" />
-          <div className="fromto" style={{ margin: "0 8px" }}>
-            부터
-          </div>
-          <input type="time" id="endTime" />
-          <div className="fromto" style={{ marginLeft: "8px" }}>
-            까지
-          </div>
+          <TimeSelect />
+        </div>
+        <div className="checkContainer">
+          <input type="checkbox" id="checkDay1" />
+          <div id="showCheckDay1"></div>
+          <label id="label" for="checkDay1" style={{ margin: "0 5px" }}>
+            11일 목요일
+          </label>
+          <TimeSelect />
+        </div>
+        <div className="checkContainer">
+          <input type="checkbox" id="checkDay1" />
+          <div id="showCheckDay1"></div>
+          <label id="label" for="checkDay1" style={{ margin: "0 5px" }}>
+            12일 금요일
+          </label>
+          <TimeSelect />
         </div>
 
         {/* 부스 운영진 연락처 */}
@@ -202,46 +212,21 @@ const Wrapper = styled.div`
     align-items: center;
     margin-bottom: 10px;
 
-    input[type="time"] {
-      width: 78.5px;
-      height: 45px;
-      box-sizing: border-box;
-      padding: 16px;
-      border-radius: 4px;
-      border: 0.4px solid var(--green1);
-      background-color: var(--white);
-    }
-    input[type="time"]::-webkit-calendar-picker-indicator {
-      display: block;
-      top: 0;
-      right: 0;
-      height: 100%;
-      width: 100%;
-      position: absolute;
-      background: transparent;
-    }
-    .fromto {
-      color: var(--gray1);
-      font-size: 15px;
-      font-weight: 300;
-      line-height: 160%;
-    }
-
-    #checkDay1 {
-      display: none;
-    }
-    #checkDay1:checked + #showCheckDay1 {
-      background-repeat: no-repeat;
-      background-image: url("../../assets/images/edit/checkbox_full.svg");
-      background-size: contain;
+    /* #checkDay1:checked + #showCheckDay1 {
+      background: url("../../assets/images/edit/checkbox_full.svg") no-repeat 0
+        0px / contain;
     }
     #showCheckDay1 {
+      display: block;
       width: 24px;
       height: 24px;
-      background-repeat: no-repeat;
-      background-image: url("../../assets/images/edit/checkbox_empty.svg");
-      background-size: contain;
+      background: url("../../assets/images/edit/checkbox_empty.svg") no-repeat 0
+        0px / contain;
     }
+    #checkDay1 {
+      display: none;
+      position: absolute;
+    } */
   }
   .explain {
     color: var(--gray2);

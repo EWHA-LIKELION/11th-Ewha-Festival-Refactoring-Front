@@ -9,8 +9,6 @@ import Loginpage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import MakersPage from "./pages/MakersPage";
 import MyPage from "./pages/MyPage";
-import MainPage from "./pages/MainPage";
-
 import BoothDetailPage from "./pages/BoothDetailPage";
 import PerfDetailPage from "./pages/PerfDetailPage";
 
@@ -20,7 +18,7 @@ import BoothEditMenuPage from "./pages/BoothEditMenuPage";
 import EditMenuDetail from "./components/EditPage/EditMenuDetail";
 import PerfEditPage from "./pages/PerfEditPage";
 import PerfSearchPage from "./pages/PerfSearchPage";
-
+import BoothListPage from "./pages/BoothListPage";
 import TrashBinPage from "./pages/TrashBinPage";
 
 function App() {
