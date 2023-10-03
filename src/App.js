@@ -7,14 +7,12 @@ import Loginpage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import MakersPage from "./pages/MakersPage";
 import MyPage from "./pages/MyPage";
-
-import BoothListPage from "./pages/BoothListPage";
+import MainPage from "./pages/MainPage";
 import BoothDetailPage from "./pages/BoothDetailPage";
 import PerfDetailPage from "./pages/PerfDetailPage";
 import BoothListPage from "./pages/BoothListPage";
 import PerfListPage from "./pages/PerfListPage";
 import BoothEditPage from "./pages/BoothEditPage";
-import MyPage from "./pages/MyPage";
 import PerfEditPage from "./pages/PerfEditPage";
 
 function App() {
