@@ -11,9 +11,9 @@ import Footer from "../components/_common/Footer";
 //부스관리자 전용
 // import BoothAdmin from "../components/Mypage/BoothAdmin";
 //공연관리자 전용
-import ConcertAdmin from "../components/Mypage/ConcertAdmin";
+// import ConcertAdmin from "../components/Mypage/ConcertAdmin";
 //TF관리자 전용
-import TFAdmin from "../components/Mypage/TFAdmin";
+// import TFAdmin from "../components/Mypage/TFAdmin";
 
 //image
 import { ReactComponent as Namecover } from "../assets/images/Mypage/nickname.svg";
@@ -84,9 +84,9 @@ const MyPage = () => {
         <button>로그아웃</button>
       </NameCard>
 
-      {/* <BoothAdmin /> */}
+      {/* <BoothAdmin />
       <ConcertAdmin />
-      <TFAdmin />
+      <TFAdmin /> */}
 
       <Navigation>
         <Top isSelected={isBooth}>
