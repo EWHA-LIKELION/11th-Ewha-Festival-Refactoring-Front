@@ -6,6 +6,7 @@ import Booth from "../components/_common/Booth";
 import Concert from "../components/_common/Concert";
 import Menu from "../components/_common/Menu";
 import TopBar from "../components/_common/TopBar";
+import Footer from "../components/_common/Footer";
 //부스관리자 전용
 import BoothAdmin from "../components/mypage/BoothAdmin";
 //공연관리자 전용
@@ -82,9 +83,9 @@ const MyPage = () => {
         <button>로그아웃</button>
       </NameCard>
 
-      {/* <BoothAdmin />
+      <BoothAdmin />
       <ConcertAdmin />
-      <TFAdmin /> */}
+      <TFAdmin />
 
       <Navigation>
         <Top isSelected={isBooth}>
@@ -221,6 +222,7 @@ const MyPage = () => {
           <Concert />
         </List>
       )}
+      <Footer />
     </Wrapper>
   );
 };
