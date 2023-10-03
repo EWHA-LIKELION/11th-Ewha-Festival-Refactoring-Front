@@ -1,18 +1,19 @@
+import { useState } from "react";
 import { styled } from "styled-components";
 
+//components
 import TopBar from "../components/_common/TopBar";
 import Map from "../components/TrashBinPage/Map";
 import MapBox from "../components/TrashBinPage/MapBox";
 import Footer from "../components/_common/Footer";
 
-//images
+//images (나중에 옮기기)
 import auditorium from "../assets/images/trashbin/auditorium-t.svg";
 import education from "../assets/images/trashbin/education-t.svg";
 import humanecology from "../assets/images/trashbin/humanecology-t.svg";
 import maingate from "../assets/images/trashbin/maingate-t.svg";
 import posco from "../assets/images/trashbin/posco-t.svg";
 import studentunion from "../assets/images/trashbin/studentunion-t.svg";
-import { useState } from "react";
 
 const TrashBinPage = () => {
   //임시 데이터 (나중에 옮기기)
@@ -60,7 +61,6 @@ const TrashBinPage = () => {
   ];
 
   const [trashs, setTrashs] = useState(trashData);
-  console.log(setTrashs);
 
   return (
     <Wrapper>
