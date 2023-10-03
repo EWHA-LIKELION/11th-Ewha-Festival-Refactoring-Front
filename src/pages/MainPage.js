@@ -13,6 +13,7 @@ import Menu from "../components/MainPage/Menu";
 import EventContent from "../components/MainPage/EventContent";
 import PerfPlan from "../components/MainPage/PerfPlan";
 import About from "../components/MainPage/About";
+import Footer from "../components/_common/Footer";
 
 const MainPage = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -28,41 +29,44 @@ const MainPage = () => {
   };
 
   return (
-    <Wrapper>
-      <TopBar>
-        <img src={menu} id="menu" onClick={openMenu} />
-        <img src={mypageGreen} id="mypage" />
-      </TopBar>
-      <Banners>
-        <img src={bannerMain} />
-        <div className="banner" style={{ marginTop: "44px" }}>
-          <img src={bannerGreen} className="banner-img" />
-          <span>부스 목록 보러가기</span>
-          <img src={arrow} />
-        </div>
-        <div className="banner">
-          <img src={bannerBlue} className="banner-img" />
-          <span>공연 목록 보러가기</span>
-          <img src={arrow} />
-        </div>
-      </Banners>
-      <Title1>
-        <img src={titleBackground} />
-        <p>행사 일정</p>
-      </Title1>
-      <EventContent />
-      <Title2>
-        <img src={titleBackground} />
-        <p>공연 일정표</p>
-      </Title2>
-      <PerfPlan />
-      <Title3>
-        <img src={titleBackground} />
-        <p>About</p>
-      </Title3>
-      <About />
-      <Menu isOpen={isMenuOpen} closeMenu={closeMenu} />
-    </Wrapper>
+    <>
+      <Wrapper>
+        <TopBar>
+          <img src={menu} id="menu" onClick={openMenu} />
+          <img src={mypageGreen} id="mypage" />
+        </TopBar>
+        <Banners>
+          <img src={bannerMain} />
+          <div className="banner" style={{ marginTop: "44px" }}>
+            <img src={bannerGreen} className="banner-img" />
+            <span>부스 목록 보러가기</span>
+            <img src={arrow} />
+          </div>
+          <div className="banner">
+            <img src={bannerBlue} className="banner-img" />
+            <span>공연 목록 보러가기</span>
+            <img src={arrow} />
+          </div>
+        </Banners>
+        <Title1>
+          <img src={titleBackground} />
+          <p>행사 일정</p>
+        </Title1>
+        <EventContent />
+        <Title2>
+          <img src={titleBackground} />
+          <p>공연 일정표</p>
+        </Title2>
+        <PerfPlan />
+        <Title3>
+          <img src={titleBackground} />
+          <p>About</p>
+        </Title3>
+        <About />
+        <Menu isOpen={isMenuOpen} closeMenu={closeMenu} />
+        <Footer />
+      </Wrapper>
+    </>
   );
 };
 
@@ -70,7 +74,6 @@ export default MainPage;
 
 const Wrapper = styled.div`
   background-color: var(--beige);
-  margin-bottom: 100px;
 `;
 
 const TopBar = styled.div`

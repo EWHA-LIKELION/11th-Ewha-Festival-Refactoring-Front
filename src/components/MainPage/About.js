@@ -18,7 +18,7 @@ const About = () => {
           </p>
           <p>
             2023년, 이화여자대학교 개교 137주년을 맞아 <br />
-            대동제 '이웃: 이화와 함께 웃다'를 개최합니다.
+            <span>대동제 '이웃: 이화와 함께 웃다'</span>를 개최합니다.
           </p>
           <p>
             이웃제는 이화인 간의 화합과 연대, 학생활동의 활성화, <br />
@@ -35,10 +35,16 @@ const About = () => {
             행복한 시간 보내시길 바랍니다.
           </p>
         </div>
-        <div id="button">TF팀 공지 보러가기</div>
+        <div className="button">TF팀 공지 보러가기</div>
       </Box1>
       <Box2>
         <img src={logoLikelion} />
+        <p>
+          이화여자대학교 웹 개발 동아리 <br />{" "}
+          <span>&lt;멋쟁이사자처럼&gt;</span>에서 제공하는 <br /> 2023년 대동제
+          홈페이지입니다!
+        </p>
+        <div className="button">이대 멋사 구경가기</div>
       </Box2>
     </Wrapper>
   );
@@ -50,6 +56,28 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  .button {
+    display: flex;
+    width: 140px;
+    padding: 20px 40px;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--green2);
+    border-radius: 4px;
+    box-shadow: 0px 2px 6px 0px rgba(165, 165, 165, 0.2);
+    color: var(--white);
+    font-family: "Pretendard-regular";
+    font-size: 15px;
+    text-align: center;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 0px;
+  }
+
+  span {
+    color: var(--green2);
+  }
 `;
 const Box1 = styled.div`
   margin: 80px 20px 80px 20px;
@@ -81,23 +109,21 @@ const Box1 = styled.div`
     font-weight: 400;
     line-height: 14px;
   }
+`;
+const Box2 = styled.div`
+  margin: 0px 20px 100px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
 
-  #button {
-    display: flex;
-    width: 140px;
-    padding: 20px 40px;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--green2);
-    border-radius: 4px;
-    box-shadow: 0px 2px 6px 0px rgba(165, 165, 165, 0.2);
-    color: var(--white);
-    font-family: "Pretendard-regular";
-    font-size: 15px;
+  p {
+    color: var(--green1);
     text-align: center;
+    font-family: "Pretendard-regular";
+    font-size: 11px;
     font-style: normal;
-    font-weight: 600;
-    line-height: 0px;
+    font-weight: 400;
+    line-height: 14px;
   }
 `;
-const Box2 = styled.div``;
