@@ -3,38 +3,34 @@ import "../../App.css";
 import { styled } from "styled-components";
 
 //부스 대표 사진
-import boothCover from "../../assets/images/Mypage/boothcover.png";
+import concert from "../../assets/images/Mypage/concert.png";
 import { ReactComponent as PinkHeart } from "../../assets/icons/heart-empty.svg";
-import Degree from "../_common/Degree";
 
-const Booth = () => {
+const Concert = () => {
   return (
     <Wrapper>
-      <img src={boothCover} />
+      <img src={concert} />
 
       <InfoWrapper>
         <Place>
-          {" "}
-          포01
-          <span>·</span>
-          <span>음식</span>
+          학문관광장<span>·</span>
+          <span>공연</span>
         </Place>
 
         <Heart>
-          <Degree size="small" degree="light" />
           <PinkHeart />
           <div className="like">1000</div>
         </Heart>
       </InfoWrapper>
 
       <Title>
-        부스이름을뭐로지어야하나요
-        <div className="hashtag"> #떡꼬치 #떡볶이 #포스코관_부스</div>
+        공연이름을뭐로지어야하나요
+        <div className="hashtag"> #밴드 #일렉 #새소년</div>
       </Title>
     </Wrapper>
   );
 };
-export default Booth;
+export default Concert;
 
 const Wrapper = styled.div`
   img {
@@ -48,7 +44,7 @@ const InfoWrapper = styled.div`
   margin-top: 5px;
 `;
 const Place = styled.div`
-  margin-right: 33px;
+  margin-right: 40px;
   font-weight: 500;
   font-size: 12px;
   color: var(--red);
@@ -94,4 +90,3 @@ const Title = styled.div`
     margin-top: 7px;
   }
 `;
-const Tag = styled.div``;
