@@ -3,12 +3,19 @@ import { styled } from "styled-components";
 
 //component
 import Booth from "../components/_common/Booth";
-// //부스관리자 전용
-// import BoothAdmin from "../components/Mypage/BoothAdmin";
-// //공연관리자 전용
-// import ConcertAdmin from "../components/Mypage/ConcertAdmin";
-// //TF관리자 전용
-// import TFAdmin from "../components/Mypage/TFAdmin";
+
+import Concert from "../components/_common/Concert";
+import Menu from "../components/_common/Menu";
+import TopBar from "../components/_common/TopBar";
+import Footer from "../components/_common/Footer";
+//부스관리자 전용
+import BoothAdmin from "../components/mypage/BoothAdmin";
+//공연관리자 전용
+import ConcertAdmin from "../components/mypage/ConcertAdmin";
+//TF관리자 전용
+import TFAdmin from "../components/mypage/TFAdmin";
+
+
 
 //image
 import { ReactComponent as Namecover } from "../assets/images/Mypage/nickname.svg";
@@ -70,6 +77,8 @@ const MyPage = () => {
 
   return (
     <Wrapper>
+      <TopBar titleText="마이페이지" />
+
       <Namecover width={260} />
       <NameCard>
         <div className="name">닉네임</div>
@@ -77,9 +86,9 @@ const MyPage = () => {
         <button>로그아웃</button>
       </NameCard>
 
-      {/* <BoothAdmin />
+      <BoothAdmin />
       <ConcertAdmin />
-      <TFAdmin /> */}
+      <TFAdmin />
 
       <Navigation>
         <Top isSelected={isBooth}>
@@ -94,16 +103,25 @@ const MyPage = () => {
         <hr></hr>
 
         <Bottom isSelected={likeBooth}>
-          <div className="booth" onClick={() => clickLikeBooth("likeBooth")}>
-            좋아요한 부스
-          </div>
-          <div className="menu" onClick={() => clickLikeBooth("likeMenu")}>
-            좋아요한 메뉴
-          </div>
+          {isBooth === "booth" ? (
+            <>
+              <div
+                className="booth"
+                onClick={() => clickLikeBooth("likeBooth")}
+              >
+                좋아요한 부스
+              </div>
+              <div className="menu" onClick={() => clickLikeBooth("likeMenu")}>
+                좋아요한 메뉴
+              </div>
+            </>
+          ) : (
+            <div id="concert">좋아요한 공연</div>
+          )}
         </Bottom>
       </Navigation>
 
-      <Menu isSelected={selectMenu}>
+      <MenuWrapper isSelected={selectMenu}>
         <span
           id="all"
           onClick={() => ClickMenu("all")}
@@ -132,7 +150,7 @@ const MyPage = () => {
         >
           카테고리
         </span>
-      </Menu>
+      </MenuWrapper>
 
       {selectMenu === "day" && (
         <DayFilter>
@@ -177,14 +195,37 @@ const MyPage = () => {
       )}
 
       <div className="count">총 100개의 부스</div>
-      <List>
-        <Booth />
-        <Booth />
-        <Booth />
-        <Booth />
-        <Booth />
-        <Booth />
-      </List>
+      {isBooth === "booth" ? (
+        likeBooth === "likeBooth" ? (
+          <List>
+            <Booth />
+            <Booth />
+            <Booth />
+            <Booth />
+            <Booth />
+            <Booth />
+          </List>
+        ) : (
+          <List>
+            <Menu />
+            <Menu />
+            <Menu />
+            <Menu />
+            <Menu />
+            <Menu />
+          </List>
+        )
+      ) : (
+        <List>
+          <Concert />
+          <Concert />
+          <Concert />
+          <Concert />
+          <Concert />
+          <Concert />
+        </List>
+      )}
+      <Footer />
     </Wrapper>
   );
 };
@@ -206,7 +247,7 @@ const Wrapper = styled.div`
 `;
 const NameCard = styled.div`
   position: absolute;
-  top: 82px;
+  top: 29.9%;
   left: 47.5%;
   text-align: center;
   .name {
@@ -235,7 +276,8 @@ const List = styled.div`
   grid-row-gap: 24px;
   margin-bottom: 64px;
 `;
-const Menu = styled.div`
+
+const MenuWrapper = styled.div`
   span {
     margin-right: 5px;
     cursor: pointer;
@@ -323,7 +365,6 @@ const Bottom = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 10px;
-  color: var(--gray2);
   line-height: 2.5;
   font-size: 13px;
   font-weight: 400;
@@ -351,6 +392,16 @@ const Bottom = styled.div`
       props.isSelected === "likeMenu" ? "#ffff" : "#9B9B9B"};
     font-weight: ${(props) =>
       props.isSelected === "likeMenu" ? "600" : "500"};
+  }
+  #concert {
+    text-align: center;
+    width: 86.295px;
+    height: 31px;
+    background-image: ${(props) =>
+      props.isSelected === "concert" ? `url(${redhover})` : `url(${redhover})`};
+    background-repeat: no-repeat;
+    color: white;
+    font-weight: ${(props) => (props.isSelected === "concert" ? "700" : "500")};
   }
 `;
 
