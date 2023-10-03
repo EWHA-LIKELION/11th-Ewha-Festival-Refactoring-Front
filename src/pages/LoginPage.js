@@ -3,7 +3,8 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
-//context
+//component
+import TopBar from "../components/_common/TopBar";
 
 //img
 import logo from "../assets/images/login-signup/logo.svg";
@@ -22,7 +23,7 @@ const LoginPage = () => {
     <>
       <Wrapper>
         <Container>
-          <Topbar />
+          <TopBar titleText={"로그인"} />
           <Logo src={logo} />
           <InputWrapper>
             <InputDiv>
@@ -78,12 +79,6 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-`;
-
-const Topbar = styled.div`
-  width: 390px;
-  height: 117px;
-  border-bottom: 0.8px solid #9b9b9b;
 `;
 
 const Logo = styled.img`
