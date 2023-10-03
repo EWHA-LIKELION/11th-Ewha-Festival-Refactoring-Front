@@ -1,13 +1,17 @@
 import React from "react";
 import styled from "styled-components";
+
 import EditBooth from "../components/EditPage/EditBooth";
+import EditMenu from "../components/EditPage/EditMenu";
+import EditMenuDetail from "../components/EditPage/EditMenuDetail";
 
 const BoothEditPage = () => {
   return (
     <>
       <Wrapper>
-        <div>부스 수정페이지</div>
-        <EditBooth />
+        {/* <EditBooth /> */}
+        {/* <EditMenu /> */}
+        <EditMenuDetail />
       </Wrapper>
     </>
   );
