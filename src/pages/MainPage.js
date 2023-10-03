@@ -9,7 +9,7 @@ import bannerBlue from "../assets/images/Main/banner-blue.svg";
 import arrow from "../assets/images/Main/arrow.svg";
 import titleBackground from "../assets/icons/title-background.svg";
 
-import Menu from "../components/MainPage/Menu";
+import HamMenu from "../components/MainPage/HamMenu";
 import EventContent from "../components/MainPage/EventContent";
 import PerfPlan from "../components/MainPage/PerfPlan";
 import About from "../components/MainPage/About";
@@ -63,7 +63,7 @@ const MainPage = () => {
           <p>About</p>
         </Title3>
         <About />
-        <Menu isOpen={isMenuOpen} closeMenu={closeMenu} />
+        <HamMenu isOpen={isMenuOpen} closeMenu={closeMenu} />
         <Footer />
       </Wrapper>
     </>

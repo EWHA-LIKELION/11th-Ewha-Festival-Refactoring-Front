@@ -7,7 +7,7 @@ import boothCover from "../../assets/images/Mypage/boothcover.png";
 import { ReactComponent as PinkHeart } from "../../assets/icons/heart-empty.svg";
 import Degree from "../_common/Degree";
 
-const Booth = () => {
+const Menu = () => {
   return (
     <Wrapper>
       <img src={boothCover} />
@@ -28,13 +28,13 @@ const Booth = () => {
       </InfoWrapper>
 
       <Title>
-        부스이름을뭐로지어야하나요
-        <div className="hashtag"> #떡꼬치 #떡볶이 #포스코관_부스</div>
+        떡꼬치
+        <div className="price"> 2000원</div>
       </Title>
     </Wrapper>
   );
 };
-export default Booth;
+export default Menu;
 
 const Wrapper = styled.div`
   img {
@@ -87,11 +87,10 @@ const Title = styled.div`
   font-size: 14px;
   line-height: 15px;
   color: var(--green1);
-  .hashtag {
+  .price {
     font-weight: 400;
     font-size: 10px;
     color: var(--green2);
     margin-top: 7px;
   }
 `;
-const Tag = styled.div``;

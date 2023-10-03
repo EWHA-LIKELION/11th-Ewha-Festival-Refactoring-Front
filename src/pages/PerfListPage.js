@@ -1,44 +1,41 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { styled } from "styled-components";
 
 import TopBar from "../components/_common/TopBar";
-import BoothFilter from "../components/ListPage/BoothFilter";
+import PerfFilter from "../components/ListPage/PerfFilter";
 import Map from "../components/_common/Map";
 import Booth from "../components/_common/Booth";
 import Pagination from "../components/ListPage/Pagination";
 import Footer from "../components/_common/Footer";
 
-const BoothListPage = () => {
+const PerfListPage = () => {
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
-  const totalBooths = 26; // 전체 부스 개수
-  const boothsPerPage = 10; // 페이지당 표시할 부스 개수
-  const startIdx = (currentPage - 1) * boothsPerPage; // 시작 인덱스
-  const endIdx = Math.min(startIdx + boothsPerPage, totalBooths); // 종료 인덱스
+  const totalPerfs = 13; // 전체 공연 개수
+  const perfsPerPage = 10; // 페이지당 표시할 공연 개수
+  const startIdx = (currentPage - 1) * perfsPerPage; // 시작 인덱스
+  const endIdx = Math.min(startIdx + perfsPerPage, totalPerfs); // 종료 인덱스
 
   const [selectedView, setSelectedView] = useState("place");
-  const [selectedPlace, setSelectedPlace] = useState("정문");
+  const [selectedPlace, setSelectedPlace] = useState("잔디광장");
   const placeSelect = (place) => {
     setSelectedPlace(place);
   };
 
-  // 부스 목록 렌더링
-  const boothsToDisplay = [...Array(endIdx - startIdx)].map((_, index) => (
+  // 공연 목록 렌더링
+  const perfsToDisplay = [...Array(endIdx - startIdx)].map((_, index) => (
     <Booth key={startIdx + index} />
   ));
 
   return (
     <Wrapper>
-      <TopBar titleText="부스 목록" />
-      <BoothFilter
-        placeSelect={placeSelect}
-        setSelectedView={setSelectedView}
-      />
+      <TopBar titleText="공연 목록" />
+      <PerfFilter placeSelect={placeSelect} setSelectedView={setSelectedView} />
       {selectedView === "place" && <Map page="list" place={selectedPlace} />}
-      <div className="count">총 {totalBooths}개의 부스</div>
-      <List>{boothsToDisplay}</List>
+      <div className="count">총 {totalPerfs}개의 공연</div>
+      <List>{perfsToDisplay}</List>
       <Pagination
-        total={totalBooths}
-        limit={boothsPerPage}
+        total={totalPerfs}
+        limit={perfsPerPage}
         page={currentPage}
         setPage={setCurrentPage}
       />
@@ -47,7 +44,7 @@ const BoothListPage = () => {
   );
 };
 
-export default BoothListPage;
+export default PerfListPage;
 
 const Wrapper = styled.div`
   width: 390px;

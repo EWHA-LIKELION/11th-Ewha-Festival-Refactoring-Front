@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 import flower from "../../assets/images/Main/flower.svg";
 import close from "../../assets/images/Main/close.svg";
@@ -12,7 +13,7 @@ import perform from "../../assets/images/Main/perform.svg";
 import trashcan from "../../assets/images/Main/trashcan.svg";
 import creators from "../../assets/images/Main/creators.svg";
 
-const Menu = ({ isOpen, closeMenu }) => {
+const HamMenu = ({ isOpen, closeMenu }) => {
   return (
     <Wrapper1 isOpen={isOpen}>
       {isOpen && (
@@ -21,30 +22,86 @@ const Menu = ({ isOpen, closeMenu }) => {
           <img src={title} id="title" />
           <img src={flower} id="flower" />
           <Buttons>
-            <div style={{ gap: "7px" }}>
+            <Link
+              to="/mypage"
+              style={{
+                gap: "7px",
+                textDecoration: "none",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "flex-end",
+                alignItems: "center",
+              }}
+            >
               <img src={mypageWhite} />
               <p>마이페이지</p>
-            </div>
-            <div>
+            </Link>
+            <Link
+              to="/"
+              style={{
+                textDecoration: "none",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "flex-end",
+                alignItems: "center",
+              }}
+            >
               <img src={home} />
               <p>메인 페이지</p>
-            </div>
-            <div>
+            </Link>
+            <Link
+              to="/"
+              style={{
+                textDecoration: "none",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "flex-end",
+                alignItems: "center",
+              }}
+            >
               <img src={megaphone} />
               <p>공지사항</p>
-            </div>
-            <div>
+            </Link>
+            <Link
+              to="/booth"
+              style={{
+                textDecoration: "none",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "flex-end",
+                alignItems: "center",
+              }}
+            >
               <img src={booth} />
               <p>부스 목록</p>
-            </div>
-            <div style={{ gap: "7px" }}>
+            </Link>
+            <Link
+              to="/performance"
+              style={{
+                gap: "7px",
+                textDecoration: "none",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "flex-end",
+                alignItems: "center",
+              }}
+            >
               <img src={perform} style={{ width: "38px" }} />
               <p>공연 목록</p>
-            </div>
-            <div>
+            </Link>
+            <Link
+              to="/"
+              style={{
+                textDecoration: "none",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "flex-end",
+                alignItems: "center",
+              }}
+            >
               <img src={trashcan} />
               <p>쓰레기통</p>
-            </div>
+            </Link>
           </Buttons>
           <Creators>
             <img src={creators} />
@@ -56,7 +113,7 @@ const Menu = ({ isOpen, closeMenu }) => {
   );
 };
 
-export default Menu;
+export default HamMenu;
 
 const Wrapper1 = styled.div`
   width: 352.41px;
@@ -88,6 +145,7 @@ const Wrapper2 = styled.div`
 
   #flower {
     width: 352.41px;
+    height: 614.263px;
   }
 `;
 
@@ -101,13 +159,6 @@ const Buttons = styled.div`
   margin-top: 300px;
   margin-left: 80px;
 
-  div {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: center;
-  }
-
   p {
     color: var(--white);
     text-align: center;
@@ -120,6 +171,7 @@ const Buttons = styled.div`
     line-height: normal;
   }
 `;
+
 const Creators = styled.div`
   z-index: 99;
   position: fixed;
