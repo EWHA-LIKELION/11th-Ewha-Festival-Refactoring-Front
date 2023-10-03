@@ -3,13 +3,14 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 //pages
+import MainPage from "./pages/MainPage";
+
 import Loginpage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import MakersPage from "./pages/MakersPage";
 import MyPage from "./pages/MyPage";
 import MainPage from "./pages/MainPage";
 
-import BoothListPage from "./pages/BoothListPage";
 import BoothDetailPage from "./pages/BoothDetailPage";
 import PerfDetailPage from "./pages/PerfDetailPage";
 
@@ -19,6 +20,8 @@ import BoothEditMenuPage from "./pages/BoothEditMenuPage";
 import EditMenuDetail from "./components/EditPage/EditMenuDetail";
 import PerfEditPage from "./pages/PerfEditPage";
 import PerfSearchPage from "./pages/PerfSearchPage";
+
+import TrashBinPage from "./pages/TrashBinPage";
 
 function App() {
   return (
@@ -59,7 +62,15 @@ function App() {
           ></Route>
           <Route path={"/performance/edit"} element={<PerfEditPage />}></Route>
           <Route
-            path={"/performance/search"}
+            path={"/performance/edit/:id"}
+            element={<PerfEditPage />}
+          ></Route>
+          {/* 쓰레기통 페이지 */}
+          <Route path={"/trashbin"} element={<TrashBinPage />}></Route>
+
+          {/* 검색 페이지 */}
+          <Route
+            path={"/performance/search/"}
             element={<PerfSearchPage />}
           ></Route>
         </Routes>
