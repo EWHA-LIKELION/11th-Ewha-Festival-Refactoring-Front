@@ -9,8 +9,8 @@ const BoothEditPage = () => {
   return (
     <>
       <Wrapper>
-        {/* <EditBooth /> */}
-        {/* <EditMenu /> */}
+        {/*<EditBooth />*/}
+        {/*<EditMenu />*/}
         <EditMenuDetail />
       </Wrapper>
     </>
