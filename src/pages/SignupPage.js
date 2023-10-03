@@ -11,8 +11,10 @@ import check from "../assets/images/login-signup/check.svg";
 import checked from "../assets/images/login-signup/checked.svg";
 
 //components
+import TopBar from "../components/_common/TopBar";
 import CompleteModal from "../components/SignupPage/CompleteModal";
 import SecretModal from "../components/SignupPage/SecretModal";
+import CommonModal from "../components/SignupPage/CommonModal";
 
 const SignupPage = () => {
   const navigate = useNavigate();
@@ -23,7 +25,7 @@ const SignupPage = () => {
   const [nickname, setNickname] = useState("");
   const [secret, setSecret] = useState("");
 
-  const [passwordsMatch, setPasswordsMatch] = useState(false); // 비밀번호 일치 여부 추가
+  const [passwordsMatch, setPasswordsMatch] = useState(false); // 비밀번호 일치 여부
 
   //비밀번호 확인 함수
   const checkPasswordsMatch = () => {
@@ -33,10 +35,31 @@ const SignupPage = () => {
   //모달 관련 state
   const [completemodal, setCompleteModal] = useState(false);
   const [secretmodal, setSecretModal] = useState(false);
+  const [commonmodal, setCommonModal] = useState(false);
+  const [modalCase, setModalCase] = useState(null);
 
   const openCompleteModal = () => {
-    setCompleteModal(true);
-    console.log(completemodal);
+    let caseNumber = null; // 모든 조건 충족 시 modalCase를 null로 설정
+
+    if (username === "") {
+      caseNumber = 2; // 아이디를 입력하지 않았을 때
+      // } else if () {
+      //   caseNumber = 3; // 아이디 중복확인이 진행되지 않았을 때
+    } else if (!passwordsMatch) {
+      caseNumber = 4; // 비밀번호 확인란이 일치하지 않을 때
+    } else if (nickname === "") {
+      caseNumber = 5; // 닉네임을 입력하지 않았을 때
+    } else if (nickname.length > 10) {
+      caseNumber = 6; // 닉네임이 10자를 초과할 때
+    }
+
+    setModalCase(caseNumber);
+
+    if (caseNumber === null) {
+      setCompleteModal(true);
+    } else {
+      openCommonModal(caseNumber);
+    }
   };
 
   const closeCompleteModal = () => {
@@ -51,21 +74,31 @@ const SignupPage = () => {
     setSecretModal(false);
   };
 
+  const openCommonModal = (caseNumber) => {
+    setCommonModal(true);
+    setModalCase(caseNumber);
+  };
+
+  const closeCommonModal = () => {
+    setCommonModal(false);
+  };
+
   return (
     <>
       <Wrapper>
-        <Box />
+        <TopBar titleText={"회원가입"} />
         <Container>
           <Logo src={logo} />
           <InputWrapper>
             <InputDiv>
               <Icon src={id} />
-              <InputS
+              <InputID
                 type="text"
                 placeholder="아이디"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
               />
+              <CheckBtn onClick={() => openCommonModal(0)}>중복확인</CheckBtn>
             </InputDiv>
             <InputDiv>
               <Icon src={passwordicon} />
@@ -92,7 +125,7 @@ const SignupPage = () => {
               <Icon src={id} />
               <InputB
                 type="text"
-                placeholder="닉네임"
+                placeholder="닉네임 (10자 이하)"
                 value={nickname}
                 onChange={(e) => setNickname(e.target.value)}
               />
@@ -122,6 +155,13 @@ const SignupPage = () => {
         <CompleteModal
           openCompleteModal={openCompleteModal}
           closeCompleteModal={closeCompleteModal}
+        />
+      ) : null}
+      {commonmodal ? (
+        <CommonModal
+          openCommonModal={openCommonModal}
+          closeCommonModal={closeCommonModal}
+          modalCase={modalCase}
         />
       ) : null}
     </>
@@ -160,11 +200,6 @@ const Container = styled.div`
 `;
 
 //상단바 부분
-const Box = styled.div`
-  width: 390px;
-  height: 117px;
-  border-bottom: 0.8px solid #9b9b9b;
-`;
 
 const Logo = styled.img`
   width: 180px;
@@ -209,6 +244,34 @@ const Input = styled.input`
   ::placeholder {
     color: var(--gray2);
   }
+`;
+
+const InputID = styled(Input)`
+  width: 125.5px;
+`;
+
+const CheckBtn = styled.button`
+  display: flex;
+  padding: 20px 12px;
+  margin-left: 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  border-radius: 4px;
+  border: none;
+  background: var(--green2);
+  cursor: pointer;
+
+  box-shadow: 0px 2px 6px 0px rgba(165, 165, 165, 0.2);
+
+  color: var(--white);
+  text-align: center;
+  font-family: "Pretendard-Regular";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 0px;
 `;
 
 const InputS = styled(Input)`

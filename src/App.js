@@ -5,7 +5,10 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 //pages
 import Loginpage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
-import MainPage from "./pages/MainPage";
+import MakersPage from "./pages/MakersPage";
+import MyPage from "./pages/MyPage";
+
+import BoothListPage from "./pages/BoothListPage";
 import BoothDetailPage from "./pages/BoothDetailPage";
 import PerfDetailPage from "./pages/PerfDetailPage";
 import BoothListPage from "./pages/BoothListPage";
@@ -25,6 +28,7 @@ function App() {
           {/* 로그인/회원가입 */}
           <Route path={"/login"} element={<Loginpage />}></Route>
           <Route path={"/signup"} element={<SignupPage />}></Route>
+          <Route path={"/makers"} element={<MakersPage />}></Route>
 
           {/* 마이 페이지 */}
           <Route path={"/mypage"} element={<MyPage />}></Route>
