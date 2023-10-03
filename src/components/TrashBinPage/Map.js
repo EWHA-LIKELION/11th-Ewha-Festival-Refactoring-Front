@@ -60,7 +60,7 @@ const markers = [
 function MyComponent() {
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
-    googleMapsApiKey: "AIzaSyChD1vdRrMu6gO043waIm-YLtXsg1nUUNY",
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAP_KEY,
   });
 
   const [map, setMap] = React.useState(null);
