@@ -7,6 +7,7 @@ import MainPage from "./pages/MainPage";
 
 import Loginpage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
+import MakersPage from "./pages/MakersPage";
 import MyPage from "./pages/MyPage";
 
 import BoothListPage from "./pages/BoothListPage";
@@ -26,6 +27,7 @@ function App() {
           {/* 로그인/회원가입 */}
           <Route path={"/login"} element={<Loginpage />}></Route>
           <Route path={"/signup"} element={<SignupPage />}></Route>
+          <Route path={"/makers"} element={<MakersPage />}></Route>
 
           {/* 마이 페이지 */}
           <Route path={"/mypage"} element={<MyPage />}></Route>
