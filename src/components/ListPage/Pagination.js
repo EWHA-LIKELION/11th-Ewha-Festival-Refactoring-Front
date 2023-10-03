@@ -1,13 +1,18 @@
 import React from "react";
 import { styled } from "styled-components";
 
+import beforeEmpty from "../../assets/images/List/previous-empty.svg";
+import beforeFilled from "../../assets/images/List/previous-filled.svg";
+import nextEmpty from "../../assets/images/List/next-empty.svg";
+import nextFilled from "../../assets/images/List/next-filled.svg";
+
 const Pagination = ({ total, limit, page, setPage }) => {
   const numPages = Math.ceil(total / limit);
 
   return (
     <Wrapper>
-      <Button onClick={() => setPage(page - 1)} disabled={page === 1}>
-        &lt;
+      <Button onClick={() => setPage(page - 1)}>
+        <img src={page === 1 ? beforeEmpty : beforeFilled} />
       </Button>
       {Array(numPages)
         .fill()
@@ -20,8 +25,8 @@ const Pagination = ({ total, limit, page, setPage }) => {
             {i + 1}
           </PageButton>
         ))}
-      <Button onClick={() => setPage(page + 1)} disabled={page === numPages}>
-        &gt;
+      <Button onClick={() => setPage(page + 1)}>
+        <img src={page === numPages ? nextEmpty : nextFilled} />
       </Button>
     </Wrapper>
   );
