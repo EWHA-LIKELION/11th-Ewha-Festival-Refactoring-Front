@@ -15,8 +15,6 @@ import ConcertAdmin from "../components/mypage/ConcertAdmin";
 //TF관리자 전용
 import TFAdmin from "../components/mypage/TFAdmin";
 
-
-
 //image
 import { ReactComponent as Namecover } from "../assets/images/Mypage/nickname.svg";
 import redhover from "../assets/images/Mypage/redhover.svg";
