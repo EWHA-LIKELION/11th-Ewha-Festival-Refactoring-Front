@@ -14,6 +14,7 @@ import BoothListPage from "./pages/BoothListPage";
 import PerfListPage from "./pages/PerfListPage";
 import BoothEditPage from "./pages/BoothEditPage";
 import PerfEditPage from "./pages/PerfEditPage";
+import PerfSearchPage from "./pages/PerfSearchPage";
 
 function App() {
   return (
@@ -50,6 +51,10 @@ function App() {
           <Route
             path={"/performance/edit/:id"}
             element={<PerfEditPage />}
+          ></Route>
+          <Route
+            path={"/performance/search/"}
+            element={<PerfSearchPage />}
           ></Route>
         </Routes>
       </Router>

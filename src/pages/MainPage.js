@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 import menu from ".././assets/icons/menu.svg";
@@ -6,61 +6,67 @@ import mypageGreen from "../assets/images/Main/mypage-green.svg";
 import bannerMain from "../assets/images/Main/banner-main.svg";
 import bannerGreen from "../assets/images/Main/banner-green.svg";
 import bannerBlue from "../assets/images/Main/banner-blue.svg";
+import arrow from "../assets/images/Main/arrow.svg";
 import titleBackground from "../assets/icons/title-background.svg";
-import schedule_1 from "../assets/images/Main/schedule-1.svg";
-import schedule_2 from "../assets/images/Main/schedule-2.svg";
-import schedule_3 from "../assets/images/Main/schedule-3.svg";
-import highlightYellow from "../assets/icons/highlight-yellow.svg";
-import logoFestival from "../assets/images/Main/logo-festival.svg";
-import logoLikelion from "../assets/images/Main/logo-likelion.svg";
+
+import Menu from "../components/MainPage/Menu";
+import EventContent from "../components/MainPage/EventContent";
+import PerfPlan from "../components/MainPage/PerfPlan";
+import About from "../components/MainPage/About";
+import Footer from "../components/_common/Footer";
 
 const MainPage = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const openMenu = () => {
+    setIsMenuOpen(true);
+    document.body.style.overflow = "hidden";
+  };
+
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+    document.body.style.overflow = "auto";
+  };
+
   return (
-    <Wrapper>
-      <TopBar>
-        <img src={menu} />
-        <img src={mypageGreen} />
-      </TopBar>
-      <img src={bannerMain} />
-      <img src={bannerGreen} />
-      <img src={bannerBlue} />
-      <EventPlan>
-        <div>
+    <>
+      <Wrapper>
+        <TopBar>
+          <img src={menu} id="menu" onClick={openMenu} />
+          <img src={mypageGreen} id="mypage" />
+        </TopBar>
+        <Banners>
+          <img src={bannerMain} />
+          <div className="banner" style={{ marginTop: "44px" }}>
+            <img src={bannerGreen} className="banner-img" />
+            <span>부스 목록 보러가기</span>
+            <img src={arrow} />
+          </div>
+          <div className="banner">
+            <img src={bannerBlue} className="banner-img" />
+            <span>공연 목록 보러가기</span>
+            <img src={arrow} />
+          </div>
+        </Banners>
+        <Title1>
           <img src={titleBackground} />
           <p>행사 일정</p>
-        </div>
-        <div>
-          <img src={schedule_1} />
-          <p>05.10</p>
-          <p>이화인 한솥밥 배부</p>
-          <p>12:00</p>
-          <p>영산 줄다리기</p>
-          <p>15:30</p>
-        </div>
-        <div>
-          <img src={schedule_2} />
-          <p>05.11</p>
-          <p>이화의 볼륨을 높여</p>
-          <p>17:30 - 18:00</p>
-          <p>EWHA'S TURNTABLE</p>
-          <p>19:30</p>
-        </div>
-        <div>
-          <img src={schedule_3} />
-          <p>05.12</p>
-          <p>이화의 목소리가 보여</p>
-          <p>17:30 - 18:30</p>
-          <p>이화그린 영화제</p>
-          <p>19:00 - 21:00</p>
-        </div>
-      </EventPlan>
-      <PerformPlan>
-        <div>
+        </Title1>
+        <EventContent />
+        <Title2>
           <img src={titleBackground} />
           <p>공연 일정표</p>
-        </div>
-      </PerformPlan>
-    </Wrapper>
+        </Title2>
+        <PerfPlan />
+        <Title3>
+          <img src={titleBackground} />
+          <p>About</p>
+        </Title3>
+        <About />
+        <Menu isOpen={isMenuOpen} closeMenu={closeMenu} />
+        <Footer />
+      </Wrapper>
+    </>
   );
 };
 
@@ -70,7 +76,127 @@ const Wrapper = styled.div`
   background-color: var(--beige);
 `;
 
-const TopBar = styled.div``;
+const TopBar = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0px 32px 26.73px 34px;
 
-const EventPlan = styled.div``;
+  #menu {
+    width: 23.851px;
+    height: 22.267px;
+    flex-shrink: 0;
+    margin-top: 36px;
+  }
+  #mypage {
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+    margin-top: 36px;
+  }
+`;
+
+const Banners = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .banner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 60px;
+  }
+
+  .banner-img {
+    position: absolute;
+  }
+
+  .banner span {
+    z-index: 1;
+    color: var(--white);
+    text-align: center;
+    font-family: Pretendard;
+    font-size: 18.513px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    transform: translateX(-60%) translateY(62px);
+  }
+`;
+
+const Title1 = styled.div`
+  margin-top: 43.73px;
+  margin-bottom: 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+
+  img {
+    position: absolute;
+  }
+
+  p {
+    z-index: 1;
+    margin-top: 35px;
+    color: var(--white);
+    text-align: center;
+    font-family: Pretendard;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 0px;
+  }
+`;
+
+const Title2 = styled.div`
+  top: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+
+  img {
+    position: absolute;
+  }
+
+  p {
+    z-index: 1;
+    margin-top: 35px;
+    color: var(--white);
+    text-align: center;
+    font-family: Pretendard;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 0px;
+  }
+`;
+
+const Title3 = styled.div`
+  //top: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+
+  img {
+    position: absolute;
+  }
+
+  p {
+    z-index: 1;
+    margin-top: 35px;
+    color: var(--white);
+    text-align: center;
+    font-family: Pretendard;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 0px;
+  }
+`;
+
 const PerformPlan = styled.div``;

@@ -1,28 +1,28 @@
-import React from 'react';
-import {styled} from 'styled-components';
+import React from "react";
+import { styled } from "styled-components";
 
 //images
-import likelion from '../../assets/icons/footer-likelion.png';
-import instagram from '../../assets/icons/footer-instagram.svg';
-import github from '../../assets/icons/footer-github.svg';
+import likelion from "../../assets/icons/footer-likelion.png";
+import instagram from "../../assets/icons/footer-instagram.svg";
+import github from "../../assets/icons/footer-github.svg";
 
 const Footer = () => {
   return (
     <Wrapper>
       <div>멋쟁이 사자처럼 11기 | Likelion Ewha - 11th</div>
-      <a href='http://pf.kakao.com/_htxexfd'> http://pf.kakao.com/_htxexfd</a>
+      <a href="http://pf.kakao.com/_htxexfd"> http://pf.kakao.com/_htxexfd</a>
       <div>
-        <a href='https://linktr.ee/likelion.ewha'>
-          <img src={likelion} alt='likelion logo' />
+        <a href="https://linktr.ee/likelion.ewha">
+          <img src={likelion} alt="likelion logo" />
         </a>
         <a
-          href='
-        https://www.instagram.com/likelion_ewha/ '
+          href="
+        https://www.instagram.com/likelion_ewha/ "
         >
-          <img src={instagram} alt='instagram logo' />
+          <img src={instagram} alt="instagram logo" />
         </a>
-        <a href='https://github.com/EWHA-LIKELION'>
-          <img src={github} alt='github logo' />
+        <a href="https://github.com/EWHA-LIKELION">
+          <img src={github} alt="github logo" />
         </a>
       </div>
       <div>Copyright ⓒ Likelion Ewha 11th. All Rights Reserved.</div>
