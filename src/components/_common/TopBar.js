@@ -1,11 +1,11 @@
-import React from 'react';
-import {styled} from 'styled-components';
+import React from "react";
+import { styled } from "styled-components";
 
-import menu from '../../assets/icons/menu.svg';
-import search from '../../assets/icons/search.svg';
-import titleBackground from '../../assets/icons/title-background.svg';
+import menu from "../../assets/icons/menu.svg";
+import search from "../../assets/icons/search.svg";
+import titleBackground from "../../assets/icons/title-background.svg";
 
-const TopBar = ({titleText}) => {
+const TopBar = ({ titleText }) => {
   return (
     <Wrapper>
       <Container>
@@ -58,5 +58,9 @@ const Title = styled.div`
     font-weight: 700;
     line-height: 22.867px;
     letter-spacing: -0.424px;
+  }
+  img {
+    width: 165px;
+    height: 52px;
   }
 `;

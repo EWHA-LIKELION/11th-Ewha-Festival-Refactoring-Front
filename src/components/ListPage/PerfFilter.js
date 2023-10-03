@@ -4,11 +4,11 @@ import { styled } from "styled-components";
 import dayClicked from "../../assets/icons/highlight-yellow.svg";
 import categoryClicked from "../../assets/icons/highlight-red.svg";
 
-const BoothFilter = ({ placeSelect, setSelectedView }) => {
+const PerfFilter = ({ placeSelect, setSelectedView }) => {
   const [selectDay, setSelectDay] = useState(17);
   const [selectView, setSelectView] = useState("place");
-  const [selectPlace, setSelectPlace] = useState("정문");
-  const [selectCategory, setSelectCategory] = useState("음식");
+  const [selectPlace, setSelectPlace] = useState("잔디광장");
+  const [selectCategory, setSelectCategory] = useState("밴드");
 
   const dayClick = (day) => {
     setSelectDay(day);
@@ -34,18 +34,9 @@ const BoothFilter = ({ placeSelect, setSelectedView }) => {
     { date: 19, name: "금요일" },
   ];
 
-  const places = [
-    "정문",
-    "교육관",
-    "대강당",
-    "휴웃길",
-    "포스코관",
-    "학문관",
-    "생활관",
-    "신세계관",
-  ];
+  const places = ["잔디광장", "학문관광장", "스포츠트랙"];
 
-  const categories = ["음식", "굿즈", "체험", "기타"];
+  const categories = ["밴드", "춤", "노래", "기타"];
 
   return (
     <Wrapper>
@@ -114,7 +105,7 @@ const BoothFilter = ({ placeSelect, setSelectedView }) => {
   );
 };
 
-export default BoothFilter;
+export default PerfFilter;
 
 const Wrapper = styled.div`
   width: 390px;
@@ -141,9 +132,9 @@ const DayFilter = styled.div`
 const Day = styled.div`
   background-image: ${(props) =>
     props.isSelected ? `url(${dayClicked})` : "none"};
-  background-size: 75px 110px;
   background-repeat: no-repeat;
   background-position: center center;
+  background-size: 75px 110px;
   padding: 16px 16px;
   border-bottom: ${(props) =>
     props.isSelected ? "1px solid var(--green2)" : "none"};
@@ -192,16 +183,16 @@ const View = styled.div`
 `;
 
 const PlaceFilter = styled.div`
-  width: 340px;
+  width: 332px;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-gap: 10px 10px;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 10px;
   padding: 5px 0px 10px 0px;
 `;
 
 const Place = styled.div`
   display: flex;
-  width: 75px;
+  width: 101px;
   height: 29px;
   justify-content: center;
   align-items: center;
@@ -237,7 +228,7 @@ const Category = styled.div`
   align-items: center;
   flex-shrink: 0;
   border-radius: 104px;
-  border: 0.5px solid var(--green2);
+  border: 0.5px solid var(--2023-SWE_green2, #029c54);
   background: ${(props) =>
     props.isSelected ? "var(--green2)" : "var(--white)"};
   cursor: pointer;
