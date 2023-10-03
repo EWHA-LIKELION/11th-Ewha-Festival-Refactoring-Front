@@ -9,7 +9,7 @@ import Menu from "../components/_common/Menu";
 import TopBar from "../components/_common/TopBar";
 import Footer from "../components/_common/Footer";
 //부스관리자 전용
-import BoothAdmin from "../components/Mypage/BoothAdmin";
+// import BoothAdmin from "../components/Mypage/BoothAdmin";
 //공연관리자 전용
 import ConcertAdmin from "../components/Mypage/ConcertAdmin";
 //TF관리자 전용
@@ -84,7 +84,7 @@ const MyPage = () => {
         <button>로그아웃</button>
       </NameCard>
 
-      <BoothAdmin />
+      {/* <BoothAdmin /> */}
       <ConcertAdmin />
       <TFAdmin />
 
