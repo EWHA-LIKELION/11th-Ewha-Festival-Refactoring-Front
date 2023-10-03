@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { styled } from "styled-components";
 
 //component
@@ -72,6 +72,13 @@ const MyPage = () => {
   ];
 
   const categories = ["음식", "굿즈", "체험", "기타"];
+
+  const topScroll = () => {
+    window.scrollTo(0, 0);
+  };
+  useEffect(() => {
+    topScroll();
+  }, []);
 
   return (
     <Wrapper>

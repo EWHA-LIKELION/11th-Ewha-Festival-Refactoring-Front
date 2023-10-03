@@ -1,17 +1,19 @@
 import React from "react";
 import styled from "styled-components";
-import EditBooth from "../components/EditPage/EditBooth";
 
-const PerfEditPage = () => {
+import EditMenu from "../components/EditPage/EditMenu";
+import EditMenuDetail from "../components/EditPage/EditMenuDetail";
+
+const BoothEditMenuPage = () => {
   return (
     <>
       <Wrapper>
-        <EditBooth event="공연" />
+        <EditMenu />
       </Wrapper>
     </>
   );
 };
-export default PerfEditPage;
+export default BoothEditMenuPage;
 
 const Wrapper = styled.div`
   background-color: var(--beige);

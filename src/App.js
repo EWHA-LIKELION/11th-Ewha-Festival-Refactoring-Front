@@ -7,14 +7,16 @@ import Loginpage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import MakersPage from "./pages/MakersPage";
 import MyPage from "./pages/MyPage";
+import MainPage from "./pages/MainPage";
 
 import BoothListPage from "./pages/BoothListPage";
 import BoothDetailPage from "./pages/BoothDetailPage";
 import PerfDetailPage from "./pages/PerfDetailPage";
-import BoothListPage from "./pages/BoothListPage";
+
 import PerfListPage from "./pages/PerfListPage";
 import BoothEditPage from "./pages/BoothEditPage";
-import MyPage from "./pages/MyPage";
+import BoothEditMenuPage from "./pages/BoothEditMenuPage";
+import EditMenuDetail from "./components/EditPage/EditMenuDetail";
 import PerfEditPage from "./pages/PerfEditPage";
 import PerfSearchPage from "./pages/PerfSearchPage";
 
@@ -39,23 +41,25 @@ function App() {
           <Route path={"/performance"} element={<PerfListPage />}></Route>
 
           {/* 부스 관련 페이지 */}
+          <Route path={"/booth/detail"} element={<BoothDetailPage />}></Route>
+          <Route path={"/booth/editbooth"} element={<BoothEditPage />}></Route>
           <Route
-            path={"/booth/detail/:id"}
-            element={<BoothDetailPage />}
+            path={"/booth/editmenu"}
+            element={<BoothEditMenuPage />}
           ></Route>
-          <Route path={"/booth/edit/:id"} element={<BoothEditPage />}></Route>
+          <Route
+            path={"/booth/editmenu/:id"}
+            element={<EditMenuDetail />}
+          ></Route>
 
           {/* 공연 관련 페이지 */}
           <Route
-            path={"/performance/detail/:id"}
+            path={"/performance/detail"}
             element={<PerfDetailPage />}
           ></Route>
+          <Route path={"/performance/edit"} element={<PerfEditPage />}></Route>
           <Route
-            path={"/performance/edit/:id"}
-            element={<PerfEditPage />}
-          ></Route>
-          <Route
-            path={"/performance/search/"}
+            path={"/performance/search"}
             element={<PerfSearchPage />}
           ></Route>
         </Routes>
