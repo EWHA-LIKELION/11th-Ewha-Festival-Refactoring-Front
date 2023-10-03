@@ -1,24 +1,24 @@
-import React, {useRef} from 'react';
-import styled from 'styled-components';
+import React, { useRef } from "react";
+import styled from "styled-components";
 
 //components
-import {SecTitle, Line} from './SectionExport';
-import ReviewBox from './ReviewBox';
+import { SecTitle, Line } from "./SectionExport";
+import ReviewBox from "./ReviewBox";
 
 //images
-import summitIcon from '../../assets/images/detail/review-summit.svg';
+import summitIcon from "../../assets/images/detail/review-summit.svg";
 
-const DetailReview = () => {
+const DetailReview = ({ commentsData, editerId }) => {
   const textareaRef = useRef(null);
 
   const handleTextareaChange = () => {
     //입력창 높이 조절
     const textarea = textareaRef.current;
     if (textarea) {
-      textarea.style.height = '18px';
+      textarea.style.height = "18px";
       const scrollHeight = textarea.scrollHeight;
       if (scrollHeight > textarea.clientHeight) {
-        textarea.style.height = '36px';
+        textarea.style.height = "36px";
       }
     }
   };
@@ -28,17 +28,18 @@ const DetailReview = () => {
       <SecTitle sectitle={`방명록`} />
       <Line />
       <ReviewList>
-        <ReviewBox />
-        <ReviewBox />
+        {commentsData.map((comment) => (
+          <ReviewBox key={comment.id} comment={comment} editerId={editerId} />
+        ))}
       </ReviewList>
       <Line2 />
       <ReviewInput>
         <textarea
           ref={textareaRef}
           onChange={handleTextareaChange}
-          placeholder='댓글을 입력하세요'
+          placeholder="댓글을 입력하세요"
         />
-        <img src={summitIcon} alt='review summit icon' />
+        <img src={summitIcon} alt="review summit icon" />
       </ReviewInput>
     </Section>
   );

@@ -1,55 +1,72 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import Degree from '../_common/Degree';
+import Degree from "../_common/Degree";
 
 //images
-import noticeicon from '../../assets/icons/notice.svg';
-import fullheart from '../../assets/icons/heart-full.svg';
-// import emptyheart from '../../assets/icons/heart-empty.svg';
+import noticeicon from "../../assets/icons/notice.svg";
+import fullheart from "../../assets/icons/heart-full.svg";
+import emptyheart from "../../assets/icons/heart-empty.svg";
 
-const DetailTitle = ({event}) => {
+const DetailTitle = ({ event, thisData }) => {
+  //공지사항 업데이트 날짜 변환
+  let formattedDate,
+    timePart = "";
+
+  if (thisData.notices[0]) {
+    const [datePart, tmpTimePart] = thisData.notices[0].updated_at.split(" ");
+    const [year, month, day] = datePart.split("-");
+    formattedDate = `${month}/${day}`;
+    timePart = tmpTimePart;
+  }
+
   return (
     <Wrapper>
       {/* 혼잡도 */}
-      {event === '부스' && (
+      {event === "부스" && (
         <div>
-          <Degree size='large' degree='light' />
-          <Degree size='large' degree='heavy' />
+          {thisData.busy ? (
+            <Degree size="large" degree="heavy" />
+          ) : (
+            <Degree size="large" degree="light" />
+          )}
         </div>
       )}
 
       {/* 타이틀 */}
       <Container>
         <Left>
-          <div className='title'>{event} 이름입니다</div>
+          <div className="title">{thisData.name}</div>
           <div>
-            <span className='category'>음식</span>
-            <span className='hashtag'>#떡꼬치 #콜라 #떡꼬치 #콜라</span>
+            <span className="category">{thisData.category}</span>
+            <span className="hashtag">{thisData.hashtag}</span>
           </div>
         </Left>
+        {/* 좋아요 */}
         <Right>
-          <Heart src={fullheart} />
-          <span>1000</span>
+          {thisData.is_liked ? (
+            <Heart src={fullheart} />
+          ) : (
+            <Heart src={emptyheart} />
+          )}
+          <span>{thisData.is_liked_count}</span>
         </Right>
       </Container>
 
       {/* 실시간 공지사항 */}
-      <Notice>
-        <img src={noticeicon} alt='noticeicon' />
-        <ul>
-          <li className='header'>실시간 {event} 공지사항</li>
-          <li className='content'>
-            모든 국민은 근로의 권리를 가진다. 국가는 사회적·경제적 방법으로
-            근로자의 고용의 증진과 적정임금의 보장에 노력하여야 하며, 법률이
-            정하는 바에 의하여 최저임금제를 시행하여야 한다.
-          </li>
-          <li className='update'>
-            <span>update</span>
-            <span>05/10</span>
-            <span>16:34</span>
-          </li>
-        </ul>
-      </Notice>
+      {thisData.notices[0] && (
+        <Notice>
+          <img src={noticeicon} alt="noticeicon" />
+          <ul>
+            <li className="header">실시간 {event} 공지사항</li>
+            <li className="content">{thisData.notices[0].content}</li>
+            <li className="update">
+              <span>update</span>
+              <span>{formattedDate}</span>
+              <span>{timePart}</span>
+            </li>
+          </ul>
+        </Notice>
+      )}
     </Wrapper>
   );
 };

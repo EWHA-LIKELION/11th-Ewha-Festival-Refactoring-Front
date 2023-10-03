@@ -1,23 +1,23 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 //images
-import cover from '../../assets/images/detail/sample/cover.png'; //임시
-import hamBackground from '../../assets/images/detail/ham-background.svg';
-import ham from '../../assets/icons/menu.svg';
+import cover from "../../assets/images/detail/sample/cover.png"; //임시
+import hamBackground from "../../assets/images/detail/ham-background.svg";
+import menu from "../../assets/icons/menu.svg";
 
-const DetailCover = () => {
+const DetailCover = ({ thisData }) => {
   return (
     <Wrapper>
       <Cover>
-        <img src={cover} alt='cover' />
+        <img src={cover} alt="cover" />
       </Cover>
       <Ham>
-        <img src={hamBackground} alt='ham background' />
-        <img src={ham} alt='ham' />
+        <img src={hamBackground} alt="menu background" />
+        <img src={menu} alt="menu" />
       </Ham>
       <Tag>
-        <div>휠체어 접근 가능</div>
-        <div>비건 부스</div>
+        {thisData.wheelchair && <div>휠체어 접근 가능</div>}
+        {thisData.began && <div>비건 부스</div>}
       </Tag>
     </Wrapper>
   );
