@@ -90,7 +90,7 @@ const HamMenu = ({ isOpen, closeMenu }) => {
               <p>공연 목록</p>
             </Link>
             <Link
-              to="/"
+              to="/trashbin"
               style={{
                 textDecoration: "none",
                 display: "flex",
@@ -104,8 +104,15 @@ const HamMenu = ({ isOpen, closeMenu }) => {
             </Link>
           </Buttons>
           <Creators>
-            <img src={creators} />
-            <p>이웃제를 만들이들</p>
+            <Link
+              to="/makers"
+              style={{
+                textDecoration: "none",
+              }}
+            >
+              <img src={creators} />
+              <p>이웃제를 만들이들</p>
+            </Link>
           </Creators>
         </Wrapper2>
       )}
@@ -164,7 +171,6 @@ const Buttons = styled.div`
     text-align: center;
     text-shadow: 0px 1.926342248916626px 5.779026985168457px
       rgba(165, 165, 165, 0.2);
-    font-family: "Pretendard-Regular";
     font-size: 14px;
     font-style: normal;
     font-weight: 500;
@@ -186,7 +192,6 @@ const Creators = styled.div`
     text-align: center;
     text-shadow: 0px 1.926342248916626px 5.779026985168457px
       rgba(165, 165, 165, 0.2);
-    font-family: "Pretendard-Regular";
     font-size: 14px;
     font-style: normal;
     font-weight: 500;
