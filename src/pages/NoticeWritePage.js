@@ -50,6 +50,7 @@ const WriteContent = styled.textarea`
   border: none;
   outline: none;
   resize: none;
+
   border-bottom: 0.4px solid var(--gray2);
   color: var(--gray2);
   text-align: justify;

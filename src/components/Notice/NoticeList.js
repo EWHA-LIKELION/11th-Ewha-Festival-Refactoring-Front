@@ -1,9 +1,16 @@
 import React from "react";
 import { styled } from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const NoticeList = () => {
+  const navigate = useNavigate();
+
+  const goDetail = () => {
+    navigate("/notice/detail");
+  };
+
   return (
-    <Wrapper>
+    <Wrapper onClick={goDetail}>
       <span id="title">[공지] 공지 oinii 문의 전 확인 필독</span>
       <Info>
         <span id="writer">TF 팀</span>
@@ -23,6 +30,8 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 15px;
+  cursor: pointer;
+
   #title {
     color: var(--black);
     font-size: 13px;
