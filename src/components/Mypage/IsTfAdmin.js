@@ -5,7 +5,7 @@ import arrowGreen1 from "../../assets/icons/arrow-green1.svg";
 import editIcon from "../../assets/images/Mypage/editIcon.svg";
 import megaphone from "../../assets/images/Mypage/megaphone.svg";
 
-const TFAdmin = () => {
+const IsTfAdmin = () => {
   return (
     <Wrapper>
       <div className="title">공지 관리</div>
@@ -29,7 +29,7 @@ const TFAdmin = () => {
     </Wrapper>
   );
 };
-export default TFAdmin;
+export default IsTfAdmin;
 
 const Wrapper = styled.div`
   width: 350px;
