@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { styled } from "styled-components";
-
+import { useNavigate } from "react-router-dom";
 //component
 import Booth from "../components/_common/Booth";
-
+import Pagination from "../components/ListPage/Pagination";
 import Concert from "../components/_common/Concert";
 import Menu from "../components/_common/Menu";
 import TopBar from "../components/_common/TopBar";
@@ -22,6 +22,12 @@ import yellowhover from "../assets/images/Mypage/yellowhover.svg";
 import greenline from "../assets/images/Mypage/greenline.png";
 
 const MyPage = () => {
+  const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
+  const totalBooths = 26; // 전체 부스 개수
+  const boothsPerPage = 10; // 페이지당 표시할 부스 개수
+  const startIdx = (currentPage - 1) * boothsPerPage; // 시작 인덱스
+  const endIdx = Math.min(startIdx + boothsPerPage, totalBooths); // 종료 인덱스
+
   const [isBooth, setIsBooth] = useState("booth"); //부스 vs 공연
   const [likeBooth, setLikeBooth] = useState("likeBooth"); //좋아요부스 vs 좋아요메뉴
   const [selectMenu, setSelectMenu] = useState("all"); //전체,날짜,장소,카테고리
@@ -72,6 +78,23 @@ const MyPage = () => {
   ];
 
   const categories = ["음식", "굿즈", "체험", "기타"];
+  // 부스 목록 렌더링
+  const boothsToDisplay = [...Array(endIdx - startIdx)].map((_, index) => (
+    <Booth key={startIdx + index} />
+  ));
+  //메뉴 목록 렌더링
+  const menusToDisplay = [...Array(endIdx - startIdx)].map((_, index) => (
+    <Menu key={startIdx + index} />
+  ));
+  //공연 목록 렌더링
+  const perfsToDisplay = [...Array(endIdx - startIdx)].map((_, index) => (
+    <Concert key={startIdx + index} />
+  ));
+
+  const navigate = useNavigate();
+  const goToLogIn = () => {
+    navigate("/login");
+  };
 
   return (
     <Wrapper>
@@ -81,7 +104,7 @@ const MyPage = () => {
       <NameCard>
         <div className="name">닉네임</div>
         <div className="nickname">likelion11TF</div>
-        <button>로그아웃</button>
+        <button onClick={goToLogIn}>로그아웃</button>
       </NameCard>
 
       {/* <BoothAdmin />
@@ -192,36 +215,39 @@ const MyPage = () => {
         </CategoryFilter>
       )}
 
-      <div className="count">총 100개의 부스</div>
+      <div className="count">총 {totalBooths}개의 부스</div>
       {isBooth === "booth" ? (
         likeBooth === "likeBooth" ? (
-          <List>
-            <Booth />
-            <Booth />
-            <Booth />
-            <Booth />
-            <Booth />
-            <Booth />
-          </List>
+          <>
+            <List>{boothsToDisplay}</List>
+            <Pagination
+              total={totalBooths}
+              limit={boothsPerPage}
+              page={currentPage}
+              setPage={setCurrentPage}
+            />
+          </>
         ) : (
-          <List>
-            <Menu />
-            <Menu />
-            <Menu />
-            <Menu />
-            <Menu />
-            <Menu />
-          </List>
+          <>
+            <List>{menusToDisplay}</List>
+            <Pagination
+              total={totalBooths}
+              limit={boothsPerPage}
+              page={currentPage}
+              setPage={setCurrentPage}
+            />
+          </>
         )
       ) : (
-        <List>
-          <Concert />
-          <Concert />
-          <Concert />
-          <Concert />
-          <Concert />
-          <Concert />
-        </List>
+        <>
+          <List>{perfsToDisplay}</List>
+          <Pagination
+            total={totalBooths}
+            limit={boothsPerPage}
+            page={currentPage}
+            setPage={setCurrentPage}
+          />
+        </>
       )}
       <Footer />
     </Wrapper>
