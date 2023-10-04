@@ -1,43 +1,64 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-import highlightYellow from "../../assets/icons/highlight-yellow.svg";
 import notice from "../../assets/icons/notice.svg";
 
+import PerfPlanFilter from "./PerfPlanFilter";
+
 const PerfPlan = () => {
-  const [selectDay, setSelectDay] = useState([]);
-  const [selectPlace, setSelectPlace] = useState([]);
+  const [selectPlace, setSelectPlace] = useState("잔디광장");
 
-  const dayClick = (day) => {
-    setSelectDay(day);
-  };
-
-  const placeClick = (place) => {
+  const updateSelectPlace = (place) => {
     setSelectPlace(place);
   };
+  const noticeData = {
+    잔디광장: {
+      items: [
+        "메인 무대 동아리 공연은 리허설 포함 30분 동안 \n 진행합니다.",
+        "동아리 공연을 즐길 때 절대 뛰지 말아주세요.",
+      ],
+    },
+    학문관광장: {
+      items: [
+        "서브 무대 동아리 공연은 쉬는 시간 15분 동안 진\n행합니다.(공연 전 15분 정도 리허설 시간이 있을\n 수 있습니다. 동아리별 상이함)",
+        "학문관광장의 경우 앞쪽이 차도이기 때문에 관람\n 시 항상 안전에 유의해주시기 바랍니다.",
+      ],
+    },
+    스포츠트랙: {
+      items: [
+        "공연 시간은 동아리별 상이합니다.",
+        "이화여대풍물패연합 공연의 경우 1시간 동안 진행할 예정입니다.",
+      ],
+    },
+  };
 
-  const days = [
-    { date: 10, name: "수" },
-    { date: 11, name: "목" },
-    { date: 12, name: "금" },
-  ];
-
-  const places = ["잔디광장", "학문관광장", "스포츠트랙"];
+  const renderContent = () => {
+    const data = noticeData[selectPlace];
+    if (data) {
+      return (
+        <Content>
+          <Notice>
+            <div className="notice-title">
+              <img src={notice} alt="공지 아이콘" />
+              <span>공연 주의사항</span>
+            </div>
+            <ul>
+              {data.items.map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
+            </ul>
+          </Notice>
+        </Content>
+      );
+    } else {
+      return null;
+    }
+  };
 
   return (
     <Wrapper>
-      <Category></Category>
-      <Notice>
-        <div id="notice-title">
-          <img src={notice} />
-          <span>공연 주의사항</span>
-        </div>
-        <ul>
-          <li>메인 무대 동아리 공연은 리허설 포함 30분 동안 진행합니다.</li>
-          <li>동아리 공연을 즐길 때 절대 뛰지 말아주세요.</li>
-        </ul>
-      </Notice>
-      <PlanTable></PlanTable>
+      <PerfPlanFilter updateSelectPlace={updateSelectPlace} />
+      {renderContent()}
     </Wrapper>
   );
 };
@@ -45,21 +66,29 @@ const PerfPlan = () => {
 export default PerfPlan;
 
 const Wrapper = styled.div`
-  margin-top: 700px;
+  margin-top: 50px;
+  //margin-bottom: 100px;
   padding: 20.5px;
 `;
-const Category = styled.div``;
+
+const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 const Notice = styled.div`
   display: flex;
   flex-direction: column;
+  margin-top: 30px;
   padding: 20px 28px 21px 24px;
   gap: 10px;
   box-sizing: border-box;
   background-color: var(--white);
   border: 1px solid var(--green1);
   border-radius: 0.4rem;
+  white-space: pre-line;
 
-  #notice-title {
+  .notice-title {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -83,13 +112,12 @@ const Notice = styled.div`
     margin-left: 49.36px;
 
     li {
-      width: 100%;
-      font-size: 1rem;
+      font-size: 14px;
+      font-style: normal;
       font-weight: 300;
+      line-height: normal;
+      letter-spacing: -0.168px;
       color: var(--black);
-      word-break: break-all;
     }
   }
 `;
-
-const PlanTable = styled.div``;
