@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { styled } from "styled-components";
 import { useNavigate } from "react-router-dom";
+// import axios from "axios";
+// //context
+// import { useAuth } from "../contexts/AuthContext";
 //component
 import Booth from "../components/_common/Booth";
 import Pagination from "../components/ListPage/Pagination";
@@ -8,13 +11,12 @@ import Concert from "../components/_common/Concert";
 import Menu from "../components/_common/Menu";
 import TopBar from "../components/_common/TopBar";
 import Footer from "../components/_common/Footer";
-//부스관리자 전용
-// import BoothAdmin from "../components/Mypage/BoothAdmin";
-//공연관리자 전용
-// import ConcertAdmin from "../components/Mypage/ConcertAdmin";
-//TF관리자 전용
-// import TFAdmin from "../components/Mypage/TFAdmin";
-
+// 부스관리자 전용
+import BoothAdmin from "../components/Mypage/BoothAdmin";
+// 공연관리자 전용
+import ConcertAdmin from "../components/Mypage/ConcertAdmin";
+// TF관리자 전용
+import IsTfAdmin from "../components/Mypage/IsTfAdmin";
 //image
 import { ReactComponent as Namecover } from "../assets/images/Mypage/nickname.svg";
 import redhover from "../assets/images/Mypage/redhover.svg";
@@ -23,15 +25,15 @@ import greenline from "../assets/images/Mypage/greenline.png";
 
 const MyPage = () => {
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
-  const totalBooths = 26; // 전체 부스 개수
+  const totalBooths = 40; // 전체 부스 개수
   const boothsPerPage = 10; // 페이지당 표시할 부스 개수
   const startIdx = (currentPage - 1) * boothsPerPage; // 시작 인덱스
   const endIdx = Math.min(startIdx + boothsPerPage, totalBooths); // 종료 인덱스
 
   const [isBooth, setIsBooth] = useState("booth"); //부스 vs 공연
   const [likeBooth, setLikeBooth] = useState("likeBooth"); //좋아요부스 vs 좋아요메뉴
-  const [selectMenu, setSelectMenu] = useState("all"); //전체,날짜,장소,카테고리
 
+  const [selectMenu, setSelectMenu] = useState("all"); //전체,날짜,장소,카테고리
   const [selectDay, setSelectDay] = useState(17); //nav에서 날짜 선택
   const [selectPlace, setSelectPlace] = useState("정문"); //nav에서 장소 선택
   const [selectCategory, setSelectCategory] = useState("음식"); //nav에서 카테고리 선택
@@ -92,25 +94,28 @@ const MyPage = () => {
   ));
 
   const navigate = useNavigate();
+
   const goToLogIn = () => {
     navigate("/login");
   };
 
+  //GET 마이페이지 데이터
+  const [userinfo, setUserInfo] = useState([]);
+  const [data, setDate] = useState([]);
+  const getData = () => {};
+
   return (
     <Wrapper>
       <TopBar titleText="마이페이지" />
-
       <Namecover width={260} />
       <NameCard>
         <div className="name">닉네임</div>
         <div className="nickname">likelion11TF</div>
         <button onClick={goToLogIn}>로그아웃</button>
       </NameCard>
-
-      {/* <BoothAdmin />
+      <BoothAdmin />
       <ConcertAdmin />
-      <TFAdmin /> */}
-
+      <IsTfAdmin />
       <Navigation>
         <Top isSelected={isBooth}>
           <div className="booth" onClick={() => clickBooth("booth")}>
@@ -141,7 +146,6 @@ const MyPage = () => {
           )}
         </Bottom>
       </Navigation>
-
       <MenuWrapper isSelected={selectMenu}>
         <span
           id="all"
@@ -172,7 +176,6 @@ const MyPage = () => {
           카테고리
         </span>
       </MenuWrapper>
-
       {selectMenu === "day" && (
         <DayFilter>
           {days.map((day) => (
@@ -187,7 +190,6 @@ const MyPage = () => {
           ))}
         </DayFilter>
       )}
-
       {selectMenu === "place" && (
         <PlaceFilter>
           {places.map((place) => (
@@ -214,7 +216,6 @@ const MyPage = () => {
           ))}
         </CategoryFilter>
       )}
-
       <div className="count">총 {totalBooths}개의 부스</div>
       {isBooth === "booth" ? (
         likeBooth === "likeBooth" ? (
