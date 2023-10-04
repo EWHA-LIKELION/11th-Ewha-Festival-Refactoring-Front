@@ -18,10 +18,10 @@ import ConcertAdmin from "../components/Mypage/ConcertAdmin";
 // TF관리자 전용
 import IsTfAdmin from "../components/Mypage/IsTfAdmin";
 //image
-import { ReactComponent as Namecover } from "../assets/images/Mypage/nickname.svg";
-import redhover from "../assets/images/Mypage/redhover.svg";
-import yellowhover from "../assets/images/Mypage/yellowhover.svg";
-import greenline from "../assets/images/Mypage/greenline.png";
+import { ReactComponent as Namecover } from "../assets/images/mypage/nickname.svg";
+import redhover from "../assets/images/mypage/redhover.svg";
+import yellowhover from "../assets/images/mypage/yellowhover.svg";
+import greenline from "../assets/images/mypage/greenline.png";
 
 const MyPage = () => {
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지

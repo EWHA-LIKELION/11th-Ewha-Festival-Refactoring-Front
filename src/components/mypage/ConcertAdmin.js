@@ -2,8 +2,8 @@ import React from "react";
 import "../../App.css";
 import { styled } from "styled-components";
 import arrowGreen1 from "../../assets/icons/arrow-green1.svg";
-import editIcon from "../../assets/images/Mypage/editIcon.svg";
-import boothimg from "../../assets/images/Mypage/boothimg.svg";
+import editIcon from "../../assets/images/mypage/editIcon.svg";
+import boothimg from "../../assets/images/mypage/boothimg.svg";
 const ConcertAdmin = () => {
   return (
     <Wrapper>

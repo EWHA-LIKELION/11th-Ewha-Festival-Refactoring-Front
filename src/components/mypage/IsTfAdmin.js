@@ -2,8 +2,8 @@ import React from "react";
 import "../../App.css";
 import { styled } from "styled-components";
 import arrowGreen1 from "../../assets/icons/arrow-green1.svg";
-import editIcon from "../../assets/images/Mypage/editIcon.svg";
-import megaphone from "../../assets/images/Mypage/megaphone.svg";
+import editIcon from "../../assets/images/mypage/editIcon.svg";
+import megaphone from "../../assets/images/mypage/megaphone.svg";
 
 const IsTfAdmin = () => {
   return (
