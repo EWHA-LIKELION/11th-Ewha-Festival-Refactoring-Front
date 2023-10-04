@@ -2,24 +2,24 @@ import React from "react";
 import "../../App.css";
 import { styled } from "styled-components";
 import arrowGreen1 from "../../assets/icons/arrow-green1.svg";
-import editIcon from "../../assets/images/mypage/editIcon.svg";
-import megaphone from "../../assets/images/mypage/megaphone.svg";
-
-const IsTfAdmin = () => {
+import editIcon from "../../assets/images/Mypage/editIcon.svg";
+import boothimg from "../../assets/images/Mypage/boothimg.svg";
+const ConcertAdmin = () => {
   return (
     <Wrapper>
-      <div className="title">공지 관리</div>
+      <div className="title">공연 관리</div>
       <hr></hr>
 
       <BoxWrapper>
+        <div className="concertname">뉴진스~뉴티~</div>
         <div className="bar">
-          <img id="icon" src={megaphone} />
-          TF 공지사항 바로가기
+          <img id="icon" src={boothimg} />
+          내 공연 페이지 바로가기
           <img id="arrow" src={arrowGreen1} />
         </div>
         <div className="bar">
           <img id="icon" src={editIcon} />
-          TF 공지사항 작성하기
+          내 공연 정보 수정하기
           <img id="arrow" src={arrowGreen1} />
         </div>
       </BoxWrapper>
@@ -29,7 +29,7 @@ const IsTfAdmin = () => {
     </Wrapper>
   );
 };
-export default IsTfAdmin;
+export default ConcertAdmin;
 
 const Wrapper = styled.div`
   width: 350px;
@@ -57,7 +57,17 @@ const BoxWrapper = styled.div`
     border-radius: 4px;
     align-items: center;
   }
+  .concertname {
+    display: flex;
+    margin: auto;
+    background-color: var(--green1);
+    color: white;
+    justify-content: center;
 
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 20px;
+  }
   .bar {
     display: flex;
     align-items: center;
