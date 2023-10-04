@@ -1,16 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import ReactDatePicker from "react-datepicker";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const TimeSelect = () => {
+  const [startTime, setStartTime] = useState(null);
+  const [endTime, setEndTime] = useState(null);
+
   return (
     <>
       <Container>
         <InputContainer>
-          <input type="time" id="startTime" />
+          <div>
+            <DatePicker
+              selected={startTime}
+              onChange={(time) => setStartTime(time)}
+              showTimeSelect
+              showTimeSelectOnly
+              timeIntervals={15}
+              timeCaption="Time"
+              dateFormat="HH:mm"
+              className="timeBox"
+            />
+          </div>
         </InputContainer>
         <FromTo>부터</FromTo>
         <InputContainer>
-          <input type="time" id="endTime" />
+          <div>
+            <DatePicker
+              selected={endTime}
+              onChange={(time) => setEndTime(time)}
+              showTimeSelect
+              showTimeSelectOnly
+              timeIntervals={15}
+              timeCaption="Time"
+              dateFormat="HH:mm"
+              className="timeBox"
+            />
+          </div>
         </InputContainer>
         <FromTo>까지</FromTo>
       </Container>
@@ -29,7 +57,7 @@ const Container = styled.div`
 
 const InputContainer = styled.div`
   margin: 0 8px;
-  input[type="time"] {
+  .timeBox {
     width: 78.5px;
     height: 45px;
     box-sizing: border-box;
