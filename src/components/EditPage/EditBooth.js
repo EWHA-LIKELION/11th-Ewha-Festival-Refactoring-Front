@@ -4,9 +4,8 @@ import TopBar from "../_common/TopBar";
 import Footer from "../_common/Footer";
 import { useNavigate } from "react-router";
 
-import checkbox_empty from "../../assets/images/edit/checkbox_empty.svg";
-import checkbox_full from "../../assets/images/edit/checkbox_full.svg";
 import TimeSelect from "./TimeSelect";
+import CheckBox from "./CheckBox";
 
 const EditBooth = ({ event }) => {
   const navigate = useNavigate();
@@ -47,6 +46,7 @@ const EditBooth = ({ event }) => {
           <label id="label" for="checkDay1" style={{ margin: "0 5px" }}>
             10일 수요일
           </label>
+          {/* <CheckBox /> */}
           <TimeSelect />
         </div>
         <div className="checkContainer">
