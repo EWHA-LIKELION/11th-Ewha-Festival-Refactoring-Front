@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { styled } from "styled-components";
 import { useNavigate } from "react-router-dom";
 // import axios from "axios";
@@ -103,6 +103,13 @@ const MyPage = () => {
   const [userinfo, setUserInfo] = useState([]);
   const [data, setDate] = useState([]);
   const getData = () => {};
+
+  const topScroll = () => {
+    window.scrollTo(0, 0);
+  };
+  useEffect(() => {
+    topScroll();
+  }, []);
 
   return (
     <Wrapper>

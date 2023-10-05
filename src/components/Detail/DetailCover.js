@@ -5,13 +5,13 @@ import cover from "../../assets/images/detail/sample/cover.png"; //임시
 import hamBackground from "../../assets/images/detail/ham-background.svg";
 import menu from "../../assets/icons/menu.svg";
 
-const DetailCover = ({ thisData }) => {
+const DetailCover = ({ thisData, openMenu }) => {
   return (
     <Wrapper>
       <Cover>
         <img src={cover} alt="cover" />
       </Cover>
-      <Ham>
+      <Ham onClick={openMenu}>
         <img src={hamBackground} alt="menu background" />
         <img src={menu} alt="menu" />
       </Ham>

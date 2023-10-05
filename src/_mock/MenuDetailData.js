@@ -1,20 +1,20 @@
 export const MenuDetailData = [
   {
     id: 1,
-    name: "덕고지",
+    menu: "덕고지",
     price: "2,000",
-    isSoldout: false,
+    is_soldout: false,
   },
   {
     id: 2,
-    name: "김치치즈전",
+    menu: "김치치즈전",
     price: "4,000",
-    isSoldout: false,
+    is_soldout: false,
   },
   {
     id: 3,
-    name: "와플",
+    menu: "와플",
     price: "3,500",
-    isSoldout: false,
+    is_soldout: false,
   },
 ];

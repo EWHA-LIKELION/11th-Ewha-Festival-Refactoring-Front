@@ -1,16 +1,22 @@
 import React from "react";
 import styled from "styled-components";
-import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import TopBar from "../_common/TopBar";
 import Footer from "../_common/Footer";
 
-import { MenuDetailData } from "../../_mock/MenuDetailData";
-
 const EditMenuDetail = () => {
+  const navigate = useNavigate();
+  const complete = () => {
+    navigate("/mypage");
+  };
+  const cancel = () => {
+    navigate("/mypage");
+  };
+
   const isSoldOut = () => {
     const toggled = document.getElementById("toggle");
-    if (toggled.checked) {
+    if (toggled && toggled.checked) {
       return true;
     }
     return false;
@@ -19,39 +25,53 @@ const EditMenuDetail = () => {
   return (
     <>
       <TopBar titleText={`메뉴 정보 수정`} />
-      <Content>
-        {/* 메뉴이름 */}
-        <div className="title" style={{ marginTop: "30px" }}>
-          메뉴 이름
-        </div>
-        <input className="inputbox" type="text" value={`덕고지`} />
+      <Wrapper>
+        <Content>
+          {/* 메뉴이름 */}
+          <div className="title" style={{ marginTop: "30px" }}>
+            메뉴 이름
+          </div>
+          <input className="inputbox" type="text" value={`덕고지`} />
 
-        {/* 메뉴가격 */}
-        <div className="title" style={{ marginTop: "20px" }}>
-          가격
-        </div>
-        <PriceWrapper>
-          <input className="inputbox" type="text" value={`2000`} />
-          <div className="won">원</div>
+          {/* 메뉴가격 */}
+          <div className="title" style={{ marginTop: "20px" }}>
+            가격
+          </div>
+          <PriceWrapper>
+            <input className="inputbox" type="text" value={`2000`} />
+            <div className="won">원</div>
 
-          {/* sold out 스위치 */}
-          <label className="soldout">Sold Out</label>
-          <input type="checkbox" id="toggle" hidden />
-          <label for="toggle" className="toggleSwitch">
-            <span className="toggleButton"></span>
-          </label>
-        </PriceWrapper>
-        <FinishBtn>
-          <div className="cancelBtn">취소</div>
-          <div className="completeBtn">완료</div>
-        </FinishBtn>
-      </Content>
+            {/* sold out 스위치 */}
+            <label className="soldout">Sold Out</label>
+            <input type="checkbox" id="toggle" hidden />
+            <label for="toggle" className="toggleSwitch">
+              <span className="toggleButton"></span>
+            </label>
+          </PriceWrapper>
+          <FinishBtn>
+            <div className="cancelBtn" onClick={cancel}>
+              취소
+            </div>
+            <div className="completeBtn" onClick={complete}>
+              완료
+            </div>
+          </FinishBtn>
+        </Content>
+      </Wrapper>
       <Footer />
     </>
   );
 };
 export default EditMenuDetail;
 
+const Wrapper = styled.div`
+  background-color: var(--beige);
+  width: 390px;
+  height: 530px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 const Content = styled.div`
   width: 350px;
   height: 100%;
