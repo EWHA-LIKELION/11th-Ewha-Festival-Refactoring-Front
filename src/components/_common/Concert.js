@@ -5,10 +5,16 @@ import { styled } from "styled-components";
 //부스 대표 사진
 import concert from "../../assets/images/Mypage/concert.png";
 import { ReactComponent as PinkHeart } from "../../assets/icons/heart-empty.svg";
+import { useNavigate } from "react-router-dom";
 
 const Concert = () => {
+  const navigate = useNavigate();
   return (
-    <Wrapper>
+    <Wrapper
+      onClick={() => {
+        navigate(`/performance/detail/$id`);
+      }}
+    >
       <img src={concert} />
 
       <InfoWrapper>

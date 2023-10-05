@@ -3,6 +3,8 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 //pages
+import MainPage from "./pages/MainPage";
+
 import Loginpage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import MakersPage from "./pages/MakersPage";
