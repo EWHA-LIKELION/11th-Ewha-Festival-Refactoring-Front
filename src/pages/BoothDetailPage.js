@@ -131,6 +131,9 @@ const BoothDetailPage = () => {
 
   const [thisData, setThisData] = useState(mockData[0]); //배열 인덱스 임시로 설정
 
+  //스크롤 맨 위로 설정
+  window.scrollTo(0, 0);
+
   return (
     <Wrapper>
       <DetailCover thisData={thisData} />
