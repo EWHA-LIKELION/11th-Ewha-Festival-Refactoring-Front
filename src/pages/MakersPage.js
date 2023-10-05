@@ -18,7 +18,7 @@ const MakersPage = () => {
   return (
     <>
       <Wrapper>
-        <TopBar titleText={"만든이들"} showSearch={false} />
+        <TopBar titleText={"만든이들"} />
         <Container>
           <Title src={title} />
           <div>
@@ -67,7 +67,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   position: relative;
 
-  width: 335px;
+  width: 390px;
   height: auto;
   margin: 0px auto;
 
@@ -76,7 +76,7 @@ const Wrapper = styled.div`
 `;
 const Container = styled.div`
   width: 100%;
-  max-width: 400px;
+  max-width: 335px;
   padding: 0px 27.5px;
   display: flex;
   flex-direction: column;
