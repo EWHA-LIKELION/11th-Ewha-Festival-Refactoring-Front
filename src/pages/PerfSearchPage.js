@@ -30,7 +30,7 @@ const PerfSearchPage = () => {
         <Container>
           <div className="result">
             <div className="searchName">'{userInput}'에 대한 검색 결과</div>
-            <div className="count">총 1개의 공연</div>
+            <div className="count">총 0개의 공연</div>
           </div>
         </Container>
       </Wrapper>

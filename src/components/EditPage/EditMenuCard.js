@@ -1,30 +1,26 @@
 import styled from "styled-components";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+
 import arrow_green3 from "../../assets/icons/arrow-green3.svg";
 
-import { Link } from "react-router-dom";
-import { MenuDetailData } from "../../_mock/MenuDetailData";
-import { useState } from "react";
-
-const EditMenuCard = () => {
-  const [isSelected, setIsSelected] = useState(false);
-  const handleClick = () => {
-    setIsSelected(true);
-  };
+const EditMenuCard = ({ menuItem }) => {
+  const { id, menu, price } = menuItem;
 
   return (
     <>
       <Wrapper>
-        <Content>
-          {/* {MenuDetailData.map((id) => (
-            <Link key={id} to={`/booth/edit/1/${id}`}>
-              <div className="name">{MenuDetailData[id].name}</div>
-              <div className="price">{MenuDetailData[id].price}원</div>
-            </Link>
-          ))} */}
-          <div className="name">덕고지</div>
-          <div className="price">2,000원</div>
-        </Content>
-        <img src={arrow_green3} onClick={handleClick} />
+        <Link to={`/booth/editmenu/${id}`} style={{ textDecoration: "none" }}>
+          <div key={id}>
+            <Container>
+              <Content>
+                <div className="name">{menu}</div>
+                <div className="price">{price}원</div>
+              </Content>
+              <img src={arrow_green3} />
+            </Container>
+          </div>
+        </Link>
       </Wrapper>
     </>
   );
@@ -38,27 +34,31 @@ const Wrapper = styled.div`
   height: 90px;
   box-sizing: border-box;
   padding: 20px;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
 
   border-radius: 4px;
   border: 0.4px solid var(--green1);
   background-color: var(--white);
 
   margin-bottom: 12px;
-
+`;
+const Container = styled.div`
+  width: 310px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 5px;
   img {
     transform: rotate(-90deg);
     width: 20px;
     height: 11.77px;
   }
 `;
-
 const Content = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  justify-content: center;
   .name {
     color: var(--black);
     text-align: center;
