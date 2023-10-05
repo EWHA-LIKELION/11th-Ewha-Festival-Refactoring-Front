@@ -7,6 +7,7 @@ import Loginpage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import MakersPage from "./pages/MakersPage";
 import MyPage from "./pages/MyPage";
+import MainPage from "./pages/MainPage";
 
 import BoothDetailPage from "./pages/BoothDetailPage";
 import PerfDetailPage from "./pages/PerfDetailPage";

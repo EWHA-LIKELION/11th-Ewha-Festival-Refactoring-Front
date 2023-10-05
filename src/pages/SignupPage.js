@@ -17,15 +17,19 @@ import SecretModal from "../components/SignupPage/SecretModal";
 import CommonModal from "../components/SignupPage/CommonModal";
 
 const SignupPage = () => {
-  const navigate = useNavigate();
-
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [nickname, setNickname] = useState("");
   const [secret, setSecret] = useState("");
 
+  const [isUsernameChecked, setIsUsernameChecked] = useState(false);
   const [passwordsMatch, setPasswordsMatch] = useState(false); // 비밀번호 일치 여부
+
+  // 중복 확인 버튼 클릭 시 호출되는 함수
+  const handleCheckUsername = () => {
+    setIsUsernameChecked(!isUsernameChecked);
+  };
 
   //비밀번호 확인 함수
   const checkPasswordsMatch = () => {
@@ -41,16 +45,20 @@ const SignupPage = () => {
   const openCompleteModal = () => {
     let caseNumber = null; // 모든 조건 충족 시 modalCase를 null로 설정
 
-    if (username === "") {
-      caseNumber = 2; // 아이디를 입력하지 않았을 때
-      // } else if () {
-      //   caseNumber = 3; // 아이디 중복확인이 진행되지 않았을 때
+    if (
+      username === "" ||
+      password === "" ||
+      confirmPassword === "" ||
+      nickname === "" ||
+      secret === ""
+    ) {
+      caseNumber = 2; // 빈칸 있을 때
+    } else if (!isUsernameChecked) {
+      caseNumber = 3; // 아이디 중복확인이 진행되지 않았을 때
     } else if (!passwordsMatch) {
       caseNumber = 4; // 비밀번호 확인란이 일치하지 않을 때
-    } else if (nickname === "") {
-      caseNumber = 5; // 닉네임을 입력하지 않았을 때
     } else if (nickname.length > 10) {
-      caseNumber = 6; // 닉네임이 10자를 초과할 때
+      caseNumber = 5; // 닉네임이 10자를 초과할 때
     }
 
     setModalCase(caseNumber);
@@ -98,7 +106,7 @@ const SignupPage = () => {
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
               />
-              <CheckBtn onClick={() => openCommonModal(0)}>중복확인</CheckBtn>
+              <CheckBtn onClick={handleCheckUsername}>중복확인</CheckBtn>
             </InputDiv>
             <InputDiv>
               <Icon src={passwordicon} />
@@ -284,7 +292,7 @@ const InputB = styled(Input)`
 
 const Icon = styled.img`
   position: absolute;
-  z-index: 10;
+  z-index: 2;
 
   top: 21px;
   left: 9px;
