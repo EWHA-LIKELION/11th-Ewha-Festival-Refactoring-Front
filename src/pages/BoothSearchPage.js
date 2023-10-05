@@ -5,7 +5,7 @@ import Footer from "../components/_common/Footer";
 import search_btn from "../assets/images/search/search_btn.svg";
 import { useState } from "react";
 
-const PerfSearchPage = () => {
+const BoothSearchPage = () => {
   const [userInput, setUserInput] = useState("");
   const getValue = (e) => {
     setUserInput(e.target.value);
@@ -16,12 +16,12 @@ const PerfSearchPage = () => {
 
   return (
     <>
-      <TopBar titleText={`공연 검색`} />
+      <TopBar titleText={`부스 검색`} />
       <Wrapper>
         <div className="searchBar">
           <input
             type="text"
-            placeholder="공연을 검색해보세요."
+            placeholder="부스을 검색해보세요."
             id="search_input"
             onChange={getValue}
           />
@@ -30,7 +30,7 @@ const PerfSearchPage = () => {
         <Container>
           <div className="result">
             <div className="searchName">'{userInput}'에 대한 검색 결과</div>
-            <div className="count">총 0개의 공연</div>
+            <div className="count">총 0개의 부스</div>
           </div>
         </Container>
       </Wrapper>
@@ -38,7 +38,7 @@ const PerfSearchPage = () => {
     </>
   );
 };
-export default PerfSearchPage;
+export default BoothSearchPage;
 
 const Wrapper = styled.div`
   background-color: var(--beige);

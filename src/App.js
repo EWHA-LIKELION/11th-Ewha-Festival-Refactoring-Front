@@ -21,6 +21,8 @@ import PerfSearchPage from "./pages/PerfSearchPage";
 import BoothListPage from "./pages/BoothListPage";
 import TrashBinPage from "./pages/TrashBinPage";
 
+import BoothSearchPage from "./pages/BoothSearchPage";
+
 function App() {
   return (
     <>
@@ -71,6 +73,7 @@ function App() {
             path={"/performance/search/"}
             element={<PerfSearchPage />}
           ></Route>
+          <Route path={"/booth/search/"} element={<BoothSearchPage />}></Route>
         </Routes>
       </Router>
     </>
