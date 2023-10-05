@@ -57,27 +57,24 @@ function App() {
           <Route path={"/performance"} element={<PerfListPage />}></Route>
 
           {/* 부스 관련 페이지 */}
-          <Route path={"/booth/detail"} element={<BoothDetailPage />}></Route>
-          <Route path={"/booth/editbooth"} element={<BoothEditPage />}></Route>
           <Route
-            path={"/booth/editmenu"}
-            element={<BoothEditMenuPage />}
+            path={"/booth/detail/:id"}
+            element={<BoothDetailPage />}
           ></Route>
+          <Route path={"/editbooth"} element={<BoothEditPage />}></Route>
+          <Route path={"/editmenu"} element={<BoothEditMenuPage />}></Route>
           <Route
-            path={"/booth/editmenu/:id"}
+            path={"/editmenu/:menuId"}
             element={<EditMenuDetail />}
           ></Route>
 
           {/* 공연 관련 페이지 */}
           <Route
-            path={"/performance/detail"}
+            path={"/performance/detail/:id"}
             element={<PerfDetailPage />}
           ></Route>
-          <Route path={"/performance/edit"} element={<PerfEditPage />}></Route>
-          <Route
-            path={"/performance/edit/:id"}
-            element={<PerfEditPage />}
-          ></Route>
+          <Route path={"/editperf"} element={<PerfEditPage />}></Route>
+
           {/* 쓰레기통 페이지 */}
           <Route path={"/trashbin"} element={<TrashBinPage />}></Route>
 

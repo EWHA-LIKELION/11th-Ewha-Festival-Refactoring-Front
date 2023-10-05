@@ -11,10 +11,6 @@ import boothimg from "../../assets/images/Mypage/boothimg.svg";
 const BoothAdmin = () => {
   const navigate = useNavigate();
 
-  const editBooth = () => {
-    navigate("/booth/editbooth");
-  };
-
   return (
     <Wrapper>
       <div className="title">부스 관리</div>
@@ -25,19 +21,29 @@ const BoothAdmin = () => {
         <div
           className="bar"
           onClick={() => {
-            navigate(`/booth/detail/`);
+            navigate(`/booth/detail/1`);
           }}
         >
           <img id="icon" src={boothimg} />
           내 부스 페이지 바로가기
           <img id="arrow" src={arrowGreen1} />
         </div>
-        <div className="bar" onClick={editBooth}>
+        <div
+          className="bar"
+          onClick={() => {
+            navigate(`/editbooth/`);
+          }}
+        >
           <img id="icon" src={editIcon} />
           내 부스 정보 수정하기
           <img id="arrow" src={arrowGreen1} />
         </div>
-        <div className="bar">
+        <div
+          className="bar"
+          onClick={() => {
+            navigate(`/editmenu/`);
+          }}
+        >
           <img id="icon" src={add} />
           내 메뉴 정보 수정하기
           <img id="arrow" src={arrowGreen1} />

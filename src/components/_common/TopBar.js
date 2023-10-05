@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { styled } from "styled-components";
 import { useNavigate } from "react-router-dom";
 
-
 import HamMenu from "../MainPage/HamMenu";
 
 import menu from "../../assets/icons/menu.svg";
@@ -15,13 +14,14 @@ const TopBar = ({ titleText, showSearch = false }) => {
 
   const openMenu = () => {
     setIsMenuOpen(true);
-    document.body.style.overflow = "hidden";
+    document.body.style.overflow = "auto";
   };
 
   const closeMenu = () => {
     setIsMenuOpen(false);
     document.body.style.overflow = "auto";
   };
+
   return (
     <>
       <Wrapper>
@@ -75,10 +75,9 @@ const Title = styled.div`
   span {
     position: absolute;
     top: 34%;
-    z-index: 20;
+    z-index: 2;
     color: var(--white);
     text-align: center;
-    font-family: Pretendard;
     font-size: 18px;
     font-style: normal;
     font-weight: 700;

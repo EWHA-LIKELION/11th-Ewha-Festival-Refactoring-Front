@@ -9,7 +9,11 @@ const CommonModal = ({ openCommonModal, closeCommonModal, modalCase }) => {
   const containerRef = useRef(null);
 
   const textCategory = [
-    "이미 사용중인 아이디입니다. 다른 아이디로 가입해주세요!",
+    <>
+      이미 사용중인 아이디입니다.
+      <br />
+      다른 아이디로 가입해주세요!
+    </>,
     "사용 가능한 아이디입니다.",
     "모든 칸에 정보를 입력해 주세요!",
     "아이디 중복확인을 진행해 주세요!",
@@ -18,6 +22,9 @@ const CommonModal = ({ openCommonModal, closeCommonModal, modalCase }) => {
   ];
 
   const modalText = textCategory[modalCase];
+  const textStyles = {
+    color: modalCase === 1 ? "var(--green1)" : "var(--red)",
+  };
 
   const handleClickOutside = (event) => {
     if (containerRef.current && !containerRef.current.contains(event.target)) {
@@ -30,7 +37,7 @@ const CommonModal = ({ openCommonModal, closeCommonModal, modalCase }) => {
     <>
       <Wrapper>
         <Container ref={containerRef} onClick={handleClickOutside}>
-          <Explanation2>{modalText}</Explanation2>
+          <Explanation2 style={textStyles}>{modalText}</Explanation2>
           <BtnBox>
             <OKBtn onClick={closeCommonModal}>확인</OKBtn>
           </BtnBox>
@@ -87,8 +94,6 @@ const Explanation = styled.span`
 
 const Explanation2 = styled.span`
   margin-top: 9px;
-
-  color: var(--red);
   text-align: center;
   font-family: "Pretendard-Regular";
   font-size: 15px;
