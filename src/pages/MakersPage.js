@@ -1,7 +1,6 @@
 //loginpage
 import React, { useState } from "react";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
 
 //component
 import TopBar from "../components/_common/TopBar";

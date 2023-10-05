@@ -29,6 +29,7 @@ const CompleteModal = ({ openSecretModal, closeSecretModal }) => {
             이화여자대학교 유레카 포털 <br /> 자유게시판에서 '이웃제' 검색하여
             확인
           </Explanation>
+          <Secret>비밀단어 : 이대멋사짱~</Secret>
           <BtnBox>
             <OKBtn onClick={closeSecretModal}>닫기</OKBtn>
           </BtnBox>
@@ -109,10 +110,21 @@ const Explanation2 = styled.span`
   font-weight: 400;
 `;
 
+const Secret = styled.span`
+  margin-top: 8px;
+
+  color: var(--gray2);
+  text-align: center;
+  font-family: "Pretendard-Regular";
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 400;
+`;
+
 const BtnBox = styled.div`
   display: flex;
 
-  margin-top: 23px;
+  margin-top: 15px;
 `;
 
 const OKBtn = styled.button`
