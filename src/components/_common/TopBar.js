@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import { styled } from "styled-components";
 import { useNavigate } from "react-router-dom";
 
-import Menu from "../MainPage/Menu";
+import HamMenu from "../MainPage/HamMenu";
 
 import menu from "../../assets/icons/menu.svg";
 import search from "../../assets/icons/search.svg";
 import titleBackground from "../../assets/icons/title-background.svg";
 
-const TopBar = ({ titleText, showSearch = true }) => {
+const TopBar = ({ titleText, showSearch = false }) => {
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -40,7 +40,7 @@ const TopBar = ({ titleText, showSearch = true }) => {
           )}
         </Container>
       </Wrapper>
-      {isMenuOpen && <Menu isOpen={isMenuOpen} closeMenu={closeMenu} />}
+      {isMenuOpen && <HamMenu isOpen={isMenuOpen} closeMenu={closeMenu} />}
     </>
   );
 };
