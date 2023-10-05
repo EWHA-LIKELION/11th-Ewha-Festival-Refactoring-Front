@@ -287,7 +287,7 @@ const Nick = styled.div`
 const NameCard = styled.div`
   text-align: center;
   position: absolute;
-  top: 40%;
+  top: 41%;
   left: 36%;
   .name {
     color: var(--green1);
