@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import menu from ".././assets/icons/menu.svg";
@@ -16,6 +17,7 @@ import About from "../components/MainPage/About";
 import Footer from "../components/_common/Footer";
 
 const MainPage = () => {
+  const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const openMenu = () => {
@@ -33,7 +35,11 @@ const MainPage = () => {
       <Wrapper>
         <TopBar>
           <img src={menu} id="menu" onClick={openMenu} />
-          <img src={mypageGreen} id="mypage" />
+          <img
+            src={mypageGreen}
+            id="mypage"
+            onClick={() => navigate("/mypage")}
+          />
         </TopBar>
         <Banners>
           <img src={bannerMain} />
