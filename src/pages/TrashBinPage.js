@@ -12,6 +12,9 @@ import { trashData } from "../_mock/trashData";
 const TrashBinPage = () => {
   const [trashs, setTrashs] = useState(trashData);
 
+  //스크롤 맨 위로 설정
+  window.scrollTo(0, 0);
+
   return (
     <Wrapper>
       <TopBar titleText="쓰레기통 위치" />
