@@ -11,7 +11,7 @@ const NoticeList = () => {
 
   return (
     <Wrapper onClick={goDetail}>
-      <span id="title">[공지] 공지 oinii 문의 전 확인 필독</span>
+      <span id="title">[공지] 이것은 제목입니다</span>
       <Info>
         <span id="writer">TF 팀</span>
         <span id="date">2023-05-17</span>

@@ -18,6 +18,7 @@ import PerfSearchPage from "./pages/PerfSearchPage";
 import NoticePage from "./pages/NoticePage";
 import NoticeDetailPage from "./pages/NoticeDetailPage";
 import NoticeWritePage from "./pages/NoticeWritePage";
+import NoticeEditPage from "./pages/NoticeEditPage";
 import TrashBinPage from "./pages/TrashBinPage";
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
           <Route path={"/notice"} element={<NoticePage />}></Route>
           <Route path={"/notice/detail"} element={<NoticeDetailPage />}></Route>
           <Route path={"/notice/write"} element={<NoticeWritePage />}></Route>
+          <Route path={"/notice/edit"} element={<NoticeEditPage />}></Route>
 
           {/* 부스/공연 목록 페이지 */}
           <Route path={"/booth"} element={<BoothListPage />}></Route>

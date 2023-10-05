@@ -23,6 +23,10 @@ const NoticeDetailPage = () => {
     navigate("/notice");
   };
 
+  const goEdit = () => {
+    navigate("/notice/edit");
+  };
+
   return (
     <Wrapper>
       <TopBar titleText="공지사항" />
@@ -47,7 +51,7 @@ const NoticeDetailPage = () => {
       </Content>
       <Btn>
         <DelBtn onClick={openModal}>삭제</DelBtn>
-        <ModifyBtn>수정</ModifyBtn>
+        <ModifyBtn onClick={goEdit}>수정</ModifyBtn>
       </Btn>
       <Footer />
       {modal && <DeleteModal closeModal={closeModal} del={del} />}
