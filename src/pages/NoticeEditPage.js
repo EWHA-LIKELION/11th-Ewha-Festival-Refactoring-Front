@@ -16,7 +16,7 @@ const NoticeEditPage = () => {
 
   return (
     <Wrapper>
-      <TopBar titleText="공지 수정하기" />
+      <TopBar titleText="공지 수정하기" showSearch={false} />
       <WriteTitle
         placeholder="제목을 작성하세요"
         value="[공지] 이것은 제목입니다"
