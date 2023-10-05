@@ -50,7 +50,7 @@ const HamMenu = ({ isOpen, closeMenu }) => {
               <p>메인 페이지</p>
             </Link>
             <Link
-              to="/"
+              to="/notice"
               style={{
                 textDecoration: "none",
                 display: "flex",
@@ -132,6 +132,7 @@ const Wrapper1 = styled.div`
   z-index: 3;
   border-radius: 0px 50px 50px 0px;
   filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.25));
+  overflow: hidden;
   //animation: 0.8s ease 0s 1 normal none running;
 `;
 
