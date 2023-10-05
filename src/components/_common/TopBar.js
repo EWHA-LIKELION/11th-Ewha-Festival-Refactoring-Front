@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { styled } from "styled-components";
 import { useNavigate } from "react-router-dom";
 
-import Menu from "../MainPage/Menu";
+import Menu from "./Menu";
 
 import menu from "../../assets/icons/menu.svg";
 import search from "../../assets/icons/search.svg";

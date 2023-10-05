@@ -13,7 +13,7 @@ const Booth = () => {
   return (
     <Wrapper
       onClick={() => {
-        navigate(`/booth/detail/$id`);
+        navigate(`/booth/detail/`);
       }}
     >
       <img src={boothCover} />
