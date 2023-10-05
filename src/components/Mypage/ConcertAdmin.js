@@ -17,7 +17,7 @@ const ConcertAdmin = () => {
         <div
           className="bar"
           onClick={() => {
-            navigate(`/performance/detail/`);
+            navigate(`/performance/detail/1`);
           }}
         >
           <img id="icon" src={boothimg} />
@@ -27,7 +27,7 @@ const ConcertAdmin = () => {
         <div
           className="bar"
           onClick={() => {
-            navigate(`/performance/edit/`);
+            navigate(`/editperf/`);
           }}
         >
           <img id="icon" src={editIcon} />

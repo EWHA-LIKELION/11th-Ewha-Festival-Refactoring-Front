@@ -10,7 +10,7 @@ const EditMenuCard = ({ menuItem }) => {
   return (
     <>
       <Wrapper>
-        <Link to={`/booth/editmenu/${id}`} style={{ textDecoration: "none" }}>
+        <Link to={`/editmenu/${id}`} style={{ textDecoration: "none" }}>
           <div key={id}>
             <Container>
               <Content>

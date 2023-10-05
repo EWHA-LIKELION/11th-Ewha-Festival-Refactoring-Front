@@ -27,20 +27,25 @@ const PerfListPage = () => {
   ));
 
   return (
-    <Wrapper>
+    <>
       <TopBar titleText="공연 목록" />
-      <PerfFilter placeSelect={placeSelect} setSelectedView={setSelectedView} />
-      {selectedView === "place" && <Map page="list" place={selectedPlace} />}
-      <div className="count">총 {totalPerfs}개의 공연</div>
-      <List>{perfsToDisplay}</List>
-      <Pagination
-        total={totalPerfs}
-        limit={perfsPerPage}
-        page={currentPage}
-        setPage={setCurrentPage}
-      />
-      <Footer />
-    </Wrapper>
+      <Wrapper>
+        <PerfFilter
+          placeSelect={placeSelect}
+          setSelectedView={setSelectedView}
+        />
+        {selectedView === "place" && <Map page="list" place={selectedPlace} />}
+        <div className="count">총 {totalPerfs}개의 공연</div>
+        <List>{perfsToDisplay}</List>
+        <Pagination
+          total={totalPerfs}
+          limit={perfsPerPage}
+          page={currentPage}
+          setPage={setCurrentPage}
+        />
+        <Footer />
+      </Wrapper>
+    </>
   );
 };
 

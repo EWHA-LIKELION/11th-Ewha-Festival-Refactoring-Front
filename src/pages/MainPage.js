@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import menu from ".././assets/icons/menu.svg";
@@ -16,6 +17,7 @@ import About from "../components/MainPage/About";
 import Footer from "../components/_common/Footer";
 
 const MainPage = () => {
+  const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const openMenu = () => {
@@ -33,16 +35,31 @@ const MainPage = () => {
       <Wrapper>
         <TopBar>
           <img src={menu} id="menu" onClick={openMenu} />
-          <img src={mypageGreen} id="mypage" />
+          <img
+            src={mypageGreen}
+            id="mypage"
+            onClick={() => navigate("/mypage")}
+          />
         </TopBar>
         <Banners>
           <img src={bannerMain} />
-          <div className="banner" style={{ marginTop: "44px" }}>
+          <div
+            className="banner"
+            style={{ marginTop: "44px" }}
+            onClick={() => {
+              navigate(`/booth`);
+            }}
+          >
             <img src={bannerGreen} className="banner-img" />
             <span>부스 목록 보러가기</span>
             <img src={arrow} />
           </div>
-          <div className="banner">
+          <div
+            className="banner"
+            onClick={() => {
+              navigate(`/performance`);
+            }}
+          >
             <img src={bannerBlue} className="banner-img" />
             <span>공연 목록 보러가기</span>
             <img src={arrow} />

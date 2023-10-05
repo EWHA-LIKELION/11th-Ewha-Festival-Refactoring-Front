@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import flower from "../../assets/images/Main/flower.svg";
 import close from "../../assets/images/Main/close.svg";
@@ -14,6 +14,8 @@ import trashcan from "../../assets/images/Main/trashcan.svg";
 import creators from "../../assets/images/Main/creators.svg";
 
 const HamMenu = ({ isOpen, closeMenu }) => {
+  const navigate = useNavigate();
+
   return (
     <Wrapper1 isOpen={isOpen}>
       {isOpen && (
@@ -23,7 +25,7 @@ const HamMenu = ({ isOpen, closeMenu }) => {
           <img src={flower} id="flower" />
           <Buttons>
             <Link
-              to="/mypage"
+              onClick={() => navigate("/mypage")}
               style={{
                 gap: "7px",
                 textDecoration: "none",
@@ -37,7 +39,7 @@ const HamMenu = ({ isOpen, closeMenu }) => {
               <p>마이페이지</p>
             </Link>
             <Link
-              to="/"
+              onClick={() => navigate("/")}
               style={{
                 textDecoration: "none",
                 display: "flex",
@@ -50,7 +52,7 @@ const HamMenu = ({ isOpen, closeMenu }) => {
               <p>메인 페이지</p>
             </Link>
             <Link
-              to="/notice"
+              onClick={() => navigate("/notice")}
               style={{
                 textDecoration: "none",
                 display: "flex",
@@ -63,7 +65,7 @@ const HamMenu = ({ isOpen, closeMenu }) => {
               <p>공지사항</p>
             </Link>
             <Link
-              to="/booth"
+              onClick={() => navigate("/booth")}
               style={{
                 textDecoration: "none",
                 display: "flex",
@@ -76,7 +78,7 @@ const HamMenu = ({ isOpen, closeMenu }) => {
               <p>부스 목록</p>
             </Link>
             <Link
-              to="/performance"
+              onClick={() => navigate("/performance")}
               style={{
                 gap: "7px",
                 textDecoration: "none",
@@ -90,7 +92,7 @@ const HamMenu = ({ isOpen, closeMenu }) => {
               <p>공연 목록</p>
             </Link>
             <Link
-              to="/trashbin"
+              onClick={() => navigate("/trashbin")}
               style={{
                 textDecoration: "none",
                 display: "flex",
@@ -105,7 +107,7 @@ const HamMenu = ({ isOpen, closeMenu }) => {
           </Buttons>
           <Creators>
             <Link
-              to="/makers"
+              onClick={() => navigate("/makers")}
               style={{
                 textDecoration: "none",
               }}
@@ -129,7 +131,7 @@ const Wrapper1 = styled.div`
   bottom: 12.12px;
   background-color: var(--beige);
   display: ${(props) => (props.isOpen ? "block" : "none")};
-  z-index: 3;
+  z-index: 90;
   border-radius: 0px 50px 50px 0px;
   filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.25));
   overflow: hidden;
@@ -199,4 +201,8 @@ const Creators = styled.div`
     line-height: normal;
     margin-top: -70px;
   }
+`;
+
+const Link = styled.div`
+  cursor: pointer;
 `;

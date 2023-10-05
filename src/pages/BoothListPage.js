@@ -27,23 +27,25 @@ const BoothListPage = () => {
   ));
 
   return (
-    <Wrapper>
+    <>
       <TopBar titleText="부스 목록" />
-      <BoothFilter
-        placeSelect={placeSelect}
-        setSelectedView={setSelectedView}
-      />
-      {selectedView === "place" && <Map page="list" place={selectedPlace} />}
-      <div className="count">총 {totalBooths}개의 부스</div>
-      <List>{boothsToDisplay}</List>
-      <Pagination
-        total={totalBooths}
-        limit={boothsPerPage}
-        page={currentPage}
-        setPage={setCurrentPage}
-      />
-      <Footer />
-    </Wrapper>
+      <Wrapper>
+        <BoothFilter
+          placeSelect={placeSelect}
+          setSelectedView={setSelectedView}
+        />
+        {selectedView === "place" && <Map page="list" place={selectedPlace} />}
+        <div className="count">총 {totalBooths}개의 부스</div>
+        <List>{boothsToDisplay}</List>
+        <Pagination
+          total={totalBooths}
+          limit={boothsPerPage}
+          page={currentPage}
+          setPage={setCurrentPage}
+        />
+        <Footer />
+      </Wrapper>
+    </>
   );
 };
 
