@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { useState, useNavigate } from "react";
+import { useNavigate } from "react-router-dom";
 
 import TopBar from "../_common/TopBar";
 import Footer from "../_common/Footer";

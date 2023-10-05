@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import TopBar from "../_common/TopBar";
 import Footer from "../_common/Footer";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 
 import TimeSelect from "./TimeSelect";
 import CheckBox from "./CheckBox";
