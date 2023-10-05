@@ -7,7 +7,7 @@ import DetailTitle from "../components/Detail/DetailTitle";
 import DetailInfo from "../components/Detail/DetailInfo";
 import DetailReview from "../components/Detail/DetailReview";
 import Footer from "../components/_common/Footer";
-import Menu from "../components/MainPage/Menu";
+import Menu from "../components/MainPage/HamMenu";
 
 const PerfDetailPage = () => {
   //임시 데이터 (나중에 삭제)
