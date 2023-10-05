@@ -145,7 +145,6 @@ const Day = styled.div`
   span {
     color: ${(props) => (props.isSelected ? "var(--green2)" : "#9B9B9B")};
     text-align: center;
-    font-family: Pretendard;
     font-size: 16.64px;
     font-style: normal;
     font-weight: 700;
@@ -174,7 +173,6 @@ const View = styled.div`
     padding: 16px 20px;
     color: ${(props) => (props.isSelected ? "var(--white)" : "var(--gray2)")};
     text-align: center;
-    font-family: Pretendard;
     font-size: 13px;
     font-style: normal;
     font-weight: 400;
@@ -198,14 +196,13 @@ const Place = styled.div`
   align-items: center;
   flex-shrink: 0;
   border-radius: 104px;
-  border: 0.5px solid var(--2023-SWE_green2, #029c54);
+  border: 0.5px solid var(--green2);
   background: ${(props) =>
     props.isSelected ? "var(--green2)" : "var(--white)"};
   cursor: pointer;
 
   color: ${(props) => (props.isSelected ? "var(--white)" : "var(--green2)")};
   text-align: center;
-  font-family: Pretendard;
   font-size: 14.56px;
   font-style: normal;
   font-weight: 400;
@@ -228,14 +225,13 @@ const Category = styled.div`
   align-items: center;
   flex-shrink: 0;
   border-radius: 104px;
-  border: 0.5px solid var(--2023-SWE_green2, #029c54);
+  border: 0.5px solid var(--green2);
   background: ${(props) =>
     props.isSelected ? "var(--green2)" : "var(--white)"};
   cursor: pointer;
 
   color: ${(props) => (props.isSelected ? "var(--white)" : "var(--green2)")};
   text-align: center;
-  font-family: Pretendard;
   font-size: 14.56px;
   font-style: normal;
   font-weight: 400;
