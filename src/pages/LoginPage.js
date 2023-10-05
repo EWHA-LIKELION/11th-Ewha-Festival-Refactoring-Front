@@ -13,17 +13,28 @@ import passwordicon from "../assets/images/login-signup/password-icon.svg";
 
 const LoginPage = () => {
   const navigate = useNavigate();
-  // 리렌더링용 변수
-  const [render, setRender] = useState(0);
   // 받을 변수들
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  // 가짜 로그인 로직
+  const handleLogin = () => {
+    if (username === "booth" && password === "1111") {
+      alert("부스 유저 테스트 계정으로 로그인합니다.");
+      navigate("/");
+    } else if (username === "user" && password === "0000") {
+      alert("일반 유저 테스트 계정으로 로그인합니다.");
+      navigate("/");
+    } else {
+      alert("로그인 실패. 아이디와 비밀번호를 확인하세요.");
+    }
+  };
+
   return (
     <>
       <Wrapper>
+        <TopBar titleText={"로그인"} />
         <Container>
-          <TopBar titleText={"로그인"} />
           <Logo src={logo} />
           <InputWrapper>
             <InputDiv>
@@ -44,7 +55,7 @@ const LoginPage = () => {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </InputDiv>
-            <LoginBtn>로그인</LoginBtn>
+            <LoginBtn onClick={handleLogin}>로그인</LoginBtn>
           </InputWrapper>
           <TextBtn
             onClick={() => {
