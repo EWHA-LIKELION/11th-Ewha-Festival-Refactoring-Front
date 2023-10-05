@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
 
 import menu from ".././assets/icons/menu.svg";
 import mypageGreen from "../assets/images/Main/mypage-green.svg";
