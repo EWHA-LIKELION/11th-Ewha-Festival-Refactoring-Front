@@ -14,13 +14,14 @@ const TopBar = ({ titleText, showSearch = false }) => {
 
   const openMenu = () => {
     setIsMenuOpen(true);
-    document.body.style.overflow = "hidden";
+    document.body.style.overflow = "auto";
   };
 
   const closeMenu = () => {
     setIsMenuOpen(false);
     document.body.style.overflow = "auto";
   };
+
   return (
     <>
       <Wrapper>
@@ -74,7 +75,7 @@ const Title = styled.div`
   span {
     position: absolute;
     top: 34%;
-    z-index: 20;
+    z-index: 2;
     color: var(--white);
     text-align: center;
     font-family: Pretendard;
