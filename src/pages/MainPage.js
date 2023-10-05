@@ -9,7 +9,7 @@ import bannerBlue from "../assets/images/Main/banner-blue.svg";
 import arrow from "../assets/images/Main/arrow.svg";
 import titleBackground from "../assets/icons/title-background.svg";
 
-import Menu from "../components/MainPage/Menu";
+import HamMenu from "../components/MainPage/HamMenu";
 import EventContent from "../components/MainPage/EventContent";
 import PerfPlan from "../components/MainPage/PerfPlan";
 import About from "../components/MainPage/About";
@@ -48,22 +48,28 @@ const MainPage = () => {
             <img src={arrow} />
           </div>
         </Banners>
-        <Title1>
-          <img src={titleBackground} />
-          <p>행사 일정</p>
-        </Title1>
-        <EventContent />
-        <Title2>
-          <img src={titleBackground} />
-          <p>공연 일정표</p>
-        </Title2>
-        <PerfPlan />
-        <Title3>
-          <img src={titleBackground} />
-          <p>About</p>
-        </Title3>
-        <About />
-        <Menu isOpen={isMenuOpen} closeMenu={closeMenu} />
+        <EventBox>
+          <Title1>
+            <img src={titleBackground} />
+            <p>행사 일정</p>
+          </Title1>
+          <EventContent />
+        </EventBox>
+        <PerfPlanBox>
+          <Title2>
+            <img src={titleBackground} />
+            <p>공연 일정표</p>
+          </Title2>
+          <PerfPlan />
+        </PerfPlanBox>
+        <AboutBox>
+          <Title3>
+            <img src={titleBackground} />
+            <p>About</p>
+          </Title3>
+          <About />
+        </AboutBox>
+        <HamMenu isOpen={isMenuOpen} closeMenu={closeMenu} />
         <Footer />
       </Wrapper>
     </>
@@ -117,13 +123,16 @@ const Banners = styled.div`
     z-index: 1;
     color: var(--white);
     text-align: center;
-    font-family: Pretendard;
     font-size: 18.513px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
-    transform: translateX(-60%) translateY(62px);
+    transform: translateX(-80%) translateY(62px);
   }
+`;
+
+const EventBox = styled.div`
+  position: relative;
 `;
 
 const Title1 = styled.div`
@@ -140,19 +149,23 @@ const Title1 = styled.div`
 
   p {
     z-index: 1;
-    margin-top: 35px;
+    margin-top: 37px;
     color: var(--white);
     text-align: center;
-    font-family: Pretendard;
     font-size: 20px;
     font-style: normal;
     font-weight: 600;
     line-height: 0px;
   }
+`;
+
+const PerfPlanBox = styled.div`
+  margin-top: 400px;
+  position: relative;
 `;
 
 const Title2 = styled.div`
-  top: 400px;
+  //top: 400px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -164,19 +177,22 @@ const Title2 = styled.div`
 
   p {
     z-index: 1;
-    margin-top: 35px;
+    margin-top: 37px;
     color: var(--white);
     text-align: center;
-    font-family: Pretendard;
     font-size: 20px;
     font-style: normal;
     font-weight: 600;
     line-height: 0px;
   }
+`;
+
+const AboutBox = styled.div`
+  margin-top: 50px;
+  position: relative;
 `;
 
 const Title3 = styled.div`
-  //top: 500px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -188,15 +204,12 @@ const Title3 = styled.div`
 
   p {
     z-index: 1;
-    margin-top: 35px;
+    margin-top: 37px;
     color: var(--white);
     text-align: center;
-    font-family: Pretendard;
     font-size: 20px;
     font-style: normal;
     font-weight: 600;
     line-height: 0px;
   }
 `;
-
-const PerformPlan = styled.div``;
