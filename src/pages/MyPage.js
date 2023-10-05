@@ -114,16 +114,37 @@ const MyPage = () => {
   return (
     <>
       <TopBar titleText="마이페이지" />
+<<<<<<< HEAD
+
+      <Nick>
+=======
       <Wrapper>
         <Namecover width={260} />
         
     
+>>>>>>> 69def9f5b6e8a98d6463cb1082874eb14ef8d6f9
         <Namecover width={260} />
         <NameCard>
           <div className="name">닉네임</div>
           <div className="nickname">likelion11TF</div>
           <button onClick={goToLogIn}>로그아웃</button>
         </NameCard>
+<<<<<<< HEAD
+      </Nick>
+
+      <BoothAdmin />
+      <ConcertAdmin />
+      <IsTfAdmin />
+      <Navigation>
+        <Top isSelected={isBooth}>
+          <div className="booth" onClick={() => clickBooth("booth")}>
+            부스
+          </div>
+          <div className="concert" onClick={() => clickBooth("concert")}>
+            공연
+          </div>
+        </Top>
+=======
       
         <BoothAdmin />
         <ConcertAdmin />
@@ -137,6 +158,7 @@ const MyPage = () => {
               공연
             </div>
           </Top>
+>>>>>>> 69def9f5b6e8a98d6463cb1082874eb14ef8d6f9
 
           <hr></hr>
 
@@ -286,11 +308,21 @@ const Wrapper = styled.div`
     margin-right: 262px;
   }
 `;
+<<<<<<< HEAD
+const Nick = styled.div`
+  position: relative;
+`;
+const NameCard = styled.div`
+  text-align: center;
+  position: absolute;
+  top: 40%;
+=======
 
 const NameCard = styled.div`
   text-align: center;
   position: absolute;
   top: 29.9%;
+>>>>>>> 69def9f5b6e8a98d6463cb1082874eb14ef8d6f9
   left: 36%;
   .name {
     color: var(--green1);
