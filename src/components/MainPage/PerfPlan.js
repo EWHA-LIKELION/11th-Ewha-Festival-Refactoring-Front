@@ -4,6 +4,7 @@ import styled from "styled-components";
 import notice from "../../assets/icons/notice.svg";
 
 import PerfPlanFilter from "./PerfPlanFilter";
+import PerfPlanTable from "./PerfPlanTable";
 
 const PerfPlan = () => {
   const [selectPlace, setSelectPlace] = useState("잔디광장");
