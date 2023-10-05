@@ -78,7 +78,6 @@ const Title = styled.div`
     z-index: 2;
     color: var(--white);
     text-align: center;
-    font-family: Pretendard;
     font-size: 18px;
     font-style: normal;
     font-weight: 700;

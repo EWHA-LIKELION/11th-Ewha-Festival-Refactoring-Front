@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 import menu from ".././assets/icons/menu.svg";
 import mypageGreen from "../assets/images/Main/mypage-green.svg";
@@ -43,12 +44,23 @@ const MainPage = () => {
         </TopBar>
         <Banners>
           <img src={bannerMain} />
-          <div className="banner" style={{ marginTop: "44px" }}>
+          <div
+            className="banner"
+            style={{ marginTop: "44px" }}
+            onClick={() => {
+              navigate(`/booth`);
+            }}
+          >
             <img src={bannerGreen} className="banner-img" />
             <span>부스 목록 보러가기</span>
             <img src={arrow} />
           </div>
-          <div className="banner">
+          <div
+            className="banner"
+            onClick={() => {
+              navigate(`/performance`);
+            }}
+          >
             <img src={bannerBlue} className="banner-img" />
             <span>공연 목록 보러가기</span>
             <img src={arrow} />

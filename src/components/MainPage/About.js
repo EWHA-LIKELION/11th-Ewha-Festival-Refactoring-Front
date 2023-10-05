@@ -1,10 +1,13 @@
 import React from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 import logoFestival from "../../assets/images/Main/logo-festival.svg";
 import logoLikelion from "../../assets/images/Main/logo-likelion.svg";
 
 const About = () => {
+  const navigate = useNavigate();
+
   return (
     <Wrapper>
       <Box1>
@@ -35,7 +38,14 @@ const About = () => {
             행복한 시간 보내시길 바랍니다.
           </p>
         </div>
-        <div className="button">TF팀 공지 보러가기</div>
+        <div
+          className="button"
+          onClick={() => {
+            navigate(`/notice`);
+          }}
+        >
+          TF팀 공지 보러가기
+        </div>
       </Box1>
       <Box2>
         <img src={logoLikelion} />
