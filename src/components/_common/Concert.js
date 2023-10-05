@@ -12,7 +12,7 @@ const Concert = () => {
   return (
     <Wrapper
       onClick={() => {
-        navigate(`/performance/detail/$id`);
+        navigate(`/performance/detail`);
       }}
     >
       <img src={concert} />

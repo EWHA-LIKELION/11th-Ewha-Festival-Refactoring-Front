@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { styled } from "styled-components";
 import { useNavigate } from "react-router-dom";
 
+
 import HamMenu from "../MainPage/HamMenu";
 
 import menu from "../../assets/icons/menu.svg";
