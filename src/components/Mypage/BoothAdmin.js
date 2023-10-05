@@ -1,6 +1,7 @@
 import React from "react";
 import "../../App.css";
 import { styled } from "styled-components";
+import { useNavigate } from "react-router-dom";
 //image
 import arrowGreen1 from "../../assets/icons/arrow-green1.svg";
 import editIcon from "../../assets/images/Mypage/editIcon.svg";
@@ -8,6 +9,12 @@ import add from "../../assets/images/Mypage/add.svg";
 import boothimg from "../../assets/images/Mypage/boothimg.svg";
 
 const BoothAdmin = () => {
+  const navigate = useNavigate();
+
+  const editBooth = () => {
+    navigate("/booth/editbooth");
+  };
+
   return (
     <Wrapper>
       <div className="title">부스 관리</div>
@@ -15,12 +22,17 @@ const BoothAdmin = () => {
 
       <BoxWrapper>
         <div className="boothname">둘이 먹다 죽어도 모를 덕고지</div>
-        <div className="bar">
+        <div
+          className="bar"
+          onClick={() => {
+            navigate(`/booth/detail/`);
+          }}
+        >
           <img id="icon" src={boothimg} />
           내 부스 페이지 바로가기
           <img id="arrow" src={arrowGreen1} />
         </div>
-        <div className="bar">
+        <div className="bar" onClick={editBooth}>
           <img id="icon" src={editIcon} />
           내 부스 정보 수정하기
           <img id="arrow" src={arrowGreen1} />

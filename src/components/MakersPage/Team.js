@@ -61,7 +61,7 @@ const Title = styled.div`
   span {
     position: absolute;
     top: 48%;
-    z-index: 20;
+    z-index: 2;
     color: var(--white);
     text-align: center;
     font-family: "Pretendard-Regular";

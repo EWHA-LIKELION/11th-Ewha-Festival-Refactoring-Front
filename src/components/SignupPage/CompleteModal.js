@@ -29,7 +29,7 @@ const CompleteModal = ({ openCompleteModal, closeCompleteModal }) => {
           <Explanation2>회원가입을 완료하시겠습니까?</Explanation2>
           <BtnBox>
             <GuideBtn onClick={closeCompleteModal}>취소</GuideBtn>
-            <OKBtn onClick={closeCompleteModal}>확인</OKBtn>
+            <OKBtn onClick={() => navigate("/")}>확인</OKBtn>
           </BtnBox>
         </Container>
       </Wrapper>
