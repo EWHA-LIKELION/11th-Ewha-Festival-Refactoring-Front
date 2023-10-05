@@ -1,10 +1,12 @@
 import React from "react";
 import "../../App.css";
+import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
 import arrowGreen1 from "../../assets/icons/arrow-green1.svg";
 import editIcon from "../../assets/images/Mypage/editIcon.svg";
 import boothimg from "../../assets/images/Mypage/boothimg.svg";
 const ConcertAdmin = () => {
+  const navigate = useNavigate();
   return (
     <Wrapper>
       <div className="title">공연 관리</div>
@@ -12,12 +14,22 @@ const ConcertAdmin = () => {
 
       <BoxWrapper>
         <div className="concertname">뉴진스~뉴티~</div>
-        <div className="bar">
+        <div
+          className="bar"
+          onClick={() => {
+            navigate(`/performance/detail/`);
+          }}
+        >
           <img id="icon" src={boothimg} />
           내 공연 페이지 바로가기
           <img id="arrow" src={arrowGreen1} />
         </div>
-        <div className="bar">
+        <div
+          className="bar"
+          onClick={() => {
+            navigate(`/performance/edit/`);
+          }}
+        >
           <img id="icon" src={editIcon} />
           내 공연 정보 수정하기
           <img id="arrow" src={arrowGreen1} />

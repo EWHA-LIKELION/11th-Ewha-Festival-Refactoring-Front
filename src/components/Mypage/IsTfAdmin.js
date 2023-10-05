@@ -1,23 +1,35 @@
 import React from "react";
 import "../../App.css";
+import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
 import arrowGreen1 from "../../assets/icons/arrow-green1.svg";
 import editIcon from "../../assets/images/Mypage/editIcon.svg";
 import megaphone from "../../assets/images/Mypage/megaphone.svg";
 
 const IsTfAdmin = () => {
+  const navigate = useNavigate();
   return (
     <Wrapper>
       <div className="title">공지 관리</div>
       <hr></hr>
 
       <BoxWrapper>
-        <div className="bar">
+        <div
+          className="bar"
+          onClick={() => {
+            navigate(`/notice`);
+          }}
+        >
           <img id="icon" src={megaphone} />
           TF 공지사항 바로가기
           <img id="arrow" src={arrowGreen1} />
         </div>
-        <div className="bar">
+        <div
+          className="bar"
+          onClick={() => {
+            navigate(`/notice/write`);
+          }}
+        >
           <img id="icon" src={editIcon} />
           TF 공지사항 작성하기
           <img id="arrow" src={arrowGreen1} />
