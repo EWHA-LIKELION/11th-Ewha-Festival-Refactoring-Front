@@ -29,6 +29,19 @@ const SignupPage = () => {
   // 중복 확인 버튼 클릭 시 호출되는 함수
   const handleCheckUsername = () => {
     setIsUsernameChecked(!isUsernameChecked);
+    let caseNumber = null; // 모든 조건 충족 시 modalCase를 null로 설정
+
+    if (username === "") {
+      alert("아이디를 입력해주세요.");
+      return;
+    } else if (isUsernameChecked) {
+      caseNumber = 1;
+    } else {
+      caseNumber = 0;
+    }
+
+    setModalCase(caseNumber);
+    openCommonModal(caseNumber);
   };
 
   //비밀번호 확인 함수

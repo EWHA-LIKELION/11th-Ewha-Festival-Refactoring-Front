@@ -112,132 +112,147 @@ const MyPage = () => {
   }, []);
 
   return (
-    <Wrapper>
+    <>
       <TopBar titleText="마이페이지" />
-      <Namecover width={260} />
-      <NameCard>
-        <div className="name">닉네임</div>
-        <div className="nickname">likelion11TF</div>
-        <button onClick={goToLogIn}>로그아웃</button>
-      </NameCard>
-      <BoothAdmin />
-      <ConcertAdmin />
-      <IsTfAdmin />
-      <Navigation>
-        <Top isSelected={isBooth}>
-          <div className="booth" onClick={() => clickBooth("booth")}>
-            부스
-          </div>
-          <div className="concert" onClick={() => clickBooth("concert")}>
-            공연
-          </div>
-        </Top>
+      <Wrapper>
+        <Namecover width={260} />
+        <NameCard>
+          <div className="name">닉네임</div>
+          <div className="nickname">likelion11TF</div>
+          <button onClick={goToLogIn}>로그아웃</button>
+        </NameCard>
+        <BoothAdmin />
+        <ConcertAdmin />
+        <IsTfAdmin />
+        <Navigation>
+          <Top isSelected={isBooth}>
+            <div className="booth" onClick={() => clickBooth("booth")}>
+              부스
+            </div>
+            <div className="concert" onClick={() => clickBooth("concert")}>
+              공연
+            </div>
+          </Top>
 
-        <hr></hr>
+          <hr></hr>
 
-        <Bottom isSelected={likeBooth}>
-          {isBooth === "booth" ? (
-            <>
-              <div
-                className="booth"
-                onClick={() => clickLikeBooth("likeBooth")}
+          <Bottom isSelected={likeBooth}>
+            {isBooth === "booth" ? (
+              <>
+                <div
+                  className="booth"
+                  onClick={() => clickLikeBooth("likeBooth")}
+                >
+                  좋아요한 부스
+                </div>
+                <div
+                  className="menu"
+                  onClick={() => clickLikeBooth("likeMenu")}
+                >
+                  좋아요한 메뉴
+                </div>
+              </>
+            ) : (
+              <div id="concert">좋아요한 공연</div>
+            )}
+          </Bottom>
+        </Navigation>
+        <MenuWrapper isSelected={selectMenu}>
+          <span
+            id="all"
+            onClick={() => ClickMenu("all")}
+            isSelected={selectMenu === "all"}
+          >
+            전체 ·
+          </span>
+          <span
+            id="day"
+            onClick={() => ClickMenu("day")}
+            isSelected={selectMenu === "day"}
+          >
+            날짜 ·
+          </span>
+          <span
+            id="place"
+            onClick={() => ClickMenu("place")}
+            isSelected={selectMenu === "place"}
+          >
+            장소 ·
+          </span>
+          <span
+            id="category"
+            onClick={() => ClickMenu("category")}
+            isSelected={selectMenu === "category"}
+          >
+            카테고리
+          </span>
+        </MenuWrapper>
+        {selectMenu === "day" && (
+          <DayFilter>
+            {days.map((day) => (
+              <Day
+                key={day.date}
+                onClick={() => dayClick(day.date)}
+                isSelected={selectDay === day.date}
               >
-                좋아요한 부스
-              </div>
-              <div className="menu" onClick={() => clickLikeBooth("likeMenu")}>
-                좋아요한 메뉴
-              </div>
+                <span>{day.date}일</span>
+                <span>{day.name}</span>
+              </Day>
+            ))}
+          </DayFilter>
+        )}
+        {selectMenu === "place" && (
+          <PlaceFilter>
+            {places.map((place) => (
+              <Place
+                key={place}
+                onClick={() => placeClick(place)}
+                isSelected={selectPlace === place}
+              >
+                {place}
+              </Place>
+            ))}
+          </PlaceFilter>
+        )}
+        {selectMenu === "category" && (
+          <CategoryFilter>
+            {categories.map((category) => (
+              <Category
+                key={category}
+                onClick={() => categoryClick(category)}
+                isSelected={selectCategory === category}
+              >
+                {category}
+              </Category>
+            ))}
+          </CategoryFilter>
+        )}
+        <div className="count">총 {totalBooths}개의 부스</div>
+        {isBooth === "booth" ? (
+          likeBooth === "likeBooth" ? (
+            <>
+              <List>{boothsToDisplay}</List>
+              <Pagination
+                total={totalBooths}
+                limit={boothsPerPage}
+                page={currentPage}
+                setPage={setCurrentPage}
+              />
             </>
           ) : (
-            <div id="concert">좋아요한 공연</div>
-          )}
-        </Bottom>
-      </Navigation>
-      <MenuWrapper isSelected={selectMenu}>
-        <span
-          id="all"
-          onClick={() => ClickMenu("all")}
-          isSelected={selectMenu === "all"}
-        >
-          전체 ·
-        </span>
-        <span
-          id="day"
-          onClick={() => ClickMenu("day")}
-          isSelected={selectMenu === "day"}
-        >
-          날짜 ·
-        </span>
-        <span
-          id="place"
-          onClick={() => ClickMenu("place")}
-          isSelected={selectMenu === "place"}
-        >
-          장소 ·
-        </span>
-        <span
-          id="category"
-          onClick={() => ClickMenu("category")}
-          isSelected={selectMenu === "category"}
-        >
-          카테고리
-        </span>
-      </MenuWrapper>
-      {selectMenu === "day" && (
-        <DayFilter>
-          {days.map((day) => (
-            <Day
-              key={day.date}
-              onClick={() => dayClick(day.date)}
-              isSelected={selectDay === day.date}
-            >
-              <span>{day.date}일</span>
-              <span>{day.name}</span>
-            </Day>
-          ))}
-        </DayFilter>
-      )}
-      {selectMenu === "place" && (
-        <PlaceFilter>
-          {places.map((place) => (
-            <Place
-              key={place}
-              onClick={() => placeClick(place)}
-              isSelected={selectPlace === place}
-            >
-              {place}
-            </Place>
-          ))}
-        </PlaceFilter>
-      )}
-      {selectMenu === "category" && (
-        <CategoryFilter>
-          {categories.map((category) => (
-            <Category
-              key={category}
-              onClick={() => categoryClick(category)}
-              isSelected={selectCategory === category}
-            >
-              {category}
-            </Category>
-          ))}
-        </CategoryFilter>
-      )}
-      <div className="count">총 {totalBooths}개의 부스</div>
-      {isBooth === "booth" ? (
-        likeBooth === "likeBooth" ? (
-          <>
-            <List>{boothsToDisplay}</List>
-            <Pagination
-              total={totalBooths}
-              limit={boothsPerPage}
-              page={currentPage}
-              setPage={setCurrentPage}
-            />
-          </>
+            <>
+              <List>{menusToDisplay}</List>
+              <Pagination
+                total={totalBooths}
+                limit={boothsPerPage}
+                page={currentPage}
+                setPage={setCurrentPage}
+              />
+            </>
+          )
         ) : (
           <>
-            <List>{menusToDisplay}</List>
+            <List>{perfsToDisplay}</List>
             <Pagination
               total={totalBooths}
               limit={boothsPerPage}
@@ -245,20 +260,10 @@ const MyPage = () => {
               setPage={setCurrentPage}
             />
           </>
-        )
-      ) : (
-        <>
-          <List>{perfsToDisplay}</List>
-          <Pagination
-            total={totalBooths}
-            limit={boothsPerPage}
-            page={currentPage}
-            setPage={setCurrentPage}
-          />
-        </>
-      )}
-      <Footer />
-    </Wrapper>
+        )}
+        <Footer />
+      </Wrapper>
+    </>
   );
 };
 export default MyPage;
