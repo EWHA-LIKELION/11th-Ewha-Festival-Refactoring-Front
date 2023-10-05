@@ -116,11 +116,15 @@ const MyPage = () => {
       <TopBar titleText="마이페이지" />
       <Wrapper>
         <Namecover width={260} />
+        
+      <Nick>
+        <Namecover width={260} />
         <NameCard>
           <div className="name">닉네임</div>
           <div className="nickname">likelion11TF</div>
           <button onClick={goToLogIn}>로그아웃</button>
         </NameCard>
+      </Nick>
         <BoothAdmin />
         <ConcertAdmin />
         <IsTfAdmin />
@@ -282,11 +286,14 @@ const Wrapper = styled.div`
     margin-right: 262px;
   }
 `;
+const Nick = styled.div`
+  position: relative;
+`;
 const NameCard = styled.div`
-  position: absolute;
-  top: 29.9%;
-  left: 47.5%;
   text-align: center;
+  position: absolute;
+  top: 41%;
+  left: 36%;
   .name {
     color: var(--green1);
     font-size: 31.2px;
