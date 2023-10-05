@@ -1,10 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import { styled } from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 import TopBar from "../components/_common/TopBar";
+import DeleteModal from "../components/Notice/DeleteModal";
 import Footer from "../components/_common/Footer";
 
 const NoticeDetailPage = () => {
+  const [modal, setModal] = useState(false);
+  const navigate = useNavigate();
+
+  const openModal = () => {
+    setModal(true);
+  };
+
+  const closeModal = () => {
+    setModal(false);
+  };
+
+  const del = () => {
+    setModal(false);
+    navigate("/notice");
+  };
+
   return (
     <Wrapper>
       <TopBar titleText="공지사항" />
@@ -28,10 +46,11 @@ const NoticeDetailPage = () => {
         </div>
       </Content>
       <Btn>
-        <DelBtn>삭제</DelBtn>
+        <DelBtn onClick={openModal}>삭제</DelBtn>
         <ModifyBtn>수정</ModifyBtn>
       </Btn>
       <Footer />
+      {modal && <DeleteModal closeModal={closeModal} del={del} />}
     </Wrapper>
   );
 };

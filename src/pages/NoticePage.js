@@ -28,7 +28,6 @@ const NoticePage = () => {
         <NoticeList />
         <NoticeList />
       </List>
-
       <Footer />
     </Wrapper>
   );
@@ -44,6 +43,7 @@ const Wrapper = styled.div`
 const WriteBtn = styled.div`
   display: flex;
   position: absolute;
+  align-items: center;
   top: 135px;
   right: 20px;
   cursor: pointer;
