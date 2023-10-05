@@ -4,7 +4,7 @@ export const makersData = [
     admin: true,
     team: "기획·디자인",
     name: "허윤",
-    dept: "융콘 18",
+    dept: "커미 21",
     task: "전체 UI 기획 및 디자인",
   },
   {
@@ -62,10 +62,13 @@ export const makersData = [
       </>
     ),
   },
+
+  //백엔드
+
   {
     admin: true,
     team: "백엔드",
-    name: "최유미",
+    name: "임채영",
     dept: "컴공 21",
     task: (
       <>
@@ -83,8 +86,8 @@ export const makersData = [
   {
     admin: true,
     team: "백엔드",
-    name: "임채영",
-    dept: "컴공 21",
+    name: "이나경",
+    dept: "휴기바 22",
     task: (
       <>
         부스 해시태그 기능
@@ -133,7 +136,7 @@ export const makersData = [
     admin: false,
     team: "기획·디자인",
     name: "손예원",
-    dept: "융콘 20",
+    dept: "경영 20",
     task: "전체 UI 기획 및 디자인",
   },
   {
@@ -564,7 +567,13 @@ export const makersData = [
     team: "꼬우미",
     name: "이세라",
     dept: "사회학과 20",
-    task: "이화인 한솥밥, 영산줄다리기 행사 구성 및 진행\n(136주년 대동제에서는 대체 프로그램으로 기획)",
+    task: (
+      <>
+        이화인 한솥밥, 영산줄다리기 행사 구성 및 진행
+        <br />
+        (136주년 대동제에서는 대체 프로그램으로 기획)
+      </>
+    ),
   },
   {
     team: "꼬우미",
