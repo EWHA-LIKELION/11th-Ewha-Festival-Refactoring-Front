@@ -19,6 +19,7 @@ const CommonModal = ({ openCommonModal, closeCommonModal, modalCase }) => {
     "아이디 중복확인을 진행해 주세요!",
     "비밀번호 확인을 다시 진행해 주세요!",
     "닉네임을 10자 이하로 입력해 주세요!",
+    "비밀단어를 다시 확인해 주세요!",
   ];
 
   const modalText = textCategory[modalCase];
