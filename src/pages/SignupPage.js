@@ -72,6 +72,8 @@ const SignupPage = () => {
       caseNumber = 4; // 비밀번호 확인란이 일치하지 않을 때
     } else if (nickname.length > 10) {
       caseNumber = 5; // 닉네임이 10자를 초과할 때
+    } else if (secret !== "이대멋사짱~") {
+      caseNumber = 6; // 비밀단어 틀릴 때
     }
 
     setModalCase(caseNumber);

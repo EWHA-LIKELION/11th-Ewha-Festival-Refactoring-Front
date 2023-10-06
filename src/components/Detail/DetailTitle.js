@@ -12,8 +12,9 @@ const DetailTitle = ({ event, thisData }) => {
   let formattedDate,
     timePart = "";
 
-  if (thisData.notices[0]) {
-    const [datePart, tmpTimePart] = thisData.notices[0].updated_at.split(" ");
+  if (thisData && thisData.notices && thisData.notices.length > 0) {
+    const [datePart, tmpTimePart] =
+      thisData.notices[thisData.notices.length - 1].updated_at.split(" ");
     const [year, month, day] = datePart.split("-");
     formattedDate = `${month}/${day}`;
     timePart = tmpTimePart;
@@ -53,12 +54,14 @@ const DetailTitle = ({ event, thisData }) => {
       </Container>
 
       {/* 실시간 공지사항 */}
-      {thisData.notices[0] && (
+      {thisData && thisData.notices && thisData.notices.length > 0 && (
         <Notice>
           <img src={noticeicon} alt="noticeicon" />
           <ul>
             <li className="header">실시간 {event} 공지사항</li>
-            <li className="content">{thisData.notices[0].content}</li>
+            <li className="content">
+              {thisData.notices[thisData.notices.length - 1].content}
+            </li>
             <li className="update">
               <span>update</span>
               <span>{formattedDate}</span>
