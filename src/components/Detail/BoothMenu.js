@@ -8,8 +8,8 @@ import emptyheart from "../../assets/images/detail/menu-emptyheart.svg";
 
 const BoothMenu = ({ menuData, menuImgData }) => {
   //메뉴 품절 여부에 따른 필터링
-  const soldoutMenus = menuData.filter((menu) => menu.is_soldout);
-  const availableMenus = menuData.filter((menu) => !menu.is_soldout);
+  const soldoutMenus = menuData?.filter((menu) => menu.is_soldout);
+  const availableMenus = menuData?.filter((menu) => !menu.is_soldout);
 
   return (
     <Section>
@@ -19,17 +19,16 @@ const BoothMenu = ({ menuData, menuImgData }) => {
       {/* 메뉴 이미지 */}
       <MenuImgList>
         <MenuImgBox>
-          {menuImgData &&
-            menuImgData.map((menu) => (
-              <MenuImg key={menu.id} src={menu.image} />
-            ))}
+          {menuImgData?.map((menu) => (
+            <MenuImg key={menu.id} src={menu.image} />
+          ))}
         </MenuImgBox>
       </MenuImgList>
 
       {/* 메뉴 목록 */}
       <MenuList>
         {/* 판매 중인 메뉴 */}
-        {availableMenus.map((menu) => (
+        {availableMenus?.map((menu) => (
           <Menu key={menu.id}>
             <div>{menu.menu}</div>
             <div>
@@ -43,7 +42,7 @@ const BoothMenu = ({ menuData, menuImgData }) => {
           </Menu>
         ))}
         {/* 품절된 메뉴 */}
-        {soldoutMenus.map((menu) => (
+        {soldoutMenus?.map((menu) => (
           <Menu key={menu.id}>
             <div style={{ color: "var(--gray2)", fontWeight: "500" }}>
               {menu.menu}

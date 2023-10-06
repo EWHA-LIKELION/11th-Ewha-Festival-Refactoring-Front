@@ -28,7 +28,7 @@ const DetailReview = ({ commentsData, editerId }) => {
       <SecTitle sectitle={`방명록`} />
       <Line />
       <ReviewList>
-        {commentsData.map((comment) => (
+        {commentsData?.map((comment) => (
           <ReviewBox key={comment.id} comment={comment} editerId={editerId} />
         ))}
       </ReviewList>
