@@ -5,7 +5,12 @@ import { useNavigate } from "react-router-dom";
 //img
 import warning from "../../assets/images/login-signup/warning.svg";
 
-const CompleteModal = ({ openCompleteModal, closeCompleteModal }) => {
+const CompleteModal = ({
+  openCompleteModal,
+  closeCompleteModal,
+  userChecked,
+  handleComplete,
+}) => {
   const navigate = useNavigate();
 
   const containerRef = useRef(null);
@@ -29,7 +34,7 @@ const CompleteModal = ({ openCompleteModal, closeCompleteModal }) => {
           <Explanation2>회원가입을 완료하시겠습니까?</Explanation2>
           <BtnBox>
             <GuideBtn onClick={closeCompleteModal}>취소</GuideBtn>
-            <OKBtn onClick={() => navigate("/")}>확인</OKBtn>
+            <OKBtn onClick={() => handleComplete()}>확인</OKBtn>
           </BtnBox>
         </Container>
       </Wrapper>

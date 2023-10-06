@@ -1,8 +1,8 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
 
-import { http } from "../http";
-import { persistor } from "../../index";
+import { http } from "../api/http";
+import { persistor } from "../index";
 
 // 로그아웃
 export const Logout = () => {
@@ -28,9 +28,11 @@ export const PostLogin = async (id, password) => {
 };
 
 //아이디 중복 확인
-export const GetDuplicate = async (id) => {
+export const GetDuplicate = async (username) => {
   try {
-    const response = await http.get("/accounts/duplicate/");
+    const response = await http.post("/accounts/duplicate/", {
+      username: username,
+    });
     return response.data;
   } catch (error) {
     console.error("아이디 중복 확인 실패 ", error);
@@ -54,8 +56,7 @@ export const PostSignup = async (id, password, name) => {
 };
 
 //isLogin + AuthRoute
-
-const isLogin = () => !!localStorage.getItem("token");
+export const isLogin = () => localStorage.getItem("token");
 
 export default function AuthRoute({ component: Component }) {
   return isLogin() ? Component : <Navigate to="/login" />;
