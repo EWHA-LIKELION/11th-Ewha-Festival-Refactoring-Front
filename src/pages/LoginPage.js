@@ -3,6 +3,13 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
+//유저 정보 관련
+import { PostLogin } from "../api/user";
+
+import { useAppDispatch } from "../redux/store";
+import { setUser } from "../redux/userSlice";
+import { initPage } from "../redux/pageSlice";
+
 //component
 import TopBar from "../components/_common/TopBar";
 
@@ -13,21 +20,30 @@ import passwordicon from "../assets/images/login-signup/password-icon.svg";
 
 const LoginPage = () => {
   const navigate = useNavigate();
+
+  // 유저 리덕스
+  const dispatch = useAppDispatch();
+
   // 받을 변수들
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  // 가짜 로그인 로직
   const handleLogin = () => {
-    if (username === "booth" && password === "1111") {
-      alert("부스 유저 테스트 계정으로 로그인합니다.");
-      navigate("/");
-    } else if (username === "user" && password === "0000") {
-      alert("일반 유저 테스트 계정으로 로그인합니다.");
-      navigate("/");
-    } else {
-      alert("로그인 실패. 아이디와 비밀번호를 확인하세요.");
-    }
+    PostLogin(username, password)
+      .then((data) => {
+        const token = data.data.access_token;
+        window.localStorage.setItem("token", JSON.stringify(token));
+        navigate("/");
+      })
+      .catch((error) => {
+        // 에러에 따라 다른 경고 문구 출력
+        let type = error.data.non_field_errors;
+        type
+          ? type == "잘못된 비밀번호입니다."
+            ? alert("비밀번호를 확인해주세요.")
+            : alert(type)
+          : alert("아이디와 비밀번호를 모두 입력해주세요.");
+      });
   };
 
   return (
