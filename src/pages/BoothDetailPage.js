@@ -33,7 +33,7 @@ const BoothDetailPage = () => {
 
   const openMenu = () => {
     setIsMenuOpen(true);
-    document.body.style.overflow = "hidden";
+    document.body.style.overflow = "auto";
   };
 
   const closeMenu = () => {
