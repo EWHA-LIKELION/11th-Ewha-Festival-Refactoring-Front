@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import highlightYellow from "../../assets/icons/highlight-yellow.svg";
 
-const PerfPlanFilter = ({ updateSelectPlace }) => {
+const PerfPlanFilter = ({ updateSelectPlace, updateSelectDay }) => {
   const [selectPlace, setSelectPlace] = useState("잔디광장");
   const [selectDay, setSelectDay] = useState(11);
 
@@ -24,6 +24,7 @@ const PerfPlanFilter = ({ updateSelectPlace }) => {
 
   const dayClick = (day) => {
     setSelectDay(day);
+    updateSelectDay(day);
   };
 
   const places = ["잔디광장", "학문관광장", "스포츠트랙"];
