@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 //images
-import cover from "../../assets/images/detail/sample/cover.png"; //임시
 import hamBackground from "../../assets/images/detail/ham-background.svg";
 import menu from "../../assets/icons/menu.svg";
 
@@ -9,7 +8,7 @@ const DetailCover = ({ thisData, openMenu }) => {
   return (
     <Wrapper>
       <Cover>
-        <img src={cover} alt="cover" />
+        <img src={thisData.thumnail} alt="cover" />
       </Cover>
       <Ham onClick={openMenu}>
         <img src={hamBackground} alt="menu background" />

@@ -24,89 +24,43 @@ const HamMenu = ({ isOpen, closeMenu }) => {
           <img src={title} id="title" />
           <img src={flower} id="flower" />
           <Buttons>
-            <Link
+            <But
               onClick={() => navigate("/mypage")}
               style={{
                 gap: "7px",
-                textDecoration: "none",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "flex-end",
-                alignItems: "center",
               }}
             >
               <img src={mypageWhite} />
               <p>마이페이지</p>
-            </Link>
-            <Link
-              onClick={() => navigate("/")}
-              style={{
-                textDecoration: "none",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "flex-end",
-                alignItems: "center",
-              }}
-            >
+            </But>
+            <But onClick={() => navigate("/")}>
               <img src={home} />
               <p>메인 페이지</p>
-            </Link>
-            <Link
-              onClick={() => navigate("/notice")}
-              style={{
-                textDecoration: "none",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "flex-end",
-                alignItems: "center",
-              }}
-            >
+            </But>
+            <But onClick={() => navigate("/notice")}>
               <img src={megaphone} />
               <p>공지사항</p>
-            </Link>
-            <Link
-              onClick={() => navigate("/booth")}
-              style={{
-                textDecoration: "none",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "flex-end",
-                alignItems: "center",
-              }}
-            >
+            </But>
+            <But onClick={() => navigate("/booth")}>
               <img src={booth} />
               <p>부스 목록</p>
-            </Link>
-            <Link
+            </But>
+            <But
               onClick={() => navigate("/performance")}
               style={{
                 gap: "7px",
-                textDecoration: "none",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "flex-end",
-                alignItems: "center",
               }}
             >
               <img src={perform} style={{ width: "38px" }} />
               <p>공연 목록</p>
-            </Link>
-            <Link
-              onClick={() => navigate("/trashbin")}
-              style={{
-                textDecoration: "none",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "flex-end",
-                alignItems: "center",
-              }}
-            >
+            </But>
+            <But onClick={() => navigate("/trashbin")}>
               <img src={trashcan} />
               <p>쓰레기통</p>
-            </Link>
+            </But>
           </Buttons>
           <Creators>
-            <Link
+            <Button
               onClick={() => navigate("/makers")}
               style={{
                 textDecoration: "none",
@@ -114,7 +68,7 @@ const HamMenu = ({ isOpen, closeMenu }) => {
             >
               <img src={creators} />
               <p>이웃제를 만들이들</p>
-            </Link>
+            </Button>
           </Creators>
         </Wrapper2>
       )}
@@ -181,6 +135,15 @@ const Buttons = styled.div`
   }
 `;
 
+const But = styled.div`
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  cursor: pointer;
+`;
+
 const Creators = styled.div`
   z-index: 99;
   position: fixed;
@@ -203,6 +166,6 @@ const Creators = styled.div`
   }
 `;
 
-const Link = styled.div`
+const Button = styled.div`
   cursor: pointer;
 `;

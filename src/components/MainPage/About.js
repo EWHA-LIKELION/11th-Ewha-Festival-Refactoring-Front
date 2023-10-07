@@ -54,7 +54,12 @@ const About = () => {
           <span>&lt;멋쟁이사자처럼&gt;</span>에서 제공하는 <br /> 2023년 대동제
           홈페이지입니다!
         </p>
-        <div className="button">이대 멋사 구경가기</div>
+        <a
+          href="https://www.instagram.com/likelion_ewha/"
+          style={{ textDecoration: "none" }}
+        >
+          <div className="button">이대 멋사 구경가기</div>
+        </a>
       </Box2>
     </Wrapper>
   );
@@ -83,6 +88,7 @@ const Wrapper = styled.div`
     font-style: normal;
     font-weight: 600;
     line-height: 0px;
+    cursor: pointer;
   }
 
   span {

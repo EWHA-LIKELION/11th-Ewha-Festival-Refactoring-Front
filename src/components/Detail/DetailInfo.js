@@ -22,32 +22,29 @@ const DetailInfo = ({ event, thisData }) => {
   // 최종 데이터 보고 다시 수정할 예정
   var timesResult = ["", "", ""];
 
-  for (let i = 0; i < thisData.day.length; i++) {
-    const day = thisData.day[i];
-    const date = thisData.date[i];
-    const timeData = thisData.times[i];
+  // for (let i = 0; i < thisData.day.length; i++) {
+  //   const day = thisData.day[i];
+  //   const date = thisData.date[i];
+  //   const timeData = thisData.times[i];
 
-    //데이터가 문자열이 아니라 null이면 아래 코드 삭제 후 간결하게 수정
-    const startTime = timeData.starttime === "null" ? null : timeData.starttime;
-    const finishTime =
-      timeData.finishtime === "null" ? null : timeData.finishtime;
+  //   const startTime = timeData.starttime === "null" ? null : timeData.starttime;
+  //   const finishTime =
+  //     timeData.finishtime === "null" ? null : timeData.finishtime;
 
-    if (startTime !== null || finishTime !== null) {
-      const [startHour, startMinute] = startTime.split(":");
-      const [finishHour, finishMinute] = finishTime.split(":");
-      const formattedStartTime = `${
-        parseInt(startHour, 10) < 12 ? "AM" : "PM"
-      } ${startHour}:${startMinute}`;
-      const formattedFinishTime = `${
-        parseInt(finishHour, 10) < 12 ? "AM" : "PM"
-      } ${finishHour}:${finishMinute}`;
+  //   if (startTime !== null || finishTime !== null) {
+  //     const [startHour, startMinute] = startTime.split(":");
+  //     const [finishHour, finishMinute] = finishTime.split(":");
+  //     const formattedStartTime = `${
+  //       parseInt(startHour, 10) < 12 ? "AM" : "PM"
+  //     } ${startHour}:${startMinute}`;
+  //     const formattedFinishTime = `${
+  //       parseInt(finishHour, 10) < 12 ? "AM" : "PM"
+  //     } ${finishHour}:${finishMinute}`;
 
-      const formattedTime = `${date}일 ${day} - ${formattedStartTime} ~ ${formattedFinishTime}`;
-      timesResult[i] = formattedTime;
-    } else timesResult[i] = null;
-  }
-
-  console.log(timesResult);
+  //     const formattedTime = `${date}일 ${day} - ${formattedStartTime} ~ ${formattedFinishTime}`;
+  //     timesResult[i] = formattedTime;
+  //   } else timesResult[i] = null;
+  // }
 
   return (
     <Section>
@@ -70,7 +67,7 @@ const DetailInfo = ({ event, thisData }) => {
           </MapContainer>
         )}
         <SecSub subtitle={`${event} 운영시간`} color="var(--green1)">
-          {timesResult.map((item, index) => (
+          {timesResult?.map((item, index) => (
             <div key={index}>{item}</div>
           ))}
         </SecSub>

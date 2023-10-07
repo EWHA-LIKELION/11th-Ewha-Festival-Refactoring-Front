@@ -8,10 +8,16 @@ import PerfPlanTable from "./PerfPlanTable";
 
 const PerfPlan = () => {
   const [selectPlace, setSelectPlace] = useState("잔디광장");
+  const [selectDay, setSelectDay] = useState(11);
 
   const updateSelectPlace = (place) => {
     setSelectPlace(place);
   };
+
+  const updateSelectDay = (day) => {
+    setSelectDay(day);
+  };
+
   const noticeData = {
     잔디광장: {
       items: [
@@ -58,8 +64,12 @@ const PerfPlan = () => {
 
   return (
     <Wrapper>
-      <PerfPlanFilter updateSelectPlace={updateSelectPlace} />
+      <PerfPlanFilter
+        updateSelectPlace={updateSelectPlace}
+        updateSelectDay={updateSelectDay}
+      />
       {renderContent()}
+      <PerfPlanTable selectPlace={selectPlace} selectDay={selectDay} />
     </Wrapper>
   );
 };
