@@ -16,7 +16,13 @@ import CompleteModal from "../components/SignupPage/CompleteModal";
 import SecretModal from "../components/SignupPage/SecretModal";
 import CommonModal from "../components/SignupPage/CommonModal";
 
+// 유저 정보 관련
+import { PostSignup, GetDuplicate } from "../api/user";
+
 const SignupPage = () => {
+  const navigate = useNavigate();
+
+  //state
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -25,19 +31,26 @@ const SignupPage = () => {
 
   const [isUsernameChecked, setIsUsernameChecked] = useState(false);
   const [passwordsMatch, setPasswordsMatch] = useState(false); // 비밀번호 일치 여부
+  const [userChecked, setUserChecked] = useState(false); //user가 확인했는지 여부
 
   // 중복 확인 버튼 클릭 시 호출되는 함수
-  const handleCheckUsername = () => {
-    setIsUsernameChecked(!isUsernameChecked);
-    let caseNumber = null; // 모든 조건 충족 시 modalCase를 null로 설정
-
+  const handleCheckUsername = async (username) => {
+    let caseNumber = null;
     if (username === "") {
       alert("아이디를 입력해주세요.");
       return;
-    } else if (isUsernameChecked) {
-      caseNumber = 1;
     } else {
-      caseNumber = 0;
+      try {
+        const response = await GetDuplicate(username);
+        if (response.duplicate) {
+          caseNumber = 0;
+        } else {
+          setIsUsernameChecked(true);
+          caseNumber = 1;
+        }
+      } catch (error) {
+        console.error("아이디 중복 확인 실패 ", error);
+      }
     }
 
     setModalCase(caseNumber);
@@ -106,6 +119,18 @@ const SignupPage = () => {
     setCommonModal(false);
   };
 
+  // completeModal에서 OKBtn 클릭 시 호출되는 함수
+  const handleComplete = () => {
+    setUserChecked(true);
+    try {
+      PostSignup(username, password, nickname);
+      navigate("/login");
+    } catch (error) {
+      console.error("회원가입 실패 ", error);
+      // 오류 처리
+    }
+  };
+
   return (
     <>
       <Wrapper>
@@ -121,7 +146,9 @@ const SignupPage = () => {
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
               />
-              <CheckBtn onClick={handleCheckUsername}>중복확인</CheckBtn>
+              <CheckBtn onClick={() => handleCheckUsername(username)}>
+                중복확인
+              </CheckBtn>
             </InputDiv>
             <InputDiv>
               <Icon src={passwordicon} />
@@ -178,6 +205,8 @@ const SignupPage = () => {
         <CompleteModal
           openCompleteModal={openCompleteModal}
           closeCompleteModal={closeCompleteModal}
+          userChecked={userChecked}
+          handleComplete={handleComplete}
         />
       ) : null}
       {commonmodal ? (

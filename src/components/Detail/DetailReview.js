@@ -1,18 +1,24 @@
-import React, { useRef } from "react";
+import React, { useState, useRef } from "react";
 import styled from "styled-components";
 
 //components
 import { SecTitle, Line } from "./SectionExport";
 import ReviewBox from "./ReviewBox";
+import { DeleteComment, PostComment } from "../../api/booth";
 
 //images
 import summitIcon from "../../assets/images/detail/review-summit.svg";
 
-const DetailReview = ({ commentsData, editerId }) => {
+const DetailReview = ({
+  commentsData,
+  editerId,
+  boothId,
+  render,
+  setRender,
+}) => {
+  //입력창 높이 조절
   const textareaRef = useRef(null);
-
   const handleTextareaChange = () => {
-    //입력창 높이 조절
     const textarea = textareaRef.current;
     if (textarea) {
       textarea.style.height = "18px";
@@ -23,23 +29,55 @@ const DetailReview = ({ commentsData, editerId }) => {
     }
   };
 
+  //방명록 작성
+  const [comment, setComment] = useState("");
+  const handleSubmit = () => {
+    if (comment.trim() === "") return null;
+    PostComment(boothId, comment)
+      .then((res) => {
+        console.log(res);
+        setRender(render + 1);
+      })
+      .catch();
+    setComment("");
+  };
+
+  //방명록 삭제
+  const handleDelete = (commentId) => {
+    DeleteComment(boothId, commentId)
+      .then((res) => {
+        console.log(res);
+        setRender(render + 1);
+      })
+      .catch();
+  };
+
   return (
     <Section>
       <SecTitle sectitle={`방명록`} />
       <Line />
       <ReviewList>
         {commentsData?.map((comment) => (
-          <ReviewBox key={comment.id} comment={comment} editerId={editerId} />
+          <ReviewBox
+            key={comment.id}
+            comment={comment}
+            editerId={editerId}
+            handleDelete={handleDelete}
+          />
         ))}
       </ReviewList>
       <Line2 />
       <ReviewInput>
         <textarea
           ref={textareaRef}
-          onChange={handleTextareaChange}
+          onChange={(e) => {
+            setComment(e.target.value);
+            handleTextareaChange();
+          }}
+          value={comment}
           placeholder="댓글을 입력하세요"
         />
-        <img src={summitIcon} alt="review summit icon" />
+        <img src={summitIcon} alt="review summit icon" onClick={handleSubmit} />
       </ReviewInput>
     </Section>
   );
