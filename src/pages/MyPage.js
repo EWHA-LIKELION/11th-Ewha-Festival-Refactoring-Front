@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useAppSelector } from "../redux/store";
 import { GetProfile } from "../api/user";
+import { GetLikedBooths } from "../api/booth";
 // component;
 import Booth from "../components/_common/Booth";
 import Pagination from "../components/ListPage/Pagination";
@@ -27,6 +28,17 @@ const MyPage = () => {
   const tfAdmin = useAppSelector((state) => state.user.isTf);
   const userId = useAppSelector((state) => state.user.id);
   const nickname = useAppSelector((state) => state.user.nickname);
+
+  const [likebooths, setLikebooths] = useState(0);
+
+  useEffect(() => {
+    GetLikedBooths()
+      .then((res) => {
+        setLikebooths(res.data);
+        console.log(res.data);
+      })
+      .catch();
+  }, []);
 
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
   const totalBooths = 40; // 전체 부스 개수
