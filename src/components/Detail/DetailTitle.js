@@ -1,24 +1,39 @@
 import styled from "styled-components";
 
 import Degree from "../_common/Degree";
+import { PatchBoothLike } from "../../api/booth";
 
 //images
 import noticeicon from "../../assets/icons/notice.svg";
 import fullheart from "../../assets/icons/heart-full.svg";
 import emptyheart from "../../assets/icons/heart-empty.svg";
 
-const DetailTitle = ({ event, thisData }) => {
+const DetailTitle = ({ event, thisData, render, setRender }) => {
   //공지사항 업데이트 날짜 변환
   let formattedDate,
-    timePart = "";
+    formattedTime = "";
 
   if (thisData && thisData.notices && thisData.notices.length > 0) {
-    const [datePart, tmpTimePart] =
-      thisData.notices[thisData.notices.length - 1].updated_at.split(" ");
-    const [year, month, day] = datePart.split("-");
+    const updatedAt = thisData.notices[thisData.notices.length - 1].updated_at;
+    const date = new Date(updatedAt);
+
+    const month = (date.getMonth() + 1).toString().padStart(2, "0");
+    const day = date.getDate().toString().padStart(2, "0");
     formattedDate = `${month}/${day}`;
-    timePart = tmpTimePart;
+
+    const hours = date.getHours().toString().padStart(2, "0");
+    const minutes = date.getMinutes().toString().padStart(2, "0");
+    formattedTime = `${hours}:${minutes}`;
   }
+
+  const handleLike = () => {
+    PatchBoothLike(thisData.id)
+      .then((res) => {
+        console.log(res);
+        setRender(render + 1);
+      })
+      .catch();
+  };
 
   return (
     <Wrapper>
@@ -45,9 +60,9 @@ const DetailTitle = ({ event, thisData }) => {
         {/* 좋아요 */}
         <Right>
           {thisData.is_liked ? (
-            <Heart src={fullheart} />
+            <Heart src={fullheart} onClick={handleLike} />
           ) : (
-            <Heart src={emptyheart} />
+            <Heart src={emptyheart} onClick={handleLike} />
           )}
           <span>{thisData.is_liked_count}</span>
         </Right>
@@ -65,7 +80,7 @@ const DetailTitle = ({ event, thisData }) => {
             <li className="update">
               <span>update</span>
               <span>{formattedDate}</span>
-              <span>{timePart}</span>
+              <span>{formattedTime}</span>
             </li>
           </ul>
         </Notice>

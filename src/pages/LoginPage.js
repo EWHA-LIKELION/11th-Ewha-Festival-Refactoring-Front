@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
 //유저 정보 관련
-import { PostLogin } from "../api/user";
+import { PostLogin, GetProfile } from "../api/user";
 
 import { useAppDispatch } from "../redux/store";
 import { setUser } from "../redux/userSlice";
@@ -33,6 +33,7 @@ const LoginPage = () => {
       .then((data) => {
         const token = data.data.access_token;
         window.localStorage.setItem("token", JSON.stringify(token));
+        setUserInfo();
         navigate("/");
       })
       .catch((error) => {
@@ -44,6 +45,24 @@ const LoginPage = () => {
             : alert(type)
           : alert("아이디와 비밀번호를 모두 입력해주세요.");
       });
+  };
+
+  const setUserInfo = () => {
+    GetProfile()
+      .then((res) => {
+        console.log(res);
+        dispatch(
+          setUser({
+            id: res.data.data.id,
+            nickname: res.data.data.nickname,
+            username: res.data.data.username,
+            is_booth: res.data.data.is_booth,
+            is_tf: res.data.data.is_tf,
+            booth_id: res.data.data.event_id,
+          })
+        );
+      })
+      .catch();
   };
 
   return (
