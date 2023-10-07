@@ -61,3 +61,14 @@ export const isLogin = () => localStorage.getItem("token");
 export default function AuthRoute({ component: Component }) {
   return isLogin() ? Component : <Navigate to="/login" />;
 }
+
+//Get : 프로필 조회
+export const GetProfile = async () => {
+  try {
+    const response = await http.get("mypage/");
+    return response;
+  } catch (error) {
+    console.error("프로필 조회 실패 ", error);
+    throw error;
+  }
+};
