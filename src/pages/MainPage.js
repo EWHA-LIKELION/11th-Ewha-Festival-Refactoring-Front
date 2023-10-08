@@ -30,16 +30,20 @@ const MainPage = () => {
     document.body.style.overflow = "auto";
   };
 
+  const goToMyPage = () => {
+    if (window.localStorage.getItem("token")) {
+      navigate("/mypage");
+    } else {
+      navigate("/login");
+    }
+  };
+
   return (
     <>
       <Wrapper>
         <TopBar>
           <img src={menu} id="menu" onClick={openMenu} />
-          <img
-            src={mypageGreen}
-            id="mypage"
-            onClick={() => navigate("/mypage")}
-          />
+          <img src={mypageGreen} id="mypage" onClick={goToMyPage} />
         </TopBar>
         <Banners>
           <img src={bannerMain} />
