@@ -1,13 +1,8 @@
-// import { configureStore } from "@reduxjs/toolkit";
-// import { combineReducers } from "redux";
-// import { useDispatch, useSelector } from "react-redux";
-
-// import storage from "redux-persist/lib/storage";
-// import { persistReducer } from "redux-persist";
-
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
 import { persistReducer } from "redux-persist";
+
+import { useDispatch, useSelector } from "react-redux";
 
 import thunk from "redux-thunk";
 import userReducer from "./userSlice";
@@ -32,3 +27,6 @@ export const store = configureStore({
   devTools: process.env.NODE_ENV !== "production",
   middleware: [thunk],
 });
+
+export const useAppDispatch = () => useDispatch();
+export const useAppSelector = useSelector;

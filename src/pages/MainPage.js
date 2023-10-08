@@ -111,12 +111,14 @@ const TopBar = styled.div`
     height: 22.267px;
     flex-shrink: 0;
     margin-top: 36px;
+    cursor: pointer;
   }
   #mypage {
     width: 28px;
     height: 28px;
     flex-shrink: 0;
     margin-top: 36px;
+    cursor: pointer;
   }
 `;
 
@@ -130,6 +132,7 @@ const Banners = styled.div`
     flex-direction: column;
     align-items: center;
     margin-bottom: 60px;
+    cursor: pointer;
   }
 
   .banner-img {

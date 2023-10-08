@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { styled } from "styled-components";
 import { useNavigate } from "react-router-dom";
-// import axios from "axios";
-// //context
-// import { useAuth } from "../contexts/AuthContext";
-//component
+import axios from "axios";
+import { useAppSelector } from "../redux/store";
+import { GetProfile } from "../api/user";
+import { GetLikedBooths, GetLikedMenus, GetLikedShows } from "../api/booth";
+// component;
 import Booth from "../components/_common/Booth";
 import Pagination from "../components/ListPage/Pagination";
 import Concert from "../components/_common/Concert";
@@ -21,16 +22,21 @@ import IsTfAdmin from "../components/Mypage/IsTfAdmin";
 import { ReactComponent as Namecover } from "../assets/images/Mypage/nickname.svg";
 import redhover from "../assets/images/Mypage/redhover.svg";
 import yellowhover from "../assets/images/Mypage/yellowhover.svg";
-import greenline from "../assets/images/Mypage/greenline.png";
+
+import { Logout } from "../api/user";
 
 const MyPage = () => {
-  const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
-  const totalBooths = 40; // 전체 부스 개수
-  const boothsPerPage = 10; // 페이지당 표시할 부스 개수
-  const startIdx = (currentPage - 1) * boothsPerPage; // 시작 인덱스
-  const endIdx = Math.min(startIdx + boothsPerPage, totalBooths); // 종료 인덱스
+  const navigate = useNavigate();
+  const boothAdmin = useAppSelector((state) => state.user.isBooth);
+  const tfAdmin = useAppSelector((state) => state.user.isTf);
+  const userId = useAppSelector((state) => state.user.id);
+  const nickname = useAppSelector((state) => state.user.nickname);
 
-  const [isBooth, setIsBooth] = useState("booth"); //부스 vs 공연
+  const [likebooths, setLikebooths] = useState([]);
+  const [likemenus, setLikeMenus] = useState([]);
+  const [likeshows, setLikeShows] = useState([]);
+
+  const [selectBooth, setSelectBooth] = useState("booth"); //부스 vs 공연
   const [likeBooth, setLikeBooth] = useState("likeBooth"); //좋아요부스 vs 좋아요메뉴
 
   const [selectMenu, setSelectMenu] = useState("all"); //전체,날짜,장소,카테고리
@@ -38,8 +44,50 @@ const MyPage = () => {
   const [selectPlace, setSelectPlace] = useState("정문"); //nav에서 장소 선택
   const [selectCategory, setSelectCategory] = useState("음식"); //nav에서 카테고리 선택
 
+  const selectedDay = selectDay;
+  const selectedPlace = selectPlace;
+  const selectedCategory = selectCategory;
+
+  useEffect(() => {
+    // 좋아요한 부스 목록 가져오기
+    GetLikedBooths(selectedDay, selectedPlace, selectedCategory)
+      .then((res) => {
+        setLikebooths(res.data);
+        console.log(res.data);
+      })
+      .catch((error) => {
+        console.error("좋아요한 부스 목록 조회 실패", error);
+      });
+
+    // 좋아요한 메뉴 목록 가져오기
+    GetLikedMenus(selectedDay, selectedPlace, selectedCategory)
+      .then((res) => {
+        setLikeMenus(res.data);
+        console.log(res.data);
+      })
+      .catch((error) => {
+        console.error("좋아요한 메뉴 목록 조회 실패", error);
+      });
+
+    // 좋아요한 공연 목록 가져오기
+    GetLikedShows(selectedDay, selectedPlace, selectedCategory)
+      .then((res) => {
+        setLikeShows(res.data);
+        console.log(res.data);
+      })
+      .catch((error) => {
+        console.error("좋아요한 공연 목록 조회 실패", error);
+      });
+  }, [selectedDay, selectedPlace, selectedCategory]);
+
+  const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
+  const totalBooths = 40; // 전체 부스 개수
+  const boothsPerPage = 10; // 페이지당 표시할 부스 개수
+  const startIdx = (currentPage - 1) * boothsPerPage; // 시작 인덱스
+  const endIdx = Math.min(startIdx + boothsPerPage, totalBooths); // 종료 인덱스
+
   const clickBooth = (what) => {
-    setIsBooth(what);
+    setSelectBooth(what);
   };
 
   const clickLikeBooth = (like) => {
@@ -81,35 +129,22 @@ const MyPage = () => {
 
   const categories = ["음식", "굿즈", "체험", "기타"];
   // 부스 목록 렌더링
-  const boothsToDisplay = [...Array(endIdx - startIdx)].map((_, index) => (
-    <Booth key={startIdx + index} />
-  ));
-  //메뉴 목록 렌더링
-  const menusToDisplay = [...Array(endIdx - startIdx)].map((_, index) => (
-    <Menu key={startIdx + index} />
-  ));
-  //공연 목록 렌더링
-  const perfsToDisplay = [...Array(endIdx - startIdx)].map((_, index) => (
-    <Concert key={startIdx + index} />
-  ));
-
-  const navigate = useNavigate();
+  // const boothsToDisplay = [...Array(endIdx - startIdx)].map((_, index) => (
+  //   <Booth key={startIdx + index} />
+  // ));
+  // //메뉴 목록 렌더링
+  // const menusToDisplay = [...Array(endIdx - startIdx)].map((_, index) => (
+  //   <Menu key={startIdx + index} />
+  // ));
+  // //공연 목록 렌더링
+  // const perfsToDisplay = [...Array(endIdx - startIdx)].map((_, index) => (
+  //   <Concert key={startIdx + index} />
+  // ));
 
   const goToLogIn = () => {
+    Logout();
     navigate("/login");
   };
-
-  //GET 마이페이지 데이터
-  const [userinfo, setUserInfo] = useState([]);
-  const [data, setDate] = useState([]);
-  const getData = () => {};
-
-  const topScroll = () => {
-    window.scrollTo(0, 0);
-  };
-  useEffect(() => {
-    topScroll();
-  }, []);
 
   return (
     <>
@@ -118,16 +153,17 @@ const MyPage = () => {
         <Nick>
           <Namecover width={260} />
           <NameCard>
-            <div className="name">닉네임</div>
-            <div className="nickname">likelion11TF</div>
+            <div className="name">{nickname}</div>
+            <div className="nickname">{userId}</div>
             <button onClick={goToLogIn}>로그아웃</button>
           </NameCard>
         </Nick>
-        <BoothAdmin />
-        <ConcertAdmin />
-        <IsTfAdmin />
+
+        {boothAdmin && <BoothAdmin />}
+        {tfAdmin && <IsTfAdmin />}
+
         <Navigation>
-          <Top isSelected={isBooth}>
+          <Top isSelected={selectBooth}>
             <div className="booth" onClick={() => clickBooth("booth")}>
               부스
             </div>
@@ -139,7 +175,7 @@ const MyPage = () => {
           <hr></hr>
 
           <Bottom isSelected={likeBooth}>
-            {isBooth === "booth" ? (
+            {selectBooth === "booth" ? (
               <>
                 <div
                   className="booth"
@@ -147,6 +183,7 @@ const MyPage = () => {
                 >
                   좋아요한 부스
                 </div>
+
                 <div
                   className="menu"
                   onClick={() => clickLikeBooth("likeMenu")}
@@ -230,12 +267,18 @@ const MyPage = () => {
           </CategoryFilter>
         )}
         <div className="count">총 {totalBooths}개의 부스</div>
-        {isBooth === "booth" ? (
+
+        {selectBooth === "booth" ? (
           likeBooth === "likeBooth" ? (
             <>
-              <List>{boothsToDisplay}</List>
+              <List>
+                {" "}
+                {likebooths.map((booth) => (
+                  <Booth key={booth.id} boothData={booth} />
+                ))}
+              </List>
               <Pagination
-                total={totalBooths}
+                total={likebooths.length}
                 limit={boothsPerPage}
                 page={currentPage}
                 setPage={setCurrentPage}
@@ -243,9 +286,14 @@ const MyPage = () => {
             </>
           ) : (
             <>
-              <List>{menusToDisplay}</List>
+              <List>
+                {" "}
+                {likemenus.map((menu) => (
+                  <Menu key={menu.id} menuData={menu} />
+                ))}
+              </List>
               <Pagination
-                total={totalBooths}
+                total={likemenus.length}
                 limit={boothsPerPage}
                 page={currentPage}
                 setPage={setCurrentPage}
@@ -254,9 +302,14 @@ const MyPage = () => {
           )
         ) : (
           <>
-            <List>{perfsToDisplay}</List>
+            <List>
+              {" "}
+              {likeshows.map((show) => (
+                <Concert key={show.id} showData={show} />
+              ))}
+            </List>
             <Pagination
-              total={totalBooths}
+              total={likeshows.length}
               limit={boothsPerPage}
               page={currentPage}
               setPage={setCurrentPage}

@@ -12,34 +12,34 @@ import Degree from "../_common/Degree";
 import fullheart from "../../assets/images/detail/menu-fullheart.svg";
 import emptyheart from "../../assets/images/detail/menu-emptyheart.svg";
 
-const Booth = ({ boothData }) => {
+const Booth = () => {
   const navigate = useNavigate();
   return (
     <Wrapper
       onClick={() => {
-        navigate(`/booth/detail/${boothData.id}`);
+        navigate(`/booth/detail/1`);
       }}
     >
-      <img src={boothData.thumbnail || boothCover} />
+      <img src={boothCover} />
 
       <InfoWrapper>
         <Place>
           {" "}
-          {boothData.number}
+          포01
           <span>·</span>
-          <span>{boothData.category.join(", ")}</span>
+          <span>음식</span>
         </Place>
 
         <Heart>
           <Degree size="small" degree="light" />
           <PinkHeart />
-          <div className="like">{boothData.is_like_count}</div>
+          <div className="like">1000</div>
         </Heart>
       </InfoWrapper>
 
       <Title>
         부스이름을뭐로지어야하나요
-        <div className="hashtag"> {boothData.hashtag}</div>
+        <div className="hashtag"> #떡꼬치 #떡볶이 #포스코관_부스</div>
       </Title>
     </Wrapper>
   );

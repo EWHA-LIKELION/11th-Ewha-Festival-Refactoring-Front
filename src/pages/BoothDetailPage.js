@@ -13,6 +13,9 @@ import Menu from "../components/MainPage/HamMenu";
 import { GetDetail } from "../api/booth";
 
 const BoothDetailPage = () => {
+  //렌더링 설정
+  const [render, setRender] = useState(1);
+
   let { id } = useParams();
   const [thisData, setThisData] = useState({});
 
@@ -23,19 +26,18 @@ const BoothDetailPage = () => {
         console.log(res.data);
       })
       .catch();
-  }, []);
+  }, [render]);
 
-  //스크롤 맨 위로 설정
-  window.scrollTo(0, 0);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   //사이드 바 관리
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   const openMenu = () => {
     setIsMenuOpen(true);
     document.body.style.overflow = "auto";
   };
-
   const closeMenu = () => {
     setIsMenuOpen(false);
     document.body.style.overflow = "auto";
@@ -45,12 +47,25 @@ const BoothDetailPage = () => {
     <Wrapper>
       <DetailCover thisData={thisData} openMenu={openMenu} />
       <Content>
-        <DetailTitle event="부스" thisData={thisData} />
+        <DetailTitle
+          event="부스"
+          thisData={thisData}
+          render={render}
+          setRender={setRender}
+        />
         <DetailInfo event="부스" thisData={thisData} />
-        <BoothMenu menuData={thisData.menus} menuImgData={thisData.images} />
+        <BoothMenu
+          menuData={thisData.menus}
+          menuImgData={thisData.images}
+          render={render}
+          setRender={setRender}
+        />
         <DetailReview
           commentsData={thisData.comments}
           editerId={thisData.user}
+          boothId={thisData.id}
+          render={render}
+          setRender={setRender}
         />
       </Content>
       <Footer />

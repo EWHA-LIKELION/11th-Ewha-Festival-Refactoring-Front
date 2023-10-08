@@ -1,15 +1,27 @@
 import styled from "styled-components";
 
 import { SecTitle, Line } from "./SectionExport";
+import { PatchMenuLike } from "../../api/booth";
 
 //images
 import fullheart from "../../assets/images/detail/menu-fullheart.svg";
 import emptyheart from "../../assets/images/detail/menu-emptyheart.svg";
 
-const BoothMenu = ({ menuData, menuImgData }) => {
+const BoothMenu = ({ menuData, menuImgData, render, setRender }) => {
   //메뉴 품절 여부에 따른 필터링
   const soldoutMenus = menuData?.filter((menu) => menu.is_soldout);
   const availableMenus = menuData?.filter((menu) => !menu.is_soldout);
+
+  const handleLike = (menuId) => {
+    if (localStorage.getItem("token")) {
+      PatchMenuLike(menuId)
+        .then((res) => {
+          console.log(res);
+          setRender(render + 1);
+        })
+        .catch();
+    } else alert("로그인이 필요합니다.");
+  };
 
   return (
     <Section>
@@ -34,9 +46,17 @@ const BoothMenu = ({ menuData, menuImgData }) => {
             <div>
               <span>{menu.price}원</span>
               {menu.is_liked ? (
-                <img src={fullheart} alt="fullheart" />
+                <img
+                  src={fullheart}
+                  alt="fullheart"
+                  onClick={() => handleLike(menu.id)}
+                />
               ) : (
-                <img src={emptyheart} alt="emptyheart" />
+                <img
+                  src={emptyheart}
+                  alt="emptyheart"
+                  onClick={() => handleLike(menu.id)}
+                />
               )}
             </div>
           </Menu>
@@ -52,9 +72,17 @@ const BoothMenu = ({ menuData, menuImgData }) => {
                 sold out
               </span>
               {menu.is_liked ? (
-                <img src={fullheart} alt="fullheart" />
+                <img
+                  src={fullheart}
+                  alt="fullheart"
+                  onClick={() => handleLike(menu.id)}
+                />
               ) : (
-                <img src={emptyheart} alt="emptyheart" />
+                <img
+                  src={emptyheart}
+                  alt="emptyheart"
+                  onClick={() => handleLike(menu.id)}
+                />
               )}
             </div>
           </Menu>
