@@ -98,9 +98,15 @@ export const GetLikedShows = async (day, college, category) => {
 //Get: 부스 목록 조회(필터링)
 export const GetBoothList = async (day, college, category) => {
   try {
-    const response = await http.get(
-      `event/?type=1&day=${day}&college=${college}&category=${category}/`
-    );
+    let queryString = `event/?type=1&day=${day}`;
+    if (college) {
+      queryString += `&college=${college}`;
+    }
+    if (category) {
+      queryString += `&category=${category}`;
+    }
+    console.log(queryString);
+    const response = await http.get(queryString);
     return response.data;
   } catch (error) {
     console.error("부스 목록 조회 실패", error);
@@ -112,7 +118,7 @@ export const GetBoothList = async (day, college, category) => {
 export const GetPerfList = async (day, college, category) => {
   try {
     const response = await http.get(
-      `event/?type=1&day=${day}&college=${college}&category=${category}/`
+      `event/?type=2&day=${day}&college=${college}&category=${category}/`
     );
     return response.data;
   } catch (error) {
