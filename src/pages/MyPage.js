@@ -23,6 +23,8 @@ import { ReactComponent as Namecover } from "../assets/images/Mypage/nickname.sv
 import redhover from "../assets/images/Mypage/redhover.svg";
 import yellowhover from "../assets/images/Mypage/yellowhover.svg";
 
+import { Logout } from "../api/user";
+
 const MyPage = () => {
   const navigate = useNavigate();
   const boothAdmin = useAppSelector((state) => state.user.isBooth);
@@ -140,6 +142,7 @@ const MyPage = () => {
   // ));
 
   const goToLogIn = () => {
+    Logout();
     navigate("/login");
   };
 

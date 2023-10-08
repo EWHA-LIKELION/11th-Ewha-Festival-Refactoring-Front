@@ -27,12 +27,14 @@ const DetailTitle = ({ event, thisData, render, setRender }) => {
   }
 
   const handleLike = () => {
-    PatchBoothLike(thisData.id)
-      .then((res) => {
-        console.log(res);
-        setRender(render + 1);
-      })
-      .catch();
+    if (localStorage.getItem("token")) {
+      PatchBoothLike(thisData.id)
+        .then((res) => {
+          console.log(res);
+          setRender(render + 1);
+        })
+        .catch();
+    } else alert("로그인이 필요합니다.");
   };
 
   return (

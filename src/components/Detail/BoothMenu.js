@@ -13,12 +13,14 @@ const BoothMenu = ({ menuData, menuImgData, render, setRender }) => {
   const availableMenus = menuData?.filter((menu) => !menu.is_soldout);
 
   const handleLike = (menuId) => {
-    PatchMenuLike(menuId)
-      .then((res) => {
-        console.log(res);
-        setRender(render + 1);
-      })
-      .catch();
+    if (localStorage.getItem("token")) {
+      PatchMenuLike(menuId)
+        .then((res) => {
+          console.log(res);
+          setRender(render + 1);
+        })
+        .catch();
+    } else alert("로그인이 필요합니다.");
   };
 
   return (

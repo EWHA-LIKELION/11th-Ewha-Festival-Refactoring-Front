@@ -6,10 +6,11 @@ import { persistor } from "../index";
 
 // 로그아웃
 export const Logout = () => {
-  alert("세션 만료, 다시 로그인해주세요.");
+  // alert("세션 만료, 다시 로그인해주세요.");
   persistor.purge();
   window.localStorage.removeItem("token");
-  window.location.href = <Navigate to="/" />;
+  console.log(window.localStorage.getItem("token"));
+  // window.location.href = <Navigate to="/" />;
 };
 
 // 로그인

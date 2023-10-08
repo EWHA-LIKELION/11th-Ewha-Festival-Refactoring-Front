@@ -28,8 +28,9 @@ const BoothDetailPage = () => {
       .catch();
   }, [render]);
 
-  //스크롤 맨 위로 설정
-  window.scrollTo(0, 0);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   //사이드 바 관리
   const [isMenuOpen, setIsMenuOpen] = useState(false);
