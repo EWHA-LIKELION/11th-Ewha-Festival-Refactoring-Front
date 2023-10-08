@@ -2,19 +2,19 @@ import React from "react";
 import { styled } from "styled-components";
 import { useNavigate } from "react-router-dom";
 
-const NoticeList = () => {
+const NoticeList = ({ notice }) => {
   const navigate = useNavigate();
 
   const goDetail = () => {
-    navigate("/notice/detail");
+    navigate("/notice/detail", { state: { notice: notice } });
   };
 
   return (
     <Wrapper onClick={goDetail}>
-      <span id="title">[공지] 이것은 제목입니다</span>
+      <span id="title">{notice.title}</span>
       <Info>
         <span id="writer">TF 팀</span>
-        <span id="date">2023-05-17</span>
+        <span id="date">{notice.created_at.substring(0, 10)}</span>
       </Info>
     </Wrapper>
   );

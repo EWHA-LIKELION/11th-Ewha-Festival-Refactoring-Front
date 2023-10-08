@@ -99,7 +99,7 @@ export const GetLikedShows = async (day, college, category) => {
 export const GetBoothList = async (day, college, category) => {
   try {
     const response = await http.get(
-      `/event/?type=1&day=${day}&college=${college}&category=${category}/`
+      `event/?type=1&day=${day}&college=${college}&category=${category}/`
     );
     return response.data;
   } catch (error) {
@@ -112,7 +112,7 @@ export const GetBoothList = async (day, college, category) => {
 export const GetPerfList = async (day, college, category) => {
   try {
     const response = await http.get(
-      `/event/?type=1&day=${day}&college=${college}&category=${category}/`
+      `event/?type=1&day=${day}&college=${college}&category=${category}/`
     );
     return response.data;
   } catch (error) {
