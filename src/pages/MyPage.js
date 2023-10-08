@@ -42,7 +42,8 @@ const MyPage = () => {
   const [selectMenu, setSelectMenu] = useState("all"); //전체,날짜,장소,카테고리
   const [selectDay, setSelectDay] = useState(1); //nav에서 날짜 선택
   const [selectPlace, setSelectPlace] = useState("정문"); //nav에서 장소 선택
-  const [selectCategory, setSelectCategory] = useState(1); //nav에서 카테고리 선택
+  const [selectCategory, setSelectCategory] = useState("음식"); //nav에서 카테고리 선택
+  const [selectCategoryId, setSelectCategoryId] = useState(1);
 
   const selectedDay = selectDay;
   const selectedPlace = selectPlace;
@@ -111,9 +112,9 @@ const MyPage = () => {
   };
 
   const days = [
-    { date: 17, name: "수요일" },
-    { date: 18, name: "목요일" },
-    { date: 19, name: "금요일" },
+    { id: 1, date: 17, name: "수요일" },
+    { id: 2, date: 18, name: "목요일" },
+    { id: 3, date: 19, name: "금요일" },
   ];
 
   const places = [
@@ -127,19 +128,12 @@ const MyPage = () => {
     "신세계관",
   ];
 
-  const categories = ["음식", "굿즈", "체험", "기타"];
-  // 부스 목록 렌더링
-  // const boothsToDisplay = [...Array(endIdx - startIdx)].map((_, index) => (
-  //   <Booth key={startIdx + index} />
-  // ));
-  // //메뉴 목록 렌더링
-  // const menusToDisplay = [...Array(endIdx - startIdx)].map((_, index) => (
-  //   <Menu key={startIdx + index} />
-  // ));
-  // //공연 목록 렌더링
-  // const perfsToDisplay = [...Array(endIdx - startIdx)].map((_, index) => (
-  //   <Concert key={startIdx + index} />
-  // ));
+  const categories = [
+    { id: 1, name: "음식" },
+    { id: 2, name: "굿즈" },
+    { id: 3, name: "체험" },
+    { id: 4, name: "기타" },
+  ];
 
   const goToLogIn = () => {
     Logout();
@@ -231,7 +225,9 @@ const MyPage = () => {
             {days.map((day) => (
               <Day
                 key={day.date}
-                onClick={() => dayClick(day.date)}
+                onClick={() => {
+                  setSelectDay(day.date);
+                }}
                 isSelected={selectDay === day.date}
               >
                 <span>{day.date}일</span>
@@ -258,10 +254,13 @@ const MyPage = () => {
             {categories.map((category) => (
               <Category
                 key={category}
-                onClick={() => categoryClick(category)}
-                isSelected={selectCategory === category}
+                onClick={() => {
+                  setSelectCategory(category.name);
+                  setSelectCategoryId(category.id);
+                }}
+                isSelected={selectCategory === category.name}
               >
-                {category}
+                {category.name}
               </Category>
             ))}
           </CategoryFilter>
