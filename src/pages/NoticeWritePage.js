@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { styled } from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { WriteNotice } from "../api/tf";
 
 import TopBar from "../components/_common/TopBar";
 import CancelModal from "../components/Notice/CancelModal";
@@ -26,6 +27,13 @@ const NoticeWritePage = () => {
   };
 
   const doneWrite = () => {
+    WriteNotice(title, content)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log("tf 공지사항 작성 실패", error);
+      });
     navigate("/notice");
   };
 
