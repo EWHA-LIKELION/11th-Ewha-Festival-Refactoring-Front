@@ -8,34 +8,34 @@ import boothCover from "../../assets/images/Mypage/boothcover.png";
 import { ReactComponent as PinkHeart } from "../../assets/icons/heart-empty.svg";
 import Degree from "../_common/Degree";
 
-const Menu = () => {
+const Menu = ({ menuData }) => {
   const navigate = useNavigate();
   return (
     <Wrapper
       onClick={() => {
-        navigate(`/booth/detail/1`);
+        navigate(`/booth/detail/${menuData.id}`);
       }}
     >
-      <img src={boothCover} />
-
+      <img src={menuData.thumbnail} alt={`Menu ${menuData.name}`} />
+      {/* 메뉴사진 대신에 부스 대표 사진을 보여주기로함 */}
       <InfoWrapper>
         <Place>
           {" "}
-          포01
+          {menuData.number}
           <span>·</span>
-          <span>음식</span>
+          <span>{menuData.category}</span>
         </Place>
 
         <Heart>
           <Degree size="small" degree="light" />
           <PinkHeart />
-          <div className="like">1000</div>
+          <div className="like">{menuData.is_like_count}</div>
         </Heart>
       </InfoWrapper>
 
       <Title>
         떡꼬치
-        <div className="price"> 2000원</div>
+        <div className="price"> {menuData.price}원</div>
       </Title>
     </Wrapper>
   );

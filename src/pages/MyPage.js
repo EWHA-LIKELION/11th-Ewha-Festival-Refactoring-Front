@@ -99,16 +99,8 @@ const MyPage = () => {
     setSelectMenu(menu);
   };
 
-  const dayClick = (day) => {
-    setSelectDay(day);
-  };
-
   const placeClick = (place) => {
     setSelectPlace(place);
-  };
-
-  const categoryClick = (category) => {
-    setSelectCategory(category);
   };
 
   const days = [
