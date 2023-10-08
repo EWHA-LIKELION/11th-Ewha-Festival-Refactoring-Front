@@ -1,3 +1,9 @@
+import React, { useEffect, useState } from "react";
+import { styled } from "styled-components";
+
+import dayClicked from "../../assets/icons/highlight-yellow.svg";
+import categoryClicked from "../../assets/icons/highlight-red.svg";
+
 const BoothFilter = ({
   setSelectDay,
   setSelectPlace,
