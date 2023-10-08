@@ -16,7 +16,7 @@ const NoticePage = () => {
 
   return (
     <Wrapper>
-      <TopBar titleText="공지사항" />
+      <TopBar titleText="공지사항" showSearch={false} />
       <WriteBtn onClick={goWrite}>
         <img src={write} />
         <span>공지 작성하기</span>

@@ -29,7 +29,7 @@ const NoticeDetailPage = () => {
 
   return (
     <Wrapper>
-      <TopBar titleText="공지사항" />
+      <TopBar titleText="공지사항" showSearch={false} />
       <Title>[공지] 이것은 제목입니다</Title>
       <Content>
         <Info>

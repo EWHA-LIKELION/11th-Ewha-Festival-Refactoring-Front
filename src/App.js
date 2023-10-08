@@ -3,7 +3,6 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 //pages
-
 import Loginpage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import MakersPage from "./pages/MakersPage";
@@ -28,6 +27,8 @@ import NoticeWritePage from "./pages/NoticeWritePage";
 import NoticeEditPage from "./pages/NoticeEditPage";
 
 import TrashBinPage from "./pages/TrashBinPage";
+
+import BoothSearchPage from "./pages/BoothSearchPage";
 
 function App() {
   return (
@@ -82,6 +83,7 @@ function App() {
             path={"/performance/search/"}
             element={<PerfSearchPage />}
           ></Route>
+          <Route path={"/booth/search/"} element={<BoothSearchPage />}></Route>
         </Routes>
       </Router>
     </>

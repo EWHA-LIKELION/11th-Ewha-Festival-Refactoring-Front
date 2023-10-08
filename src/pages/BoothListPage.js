@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { styled } from "styled-components";
+import { GetBoothList } from "../api/booth";
 
 import TopBar from "../components/_common/TopBar";
 import BoothFilter from "../components/ListPage/BoothFilter";
@@ -9,34 +10,50 @@ import Pagination from "../components/ListPage/Pagination";
 import Footer from "../components/_common/Footer";
 
 const BoothListPage = () => {
+  const [list, setList] = useState([]);
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
-  const totalBooths = 26; // 전체 부스 개수
+  const totalBooths = list.length; // 전체 부스 개수
   const boothsPerPage = 10; // 페이지당 표시할 부스 개수
   const startIdx = (currentPage - 1) * boothsPerPage; // 시작 인덱스
   const endIdx = Math.min(startIdx + boothsPerPage, totalBooths); // 종료 인덱스
 
-  const [selectedView, setSelectedView] = useState("place");
-  const [selectedPlace, setSelectedPlace] = useState("정문");
-  const placeSelect = (place) => {
-    setSelectedPlace(place);
-  };
+  const [selectDay, setSelectDay] = useState(17);
+  const [selectView, setSelectView] = useState("place");
+  const [selectPlace, setSelectPlace] = useState("정문");
+  const [selectCategory, setSelectCategory] = useState("음식");
 
-  // 부스 목록 렌더링
-  const boothsToDisplay = [...Array(endIdx - startIdx)].map((_, index) => (
-    <Booth key={startIdx + index} />
-  ));
+  useEffect(() => {
+    GetBoothList(selectDay, selectPlace, selectCategory)
+      .then((response) => {
+        setList(response.data);
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error("부스 목록 조회 실패", error);
+      });
+  }, [selectDay, selectPlace, selectCategory]);
 
   return (
     <>
       <TopBar titleText="부스 목록" />
       <Wrapper>
         <BoothFilter
-          placeSelect={placeSelect}
-          setSelectedView={setSelectedView}
+          setSelectDay={setSelectDay}
+          setSelectView={setSelectView}
+          setSelectPlace={setSelectPlace}
+          setSelectCategory={setSelectCategory}
+          selectDay={selectDay}
+          selectView={selectView}
+          selectPlace={selectPlace}
+          selectCategory={selectCategory}
         />
-        {selectedView === "place" && <Map page="list" place={selectedPlace} />}
+        {selectView === "place" && <Map page="list" place={selectPlace} />}
         <div className="count">총 {totalBooths}개의 부스</div>
-        <List>{boothsToDisplay}</List>
+        <List>
+          {list.slice(startIdx, endIdx).map((booth, index) => (
+            <Booth key={index} boothData={booth} />
+          ))}
+        </List>
         <Pagination
           total={totalBooths}
           limit={boothsPerPage}

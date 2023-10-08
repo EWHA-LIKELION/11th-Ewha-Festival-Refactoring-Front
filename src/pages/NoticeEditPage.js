@@ -14,9 +14,13 @@ const NoticeEditPage = () => {
     navigate("/notice");
   };
 
+  const cancel = () => {
+    navigate(-1);
+  };
+
   return (
     <Wrapper>
-      <TopBar titleText="공지 수정하기" />
+      <TopBar titleText="공지 수정하기" showSearch={false} />
       <WriteTitle
         placeholder="제목을 작성하세요"
         value="[공지] 이것은 제목입니다"
@@ -29,7 +33,7 @@ const NoticeEditPage = () => {
         onChange={(e) => setContent(e.target.value)}
       ></WriteContent>
       <Btn>
-        <BackBtn>취소</BackBtn>
+        <BackBtn onClick={cancel}>취소</BackBtn>
         <DoneBtn onClick={goList}>완료</DoneBtn>
       </Btn>
       <Footer />

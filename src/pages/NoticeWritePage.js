@@ -31,7 +31,7 @@ const NoticeWritePage = () => {
 
   return (
     <Wrapper>
-      <TopBar titleText="공지 작성하기" />
+      <TopBar titleText="공지 작성하기" showSearch={false} />
       <WriteTitle
         placeholder="제목을 작성하세요"
         onChange={(e) => setTitle(e.target.value)}
