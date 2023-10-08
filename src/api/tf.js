@@ -26,8 +26,10 @@ export const WriteNotice = async (title, content) => {
 };
 
 //공지사항 삭제
-export const DeleteNotice = async () => {
+export const DeleteNotice = async (noticeId) => {
   try {
+    const response = await http.delete(`notices/${noticeId}/`);
+    return response;
   } catch (error) {
     console.error("tf 공지사항 삭제 실패", error);
     throw error;
@@ -35,8 +37,13 @@ export const DeleteNotice = async () => {
 };
 
 //공지사항 수정
-export const EditNotice = async () => {
+export const EditNotice = async (noticeId, title, content) => {
   try {
+    const response = await http.put(`notices/${noticeId}`, {
+      title: title,
+      content: content,
+    });
+    return response;
   } catch (error) {
     console.error("tf 공지사항 수정 실패", error);
     throw error;

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { styled } from "styled-components";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useAppSelector } from "../redux/store";
+import { DeleteNotice } from "../api/tf";
 
 import TopBar from "../components/_common/TopBar";
 import DeleteModal from "../components/Notice/DeleteModal";
@@ -12,6 +13,7 @@ const NoticeDetailPage = () => {
   const tfAdmin = useAppSelector((state) => state.user.isTf);
   const navigate = useNavigate();
   const location = useLocation();
+
   const notice = location.state.notice;
 
   const openModal = () => {
@@ -23,12 +25,19 @@ const NoticeDetailPage = () => {
   };
 
   const del = () => {
+    DeleteNotice(notice.id)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log("tf 공지사항 삭제 실패", error);
+      });
     setModal(false);
     navigate("/notice");
   };
 
   const goEdit = () => {
-    navigate("/notice/edit");
+    navigate("/notice/edit", { state: { notice: notice } });
   };
 
   return (
