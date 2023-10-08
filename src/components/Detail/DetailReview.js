@@ -33,13 +33,15 @@ const DetailReview = ({
   const [comment, setComment] = useState("");
   const handleSubmit = () => {
     if (comment.trim() === "") return null;
-    PostComment(boothId, comment)
-      .then((res) => {
-        console.log(res);
-        setRender(render + 1);
-      })
-      .catch();
-    setComment("");
+    if (localStorage.getItem("token")) {
+      PostComment(boothId, comment)
+        .then((res) => {
+          console.log(res);
+          setRender(render + 1);
+        })
+        .catch();
+      setComment("");
+    } else alert("로그인이 필요합니다.");
   };
 
   //방명록 삭제

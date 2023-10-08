@@ -23,6 +23,8 @@ import redhover from "../assets/images/Mypage/redhover.svg";
 import yellowhover from "../assets/images/Mypage/yellowhover.svg";
 import greenline from "../assets/images/Mypage/greenline.png";
 
+import { Logout } from "../api/user";
+
 const MyPage = () => {
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
   const totalBooths = 40; // 전체 부스 개수
@@ -96,6 +98,7 @@ const MyPage = () => {
   const navigate = useNavigate();
 
   const goToLogIn = () => {
+    Logout();
     navigate("/login");
   };
 
