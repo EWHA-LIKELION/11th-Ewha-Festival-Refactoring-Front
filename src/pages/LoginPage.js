@@ -33,7 +33,24 @@ const LoginPage = () => {
       .then((data) => {
         const token = data.data.access_token;
         window.localStorage.setItem("token", JSON.stringify(token));
-        setUserInfo();
+        console.log(data);
+        GetProfile(token)
+          .then((res) => {
+            console.log(res);
+            dispatch(
+              setUser({
+                id: res.data.data.id,
+                nickname: res.data.data.nickname,
+                username: res.data.data.username,
+                is_booth: res.data.data.is_booth,
+                is_tf: res.data.data.is_tf,
+                booth_id: res.data.data.event_id,
+              })
+            );
+          })
+          .catch((error) => {
+            console.log(error);
+          });
         navigate("/");
       })
       .catch((error) => {
@@ -45,24 +62,6 @@ const LoginPage = () => {
             : alert(type)
           : alert("아이디와 비밀번호를 모두 입력해주세요.");
       });
-  };
-
-  const setUserInfo = () => {
-    GetProfile()
-      .then((res) => {
-        console.log(res);
-        dispatch(
-          setUser({
-            id: res.data.data.id,
-            nickname: res.data.data.nickname,
-            username: res.data.data.username,
-            is_booth: res.data.data.is_booth,
-            is_tf: res.data.data.is_tf,
-            booth_id: res.data.data.event_id,
-          })
-        );
-      })
-      .catch();
   };
 
   return (

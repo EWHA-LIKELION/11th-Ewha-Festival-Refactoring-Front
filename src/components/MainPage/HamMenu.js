@@ -16,6 +16,14 @@ import creators from "../../assets/images/Main/creators.svg";
 const HamMenu = ({ isOpen, closeMenu }) => {
   const navigate = useNavigate();
 
+  const goToMyPage = () => {
+    if (window.localStorage.getItem("token")) {
+      navigate("/mypage");
+    } else {
+      navigate("/login");
+    }
+  };
+
   return (
     <Wrapper1 isOpen={isOpen}>
       {isOpen && (
@@ -25,7 +33,7 @@ const HamMenu = ({ isOpen, closeMenu }) => {
           <img src={flower} id="flower" />
           <Buttons>
             <But
-              onClick={() => navigate("/mypage")}
+              onClick={goToMyPage}
               style={{
                 gap: "7px",
               }}

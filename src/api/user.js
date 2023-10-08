@@ -1,5 +1,6 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
+import axios from "axios";
 
 import { http } from "../api/http";
 import { persistor } from "../index";
@@ -64,9 +65,13 @@ export default function AuthRoute({ component: Component }) {
 }
 
 //Get : 프로필 조회
-export const GetProfile = async () => {
+export const GetProfile = async (token) => {
   try {
-    const response = await http.get("mypage/");
+    const response = await axios.get("https://api.yewon.link/mypage", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     return response;
   } catch (error) {
     console.error("프로필 조회 실패 ", error);
