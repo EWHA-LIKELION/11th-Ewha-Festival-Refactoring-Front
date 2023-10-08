@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { styled } from "styled-components";
 
 import dayClicked from "../../assets/icons/highlight-yellow.svg";
@@ -6,6 +6,7 @@ import categoryClicked from "../../assets/icons/highlight-red.svg";
 
 const BoothFilter = ({
   setSelectDay,
+  setSelectDayId,
   setSelectPlace,
   setSelectView,
   setSelectCategory,
@@ -13,11 +14,12 @@ const BoothFilter = ({
   selectView,
   selectPlace,
   selectCategory,
+  setSelectCategoryId,
 }) => {
   const days = [
-    { date: 17, name: "수요일" },
-    { date: 18, name: "목요일" },
-    { date: 19, name: "금요일" },
+    { id: 1, date: 17, name: "수요일" },
+    { id: 2, date: 18, name: "목요일" },
+    { id: 3, date: 19, name: "금요일" },
   ];
 
   const places = [
@@ -31,7 +33,12 @@ const BoothFilter = ({
     "신세계관",
   ];
 
-  const categories = ["음식", "굿즈", "체험", "기타"];
+  const categories = [
+    { id: 1, name: "음식" },
+    { id: 2, name: "굿즈" },
+    { id: 3, name: "체험" },
+    { id: 4, name: "기타" },
+  ];
 
   return (
     <Wrapper>
@@ -40,7 +47,10 @@ const BoothFilter = ({
           {days.map((day) => (
             <Day
               key={day.date}
-              onClick={() => setSelectDay(day.date)}
+              onClick={() => {
+                setSelectDay(day.date);
+                setSelectDayId(day.id);
+              }}
               isSelected={selectDay === day.date}
             >
               <span id="date">{day.date}</span>
@@ -64,7 +74,10 @@ const BoothFilter = ({
           <span>카테고리별 보기</span>
         </View>
         <View
-          onClick={() => setSelectView("all")}
+          onClick={() => {
+            setSelectView("all");
+            setSelectCategoryId("5");
+          }}
           isSelected={selectView === "all"}
         >
           <span>전체 보기</span>
@@ -87,11 +100,14 @@ const BoothFilter = ({
         <CategoryFilter>
           {categories.map((category) => (
             <Category
-              key={category}
-              onClick={() => setSelectCategory(category)}
-              isSelected={selectCategory === category}
+              key={category.id}
+              onClick={() => {
+                setSelectCategory(category.name);
+                setSelectCategoryId(category.id);
+              }}
+              isSelected={selectCategory === category.name}
             >
-              {category}
+              {category.name}
             </Category>
           ))}
         </CategoryFilter>

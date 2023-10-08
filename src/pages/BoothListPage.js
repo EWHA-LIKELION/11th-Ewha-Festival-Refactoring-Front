@@ -18,20 +18,22 @@ const BoothListPage = () => {
   const endIdx = Math.min(startIdx + boothsPerPage, totalBooths); // 종료 인덱스
 
   const [selectDay, setSelectDay] = useState(17);
+  const [selectDayId, setSelectDayId] = useState(1);
   const [selectView, setSelectView] = useState("place");
   const [selectPlace, setSelectPlace] = useState("정문");
-  const [selectCategory, setSelectCategory] = useState("음식");
+  const [selectCategory, setSelectCategory] = useState("");
+  const [selectCategoryId, setSelectCategoryId] = useState("");
 
   useEffect(() => {
-    GetBoothList(selectDay, selectPlace, selectCategory)
+    GetBoothList(selectDayId, selectPlace, selectCategoryId)
       .then((response) => {
         setList(response.data);
-        console.log(response.data);
+        console.log(response);
       })
       .catch((error) => {
         console.error("부스 목록 조회 실패", error);
       });
-  }, [selectDay, selectPlace, selectCategory]);
+  }, [selectDayId, selectPlace, selectCategoryId]);
 
   return (
     <>
@@ -39,6 +41,7 @@ const BoothListPage = () => {
       <Wrapper>
         <BoothFilter
           setSelectDay={setSelectDay}
+          setSelectDayId={setSelectDayId}
           setSelectView={setSelectView}
           setSelectPlace={setSelectPlace}
           setSelectCategory={setSelectCategory}
@@ -46,6 +49,7 @@ const BoothListPage = () => {
           selectView={selectView}
           selectPlace={selectPlace}
           selectCategory={selectCategory}
+          setSelectCategoryId={setSelectCategoryId}
         />
         {selectView === "place" && <Map page="list" place={selectPlace} />}
         <div className="count">총 {totalBooths}개의 부스</div>

@@ -40,9 +40,9 @@ const MyPage = () => {
   const [likeBooth, setLikeBooth] = useState("likeBooth"); //좋아요부스 vs 좋아요메뉴
 
   const [selectMenu, setSelectMenu] = useState("all"); //전체,날짜,장소,카테고리
-  const [selectDay, setSelectDay] = useState(17); //nav에서 날짜 선택
+  const [selectDay, setSelectDay] = useState(1); //nav에서 날짜 선택
   const [selectPlace, setSelectPlace] = useState("정문"); //nav에서 장소 선택
-  const [selectCategory, setSelectCategory] = useState("음식"); //nav에서 카테고리 선택
+  const [selectCategory, setSelectCategory] = useState(1); //nav에서 카테고리 선택
 
   const selectedDay = selectDay;
   const selectedPlace = selectPlace;
