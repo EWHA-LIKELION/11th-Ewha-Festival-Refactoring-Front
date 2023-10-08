@@ -1,33 +1,13 @@
-import React, { useState } from "react";
-import { styled } from "styled-components";
-
-import dayClicked from "../../assets/icons/highlight-yellow.svg";
-import categoryClicked from "../../assets/icons/highlight-red.svg";
-
-const BoothFilter = ({ placeSelect, setSelectedView }) => {
-  const [selectDay, setSelectDay] = useState(17);
-  const [selectView, setSelectView] = useState("place");
-  const [selectPlace, setSelectPlace] = useState("정문");
-  const [selectCategory, setSelectCategory] = useState("음식");
-
-  const dayClick = (day) => {
-    setSelectDay(day);
-  };
-
-  const viewClick = (view) => {
-    setSelectView(view);
-    setSelectedView(view);
-  };
-
-  const placeClick = (place) => {
-    setSelectPlace(place);
-    placeSelect(place);
-  };
-
-  const categoryClick = (category) => {
-    setSelectCategory(category);
-  };
-
+const BoothFilter = ({
+  setSelectDay,
+  setSelectPlace,
+  setSelectView,
+  setSelectCategory,
+  selectDay,
+  selectView,
+  selectPlace,
+  selectCategory,
+}) => {
   const days = [
     { date: 17, name: "수요일" },
     { date: 18, name: "목요일" },
@@ -54,7 +34,7 @@ const BoothFilter = ({ placeSelect, setSelectedView }) => {
           {days.map((day) => (
             <Day
               key={day.date}
-              onClick={() => dayClick(day.date)}
+              onClick={() => setSelectDay(day.date)}
               isSelected={selectDay === day.date}
             >
               <span id="date">{day.date}</span>
@@ -65,20 +45,20 @@ const BoothFilter = ({ placeSelect, setSelectedView }) => {
       </Line>
       <ViewFilter>
         <View
-          onClick={() => viewClick("place")}
+          onClick={() => setSelectView("place")}
           isSelected={selectView === "place"}
         >
           <span>장소별 보기</span>
         </View>
         <View
           id="long"
-          onClick={() => viewClick("category")}
+          onClick={() => setSelectView("category")}
           isSelected={selectView === "category"}
         >
           <span>카테고리별 보기</span>
         </View>
         <View
-          onClick={() => viewClick("all")}
+          onClick={() => setSelectView("all")}
           isSelected={selectView === "all"}
         >
           <span>전체 보기</span>
@@ -89,7 +69,7 @@ const BoothFilter = ({ placeSelect, setSelectedView }) => {
           {places.map((place) => (
             <Place
               key={place}
-              onClick={() => placeClick(place)}
+              onClick={() => setSelectPlace(place)}
               isSelected={selectPlace === place}
             >
               {place}
@@ -102,7 +82,7 @@ const BoothFilter = ({ placeSelect, setSelectedView }) => {
           {categories.map((category) => (
             <Category
               key={category}
-              onClick={() => categoryClick(category)}
+              onClick={() => setSelectCategory(category)}
               isSelected={selectCategory === category}
             >
               {category}

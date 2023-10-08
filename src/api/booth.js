@@ -94,3 +94,29 @@ export const GetLikedShows = async (day, college, category) => {
     throw error;
   }
 };
+
+//Get: 부스 목록 조회(필터링)
+export const GetBoothList = async (day, college, category) => {
+  try {
+    const response = await http.get(
+      `/event/?type=1&day=${day}&college=${college}&category=${category}/`
+    );
+    return response.data;
+  } catch (error) {
+    console.error("부스 목록 조회 실패", error);
+    throw error;
+  }
+};
+
+//Get: 공연 목록 조회(필터링)
+export const GetPerfList = async (day, college, category) => {
+  try {
+    const response = await http.get(
+      `/event/?type=1&day=${day}&college=${college}&category=${category}/`
+    );
+    return response.data;
+  } catch (error) {
+    console.error("공연 목록 조회 실패", error);
+    throw error;
+  }
+};
