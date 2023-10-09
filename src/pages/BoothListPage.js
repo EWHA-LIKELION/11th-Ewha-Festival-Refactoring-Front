@@ -21,8 +21,8 @@ const BoothListPage = () => {
   const [selectDayId, setSelectDayId] = useState(1);
   const [selectView, setSelectView] = useState("place");
   const [selectPlace, setSelectPlace] = useState("정문");
-  const [selectCategory, setSelectCategory] = useState("");
-  const [selectCategoryId, setSelectCategoryId] = useState("");
+  const [selectCategory, setSelectCategory] = useState("음식");
+  const [selectCategoryId, setSelectCategoryId] = useState("1");
 
   useEffect(() => {
     GetBoothList(selectDayId, selectPlace, selectCategoryId)
