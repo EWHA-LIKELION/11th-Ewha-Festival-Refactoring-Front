@@ -61,14 +61,22 @@ const BoothFilter = ({
       </Line>
       <ViewFilter>
         <View
-          onClick={() => setSelectView("place")}
+          onClick={() => {
+            setSelectView("place");
+            setSelectPlace("정문");
+          }}
           isSelected={selectView === "place"}
         >
           <span>장소별 보기</span>
         </View>
         <View
           id="long"
-          onClick={() => setSelectView("category")}
+          onClick={() => {
+            setSelectView("category");
+            setSelectPlace();
+            setSelectCategory("음식");
+            setSelectCategoryId("1");
+          }}
           isSelected={selectView === "category"}
         >
           <span>카테고리별 보기</span>
@@ -76,7 +84,8 @@ const BoothFilter = ({
         <View
           onClick={() => {
             setSelectView("all");
-            setSelectCategoryId("5");
+            setSelectPlace();
+            setSelectCategoryId();
           }}
           isSelected={selectView === "all"}
         >

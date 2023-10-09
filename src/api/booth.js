@@ -1,4 +1,5 @@
 import { http } from "./http";
+import { Logout } from "./user";
 
 //Get : 부스/공연 상세페이지
 export const GetDetail = async (boothId) => {
@@ -6,6 +7,12 @@ export const GetDetail = async (boothId) => {
     const response = await http.get(`detail/${boothId}/`);
     return response.data;
   } catch (error) {
+    if (
+      error.response.data.detail ===
+      "이 토큰은 모든 타입의 토큰에 대해 유효하지 않습니다"
+    ) {
+      Logout();
+    }
     console.error("부스/공연 상세 조회 실패", error);
     throw error;
   }
@@ -64,6 +71,12 @@ export const GetLikedBooths = async (day, college, category) => {
     );
     return response.data;
   } catch (error) {
+    if (
+      error.response.data.detail ===
+      "이 토큰은 모든 타입의 토큰에 대해 유효하지 않습니다"
+    ) {
+      Logout();
+    }
     console.error("좋아요한 부스 목록 조회 실패", error);
     throw error;
   }
@@ -77,6 +90,12 @@ export const GetLikedMenus = async (day, college, category) => {
     );
     return response.data;
   } catch (error) {
+    if (
+      error.response.data.detail ===
+      "이 토큰은 모든 타입의 토큰에 대해 유효하지 않습니다"
+    ) {
+      Logout();
+    }
     console.error("좋아요한 메뉴 목록 조회 실패", error);
     throw error;
   }
@@ -90,6 +109,12 @@ export const GetLikedShows = async (day, college, category) => {
     );
     return response.data;
   } catch (error) {
+    if (
+      error.response.data.detail ===
+      "이 토큰은 모든 타입의 토큰에 대해 유효하지 않습니다"
+    ) {
+      Logout();
+    }
     console.error("좋아요한 공연 목록 조회 실패", error);
     throw error;
   }
@@ -101,14 +126,19 @@ export const GetBoothList = async (day, college, category) => {
     let queryString = `event/?type=1&day=${day}`;
     if (college) {
       queryString += `&college=${college}`;
-    }
-    if (category) {
+    } else if (category) {
       queryString += `&category=${category}`;
     }
     console.log(queryString);
     const response = await http.get(queryString);
     return response.data;
   } catch (error) {
+    if (
+      error.response.data.detail ===
+      "이 토큰은 모든 타입의 토큰에 대해 유효하지 않습니다"
+    ) {
+      Logout();
+    }
     console.error("부스 목록 조회 실패", error);
     throw error;
   }
@@ -117,11 +147,22 @@ export const GetBoothList = async (day, college, category) => {
 //Get: 공연 목록 조회(필터링)
 export const GetPerfList = async (day, college, category) => {
   try {
-    const response = await http.get(
-      `event/?type=2&day=${day}&college=${college}&category=${category}/`
-    );
+    let queryString = `event/?type=2&day=${day}`;
+    if (college) {
+      queryString += `&college=${college}`;
+    } else if (category) {
+      queryString += `&category=${category}`;
+    }
+    console.log(queryString);
+    const response = await http.get(queryString);
     return response.data;
   } catch (error) {
+    if (
+      error.response.data.detail ===
+      "이 토큰은 모든 타입의 토큰에 대해 유효하지 않습니다"
+    ) {
+      Logout();
+    }
     console.error("공연 목록 조회 실패", error);
     throw error;
   }

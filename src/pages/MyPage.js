@@ -51,34 +51,32 @@ const MyPage = () => {
 
   useEffect(() => {
     // 좋아요한 부스 목록 가져오기
-    GetLikedBooths(selectedDay, selectedPlace, selectedCategory)
-      .then((res) => {
-        setLikebooths(res.data);
-        console.log(res.data);
-      })
-      .catch((error) => {
-        console.error("좋아요한 부스 목록 조회 실패", error);
-      });
-
+    // GetLikedBooths(selectedDay, selectedPlace, selectedCategory)
+    //   .then((res) => {
+    //     setLikebooths(res.data);
+    //     console.log(res.data);
+    //   })
+    //   .catch((error) => {
+    //     console.error("좋아요한 부스 목록 조회 실패", error);
+    //   });
     // 좋아요한 메뉴 목록 가져오기
-    GetLikedMenus(selectedDay, selectedPlace, selectedCategory)
-      .then((res) => {
-        setLikeMenus(res.data);
-        console.log(res.data);
-      })
-      .catch((error) => {
-        console.error("좋아요한 메뉴 목록 조회 실패", error);
-      });
-
+    // GetLikedMenus(selectedDay, selectedPlace, selectedCategory)
+    //   .then((res) => {
+    //     setLikeMenus(res.data);
+    //     console.log(res.data);
+    //   })
+    //   .catch((error) => {
+    //     console.error("좋아요한 메뉴 목록 조회 실패", error);
+    //   });
     // 좋아요한 공연 목록 가져오기
-    GetLikedShows(selectedDay, selectedPlace, selectedCategory)
-      .then((res) => {
-        setLikeShows(res.data);
-        console.log(res.data);
-      })
-      .catch((error) => {
-        console.error("좋아요한 공연 목록 조회 실패", error);
-      });
+    // GetLikedShows(selectedDay, selectedPlace, selectedCategory)
+    //   .then((res) => {
+    //     setLikeShows(res.data);
+    //     console.log(res.data);
+    //   })
+    //   .catch((error) => {
+    //     console.error("좋아요한 공연 목록 조회 실패", error);
+    //   });
   }, [selectedDay, selectedPlace, selectedCategory]);
 
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
