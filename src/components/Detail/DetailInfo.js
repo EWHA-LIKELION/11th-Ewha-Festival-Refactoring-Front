@@ -27,30 +27,17 @@ const DetailInfo = ({ event, thisData }) => {
       const date = thisData.day[i].date;
       const timeData = thisData.times[i];
 
-      var formattedStartTime = "";
-      var formattedFinishTime = "";
+      var formattedTime = `${date}일 ${day}`;
 
-      // if (timeData.starttime) {
-      //   const startTime = new Date(timeData.starttime);
-      //   const finishTime = Date(timeData.finishtime);
+      if (thisData.times.length > 0) {
+        const starthours = timeData.starttime.split(":")[0];
+        const startampm = starthours >= 12 ? "PM" : "AM";
+        const finishhours = timeData.finishtime.split(":")[0];
+        const finishampm = finishhours >= 12 ? "PM" : "AM";
 
-      //   const startHour = startTime.getHours();
-      //   const startMinute = startTime.getMinutes();
-      //   const finishHour = finishTime.getHours();
-      //   const finishMinute = finishTime.getMinutes();
-      //   formattedStartTime = `${startHour < 12 ? "AM" : "PM"} ${(
-      //     startHour % 12 || 12
-      //   )
-      //     .toString()
-      //     .padStart(2, "0")}:${startMinute}`;
-      //   formattedFinishTime = `${finishHour < 12 ? "AM" : "PM"} ${(
-      //     finishHour % 12 || 12
-      //   )
-      //     .toString()
-      //     .padStart(2, "0")}:${finishMinute}`;
-      // }
+        formattedTime += ` - ${startampm} ${timeData.starttime} ~ ${finishampm} ${timeData.finishtime}`;
+      }
 
-      const formattedTime = `${date}일 ${day} - ${formattedStartTime} ~ ${formattedFinishTime}`;
       timesResult[i] = formattedTime;
     }
   }
