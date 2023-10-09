@@ -40,43 +40,46 @@ const MyPage = () => {
   const [likeBooth, setLikeBooth] = useState("likeBooth"); //좋아요부스 vs 좋아요메뉴
 
   const [selectMenu, setSelectMenu] = useState("all"); //전체,날짜,장소,카테고리
-  const [selectDay, setSelectDay] = useState(1); //nav에서 날짜 선택
+  const [selectDay, setSelectDay] = useState(17); //nav에서 날짜 선택
+
+  const [selectDayId, setSelectDayId] = useState(1);
+
   const [selectPlace, setSelectPlace] = useState("정문"); //nav에서 장소 선택
   const [selectCategory, setSelectCategory] = useState("음식"); //nav에서 카테고리 선택
   const [selectCategoryId, setSelectCategoryId] = useState(1);
 
-  const selectedDay = selectDay;
+  const selectedDay = selectDayId;
   const selectedPlace = selectPlace;
-  const selectedCategory = selectCategory;
+  const selectedCategory = selectCategoryId;
 
   useEffect(() => {
     // 좋아요한 부스 목록 가져오기
-    // GetLikedBooths(selectedDay, selectedPlace, selectedCategory)
-    //   .then((res) => {
-    //     setLikebooths(res.data);
-    //     console.log(res.data);
-    //   })
-    //   .catch((error) => {
-    //     console.error("좋아요한 부스 목록 조회 실패", error);
-    //   });
+    GetLikedBooths(selectedDay, selectedPlace, selectedCategory)
+      .then((res) => {
+        setLikebooths(res.data);
+        console.log(res.data);
+      })
+      .catch((error) => {
+        console.error("좋아요한 부스 목록 조회 실패", error);
+      });
     // 좋아요한 메뉴 목록 가져오기
-    // GetLikedMenus(selectedDay, selectedPlace, selectedCategory)
-    //   .then((res) => {
-    //     setLikeMenus(res.data);
-    //     console.log(res.data);
-    //   })
-    //   .catch((error) => {
-    //     console.error("좋아요한 메뉴 목록 조회 실패", error);
-    //   });
+    GetLikedMenus(selectedDay, selectedPlace, selectedCategory)
+      .then((res) => {
+        setLikeMenus(res.data);
+        console.log(res.data);
+      })
+      .catch((error) => {
+        console.error("좋아요한 메뉴 목록 조회 실패", error);
+      });
     // 좋아요한 공연 목록 가져오기
-    // GetLikedShows(selectedDay, selectedPlace, selectedCategory)
-    //   .then((res) => {
-    //     setLikeShows(res.data);
-    //     console.log(res.data);
-    //   })
-    //   .catch((error) => {
-    //     console.error("좋아요한 공연 목록 조회 실패", error);
-    //   });
+    GetLikedShows(selectedDay, selectedPlace, selectedCategory)
+      .then((res) => {
+        setLikeShows(res.data);
+        console.log(res.data);
+      })
+      .catch((error) => {
+        console.error("좋아요한 공연 목록 조회 실패", error);
+      });
   }, [selectedDay, selectedPlace, selectedCategory]);
 
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
@@ -180,6 +183,7 @@ const MyPage = () => {
             )}
           </Bottom>
         </Navigation>
+
         <MenuWrapper isSelected={selectMenu}>
           <span
             id="all"
@@ -210,6 +214,7 @@ const MyPage = () => {
             카테고리
           </span>
         </MenuWrapper>
+
         {selectMenu === "day" && (
           <DayFilter>
             {days.map((day) => (
