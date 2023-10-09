@@ -32,21 +32,23 @@ const NoticeEditPage = () => {
   return (
     <Wrapper>
       <TopBar titleText="공지 수정하기" showSearch={false} />
-      <WriteTitle
-        placeholder="제목을 작성하세요"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-      />
-      <WriteContent
-        placeholder="내용을 작성하세요"
-        value={content}
-        onChange={(e) => setContent(e.target.value)}
-      ></WriteContent>
-      <Btn>
-        <BackBtn onClick={cancel}>취소</BackBtn>
-        <DoneBtn onClick={goList}>완료</DoneBtn>
-      </Btn>
-      <Footer />
+      <Page>
+        <WriteTitle
+          placeholder="제목을 작성하세요"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
+        <WriteContent
+          placeholder="내용을 작성하세요"
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
+        ></WriteContent>
+        <Btn>
+          <BackBtn onClick={cancel}>취소</BackBtn>
+          <DoneBtn onClick={goList}>완료</DoneBtn>
+        </Btn>
+        <Footer />
+      </Page>
     </Wrapper>
   );
 };
@@ -54,10 +56,13 @@ const NoticeEditPage = () => {
 export default NoticeEditPage;
 
 const Wrapper = styled.div`
+  background: var(--beige);
+`;
+
+const Page = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: var(--beige);
 `;
 
 const WriteTitle = styled.input`

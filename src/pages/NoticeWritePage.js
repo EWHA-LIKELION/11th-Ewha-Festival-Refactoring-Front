@@ -40,19 +40,21 @@ const NoticeWritePage = () => {
   return (
     <Wrapper>
       <TopBar titleText="공지 작성하기" showSearch={false} />
-      <WriteTitle
-        placeholder="제목을 작성하세요"
-        onChange={(e) => setTitle(e.target.value)}
-      />
-      <WriteContent
-        placeholder="내용을 작성하세요"
-        onChange={(e) => setContent(e.target.value)}
-      ></WriteContent>
-      <Btn>
-        <BackBtn onClick={openModal}>취소</BackBtn>
-        <DoneBtn onClick={doneWrite}>완료</DoneBtn>
-      </Btn>
-      <Footer />
+      <Page>
+        <WriteTitle
+          placeholder="제목을 작성하세요"
+          onChange={(e) => setTitle(e.target.value)}
+        />
+        <WriteContent
+          placeholder="내용을 작성하세요"
+          onChange={(e) => setContent(e.target.value)}
+        ></WriteContent>
+        <Btn>
+          <BackBtn onClick={openModal}>취소</BackBtn>
+          <DoneBtn onClick={doneWrite}>완료</DoneBtn>
+        </Btn>
+        <Footer />
+      </Page>
       {modal && <CancelModal closeModal={closeModal} cancel={cancel} />}
     </Wrapper>
   );
@@ -61,10 +63,13 @@ const NoticeWritePage = () => {
 export default NoticeWritePage;
 
 const Wrapper = styled.div`
+  background: var(--beige);
+`;
+
+const Page = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: var(--beige);
 `;
 
 const WriteTitle = styled.input`
@@ -110,7 +115,7 @@ const Btn = styled.div`
   padding-left: 147px;
   display: flex;
   gap: 10px;
-  margin-bottom: 40px;
+  margin-bottom: 80px;
 `;
 
 const BackBtn = styled.button`
