@@ -126,10 +126,10 @@ const Buttons = styled.div`
   display: grid;
   grid-template-columns: 1.5fr 1.5fr 1.5fr;
   grid-template-rows: 1fr 1fr 1fr;
-  gap: 10px;
+  gap: 25px;
   position: fixed;
-  margin-top: 300px;
-  margin-left: 80px;
+  margin-top: 297px;
+  margin-left: 60px;
 
   p {
     color: var(--white);
