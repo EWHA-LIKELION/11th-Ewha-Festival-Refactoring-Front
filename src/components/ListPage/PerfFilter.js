@@ -6,6 +6,7 @@ import categoryClicked from "../../assets/icons/highlight-red.svg";
 
 const PerfFilter = ({
   setSelectDay,
+  setSelectDayId,
   setSelectPlace,
   setSelectView,
   setSelectCategory,
@@ -13,16 +14,22 @@ const PerfFilter = ({
   selectView,
   selectPlace,
   selectCategory,
+  setSelectCategoryId,
 }) => {
   const days = [
-    { date: 17, name: "수요일" },
-    { date: 18, name: "목요일" },
-    { date: 19, name: "금요일" },
+    { id: 1, date: 17, name: "수요일" },
+    { id: 2, date: 18, name: "목요일" },
+    { id: 3, date: 19, name: "금요일" },
   ];
 
   const places = ["잔디광장", "학문관광장", "스포츠트랙"];
 
-  const categories = ["밴드", "춤", "노래", "기타"];
+  const categories = [
+    { id: 1, name: "밴드" },
+    { id: 2, name: "춤" },
+    { id: 3, name: "노래" },
+    { id: 4, name: "기타" },
+  ];
 
   return (
     <Wrapper>
@@ -31,7 +38,10 @@ const PerfFilter = ({
           {days.map((day) => (
             <Day
               key={day.date}
-              onClick={() => setSelectDay(day.date)}
+              onClick={() => {
+                setSelectDay(day.date);
+                setSelectDayId(day.id);
+              }}
               isSelected={selectDay === day.date}
             >
               <span id="date">{day.date}</span>
@@ -55,7 +65,10 @@ const PerfFilter = ({
           <span>카테고리별 보기</span>
         </View>
         <View
-          onClick={() => setSelectView("all")}
+          onClick={() => {
+            setSelectView("all");
+            setSelectCategoryId("5");
+          }}
           isSelected={selectView === "all"}
         >
           <span>전체 보기</span>
@@ -79,10 +92,13 @@ const PerfFilter = ({
           {categories.map((category) => (
             <Category
               key={category}
-              onClick={() => setSelectCategory(category)}
-              isSelected={selectCategory === category}
+              onClick={() => {
+                setSelectCategory(category.name);
+                setSelectCategoryId(category.id);
+              }}
+              isSelected={selectCategory === category.name}
             >
-              {category}
+              {category.name}
             </Category>
           ))}
         </CategoryFilter>

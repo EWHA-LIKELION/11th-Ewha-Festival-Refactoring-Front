@@ -18,12 +18,14 @@ const PerfListPage = () => {
   const endIdx = Math.min(startIdx + perfsPerPage, totalPerfs); // 종료 인덱스
 
   const [selectDay, setSelectDay] = useState(17);
+  const [selectDayId, setSelectDayId] = useState(1);
   const [selectView, setSelectView] = useState("place");
   const [selectPlace, setSelectPlace] = useState("잔디광장");
   const [selectCategory, setSelectCategory] = useState("밴드");
+  const [selectCategoryId, setSelectCategoryId] = useState("1");
 
   useEffect(() => {
-    GetPerfList(selectDay, selectPlace, selectCategory)
+    GetPerfList(selectDayId, selectPlace, selectCategoryId)
       .then((response) => {
         setList(response.data);
         console.log(response.data);
@@ -31,7 +33,7 @@ const PerfListPage = () => {
       .catch((error) => {
         console.error("공연 목록 조회 실패", error);
       });
-  }, [selectDay, selectPlace, selectCategory]);
+  }, [selectDayId, selectPlace, selectCategoryId]);
 
   return (
     <>
@@ -39,6 +41,7 @@ const PerfListPage = () => {
       <Wrapper>
         <PerfFilter
           setSelectDay={setSelectDay}
+          setSelectDayId={setSelectDayId}
           setSelectView={setSelectView}
           setSelectPlace={setSelectPlace}
           setSelectCategory={setSelectCategory}
@@ -46,6 +49,7 @@ const PerfListPage = () => {
           selectView={selectView}
           selectPlace={selectPlace}
           selectCategory={selectCategory}
+          setSelectCategoryId={setSelectCategoryId}
         />
         {selectView === "place" && <Map page="list" place={selectPlace} />}
         <div className="count">총 {totalPerfs}개의 공연</div>
