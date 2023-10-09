@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { styled } from "styled-components";
 
 import dayClicked from "../../assets/icons/highlight-yellow.svg";
@@ -37,7 +37,7 @@ const PerfFilter = ({
         <DayFilter>
           {days.map((day) => (
             <Day
-              key={day.date}
+              key={day.id}
               onClick={() => {
                 setSelectDay(day.date);
                 setSelectDayId(day.id);
@@ -52,14 +52,22 @@ const PerfFilter = ({
       </Line>
       <ViewFilter>
         <View
-          onClick={() => setSelectView("place")}
+          onClick={() => {
+            setSelectView("place");
+            setSelectPlace("잔디광장");
+          }}
           isSelected={selectView === "place"}
         >
           <span>장소별 보기</span>
         </View>
         <View
           id="long"
-          onClick={() => setSelectView("category")}
+          onClick={() => {
+            setSelectView("category");
+            setSelectPlace();
+            setSelectCategory("밴드");
+            setSelectCategoryId("1");
+          }}
           isSelected={selectView === "category"}
         >
           <span>카테고리별 보기</span>
@@ -67,6 +75,7 @@ const PerfFilter = ({
         <View
           onClick={() => {
             setSelectView("all");
+            setSelectPlace();
             setSelectCategoryId("5");
           }}
           isSelected={selectView === "all"}
@@ -91,7 +100,7 @@ const PerfFilter = ({
         <CategoryFilter>
           {categories.map((category) => (
             <Category
-              key={category}
+              key={category.id}
               onClick={() => {
                 setSelectCategory(category.name);
                 setSelectCategoryId(category.id);
