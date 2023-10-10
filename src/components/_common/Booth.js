@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../../App.css";
 import { styled } from "styled-components";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { GetDetail } from "../../api/booth";
 
 //부스 대표 사진
 import boothCover from "../../assets/images/Mypage/boothcover.png";
@@ -14,13 +15,14 @@ import emptyheart from "../../assets/images/detail/menu-emptyheart.svg";
 
 const Booth = ({ boothData }) => {
   const navigate = useNavigate();
+
   return (
     <Wrapper
       onClick={() => {
         navigate(`/booth/detail/${boothData.id}`);
       }}
     >
-      <img src={boothData.thumbnail || boothCover} />
+      <img src={boothCover} />
 
       <InfoWrapper>
         <Place>

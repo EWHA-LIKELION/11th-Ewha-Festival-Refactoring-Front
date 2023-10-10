@@ -74,5 +74,5 @@ const WriteBtn = styled.div`
 
 const List = styled.div`
   padding-top: 30px;
-  padding-bottom: 130px;
+  min-height: 600px;
 `;

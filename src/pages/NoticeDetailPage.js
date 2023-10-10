@@ -43,20 +43,22 @@ const NoticeDetailPage = () => {
   return (
     <Wrapper>
       <TopBar titleText="공지사항" showSearch={false} />
-      <Title>{notice.title}</Title>
-      <Content>
-        <Info>
-          <span id="writer">TF팀 작성</span>
-          <span id="date">{notice.created_at.substring(0, 10)}</span>
-        </Info>
-        <div id="content">{notice.content}</div>
-        {tfAdmin && (
-          <Btn>
-            <DelBtn onClick={openModal}>삭제</DelBtn>
-            <ModifyBtn onClick={goEdit}>수정</ModifyBtn>
-          </Btn>
-        )}
-      </Content>
+      <Page>
+        <Title>{notice.title}</Title>
+        <Content>
+          <Info>
+            <span id="writer">TF팀 작성</span>
+            <span id="date">{notice.created_at.substring(0, 10)}</span>
+          </Info>
+          <div id="content">{notice.content}</div>
+          {tfAdmin && (
+            <Btn>
+              <DelBtn onClick={openModal}>삭제</DelBtn>
+              <ModifyBtn onClick={goEdit}>수정</ModifyBtn>
+            </Btn>
+          )}
+        </Content>
+      </Page>
       <Footer />
       {modal && <DeleteModal closeModal={closeModal} del={del} />}
     </Wrapper>
@@ -66,10 +68,14 @@ const NoticeDetailPage = () => {
 export default NoticeDetailPage;
 
 const Wrapper = styled.div`
+  background: var(--beige);
+`;
+
+const Page = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: var(--beige);
+  min-height: 650px;
 `;
 
 const Title = styled.div`
