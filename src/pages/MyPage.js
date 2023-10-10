@@ -3,7 +3,6 @@ import { styled } from "styled-components";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useAppSelector } from "../redux/store";
-import { GetProfile } from "../api/user";
 import { GetLikedBooths, GetLikedMenus, GetLikedShows } from "../api/booth";
 // component;
 import Booth from "../components/_common/Booth";
@@ -161,14 +160,15 @@ const MyPage = () => {
         />
 
         <div className="count">총 {totalBooths}개의 부스</div>
+        <Booth />
 
         {selectBooth === "booth" ? (
           likeBooth === "likeBooth" ? (
             <>
               <List>
                 {" "}
-                {likebooths.slice(startIdx, endIdx).map((booth, index) => (
-                  <Booth key={index} boothData={booth} />
+                {likebooths.map((booth) => (
+                  <Booth key={booth.id} boothData={booth} />
                 ))}
               </List>
               <Pagination
@@ -266,46 +266,6 @@ const List = styled.div`
   margin-bottom: 64px;
 `;
 
-const MenuWrapper = styled.div`
-  span {
-    margin-right: 5px;
-    cursor: pointer;
-  }
-  #all {
-    color: ${(props) =>
-      props.isSelected === "all"
-        ? "var(--red, #F55B1D)"
-        : "var(--gray2, #9b9b9b)"};
-    font-weight: ${(props) => (props.isSelected === "all" ? "700" : "400")};
-  }
-  #day {
-    color: ${(props) =>
-      props.isSelected === "day"
-        ? "var(--red, #F55B1D)"
-        : "var(--gray2, #9b9b9b)"};
-    font-weight: ${(props) => (props.isSelected === "day" ? "700" : "400")};
-  }
-  #place {
-    color: ${(props) =>
-      props.isSelected === "place"
-        ? "var(--red, #F55B1D)"
-        : "var(--gray2, #9b9b9b)"};
-    font-weight: ${(props) => (props.isSelected === "place" ? "700" : "400")};
-  }
-  #category {
-    color: ${(props) =>
-      props.isSelected === "category"
-        ? "var(--red, #F55B1D)"
-        : "var(--gray2, #9b9b9b)"};
-    font-weight: ${(props) =>
-      props.isSelected === "category" ? "700" : "400"};
-  }
-  text-align: center;
-  font-size: 15px;
-  font-style: normal;
-  margin-right: 179px;
-`;
-
 // 네비게이션
 const Navigation = styled.div`
   width: 390px;
@@ -392,104 +352,4 @@ const Bottom = styled.div`
     color: white;
     font-weight: ${(props) => (props.isSelected === "concert" ? "700" : "500")};
   }
-`;
-
-const PlaceFilter = styled.div`
-  width: 347px;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-row-gap: 10px;
-  justify-content: center;
-  padding: 5px 0px 10px 0px;
-`;
-
-//
-
-const Place = styled.div`
-  display: flex;
-  width: 75px;
-  height: 29px;
-  justify-content: center;
-  align-items: center;
-  flex-shrink: 0;
-  border-radius: 104px;
-  border: 0.5px solid var(--green2, #029c54);
-  background: ${(props) =>
-    props.isSelected ? "var(--green2, #029c54)" : "#fff"};
-  cursor: pointer;
-  color: ${(props) => (props.isSelected ? "#fff" : "var(--green2, #029c54)")};
-  text-align: center;
-  font-family: Pretendard;
-  font-size: 14.56px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-`;
-const DayFilter = styled.div`
-  width: 270px;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  gap: 20px;
-`;
-
-const Day = styled.div`
-  display: flex;
-  width: 98px;
-  height: 29.12px;
-  justify-content: center;
-  align-items: center;
-  gap: 4px;
-  flex-shrink: 0;
-  background: ${(props) =>
-    props.isSelected ? "var(--green2, #029c54)" : "#fff"};
-  border-bottom: ${(props) =>
-    props.isSelected ? "1px solid #029C54" : "none"};
-
-  border-radius: 104px;
-  border: 1.04px solid var(--2023-SWE_green2, #029c54);
-  cursor: pointer;
-  span {
-    color: ${(props) => (props.isSelected ? "#ffff" : "var(--green2)")};
-    text-align: center;
-    font-family: Pretendard;
-    font-size: 14.56px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-  }
-  #date {
-    font-size: 12.48px;
-    font-weight: 300;
-  }
-`;
-const CategoryFilter = styled.div`
-  width: 347px;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-row-gap: 10px;
-  justify-content: center;
-  padding: 5px 0px 10px 0px;
-`;
-
-const Category = styled.div`
-  display: flex;
-  width: 75px;
-  height: 29px;
-  justify-content: center;
-  align-items: center;
-  flex-shrink: 0;
-  border-radius: 104px;
-  border: 0.5px solid var(--2023-SWE_green2, #029c54);
-  background: ${(props) =>
-    props.isSelected ? "var(--2023-SWE_green2, #029c54)" : "#fff"};
-  cursor: pointer;
-  color: ${(props) =>
-    props.isSelected ? "#fff" : "var(--2023-SWE_green2, #029c54)"};
-  text-align: center;
-  font-family: Pretendard;
-  font-size: 14.56px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
 `;
