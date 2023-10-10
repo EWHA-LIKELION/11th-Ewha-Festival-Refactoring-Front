@@ -262,6 +262,8 @@ const MyPage = () => {
         )}
         <div className="count">총 {totalBooths}개의 부스</div>
 
+        <Booth />
+
         {selectBooth === "booth" ? (
           likeBooth === "likeBooth" ? (
             <>

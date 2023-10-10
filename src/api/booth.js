@@ -66,9 +66,14 @@ export const PatchMenuLike = async (menuId) => {
 // Get: 좋아요한 부스 목록 조회
 export const GetLikedBooths = async (day, college, category) => {
   try {
-    const response = await http.get(
-      `/mypage/booth/likes/?day=${day}&college=${college}&category=${category}`
-    );
+    let queryString = `mypage/booth/likes/?day=${day}`;
+    if (college) {
+      queryString += `&college=${college}`;
+    } else if (category) {
+      queryString += `&category=${category}`;
+    }
+    console.log(queryString);
+    const response = await http.get(queryString);
     return response.data;
   } catch (error) {
     if (
@@ -85,9 +90,14 @@ export const GetLikedBooths = async (day, college, category) => {
 // Get: 좋아요한 메뉴 목록 조회
 export const GetLikedMenus = async (day, college, category) => {
   try {
-    const response = await http.get(
-      `/mypage/menu/likes/?day=${day}&college=${college}&category=${category}`
-    );
+    let queryString = `mypage/menu/likes/?day=${day}`;
+    if (college) {
+      queryString += `&college=${college}`;
+    } else if (category) {
+      queryString += `&category=${category}`;
+    }
+    console.log(queryString);
+    const response = await http.get(queryString);
     return response.data;
   } catch (error) {
     if (
@@ -104,9 +114,14 @@ export const GetLikedMenus = async (day, college, category) => {
 // Get: 좋아요한 공연 목록 조회
 export const GetLikedShows = async (day, college, category) => {
   try {
-    const response = await http.get(
-      `/mypage/show/likes/?day=${day}&college=${college}&category=${category}`
-    );
+    let queryString = `mypage/show/likes/?day=${day}`;
+    if (college) {
+      queryString += `&college=${college}`;
+    } else if (category) {
+      queryString += `&category=${category}`;
+    }
+    console.log(queryString);
+    const response = await http.get(queryString);
     return response.data;
   } catch (error) {
     if (
