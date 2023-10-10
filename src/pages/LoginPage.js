@@ -6,10 +6,6 @@ import { useNavigate } from "react-router-dom";
 //유저 정보 관련
 import { PostLogin } from "../api/user";
 
-import { useAppDispatch } from "../redux/store";
-import { setUser } from "../redux/userSlice";
-import { initPage } from "../redux/pageSlice";
-
 //component
 import TopBar from "../components/_common/TopBar";
 
@@ -20,9 +16,6 @@ import passwordicon from "../assets/images/login-signup/password-icon.svg";
 
 const LoginPage = () => {
   const navigate = useNavigate();
-
-  // 유저 리덕스
-  const dispatch = useAppDispatch();
 
   // 받을 변수들
   const [username, setUsername] = useState("");
