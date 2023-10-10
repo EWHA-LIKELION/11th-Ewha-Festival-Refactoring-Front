@@ -4,20 +4,19 @@ import { styled } from "styled-components";
 import { useNavigate, useParams } from "react-router-dom";
 import { GetDetail } from "../../api/booth";
 //슬라이더
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import ImageSlider from "./ImageSlider";
 //부스 대표 사진
 import boothCover from "../../assets/images/Mypage/boothcover.png";
 import concert from "../../assets/images/Mypage/concert.png";
 import { ReactComponent as PinkHeart } from "../../assets/icons/heart-empty.svg";
 import Degree from "../_common/Degree";
 
+import { boothData } from "../../_mock/boothData";
 //images
 import fullheart from "../../assets/images/detail/menu-fullheart.svg";
 import emptyheart from "../../assets/images/detail/menu-emptyheart.svg";
 
-// const Booth = ({ boothData }) => {
+// const Booth = () => {
 //   const navigate = useNavigate();
 
 //   return (
@@ -33,7 +32,7 @@ import emptyheart from "../../assets/images/detail/menu-emptyheart.svg";
 //           {" "}
 //           {boothData.number}
 //           <span>·</span>
-//           <span>{boothData.category.join(", ")}</span>
+//           <span>{boothData.category}</span>
 //         </Place>
 
 //         <Heart>
@@ -52,61 +51,39 @@ import emptyheart from "../../assets/images/detail/menu-emptyheart.svg";
 // };
 // export default Booth;
 
-const Booth = () => {
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    initialSlide: 0,
-    appendDots: (dots) => (
-      <div
-        style={{
-          position: "absolute",
-          bottom: "20px",
-          left: "50%",
-          transform: "translateX(-50%)",
-        }}
-      >
-        <ul style={{ margin: "0" }}>{dots}</ul>
-      </div>
-    ),
-  };
-
+const Booth = ({ boothData }) => {
   return (
     <Wrapper>
-      <Slider {...settings}>
-        <div>
-          <img src={boothCover} alt="임시이미지1" />
-        </div>
-        <div>
-          <img src={concert} alt="임시이미지2" />
-        </div>
-      </Slider>
+      {/* <ImageSlider id={boothData.id} imgs={boothData.thumbnail} /> */}
+      <img src={boothCover} alt="Booth Cover" />
+      <Tag>
+        {boothData.began && <div>비건</div>}
+        {boothData.wheelchair && <div>휠체어 접근 가능</div>}
+      </Tag>
 
       <InfoWrapper>
         <Place>
           {" "}
-          포01
+          {boothData.number}
           <span>·</span>
-          <span>음식</span>
+          <span>{boothData.category}</span>
         </Place>
 
         <Heart>
-          <div className="degree">여유</div>
+          <div className="degree">{boothData.busy ? "혼잡" : "여유"}</div>
           <PinkHeart />
-          <div className="like">1000</div>
+          <div className="like">{boothData.is_like_count}</div>
         </Heart>
       </InfoWrapper>
 
       <Title>
-        부스이름을뭐로지어야하나요
-        <div className="hashtag"> #떡꼬치 #떡볶이 #포스코관_부스</div>
+        {boothData.name}
+        <div className="hashtag"> {boothData.hashtag}</div>
       </Title>
     </Wrapper>
   );
 };
+
 export default Booth;
 
 const Wrapper = styled.div`
@@ -167,4 +144,21 @@ const Title = styled.div`
     margin-top: 7px;
   }
 `;
-const Tag = styled.div``;
+const Tag = styled.div`
+  position: absolute;
+  top: 515px;
+  left: 760px;
+  display: flex;
+  gap: 4px;
+
+  div {
+    padding: 4px 8px 3px 8px;
+    border-radius: 20px;
+    background: rgba(67, 63, 63, 0.55);
+
+    color: var(--white);
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 11.611px;
+  }
+`;
