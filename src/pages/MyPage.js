@@ -12,6 +12,7 @@ import Concert from "../components/_common/Concert";
 import Menu from "../components/_common/Menu";
 import TopBar from "../components/_common/TopBar";
 import Footer from "../components/_common/Footer";
+import MyBoothFilter from "../components/Mypage/MyBoothFilter";
 // 부스관리자 전용
 import BoothAdmin from "../components/Mypage/BoothAdmin";
 // 공연관리자 전용
@@ -39,48 +40,42 @@ const MyPage = () => {
   const [selectBooth, setSelectBooth] = useState("booth"); //부스 vs 공연
   const [likeBooth, setLikeBooth] = useState("likeBooth"); //좋아요부스 vs 좋아요메뉴
 
-  const [selectMenu, setSelectMenu] = useState("all"); //전체,날짜,장소,카테고리
+  const [selectView, setSelectView] = useState("all");
   const [selectDay, setSelectDay] = useState(17); //nav에서 날짜 선택
-
   const [selectDayId, setSelectDayId] = useState(1);
-
   const [selectPlace, setSelectPlace] = useState("정문"); //nav에서 장소 선택
   const [selectCategory, setSelectCategory] = useState("음식"); //nav에서 카테고리 선택
   const [selectCategoryId, setSelectCategoryId] = useState(1);
 
-  const selectedDay = selectDayId;
-  const selectedPlace = selectPlace;
-  const selectedCategory = selectCategoryId;
-
   useEffect(() => {
     // 좋아요한 부스 목록 가져오기
-    GetLikedBooths(selectedDay, selectedPlace, selectedCategory)
+    GetLikedBooths(selectDayId, selectPlace, selectCategoryId)
       .then((res) => {
         setLikebooths(res.data);
-        console.log(res.data);
+        console.log(res);
       })
       .catch((error) => {
         console.error("좋아요한 부스 목록 조회 실패", error);
       });
     // 좋아요한 메뉴 목록 가져오기
-    GetLikedMenus(selectedDay, selectedPlace, selectedCategory)
+    GetLikedMenus(selectDayId, selectPlace, selectCategoryId)
       .then((res) => {
         setLikeMenus(res.data);
-        console.log(res.data);
+        console.log(res);
       })
       .catch((error) => {
         console.error("좋아요한 메뉴 목록 조회 실패", error);
       });
     // 좋아요한 공연 목록 가져오기
-    GetLikedShows(selectedDay, selectedPlace, selectedCategory)
+    GetLikedShows(selectDayId, selectPlace, selectCategoryId)
       .then((res) => {
         setLikeShows(res.data);
-        console.log(res.data);
+        console.log(res);
       })
       .catch((error) => {
         console.error("좋아요한 공연 목록 조회 실패", error);
       });
-  }, [selectedDay, selectedPlace, selectedCategory]);
+  }, [selectDayId, selectPlace, selectCategoryId]);
 
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
   const totalBooths = 40; // 전체 부스 개수
@@ -95,38 +90,6 @@ const MyPage = () => {
   const clickLikeBooth = (like) => {
     setLikeBooth(like);
   };
-
-  const ClickMenu = (menu) => {
-    setSelectMenu(menu);
-  };
-
-  const placeClick = (place) => {
-    setSelectPlace(place);
-  };
-
-  const days = [
-    { id: 1, date: 17, name: "수요일" },
-    { id: 2, date: 18, name: "목요일" },
-    { id: 3, date: 19, name: "금요일" },
-  ];
-
-  const places = [
-    "정문",
-    "교육관",
-    "대강당",
-    "휴웃길",
-    "포스코관",
-    "학문관",
-    "생활관",
-    "신세계관",
-  ];
-
-  const categories = [
-    { id: 1, name: "음식" },
-    { id: 2, name: "굿즈" },
-    { id: 3, name: "체험" },
-    { id: 4, name: "기타" },
-  ];
 
   const goToLogIn = () => {
     Logout();
@@ -184,93 +147,28 @@ const MyPage = () => {
           </Bottom>
         </Navigation>
 
-        <MenuWrapper isSelected={selectMenu}>
-          <span
-            id="all"
-            onClick={() => ClickMenu("all")}
-            isSelected={selectMenu === "all"}
-          >
-            전체 ·
-          </span>
-          <span
-            id="day"
-            onClick={() => ClickMenu("day")}
-            isSelected={selectMenu === "day"}
-          >
-            날짜 ·
-          </span>
-          <span
-            id="place"
-            onClick={() => ClickMenu("place")}
-            isSelected={selectMenu === "place"}
-          >
-            장소 ·
-          </span>
-          <span
-            id="category"
-            onClick={() => ClickMenu("category")}
-            isSelected={selectMenu === "category"}
-          >
-            카테고리
-          </span>
-        </MenuWrapper>
+        <MyBoothFilter
+          setSelectDay={setSelectDay}
+          setSelectDayId={setSelectDayId}
+          setSelectView={setSelectView}
+          setSelectPlace={setSelectPlace}
+          setSelectCategory={setSelectCategory}
+          selectDay={selectDay}
+          selectView={selectView}
+          selectPlace={selectPlace}
+          selectCategory={selectCategory}
+          setSelectCategoryId={setSelectCategoryId}
+        />
 
-        {selectMenu === "day" && (
-          <DayFilter>
-            {days.map((day) => (
-              <Day
-                key={day.date}
-                onClick={() => {
-                  setSelectDay(day.date);
-                }}
-                isSelected={selectDay === day.date}
-              >
-                <span>{day.date}일</span>
-                <span>{day.name}</span>
-              </Day>
-            ))}
-          </DayFilter>
-        )}
-        {selectMenu === "place" && (
-          <PlaceFilter>
-            {places.map((place) => (
-              <Place
-                key={place}
-                onClick={() => placeClick(place)}
-                isSelected={selectPlace === place}
-              >
-                {place}
-              </Place>
-            ))}
-          </PlaceFilter>
-        )}
-        {selectMenu === "category" && (
-          <CategoryFilter>
-            {categories.map((category) => (
-              <Category
-                key={category}
-                onClick={() => {
-                  setSelectCategory(category.name);
-                  setSelectCategoryId(category.id);
-                }}
-                isSelected={selectCategory === category.name}
-              >
-                {category.name}
-              </Category>
-            ))}
-          </CategoryFilter>
-        )}
         <div className="count">총 {totalBooths}개의 부스</div>
-
-        <Booth />
 
         {selectBooth === "booth" ? (
           likeBooth === "likeBooth" ? (
             <>
               <List>
                 {" "}
-                {likebooths.map((booth) => (
-                  <Booth key={booth.id} boothData={booth} />
+                {likebooths.slice(startIdx, endIdx).map((booth, index) => (
+                  <Booth key={index} boothData={booth} />
                 ))}
               </List>
               <Pagination

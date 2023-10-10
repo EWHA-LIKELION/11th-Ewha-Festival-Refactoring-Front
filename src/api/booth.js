@@ -66,8 +66,10 @@ export const PatchMenuLike = async (menuId) => {
 // Get: 좋아요한 부스 목록 조회
 export const GetLikedBooths = async (day, college, category) => {
   try {
-    let queryString = `mypage/booth/likes/?day=${day}`;
-    if (college) {
+    let queryString = `mypage/booth/likes/?`;
+    if (day) {
+      queryString += `&day=${day}`;
+    } else if (college) {
       queryString += `&college=${college}`;
     } else if (category) {
       queryString += `&category=${category}`;
@@ -90,8 +92,10 @@ export const GetLikedBooths = async (day, college, category) => {
 // Get: 좋아요한 메뉴 목록 조회
 export const GetLikedMenus = async (day, college, category) => {
   try {
-    let queryString = `mypage/menu/likes/?day=${day}`;
-    if (college) {
+    let queryString = `mypage/menu/likes/?`;
+    if (day) {
+      queryString += `&day=${day}`;
+    } else if (college) {
       queryString += `&college=${college}`;
     } else if (category) {
       queryString += `&category=${category}`;
@@ -114,8 +118,10 @@ export const GetLikedMenus = async (day, college, category) => {
 // Get: 좋아요한 공연 목록 조회
 export const GetLikedShows = async (day, college, category) => {
   try {
-    let queryString = `mypage/show/likes/?day=${day}`;
-    if (college) {
+    let queryString = `mypage/show/likes/?`;
+    if (day) {
+      queryString += `&day=${day}`;
+    } else if (college) {
       queryString += `&college=${college}`;
     } else if (category) {
       queryString += `&category=${category}`;
