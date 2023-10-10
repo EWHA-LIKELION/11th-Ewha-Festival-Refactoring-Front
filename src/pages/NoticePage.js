@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { styled } from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { GetNotice } from "../api/tf";
+import { useAppSelector } from "../redux/store";
 
 import TopBar from "../components/_common/TopBar";
 import write from "../assets/images/notice/write.svg";
@@ -9,6 +11,19 @@ import Footer from "../components/_common/Footer";
 
 const NoticePage = () => {
   const navigate = useNavigate();
+  const tfAdmin = useAppSelector((state) => state.user.isTf);
+  const [notices, setNotices] = useState([]);
+
+  useEffect(() => {
+    GetNotice()
+      .then((response) => {
+        setNotices(response.data.data);
+        console.log(response.data.data);
+      })
+      .catch((error) => {
+        console.log("tf 공지사항 조회 실패", error);
+      });
+  }, []);
 
   const goWrite = () => {
     navigate("/notice/write");
@@ -16,17 +31,17 @@ const NoticePage = () => {
 
   return (
     <Wrapper>
-      <TopBar titleText="공지사항" />
-      <WriteBtn onClick={goWrite}>
-        <img src={write} />
-        <span>공지 작성하기</span>
-      </WriteBtn>
+      <TopBar titleText="공지사항" showSearch={false} />
+      {tfAdmin && (
+        <WriteBtn onClick={goWrite}>
+          <img src={write} />
+          <span>공지 작성하기</span>
+        </WriteBtn>
+      )}
       <List>
-        <NoticeList />
-        <NoticeList />
-        <NoticeList />
-        <NoticeList />
-        <NoticeList />
+        {notices.map((notice) => (
+          <NoticeList key={notice.id} notice={notice} />
+        ))}
       </List>
       <Footer />
     </Wrapper>
@@ -59,5 +74,5 @@ const WriteBtn = styled.div`
 
 const List = styled.div`
   padding-top: 30px;
-  padding-bottom: 130px;
+  min-height: 600px;
 `;

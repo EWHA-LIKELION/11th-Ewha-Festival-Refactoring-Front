@@ -7,31 +7,31 @@ import concert from "../../assets/images/Mypage/concert.png";
 import { ReactComponent as PinkHeart } from "../../assets/icons/heart-empty.svg";
 import { useNavigate } from "react-router-dom";
 
-const Concert = () => {
+const Concert = ({ showData }) => {
   const navigate = useNavigate();
   return (
     <Wrapper
       onClick={() => {
-        navigate(`/performance/detail/1`);
+        navigate(`/performance/detail/${showData.id}`);
       }}
     >
-      <img src={concert} />
+      <img src={showData.thumbnail} alt={`Concert ${showData.name}`} />
 
       <InfoWrapper>
         <Place>
-          학문관광장<span>·</span>
-          <span>공연</span>
+          {showData.college}
+          <span>·</span>
+          <span>{showData.category}</span>
         </Place>
-
         <Heart>
           <PinkHeart />
-          <div className="like">1000</div>
+          <div className="like">{showData.is_like_count}</div>
         </Heart>
       </InfoWrapper>
 
       <Title>
-        공연이름을뭐로지어야하나요
-        <div className="hashtag"> #밴드 #일렉 #새소년</div>
+        {showData.name}
+        <div className="hashtag"> {showData.hashtag}</div>
       </Title>
     </Wrapper>
   );

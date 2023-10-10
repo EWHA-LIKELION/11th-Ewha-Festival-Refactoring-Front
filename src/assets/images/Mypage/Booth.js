@@ -1,15 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "../../App.css";
 import { styled } from "styled-components";
-import { useNavigate, useParams } from "react-router-dom";
-import { GetDetail } from "../../api/booth";
-//슬라이더
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import { useNavigate } from "react-router-dom";
+
 //부스 대표 사진
 import boothCover from "../../assets/images/Mypage/boothcover.png";
-import concert from "../../assets/images/Mypage/concert.png";
 import { ReactComponent as PinkHeart } from "../../assets/icons/heart-empty.svg";
 import Degree from "../_common/Degree";
 
@@ -17,73 +12,15 @@ import Degree from "../_common/Degree";
 import fullheart from "../../assets/images/detail/menu-fullheart.svg";
 import emptyheart from "../../assets/images/detail/menu-emptyheart.svg";
 
-// const Booth = ({ boothData }) => {
-//   const navigate = useNavigate();
-
-//   return (
-//     <Wrapper
-//       onClick={() => {
-//         navigate(`/booth/detail/${boothData.id}`);
-//       }}
-//     >
-//       <img src={boothCover} />
-
-//       <InfoWrapper>
-//         <Place>
-//           {" "}
-//           {boothData.number}
-//           <span>·</span>
-//           <span>{boothData.category.join(", ")}</span>
-//         </Place>
-
-//         <Heart>
-//           <Degree size="small" degree="light" />
-//           <PinkHeart />
-//           <div className="like">{boothData.is_like_count}</div>
-//         </Heart>
-//       </InfoWrapper>
-
-//       <Title>
-//         부스이름을뭐로지어야하나요
-//         <div className="hashtag"> {boothData.hashtag}</div>
-//       </Title>
-//     </Wrapper>
-//   );
-// };
-// export default Booth;
-
 const Booth = () => {
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    initialSlide: 0,
-    appendDots: (dots) => (
-      <div
-        style={{
-          position: "absolute",
-          bottom: "20px",
-          left: "50%",
-          transform: "translateX(-50%)",
-        }}
-      >
-        <ul style={{ margin: "0" }}>{dots}</ul>
-      </div>
-    ),
-  };
-
+  const navigate = useNavigate();
   return (
-    <Wrapper>
-      <Slider {...settings}>
-        <div>
-          <img src={boothCover} alt="임시이미지1" />
-        </div>
-        <div>
-          <img src={concert} alt="임시이미지2" />
-        </div>
-      </Slider>
+    <Wrapper
+      onClick={() => {
+        navigate(`/booth/detail/1`);
+      }}
+    >
+      <img src={boothCover} />
 
       <InfoWrapper>
         <Place>
@@ -94,7 +31,7 @@ const Booth = () => {
         </Place>
 
         <Heart>
-          <div className="degree">여유</div>
+          <Degree size="small" degree="light" />
           <PinkHeart />
           <div className="like">1000</div>
         </Heart>

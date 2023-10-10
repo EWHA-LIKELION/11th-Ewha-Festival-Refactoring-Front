@@ -66,6 +66,7 @@ const Event = styled.div`
 
   #event1 {
     margin-top: 188px;
+    margin-left: 100px;
     position: absolute;
     z-index: 1;
     display: flex;
@@ -83,7 +84,8 @@ const Event = styled.div`
   }
 
   #event3 {
-    margin-top: 182px;
+    margin-top: 190px;
+    margin-right: 8px;
     position: absolute;
     z-index: 1;
     display: flex;

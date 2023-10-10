@@ -1,10 +1,7 @@
 import React from "react";
 import { styled } from "styled-components";
 
-import dayClicked from "../../assets/icons/highlight-yellow.svg";
-import categoryClicked from "../../assets/icons/highlight-red.svg";
-
-const BoothFilter = ({
+const MyBoothFilter = ({
   setSelectDay,
   setSelectDayId,
   setSelectPlace,
@@ -42,24 +39,27 @@ const BoothFilter = ({
 
   return (
     <Wrapper>
-      <Line>
-        <DayFilter>
-          {days.map((day) => (
-            <Day
-              key={day.date}
-              onClick={() => {
-                setSelectDay(day.date);
-                setSelectDayId(day.id);
-              }}
-              isSelected={selectDay === day.date}
-            >
-              <span id="date">{day.date}</span>
-              <span>{day.name}</span>
-            </Day>
-          ))}
-        </DayFilter>
-      </Line>
       <ViewFilter>
+        <View
+          onClick={() => {
+            setSelectView("all");
+            setSelectPlace();
+            setSelectCategoryId();
+          }}
+          isSelected={selectView === "all"}
+        >
+          <span>전체 ·</span>
+        </View>
+        <View
+          onClick={() => {
+            setSelectView("day");
+            setSelectDay("17");
+            setSelectDayId("1");
+          }}
+          isSelected={selectView === "all"}
+        >
+          <span>날짜 ·</span>
+        </View>
         <View
           onClick={() => {
             setSelectView("place");
@@ -67,7 +67,7 @@ const BoothFilter = ({
           }}
           isSelected={selectView === "place"}
         >
-          <span>장소별 보기</span>
+          <span>장소 ·</span>
         </View>
         <View
           id="long"
@@ -79,19 +79,27 @@ const BoothFilter = ({
           }}
           isSelected={selectView === "category"}
         >
-          <span>카테고리별 보기</span>
-        </View>
-        <View
-          onClick={() => {
-            setSelectView("all");
-            setSelectPlace();
-            setSelectCategoryId();
-          }}
-          isSelected={selectView === "all"}
-        >
-          <span>전체 보기</span>
+          <span>카테고리 </span>
         </View>
       </ViewFilter>
+      {selectView === "day" && (
+        <DayFilter>
+          {days.map((day) => (
+            <Day
+              key={day.date}
+              onClick={() => {
+                setSelectDay(day.date);
+                setSelectDayId(day.id);
+              }}
+              isSelected={selectDay === day.date}
+            >
+              <span>{day.date}일</span>
+              <span>{day.name}</span>
+            </Day>
+          ))}
+        </DayFilter>
+      )}
+
       {selectView === "place" && (
         <PlaceFilter>
           {places.map((place) => (
@@ -125,20 +133,13 @@ const BoothFilter = ({
   );
 };
 
-export default BoothFilter;
+export default MyBoothFilter;
 
 const Wrapper = styled.div`
   width: 390px;
   display: flex;
   flex-direction: column;
   align-items: center;
-`;
-
-const Line = styled.div`
-  display: flex;
-  justify-content: center;
-  width: 390px;
-  border-bottom: 1px solid var(--gray3);
 `;
 
 const DayFilter = styled.div`
@@ -150,24 +151,28 @@ const DayFilter = styled.div`
 `;
 
 const Day = styled.div`
-  background-image: ${(props) =>
-    props.isSelected ? `url(${dayClicked})` : "none"};
-  background-size: 75px 110px;
-  background-repeat: no-repeat;
-  background-position: center center;
-  padding: 16px 16px;
-  border-bottom: ${(props) =>
-    props.isSelected ? "1px solid var(--green2)" : "none"};
   display: flex;
-  flex-direction: column;
+  width: 98px;
+  height: 29.12px;
   justify-content: center;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+  background: ${(props) =>
+    props.isSelected ? "var(--green2, #029c54)" : "#fff"};
+  border-bottom: ${(props) =>
+    props.isSelected ? "1px solid #029C54" : "none"};
+
+  border-radius: 104px;
+  border: 1.04px solid var(--2023-SWE_green2, #029c54);
   cursor: pointer;
   span {
-    color: ${(props) => (props.isSelected ? "var(--green2)" : "#9B9B9B")};
+    color: ${(props) => (props.isSelected ? "#ffff" : "var(--green2)")};
     text-align: center;
-    font-size: 16.64px;
+    font-family: Pretendard;
+    font-size: 14.56px;
     font-style: normal;
-    font-weight: 700;
+    font-weight: 400;
     line-height: normal;
   }
   #date {
@@ -178,25 +183,24 @@ const Day = styled.div`
 
 const ViewFilter = styled.div`
   display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  padding: 18px 30px;
+  margin-bottom: 17px;
+
+  margin-right: 140px;
 `;
 
 const View = styled.div`
+  margin-right: 5px;
   cursor: pointer;
   span {
-    background-image: ${(props) =>
-      props.isSelected ? `url(${categoryClicked})` : "none"};
-    background-repeat: no-repeat;
-    background-position: center center;
-    padding: 16px 20px;
-    color: ${(props) => (props.isSelected ? "var(--white)" : "var(--gray2)")};
+    margin-right: 5px;
+    color: ${(props) =>
+      props.isSelected === "all"
+        ? "var(--red, #F55B1D)"
+        : "var(--gray2, #9b9b9b)"};
+    font-weight: ${(props) => (props.isSelected === "all" ? "700" : "400")};
     text-align: center;
-
-    font-size: 13px;
+    font-size: 15px;
     font-style: normal;
-    font-weight: 400;
     line-height: 100%;
   }
 `;
@@ -204,6 +208,7 @@ const View = styled.div`
 const PlaceFilter = styled.div`
   width: 340px;
   display: grid;
+  align-items: center;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 10px 10px;
   padding: 5px 0px 10px 0px;
@@ -231,10 +236,12 @@ const Place = styled.div`
 `;
 
 const CategoryFilter = styled.div`
-  width: 340px;
+  width: 347px;
   display: grid;
+  align-items: center;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  justify-content: center;
   padding: 5px 0px 10px 0px;
 `;
 
@@ -246,13 +253,14 @@ const Category = styled.div`
   align-items: center;
   flex-shrink: 0;
   border-radius: 104px;
-  border: 0.5px solid var(--green2);
+  border: 0.5px solid var(--2023-SWE_green2, #029c54);
   background: ${(props) =>
-    props.isSelected ? "var(--green2)" : "var(--white)"};
+    props.isSelected ? "var(--2023-SWE_green2, #029c54)" : "#fff"};
   cursor: pointer;
-
-  color: ${(props) => (props.isSelected ? "var(--white)" : "var(--green2)")};
+  color: ${(props) =>
+    props.isSelected ? "#fff" : "var(--2023-SWE_green2, #029c54)"};
   text-align: center;
+  font-family: Pretendard;
   font-size: 14.56px;
   font-style: normal;
   font-weight: 400;

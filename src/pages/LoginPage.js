@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
 //유저 정보 관련
-import { PostLogin } from "../api/user";
+import { PostLogin, GetProfile } from "../api/user";
 
 //component
 import TopBar from "../components/_common/TopBar";
@@ -26,6 +26,24 @@ const LoginPage = () => {
       .then((data) => {
         const token = data.data.access_token;
         window.localStorage.setItem("token", JSON.stringify(token));
+        console.log(data);
+        GetProfile(token)
+          .then((res) => {
+            console.log(res);
+            dispatch(
+              setUser({
+                id: res.data.data.id,
+                nickname: res.data.data.nickname,
+                username: res.data.data.username,
+                is_booth: res.data.data.is_booth,
+                is_tf: res.data.data.is_tf,
+                booth_id: res.data.data.event_id,
+              })
+            );
+          })
+          .catch((error) => {
+            console.log(error);
+          });
         navigate("/");
       })
       .catch((error) => {

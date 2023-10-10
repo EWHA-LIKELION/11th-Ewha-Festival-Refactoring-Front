@@ -19,32 +19,28 @@ const DetailInfo = ({ event, thisData }) => {
   };
 
   // 운영 시간 관리
-  // 최종 데이터 보고 다시 수정할 예정
   var timesResult = ["", "", ""];
 
-  // for (let i = 0; i < thisData.day.length; i++) {
-  //   const day = thisData.day[i];
-  //   const date = thisData.date[i];
-  //   const timeData = thisData.times[i];
+  if (thisData.day) {
+    for (let i = 0; i < thisData.day.length; i++) {
+      const day = thisData.day[i].day;
+      const date = thisData.day[i].date;
+      const timeData = thisData.times[i];
 
-  //   const startTime = timeData.starttime === "null" ? null : timeData.starttime;
-  //   const finishTime =
-  //     timeData.finishtime === "null" ? null : timeData.finishtime;
+      var formattedTime = `${date}일 ${day}`;
 
-  //   if (startTime !== null || finishTime !== null) {
-  //     const [startHour, startMinute] = startTime.split(":");
-  //     const [finishHour, finishMinute] = finishTime.split(":");
-  //     const formattedStartTime = `${
-  //       parseInt(startHour, 10) < 12 ? "AM" : "PM"
-  //     } ${startHour}:${startMinute}`;
-  //     const formattedFinishTime = `${
-  //       parseInt(finishHour, 10) < 12 ? "AM" : "PM"
-  //     } ${finishHour}:${finishMinute}`;
+      if (thisData.times.length > 0) {
+        const starthours = timeData.starttime.split(":")[0];
+        const startampm = starthours >= 12 ? "PM" : "AM";
+        const finishhours = timeData.finishtime.split(":")[0];
+        const finishampm = finishhours >= 12 ? "PM" : "AM";
 
-  //     const formattedTime = `${date}일 ${day} - ${formattedStartTime} ~ ${formattedFinishTime}`;
-  //     timesResult[i] = formattedTime;
-  //   } else timesResult[i] = null;
-  // }
+        formattedTime += ` - ${startampm} ${timeData.starttime} ~ ${finishampm} ${timeData.finishtime}`;
+      }
+
+      timesResult[i] = formattedTime;
+    }
+  }
 
   return (
     <Section>

@@ -3,9 +3,11 @@ import styled from "styled-components";
 //images
 import deleteIcon from "../../assets/images/detail/review-delete.svg";
 
-const ReviewBox = ({ comment, editerId }) => {
+import { useAppSelector } from "../../redux/store";
+
+const ReviewBox = ({ comment, editerId, handleDelete }) => {
   //부스 관리자 여부 관리
-  const compareUserIds = (userId) => {
+  const isEditerId = (userId) => {
     if (editerId === userId) {
       return true;
     } else {
@@ -13,10 +15,26 @@ const ReviewBox = ({ comment, editerId }) => {
     }
   };
 
+  //방명록 id와 사용자 id 비교
+  const userId = useAppSelector((state) => state.user.id);
+  const isUserId = (commentId) => {
+    if (userId === commentId) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   //방명록 작성 시간 형태 변환
-  const [temDatePart, timePart] = comment.created_at.split(" ");
-  const dateParts = temDatePart.split("-");
-  const formattedDate = `${parseInt(dateParts[1])}/${parseInt(dateParts[2])}`;
+  const date = new Date(comment.created_at);
+
+  const month = (date.getMonth() + 1).toString();
+  const day = date.getDate().toString().padStart(2, "0");
+  const formattedDate = `${month}/${day}`;
+
+  const hours = date.getHours().toString().padStart(2, "0");
+  const minutes = date.getMinutes().toString().padStart(2, "0");
+  const formattedTime = `${hours}:${minutes}`;
 
   return (
     <Box>
@@ -25,18 +43,24 @@ const ReviewBox = ({ comment, editerId }) => {
           {/* 작성자가 부스관리자인지에 따른 글씨색 변화 */}
           <Nickname
             style={{
-              color: compareUserIds(comment.user.id)
+              color: isEditerId(comment.user.id)
                 ? "var(--red)"
                 : "var(--green2)",
             }}
           >
             {comment.user.nickname}
           </Nickname>
-          <Date>{formattedDate}</Date>
-          <Date>{timePart}</Date>
+          <Time>{formattedDate}</Time>
+          <Time>{formattedTime}</Time>
         </div>
         {/* 작성자가 본인일 경우 삭제 버튼 활성화 */}
-        <img src={deleteIcon} alt="review delete icon" />
+        {isUserId(comment.user.id) && (
+          <img
+            src={deleteIcon}
+            alt="review delete icon"
+            onClick={() => handleDelete(comment.id)}
+          />
+        )}
       </div>
       <Content>{comment.content}</Content>
     </Box>
@@ -79,7 +103,7 @@ const Nickname = styled.div`
   line-height: normal;
 `;
 
-const Date = styled.div`
+const Time = styled.div`
   margin-right: 2.96px;
   color: var(--gray2);
   font-size: 11px;
