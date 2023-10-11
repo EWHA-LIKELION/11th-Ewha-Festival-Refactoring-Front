@@ -37,7 +37,7 @@ const BoothListPage = () => {
 
   return (
     <>
-      <TopBar titleText="부스 목록" />
+      <TopBar titleText="부스 목록" showSearch="true" />
       <Wrapper>
         <BoothFilter
           setSelectDay={setSelectDay}
@@ -87,6 +87,7 @@ const Wrapper = styled.div`
 `;
 
 const List = styled.div`
+  min-height: 400px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-row-gap: 24px;

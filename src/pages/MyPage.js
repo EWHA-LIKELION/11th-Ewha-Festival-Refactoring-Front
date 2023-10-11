@@ -268,6 +268,7 @@ const NameCard = styled.div`
   }
 `;
 const List = styled.div`
+  min-height: 400px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-column-gap: 24px;
