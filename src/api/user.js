@@ -7,24 +7,32 @@ import { persistor } from "../index";
 
 // 로그아웃
 export const Logout = () => {
-  // alert("세션 만료, 다시 로그인해주세요.");
   persistor.purge();
   window.localStorage.removeItem("token");
-  console.log(window.localStorage.getItem("token"));
-  // window.location.href = <Navigate to="/" />;
 };
 
 // 로그인
-export const PostLogin = async (id, password) => {
+export const PostLogin = async (username, password) => {
   try {
     const response = await http.post("/accounts/login/", {
-      username: id,
+      username: username,
       password: password,
     });
 
+    const tokenData = response.data;
+    const expiration = Date.now() + tokenData.expires_in * 36000; // 토큰 만료 시간 계산
+    tokenData.expiration = expiration;
+
+    // 토큰 정보를 저장
+    window.localStorage.setItem("token", JSON.stringify(tokenData));
+
     return response.data;
   } catch (error) {
-    console.error("로그인 실패 ", error);
+    if (error.response && error.response.status === 401) {
+      // 토큰이 만료된 경우, 로그아웃 처리
+      Logout();
+    }
+    console.error("로그인 실패 ", error.response.data);
     throw error;
   }
 };
@@ -58,10 +66,19 @@ export const PostSignup = async (id, password, name) => {
 };
 
 //isLogin + AuthRoute
-export const isLogin = () => localStorage.getItem("token");
+export const isLogin = () => {
+  const tokenData = localStorage.getItem("token");
+  return tokenData && tokenData.expiration > Math.floor(Date.now() / 36000);
+};
 
 export default function AuthRoute({ component: Component }) {
-  return isLogin() ? Component : <Navigate to="/login" />;
+  if (isLogin()) {
+    return <Component />;
+  } else {
+    // 토큰이 없거나 만료된 경우, 로그아웃 처리
+    Logout();
+    return <Navigate to="/login" />;
+  }
 }
 
 //Get : 프로필 조회
