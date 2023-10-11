@@ -33,6 +33,12 @@ const SignupPage = () => {
   const [passwordsMatch, setPasswordsMatch] = useState(false); // 비밀번호 일치 여부
   const [userChecked, setUserChecked] = useState(false); //user가 확인했는지 여부
 
+  //모달 관련 state
+  const [completemodal, setCompleteModal] = useState(false);
+  const [secretmodal, setSecretModal] = useState(false);
+  const [commonmodal, setCommonModal] = useState(false);
+  const [modalCase, setModalCase] = useState(null);
+
   // 중복 확인 버튼 클릭 시 호출되는 함수
   const handleCheckUsername = async (username) => {
     let caseNumber = null;
@@ -48,25 +54,18 @@ const SignupPage = () => {
           setIsUsernameChecked(true);
           caseNumber = 1;
         }
+        setModalCase(caseNumber);
+        openCommonModal(caseNumber);
       } catch (error) {
         console.error("아이디 중복 확인 실패 ", error);
       }
     }
-
-    setModalCase(caseNumber);
-    openCommonModal(caseNumber);
   };
 
   //비밀번호 확인 함수
   const checkPasswordsMatch = () => {
     setPasswordsMatch(password === confirmPassword);
   };
-
-  //모달 관련 state
-  const [completemodal, setCompleteModal] = useState(false);
-  const [secretmodal, setSecretModal] = useState(false);
-  const [commonmodal, setCommonModal] = useState(false);
-  const [modalCase, setModalCase] = useState(null);
 
   const openCompleteModal = () => {
     let caseNumber = null; // 모든 조건 충족 시 modalCase를 null로 설정

@@ -8,7 +8,6 @@ import { PostLogin, GetProfile } from "../api/user";
 
 import { useAppDispatch } from "../redux/store";
 import { setUser } from "../redux/userSlice";
-import { initPage } from "../redux/pageSlice";
 
 //component
 import TopBar from "../components/_common/TopBar";
@@ -32,8 +31,6 @@ const LoginPage = () => {
     PostLogin(username, password)
       .then((data) => {
         const token = data.data.access_token;
-        window.localStorage.setItem("token", JSON.stringify(token));
-        console.log(data);
         GetProfile(token)
           .then((res) => {
             console.log(res);
@@ -55,11 +52,11 @@ const LoginPage = () => {
       })
       .catch((error) => {
         // 에러에 따라 다른 경고 문구 출력
-        let type = error.data.non_field_errors;
+        let type = error.response.data;
         type
-          ? type == "잘못된 비밀번호입니다."
+          ? type.non_field_errors == "잘못된 비밀번호입니다."
             ? alert("비밀번호를 확인해주세요.")
-            : alert(type)
+            : alert(type.non_field_errors)
           : alert("아이디와 비밀번호를 모두 입력해주세요.");
       });
   };
