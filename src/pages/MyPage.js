@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "../redux/store";
 import { GetLikedBooths, GetLikedMenus, GetLikedShows } from "../api/booth";
 
-// component;
+// component
 import Booth from "../components/_common/Booth";
 import Pagination from "../components/ListPage/Pagination";
 import Concert from "../components/_common/Concert";
@@ -149,7 +149,20 @@ const MyPage = () => {
                 </div>
               </>
             ) : (
-              <div id="concert">좋아요한 공연</div>
+              <div
+                id="concert"
+                onClick={() => {
+                  clickLikeBooth("likeMenu");
+                  setSelectView("all");
+                  setSelectDay();
+                  setSelectDayId();
+                  setSelectPlace();
+                  setSelectCategory();
+                  setSelectCategoryId();
+                }}
+              >
+                좋아요한 공연
+              </div>
             )}
           </Bottom>
         </Navigation>
@@ -167,9 +180,14 @@ const MyPage = () => {
           setSelectCategoryId={setSelectCategoryId}
         />
 
-        {/* 부스/메뉴/공연에 따라 아래 div 태그 바뀌어야 함 */}
-        <div className="count">총 {likebooths.length}개의 부스</div>
-        <Booth />
+        <div className="count">
+          총{" "}
+          {selectBooth === "booth"
+            ? likeBooth === "likeBooth"
+              ? `${likebooths.length}개의 부스`
+              : `${likemenus.length}개의 메뉴`
+            : `${likeshows.length}개의 공연`}
+        </div>
 
         {selectBooth === "booth" ? (
           likeBooth === "likeBooth" ? (
@@ -268,6 +286,7 @@ const NameCard = styled.div`
   }
 `;
 const List = styled.div`
+  min-height: 400px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-column-gap: 24px;

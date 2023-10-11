@@ -50,7 +50,14 @@ const MyBoothFilter = ({
           }}
           isSelected={selectView === "all"}
         >
-          <span>전체 ·</span>
+          <span
+            style={{
+              color: selectView === "all" ? "#F55B1D" : "var(--gray2)",
+              fontWeight: selectView === "all" ? 700 : 400,
+            }}
+          >
+            전체 ·
+          </span>
         </View>
         <View
           onClick={() => {
@@ -60,7 +67,14 @@ const MyBoothFilter = ({
           }}
           isSelected={selectView === "all"}
         >
-          <span>날짜 ·</span>
+          <span
+            style={{
+              color: selectView === "day" ? "#F55B1D" : "var(--gray2)",
+              fontWeight: selectView === "day" ? 700 : 400,
+            }}
+          >
+            날짜 ·
+          </span>
         </View>
         <View
           onClick={() => {
@@ -73,7 +87,14 @@ const MyBoothFilter = ({
           }}
           isSelected={selectView === "place"}
         >
-          <span>장소 ·</span>
+          <span
+            style={{
+              color: selectView === "place" ? "#F55B1D" : "var(--gray2)",
+              fontWeight: selectView === "place" ? 700 : 400,
+            }}
+          >
+            장소 ·
+          </span>
         </View>
         <View
           id="long"
@@ -87,7 +108,14 @@ const MyBoothFilter = ({
           }}
           isSelected={selectView === "category"}
         >
-          <span>카테고리 </span>
+          <span
+            style={{
+              color: selectView === "category" ? "#F55B1D" : "var(--gray2)",
+              fontWeight: selectView === "category" ? 700 : 400,
+            }}
+          >
+            카테고리{" "}
+          </span>
         </View>
       </ViewFilter>
       {selectView === "day" && (

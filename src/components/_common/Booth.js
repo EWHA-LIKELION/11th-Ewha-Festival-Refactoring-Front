@@ -1,26 +1,31 @@
 import { styled } from "styled-components";
 import { useNavigate } from "react-router-dom";
-
+import React, { useState } from "react";
 import Degree from "../_common/Degree";
 
 //images
 import boothCover from "../../assets/images/Mypage/boothcover.png";
-import concert from "../../assets/images/Mypage/concert.png";
-import { ReactComponent as PinkHeart } from "../../assets/icons/heart-empty.svg";
-import fullheart from "../../assets/images/detail/menu-fullheart.svg";
-import emptyheart from "../../assets/images/detail/menu-emptyheart.svg";
+import { ReactComponent as PinkHeart } from "../../assets/icons/heart-full.svg";
+import { ReactComponent as EmptyHeart } from "../../assets/icons/heart-empty.svg";
 
 const Booth = ({ boothData }) => {
   const navigate = useNavigate();
+  const [isLiked, setIsLiked] = useState(true);
+
+  const handleLikeClick = () => {
+    setIsLiked(!isLiked);
+  };
 
   if (!boothData) return null;
   return (
-    <Wrapper
-      onClick={() => {
-        navigate(`/booth/detail/${boothData.id}`);
-      }}
-    >
-      <img src={boothCover} alt="Booth Cover" />
+    <Wrapper>
+      <img
+        src={boothCover}
+        alt="Booth Cover"
+        onClick={() => {
+          navigate(`/booth/detail/${boothData.id}`);
+        }}
+      />
       <Tag>
         {boothData.began && <div>비건</div>}
         {boothData.wheelchair && <div>휠체어 접근 가능</div>}
@@ -40,7 +45,10 @@ const Booth = ({ boothData }) => {
           )}
 
           {/* 좋아요 여부 변경되게 */}
-          <PinkHeart />
+          <LikeButton onClick={handleLikeClick}>
+            {isLiked ? <PinkHeart /> : <EmptyHeart />}
+          </LikeButton>
+
           <div className="like">{boothData.is_like_count}</div>
         </Heart>
       </InfoWrapper>
@@ -89,6 +97,8 @@ const Heart = styled.div`
     font-weight: 500;
   }
 `;
+
+const LikeButton = styled.div``;
 
 const Title = styled.div`
   margin-top: 10px;
