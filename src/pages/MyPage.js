@@ -3,7 +3,6 @@ import { styled } from "styled-components";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useAppSelector } from "../redux/store";
-import { GetProfile } from "../api/user";
 import { GetLikedBooths, GetLikedMenus, GetLikedShows } from "../api/booth";
 // component;
 import Booth from "../components/_common/Booth";
@@ -12,6 +11,7 @@ import Concert from "../components/_common/Concert";
 import Menu from "../components/_common/Menu";
 import TopBar from "../components/_common/TopBar";
 import Footer from "../components/_common/Footer";
+import MyBoothFilter from "../components/Mypage/MyBoothFilter";
 // 부스관리자 전용
 import BoothAdmin from "../components/Mypage/BoothAdmin";
 // 공연관리자 전용
@@ -39,48 +39,42 @@ const MyPage = () => {
   const [selectBooth, setSelectBooth] = useState("booth"); //부스 vs 공연
   const [likeBooth, setLikeBooth] = useState("likeBooth"); //좋아요부스 vs 좋아요메뉴
 
-  const [selectMenu, setSelectMenu] = useState("all"); //전체,날짜,장소,카테고리
+  const [selectView, setSelectView] = useState("all");
   const [selectDay, setSelectDay] = useState(17); //nav에서 날짜 선택
-
   const [selectDayId, setSelectDayId] = useState(1);
-
   const [selectPlace, setSelectPlace] = useState("정문"); //nav에서 장소 선택
   const [selectCategory, setSelectCategory] = useState("음식"); //nav에서 카테고리 선택
   const [selectCategoryId, setSelectCategoryId] = useState(1);
 
-  const selectedDay = selectDayId;
-  const selectedPlace = selectPlace;
-  const selectedCategory = selectCategoryId;
-
   useEffect(() => {
     // 좋아요한 부스 목록 가져오기
-    GetLikedBooths(selectedDay, selectedPlace, selectedCategory)
+    GetLikedBooths(selectDayId, selectPlace, selectCategoryId)
       .then((res) => {
         setLikebooths(res.data);
-        console.log(res.data);
+        console.log(res);
       })
       .catch((error) => {
         console.error("좋아요한 부스 목록 조회 실패", error);
       });
     // 좋아요한 메뉴 목록 가져오기
-    GetLikedMenus(selectedDay, selectedPlace, selectedCategory)
+    GetLikedMenus(selectDayId, selectPlace, selectCategoryId)
       .then((res) => {
         setLikeMenus(res.data);
-        console.log(res.data);
+        console.log(res);
       })
       .catch((error) => {
         console.error("좋아요한 메뉴 목록 조회 실패", error);
       });
     // 좋아요한 공연 목록 가져오기
-    GetLikedShows(selectedDay, selectedPlace, selectedCategory)
+    GetLikedShows(selectDayId, selectPlace, selectCategoryId)
       .then((res) => {
         setLikeShows(res.data);
-        console.log(res.data);
+        console.log(res);
       })
       .catch((error) => {
         console.error("좋아요한 공연 목록 조회 실패", error);
       });
-  }, [selectedDay, selectedPlace, selectedCategory]);
+  }, [selectDayId, selectPlace, selectCategoryId]);
 
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
   const totalBooths = 40; // 전체 부스 개수
@@ -95,38 +89,6 @@ const MyPage = () => {
   const clickLikeBooth = (like) => {
     setLikeBooth(like);
   };
-
-  const ClickMenu = (menu) => {
-    setSelectMenu(menu);
-  };
-
-  const placeClick = (place) => {
-    setSelectPlace(place);
-  };
-
-  const days = [
-    { id: 1, date: 17, name: "수요일" },
-    { id: 2, date: 18, name: "목요일" },
-    { id: 3, date: 19, name: "금요일" },
-  ];
-
-  const places = [
-    "정문",
-    "교육관",
-    "대강당",
-    "휴웃길",
-    "포스코관",
-    "학문관",
-    "생활관",
-    "신세계관",
-  ];
-
-  const categories = [
-    { id: 1, name: "음식" },
-    { id: 2, name: "굿즈" },
-    { id: 3, name: "체험" },
-    { id: 4, name: "기타" },
-  ];
 
   const goToLogIn = () => {
     Logout();
@@ -184,83 +146,21 @@ const MyPage = () => {
           </Bottom>
         </Navigation>
 
-        <MenuWrapper isSelected={selectMenu}>
-          <span
-            id="all"
-            onClick={() => ClickMenu("all")}
-            isSelected={selectMenu === "all"}
-          >
-            전체 ·
-          </span>
-          <span
-            id="day"
-            onClick={() => ClickMenu("day")}
-            isSelected={selectMenu === "day"}
-          >
-            날짜 ·
-          </span>
-          <span
-            id="place"
-            onClick={() => ClickMenu("place")}
-            isSelected={selectMenu === "place"}
-          >
-            장소 ·
-          </span>
-          <span
-            id="category"
-            onClick={() => ClickMenu("category")}
-            isSelected={selectMenu === "category"}
-          >
-            카테고리
-          </span>
-        </MenuWrapper>
+        <MyBoothFilter
+          setSelectDay={setSelectDay}
+          setSelectDayId={setSelectDayId}
+          setSelectView={setSelectView}
+          setSelectPlace={setSelectPlace}
+          setSelectCategory={setSelectCategory}
+          selectDay={selectDay}
+          selectView={selectView}
+          selectPlace={selectPlace}
+          selectCategory={selectCategory}
+          setSelectCategoryId={setSelectCategoryId}
+        />
 
-        {selectMenu === "day" && (
-          <DayFilter>
-            {days.map((day) => (
-              <Day
-                key={day.date}
-                onClick={() => {
-                  setSelectDay(day.date);
-                }}
-                isSelected={selectDay === day.date}
-              >
-                <span>{day.date}일</span>
-                <span>{day.name}</span>
-              </Day>
-            ))}
-          </DayFilter>
-        )}
-        {selectMenu === "place" && (
-          <PlaceFilter>
-            {places.map((place) => (
-              <Place
-                key={place}
-                onClick={() => placeClick(place)}
-                isSelected={selectPlace === place}
-              >
-                {place}
-              </Place>
-            ))}
-          </PlaceFilter>
-        )}
-        {selectMenu === "category" && (
-          <CategoryFilter>
-            {categories.map((category) => (
-              <Category
-                key={category}
-                onClick={() => {
-                  setSelectCategory(category.name);
-                  setSelectCategoryId(category.id);
-                }}
-                isSelected={selectCategory === category.name}
-              >
-                {category.name}
-              </Category>
-            ))}
-          </CategoryFilter>
-        )}
         <div className="count">총 {totalBooths}개의 부스</div>
+        <Booth />
 
         {selectBooth === "booth" ? (
           likeBooth === "likeBooth" ? (
@@ -366,46 +266,6 @@ const List = styled.div`
   margin-bottom: 64px;
 `;
 
-const MenuWrapper = styled.div`
-  span {
-    margin-right: 5px;
-    cursor: pointer;
-  }
-  #all {
-    color: ${(props) =>
-      props.isSelected === "all"
-        ? "var(--red, #F55B1D)"
-        : "var(--gray2, #9b9b9b)"};
-    font-weight: ${(props) => (props.isSelected === "all" ? "700" : "400")};
-  }
-  #day {
-    color: ${(props) =>
-      props.isSelected === "day"
-        ? "var(--red, #F55B1D)"
-        : "var(--gray2, #9b9b9b)"};
-    font-weight: ${(props) => (props.isSelected === "day" ? "700" : "400")};
-  }
-  #place {
-    color: ${(props) =>
-      props.isSelected === "place"
-        ? "var(--red, #F55B1D)"
-        : "var(--gray2, #9b9b9b)"};
-    font-weight: ${(props) => (props.isSelected === "place" ? "700" : "400")};
-  }
-  #category {
-    color: ${(props) =>
-      props.isSelected === "category"
-        ? "var(--red, #F55B1D)"
-        : "var(--gray2, #9b9b9b)"};
-    font-weight: ${(props) =>
-      props.isSelected === "category" ? "700" : "400"};
-  }
-  text-align: center;
-  font-size: 15px;
-  font-style: normal;
-  margin-right: 179px;
-`;
-
 // 네비게이션
 const Navigation = styled.div`
   width: 390px;
@@ -492,104 +352,4 @@ const Bottom = styled.div`
     color: white;
     font-weight: ${(props) => (props.isSelected === "concert" ? "700" : "500")};
   }
-`;
-
-const PlaceFilter = styled.div`
-  width: 347px;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-row-gap: 10px;
-  justify-content: center;
-  padding: 5px 0px 10px 0px;
-`;
-
-//
-
-const Place = styled.div`
-  display: flex;
-  width: 75px;
-  height: 29px;
-  justify-content: center;
-  align-items: center;
-  flex-shrink: 0;
-  border-radius: 104px;
-  border: 0.5px solid var(--green2, #029c54);
-  background: ${(props) =>
-    props.isSelected ? "var(--green2, #029c54)" : "#fff"};
-  cursor: pointer;
-  color: ${(props) => (props.isSelected ? "#fff" : "var(--green2, #029c54)")};
-  text-align: center;
-  font-family: Pretendard;
-  font-size: 14.56px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-`;
-const DayFilter = styled.div`
-  width: 270px;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  gap: 20px;
-`;
-
-const Day = styled.div`
-  display: flex;
-  width: 98px;
-  height: 29.12px;
-  justify-content: center;
-  align-items: center;
-  gap: 4px;
-  flex-shrink: 0;
-  background: ${(props) =>
-    props.isSelected ? "var(--green2, #029c54)" : "#fff"};
-  border-bottom: ${(props) =>
-    props.isSelected ? "1px solid #029C54" : "none"};
-
-  border-radius: 104px;
-  border: 1.04px solid var(--2023-SWE_green2, #029c54);
-  cursor: pointer;
-  span {
-    color: ${(props) => (props.isSelected ? "#ffff" : "var(--green2)")};
-    text-align: center;
-    font-family: Pretendard;
-    font-size: 14.56px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-  }
-  #date {
-    font-size: 12.48px;
-    font-weight: 300;
-  }
-`;
-const CategoryFilter = styled.div`
-  width: 347px;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-row-gap: 10px;
-  justify-content: center;
-  padding: 5px 0px 10px 0px;
-`;
-
-const Category = styled.div`
-  display: flex;
-  width: 75px;
-  height: 29px;
-  justify-content: center;
-  align-items: center;
-  flex-shrink: 0;
-  border-radius: 104px;
-  border: 0.5px solid var(--2023-SWE_green2, #029c54);
-  background: ${(props) =>
-    props.isSelected ? "var(--2023-SWE_green2, #029c54)" : "#fff"};
-  cursor: pointer;
-  color: ${(props) =>
-    props.isSelected ? "#fff" : "var(--2023-SWE_green2, #029c54)"};
-  text-align: center;
-  font-family: Pretendard;
-  font-size: 14.56px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
 `;
