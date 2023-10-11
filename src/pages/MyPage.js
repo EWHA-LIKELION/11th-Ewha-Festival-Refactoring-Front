@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "../redux/store";
 import { GetLikedBooths, GetLikedMenus, GetLikedShows } from "../api/booth";
 
-// component;
+// component
 import Booth from "../components/_common/Booth";
 import Pagination from "../components/ListPage/Pagination";
 import Concert from "../components/_common/Concert";

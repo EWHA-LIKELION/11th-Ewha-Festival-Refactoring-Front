@@ -5,7 +5,6 @@ import Degree from "../_common/Degree";
 
 //images
 import boothCover from "../../assets/images/Mypage/boothcover.png";
-import concert from "../../assets/images/Mypage/concert.png";
 import { ReactComponent as PinkHeart } from "../../assets/icons/heart-full.svg";
 import { ReactComponent as EmptyHeart } from "../../assets/icons/heart-empty.svg";
 
