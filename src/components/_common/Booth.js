@@ -1,60 +1,25 @@
-import React, { useState, useEffect } from "react";
-import "../../App.css";
 import { styled } from "styled-components";
-import { useNavigate, useParams } from "react-router-dom";
-import { GetDetail } from "../../api/booth";
-//슬라이더
-import ImageSlider from "./ImageSlider";
-//부스 대표 사진
+import { useNavigate } from "react-router-dom";
+
+import Degree from "../_common/Degree";
+
+//images
 import boothCover from "../../assets/images/Mypage/boothcover.png";
 import concert from "../../assets/images/Mypage/concert.png";
 import { ReactComponent as PinkHeart } from "../../assets/icons/heart-empty.svg";
-import Degree from "../_common/Degree";
-
-import { boothData } from "../../_mock/boothData";
-//images
 import fullheart from "../../assets/images/detail/menu-fullheart.svg";
 import emptyheart from "../../assets/images/detail/menu-emptyheart.svg";
 
-// const Booth = () => {
-//   const navigate = useNavigate();
-
-//   return (
-//     <Wrapper
-//       onClick={() => {
-//         navigate(`/booth/detail/${boothData.id}`);
-//       }}
-//     >
-//       <img src={boothCover} />
-
-//       <InfoWrapper>
-//         <Place>
-//           {" "}
-//           {boothData.number}
-//           <span>·</span>
-//           <span>{boothData.category}</span>
-//         </Place>
-
-//         <Heart>
-//           <Degree size="small" degree="light" />
-//           <PinkHeart />
-//           <div className="like">{boothData.is_like_count}</div>
-//         </Heart>
-//       </InfoWrapper>
-
-//       <Title>
-//         부스이름을뭐로지어야하나요
-//         <div className="hashtag"> {boothData.hashtag}</div>
-//       </Title>
-//     </Wrapper>
-//   );
-// };
-// export default Booth;
-
 const Booth = ({ boothData }) => {
+  const navigate = useNavigate();
+
+  if (!boothData) return null;
   return (
-    <Wrapper>
-      {/* <ImageSlider id={boothData.id} imgs={boothData.thumbnail} /> */}
+    <Wrapper
+      onClick={() => {
+        navigate(`/booth/detail/${boothData.id}`);
+      }}
+    >
       <img src={boothCover} alt="Booth Cover" />
       <Tag>
         {boothData.began && <div>비건</div>}
@@ -63,14 +28,18 @@ const Booth = ({ boothData }) => {
 
       <InfoWrapper>
         <Place>
-          {" "}
-          {boothData.number}
+          {boothData.college}
           <span>·</span>
           <span>{boothData.category}</span>
         </Place>
-
         <Heart>
-          <div className="degree">{boothData.busy ? "혼잡" : "여유"}</div>
+          {boothData.busy ? (
+            <Degree size="small" degree="heavy" />
+          ) : (
+            <Degree size="small" degree="light" />
+          )}
+
+          {/* 좋아요 여부 변경되게 */}
           <PinkHeart />
           <div className="like">{boothData.is_like_count}</div>
         </Heart>
@@ -95,6 +64,8 @@ const Wrapper = styled.div`
 `;
 const InfoWrapper = styled.div`
   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   margin-top: 5px;
 `;
 const Place = styled.div`
@@ -111,18 +82,6 @@ const Heart = styled.div`
   margin-top: 1px;
   display: flex;
   gap: 4px;
-  .degree {
-    margin-right: 4px;
-    width: 28.6px;
-    height: 13px;
-    border-radius: 25.814px;
-    background-color: #4c68fa;
-    color: #fff;
-    text-align: center;
-    font-size: 8px;
-    font-style: normal;
-    font-weight: 700;
-  }
   .like {
     color: var(--pink);
     font-size: 10px;
