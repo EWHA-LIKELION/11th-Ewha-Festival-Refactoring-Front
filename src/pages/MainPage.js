@@ -22,12 +22,12 @@ const MainPage = () => {
 
   const openMenu = () => {
     setIsMenuOpen(true);
-    document.body.style.overflow = "hidden";
+    //document.body.style.overflow = "hidden";
   };
 
   const closeMenu = () => {
     setIsMenuOpen(false);
-    document.body.style.overflow = "auto";
+    //document.body.style.overflow = "auto";
   };
 
   const goToMyPage = () => {

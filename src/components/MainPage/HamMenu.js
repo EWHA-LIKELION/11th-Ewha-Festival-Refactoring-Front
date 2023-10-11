@@ -89,7 +89,7 @@ const Wrapper1 = styled.div`
   width: 352.41px;
   position: fixed;
   top: 33px;
-  bottom: 12.12px;
+  bottom: 12px;
   background-color: var(--beige);
   display: ${(props) => (props.isOpen ? "block" : "none")};
   z-index: 90;
@@ -100,10 +100,12 @@ const Wrapper1 = styled.div`
 `;
 
 const Wrapper2 = styled.div`
-  position: fixed;
+  position: absolute;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  overflow: hidden;
+  margin: 0;
 
   #close {
     width: 24.079px;
@@ -158,7 +160,7 @@ const Creators = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 500px;
+  margin-top: 510px;
   margin-left: 5px;
 
   p {
