@@ -1,9 +1,13 @@
+import { useState } from "react";
 import styled from "styled-components";
+
 import TopBar from "../components/_common/TopBar";
 import Footer from "../components/_common/Footer";
+import Booth from "../components/_common/Booth";
 
 import search_btn from "../assets/images/search/search_btn.svg";
-import { useState } from "react";
+
+import { GetSearchResult } from "../api/booth";
 
 const BoothSearchPage = () => {
   const [userInput, setUserInput] = useState("");
@@ -12,7 +16,17 @@ const BoothSearchPage = () => {
   };
 
   const [lists, setLists] = useState([]);
-  const searched = lists.filter((item) => item.title.includes(userInput));
+
+  const getResult = () => {
+    if (userInput) {
+      GetSearchResult(1, userInput)
+        .then((response) => {
+          setLists(response.data);
+          console.log(response);
+        })
+        .catch();
+    }
+  };
 
   return (
     <>
@@ -25,7 +39,7 @@ const BoothSearchPage = () => {
             id="search_input"
             onChange={getValue}
           />
-          <img src={search_btn} />
+          <img src={search_btn} onClick={getResult} />
         </div>
         <Container>
           <div className="result">
@@ -33,6 +47,11 @@ const BoothSearchPage = () => {
             <div className="count">총 0개의 부스</div>
           </div>
         </Container>
+        <ResultGrid>
+          {lists?.map((boothData, index) => (
+            <Booth key={index} boothData={boothData} />
+          ))}
+        </ResultGrid>
       </Wrapper>
       <Footer />
     </>
@@ -43,7 +62,7 @@ export default BoothSearchPage;
 const Wrapper = styled.div`
   background-color: var(--beige);
   width: 390px;
-  height: 600px;
+  min-height: 600px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -89,4 +108,13 @@ const Container = styled.div`
       line-height: normal;
     }
   }
+`;
+
+const ResultGrid = styled.div`
+  width: 350px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-row-gap: 24px;
+  grid-column-gap: 24px;
+  margin-bottom: 40px;
 `;

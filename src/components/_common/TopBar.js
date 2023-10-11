@@ -22,6 +22,14 @@ const TopBar = ({ titleText, showSearch = false }) => {
     document.body.style.overflow = "auto";
   };
 
+  const navSearch = () => {
+    if (titleText === "부스 목록") {
+      navigate("/booth/search/");
+    } else if (titleText === "공연 목록") {
+      navigate("/performance/search/");
+    }
+  };
+
   return (
     <>
       <Wrapper>
@@ -32,10 +40,7 @@ const TopBar = ({ titleText, showSearch = false }) => {
             <span>{titleText}</span>
           </Title>
           {showSearch ? (
-            <img
-              src={search}
-              onClick={() => navigate("/performance/search/")}
-            />
+            <img src={search} onClick={navSearch} />
           ) : (
             <div style={{ width: "25px", height: "25px" }}></div>
           )}

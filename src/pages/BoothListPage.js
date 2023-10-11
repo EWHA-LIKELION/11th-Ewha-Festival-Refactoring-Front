@@ -37,7 +37,7 @@ const BoothListPage = () => {
 
   return (
     <>
-      <TopBar titleText="부스 목록" />
+      <TopBar titleText="부스 목록" showSearch="true" />
       <Wrapper>
         <BoothFilter
           setSelectDay={setSelectDay}
