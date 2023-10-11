@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { useNavigate } from "react-router-dom";
 
 import flower from "../../assets/images/Main/flower.svg";
@@ -25,68 +25,73 @@ const HamMenu = ({ isOpen, closeMenu }) => {
   };
 
   return (
-    <Wrapper1 isOpen={isOpen}>
-      {isOpen && (
-        <Wrapper2>
-          <img src={close} onClick={closeMenu} id="close" />
-          <img src={title} id="title" />
-          <img src={flower} id="flower" />
-          <Buttons>
-            <But
-              onClick={goToMyPage}
-              style={{
-                gap: "7px",
-              }}
-            >
-              <img src={mypageWhite} />
-              <p>마이페이지</p>
-            </But>
-            <But onClick={() => navigate("/")}>
-              <img src={home} />
-              <p>메인 페이지</p>
-            </But>
-            <But onClick={() => navigate("/notice")}>
-              <img src={megaphone} />
-              <p>공지사항</p>
-            </But>
-            <But onClick={() => navigate("/booth")}>
-              <img src={booth} />
-              <p>부스 목록</p>
-            </But>
-            <But
-              onClick={() => navigate("/performance")}
-              style={{
-                gap: "7px",
-              }}
-            >
-              <img src={perform} style={{ width: "38px" }} />
-              <p>공연 목록</p>
-            </But>
-            <But onClick={() => navigate("/trashbin")}>
-              <img src={trashcan} />
-              <p>쓰레기통</p>
-            </But>
-          </Buttons>
-          <Creators>
-            <Button
-              onClick={() => navigate("/makers")}
-              style={{
-                textDecoration: "none",
-              }}
-            >
-              <img src={creators} />
-              <p>이웃제를 만들이들</p>
-            </Button>
-          </Creators>
-        </Wrapper2>
-      )}
+    <Wrapper1>
+      <Wrapper2 isOpen={isOpen}>
+        {isOpen && (
+          <Wrapper3>
+            <img src={close} onClick={closeMenu} id="close" />
+            <img src={title} id="title" />
+            <img src={flower} id="flower" />
+            <Buttons>
+              <But onClick={goToMyPage}>
+                <img src={mypageWhite} />
+                <p>마이페이지</p>
+              </But>
+              <But onClick={() => navigate("/")}>
+                <img src={home} />
+                <p>메인 페이지</p>
+              </But>
+              <But onClick={() => navigate("/notice")}>
+                <img src={megaphone} />
+                <p>공지사항</p>
+              </But>
+              <But onClick={() => navigate("/booth")}>
+                <img src={booth} />
+                <p>부스 목록</p>
+              </But>
+              <But onClick={() => navigate("/performance")}>
+                <img src={perform} />
+                <p>공연 목록</p>
+              </But>
+              <But onClick={() => navigate("/trashbin")}>
+                <img src={trashcan} />
+                <p>쓰레기통</p>
+              </But>
+            </Buttons>
+            <Creators>
+              <Button
+                onClick={() => navigate("/makers")}
+                style={{
+                  textDecoration: "none",
+                }}
+              >
+                <img src={creators} />
+                <p>이웃제를 만들이들</p>
+              </Button>
+            </Creators>
+          </Wrapper3>
+        )}
+      </Wrapper2>
     </Wrapper1>
   );
 };
 
 export default HamMenu;
 
+const animation = keyframes`
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+`;
+
 const Wrapper1 = styled.div`
+  overflow: hidden;
+`;
+
+const Wrapper2 = styled.div`
   width: 352.41px;
   position: fixed;
   top: 33px;
@@ -97,10 +102,10 @@ const Wrapper1 = styled.div`
   border-radius: 0px 50px 50px 0px;
   filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.25));
   overflow: hidden;
-  //animation: 0.8s ease 0s 1 normal none running;
+  animation: ${animation} 1s normal none;
 `;
 
-const Wrapper2 = styled.div`
+const Wrapper3 = styled.div`
   position: fixed;
   display: flex;
   flex-direction: column;
@@ -109,6 +114,7 @@ const Wrapper2 = styled.div`
   #close {
     width: 24.079px;
     margin: 56.51px 0px 0px 33.01px;
+    cursor: pointer;
   }
 
   #title {
@@ -170,7 +176,7 @@ const Creators = styled.div`
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-    margin-top: -70px;
+    margin-top: -80px;
   }
 `;
 
