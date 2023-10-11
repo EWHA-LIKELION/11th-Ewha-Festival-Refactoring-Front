@@ -25,53 +25,51 @@ const HamMenu = ({ isOpen, closeMenu }) => {
   };
 
   return (
-    <Wrapper1>
-      <Wrapper2 isOpen={isOpen}>
-        {isOpen && (
-          <Wrapper3>
-            <img src={close} onClick={closeMenu} id="close" />
-            <img src={title} id="title" />
-            <img src={flower} id="flower" />
-            <Buttons>
-              <But onClick={goToMyPage}>
-                <img src={mypageWhite} />
-                <p>마이페이지</p>
-              </But>
-              <But onClick={() => navigate("/")}>
-                <img src={home} />
-                <p>메인 페이지</p>
-              </But>
-              <But onClick={() => navigate("/notice")}>
-                <img src={megaphone} />
-                <p>공지사항</p>
-              </But>
-              <But onClick={() => navigate("/booth")}>
-                <img src={booth} />
-                <p>부스 목록</p>
-              </But>
-              <But onClick={() => navigate("/performance")}>
-                <img src={perform} />
-                <p>공연 목록</p>
-              </But>
-              <But onClick={() => navigate("/trashbin")}>
-                <img src={trashcan} />
-                <p>쓰레기통</p>
-              </But>
-            </Buttons>
-            <Creators>
-              <Button
-                onClick={() => navigate("/makers")}
-                style={{
-                  textDecoration: "none",
-                }}
-              >
-                <img src={creators} />
-                <p>이웃제를 만들이들</p>
-              </Button>
-            </Creators>
-          </Wrapper3>
-        )}
-      </Wrapper2>
+    <Wrapper1 isOpen={isOpen}>
+      {isOpen && (
+        <Wrapper2>
+          <img src={close} onClick={closeMenu} id="close" />
+          <img src={title} id="title" />
+          <img src={flower} id="flower" />
+          <Buttons>
+            <But onClick={goToMyPage}>
+              <img src={mypageWhite} />
+              <p>마이페이지</p>
+            </But>
+            <But onClick={() => navigate("/")}>
+              <img src={home} />
+              <p>메인 페이지</p>
+            </But>
+            <But onClick={() => navigate("/notice")}>
+              <img src={megaphone} />
+              <p>공지사항</p>
+            </But>
+            <But onClick={() => navigate("/booth")}>
+              <img src={booth} />
+              <p>부스 목록</p>
+            </But>
+            <But onClick={() => navigate("/performance")}>
+              <img src={perform} />
+              <p>공연 목록</p>
+            </But>
+            <But onClick={() => navigate("/trashbin")}>
+              <img src={trashcan} />
+              <p>쓰레기통</p>
+            </But>
+          </Buttons>
+          <Creators>
+            <Button
+              onClick={() => navigate("/makers")}
+              style={{
+                textDecoration: "none",
+              }}
+            >
+              <img src={creators} />
+              <p>이웃제를 만들이들</p>
+            </Button>
+          </Creators>
+        </Wrapper2>
+      )}
     </Wrapper1>
   );
 };
@@ -88,10 +86,6 @@ const animation = keyframes`
 `;
 
 const Wrapper1 = styled.div`
-  overflow: hidden;
-`;
-
-const Wrapper2 = styled.div`
   width: 352.41px;
   position: fixed;
   top: 33px;
@@ -105,7 +99,7 @@ const Wrapper2 = styled.div`
   animation: ${animation} 1s normal none;
 `;
 
-const Wrapper3 = styled.div`
+const Wrapper2 = styled.div`
   position: fixed;
   display: flex;
   flex-direction: column;

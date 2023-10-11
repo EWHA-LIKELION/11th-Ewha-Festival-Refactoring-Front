@@ -26,7 +26,7 @@ const TopBar = ({ titleText, showSearch = false }) => {
     <>
       <Wrapper>
         <Container>
-          <img src={menu} onClick={openMenu} />
+          <img src={menu} onClick={openMenu} style={{ cursor: "pointer" }} />
           <Title>
             <img src={titleBackground} />
             <span>{titleText}</span>
