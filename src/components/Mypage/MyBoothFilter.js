@@ -43,6 +43,8 @@ const MyBoothFilter = ({
         <View
           onClick={() => {
             setSelectView("all");
+            setSelectDay();
+            setSelectDayId();
             setSelectPlace();
             setSelectCategoryId();
           }}
@@ -53,8 +55,8 @@ const MyBoothFilter = ({
         <View
           onClick={() => {
             setSelectView("day");
-            setSelectDay("17");
-            setSelectDayId("1");
+            setSelectDay(17);
+            setSelectDayId(1);
           }}
           isSelected={selectView === "all"}
         >
@@ -64,6 +66,10 @@ const MyBoothFilter = ({
           onClick={() => {
             setSelectView("place");
             setSelectPlace("정문");
+            setSelectDay();
+            setSelectDayId();
+            setSelectCategory();
+            setSelectCategoryId();
           }}
           isSelected={selectView === "place"}
         >
@@ -73,6 +79,8 @@ const MyBoothFilter = ({
           id="long"
           onClick={() => {
             setSelectView("category");
+            setSelectDay();
+            setSelectDayId();
             setSelectPlace();
             setSelectCategory("음식");
             setSelectCategoryId("1");
@@ -164,16 +172,13 @@ const Day = styled.div`
     props.isSelected ? "1px solid #029C54" : "none"};
 
   border-radius: 104px;
-  border: 1.04px solid var(--2023-SWE_green2, #029c54);
+  border: 1.04px solid var(--green2);
   cursor: pointer;
   span {
     color: ${(props) => (props.isSelected ? "#ffff" : "var(--green2)")};
     text-align: center;
-    font-family: Pretendard;
     font-size: 14.56px;
-    font-style: normal;
     font-weight: 400;
-    line-height: normal;
   }
   #date {
     font-size: 12.48px;
@@ -184,7 +189,6 @@ const Day = styled.div`
 const ViewFilter = styled.div`
   display: flex;
   margin-bottom: 17px;
-
   margin-right: 140px;
 `;
 
@@ -194,13 +198,10 @@ const View = styled.div`
   span {
     margin-right: 5px;
     color: ${(props) =>
-      props.isSelected === "all"
-        ? "var(--red, #F55B1D)"
-        : "var(--gray2, #9b9b9b)"};
+      props.isSelected === "all" ? "va(--red)" : "var(--gray2)"};
     font-weight: ${(props) => (props.isSelected === "all" ? "700" : "400")};
     text-align: center;
     font-size: 15px;
-    font-style: normal;
     line-height: 100%;
   }
 `;
@@ -222,7 +223,7 @@ const Place = styled.div`
   align-items: center;
   flex-shrink: 0;
   border-radius: 104px;
-  border: 0.5px solid var(--2023-SWE_green2, #029c54);
+  border: 0.5px solid var(--green2);
   background: ${(props) =>
     props.isSelected ? "var(--green2)" : "var(--white)"};
   cursor: pointer;
@@ -230,9 +231,7 @@ const Place = styled.div`
   color: ${(props) => (props.isSelected ? "var(--white)" : "var(--green2)")};
   text-align: center;
   font-size: 14.56px;
-  font-style: normal;
   font-weight: 400;
-  line-height: normal;
 `;
 
 const CategoryFilter = styled.div`
@@ -253,16 +252,11 @@ const Category = styled.div`
   align-items: center;
   flex-shrink: 0;
   border-radius: 104px;
-  border: 0.5px solid var(--2023-SWE_green2, #029c54);
-  background: ${(props) =>
-    props.isSelected ? "var(--2023-SWE_green2, #029c54)" : "#fff"};
+  border: 0.5px solid var(--green2);
+  background: ${(props) => (props.isSelected ? "var(--green2)" : "#fff")};
   cursor: pointer;
-  color: ${(props) =>
-    props.isSelected ? "#fff" : "var(--2023-SWE_green2, #029c54)"};
+  color: ${(props) => (props.isSelected ? "#fff" : "var(--green2)")};
   text-align: center;
-  font-family: Pretendard;
   font-size: 14.56px;
-  font-style: normal;
   font-weight: 400;
-  line-height: normal;
 `;

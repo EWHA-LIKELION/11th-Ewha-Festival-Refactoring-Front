@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { styled } from "styled-components";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import { useAppSelector } from "../redux/store";
 import { GetLikedBooths, GetLikedMenus, GetLikedShows } from "../api/booth";
+
 // component;
 import Booth from "../components/_common/Booth";
 import Pagination from "../components/ListPage/Pagination";
@@ -40,11 +40,11 @@ const MyPage = () => {
   const [likeBooth, setLikeBooth] = useState("likeBooth"); //좋아요부스 vs 좋아요메뉴
 
   const [selectView, setSelectView] = useState("all");
-  const [selectDay, setSelectDay] = useState(17); //nav에서 날짜 선택
-  const [selectDayId, setSelectDayId] = useState(1);
-  const [selectPlace, setSelectPlace] = useState("정문"); //nav에서 장소 선택
-  const [selectCategory, setSelectCategory] = useState("음식"); //nav에서 카테고리 선택
-  const [selectCategoryId, setSelectCategoryId] = useState(1);
+  const [selectDay, setSelectDay] = useState(); //nav에서 날짜 선택
+  const [selectDayId, setSelectDayId] = useState();
+  const [selectPlace, setSelectPlace] = useState(); //nav에서 장소 선택
+  const [selectCategory, setSelectCategory] = useState(); //nav에서 카테고리 선택
+  const [selectCategoryId, setSelectCategoryId] = useState();
 
   useEffect(() => {
     // 좋아요한 부스 목록 가져오기
@@ -135,7 +135,15 @@ const MyPage = () => {
 
                 <div
                   className="menu"
-                  onClick={() => clickLikeBooth("likeMenu")}
+                  onClick={() => {
+                    clickLikeBooth("likeMenu");
+                    setSelectView("all");
+                    setSelectDay();
+                    setSelectDayId();
+                    setSelectPlace();
+                    setSelectCategory();
+                    setSelectCategoryId();
+                  }}
                 >
                   좋아요한 메뉴
                 </div>
@@ -159,7 +167,8 @@ const MyPage = () => {
           setSelectCategoryId={setSelectCategoryId}
         />
 
-        <div className="count">총 {totalBooths}개의 부스</div>
+        {/* 부스/메뉴/공연에 따라 아래 div 태그 바뀌어야 함 */}
+        <div className="count">총 {likebooths.length}개의 부스</div>
         <Booth />
 
         {selectBooth === "booth" ? (

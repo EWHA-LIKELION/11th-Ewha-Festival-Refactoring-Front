@@ -37,7 +37,7 @@ const PerfListPage = () => {
 
   return (
     <>
-      <TopBar titleText="공연 목록" />
+      <TopBar titleText="공연 목록" showSearch="true" />
       <Wrapper>
         <PerfFilter
           setSelectDay={setSelectDay}
@@ -64,8 +64,8 @@ const PerfListPage = () => {
           page={currentPage}
           setPage={setCurrentPage}
         />
-        <Footer />
-      </Wrapper>
+      </Wrapper>{" "}
+      <Footer />
     </>
   );
 };

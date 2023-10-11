@@ -66,13 +66,13 @@ export const PatchMenuLike = async (menuId) => {
 // Get: 좋아요한 부스 목록 조회
 export const GetLikedBooths = async (day, college, category) => {
   try {
-    let queryString = `mypage/booth/likes/?`;
+    let queryString = `mypage/booth/likes/`;
     if (day) {
-      queryString += `&day=${day}`;
+      queryString += `?day=${day}`;
     } else if (college) {
-      queryString += `&college=${college}`;
+      queryString += `?college=${college}`;
     } else if (category) {
-      queryString += `&category=${category}`;
+      queryString += `?category=${category}`;
     }
     console.log(queryString);
     const response = await http.get(queryString);
@@ -92,13 +92,13 @@ export const GetLikedBooths = async (day, college, category) => {
 // Get: 좋아요한 메뉴 목록 조회
 export const GetLikedMenus = async (day, college, category) => {
   try {
-    let queryString = `mypage/menu/likes/?`;
+    let queryString = `mypage/menu/likes/`;
     if (day) {
-      queryString += `&day=${day}`;
+      queryString += `?day=${day}`;
     } else if (college) {
-      queryString += `&college=${college}`;
+      queryString += `?college=${college}`;
     } else if (category) {
-      queryString += `&category=${category}`;
+      queryString += `?category=${category}`;
     }
     console.log(queryString);
     const response = await http.get(queryString);
@@ -118,13 +118,13 @@ export const GetLikedMenus = async (day, college, category) => {
 // Get: 좋아요한 공연 목록 조회
 export const GetLikedShows = async (day, college, category) => {
   try {
-    let queryString = `mypage/show/likes/?`;
+    let queryString = `mypage/show/likes/`;
     if (day) {
-      queryString += `&day=${day}`;
+      queryString += `?day=${day}`;
     } else if (college) {
-      queryString += `&college=${college}`;
+      queryString += `?college=${college}`;
     } else if (category) {
-      queryString += `&category=${category}`;
+      queryString += `?category=${category}`;
     }
     console.log(queryString);
     const response = await http.get(queryString);
@@ -185,6 +185,19 @@ export const GetPerfList = async (day, college, category) => {
       Logout();
     }
     console.error("공연 목록 조회 실패", error);
+    throw error;
+  }
+};
+
+//Get: 부스/공연 검색
+export const GetSearchResult = async (type, keyword) => {
+  try {
+    const response = await http.get(
+      `event/search/?type=${type}&keyword=${keyword}/`
+    );
+    return response.data;
+  } catch (error) {
+    console.error("부스/공연 검색 실패", error);
     throw error;
   }
 };

@@ -66,7 +66,7 @@ const DetailTitle = ({ event, thisData, render, setRender }) => {
           ) : (
             <Heart src={emptyheart} onClick={handleLike} />
           )}
-          <span>{thisData.is_liked_count}</span>
+          <span>{thisData.is_like_count}</span>
         </Right>
       </Container>
 
