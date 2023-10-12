@@ -39,7 +39,7 @@ export const DeleteNotice = async (noticeId) => {
 //공지사항 수정
 export const EditNotice = async (noticeId, title, content) => {
   try {
-    const response = await http.put(`notices/${noticeId}`, {
+    const response = await http.put(`notices/${noticeId}/`, {
       title: title,
       content: content,
     });
