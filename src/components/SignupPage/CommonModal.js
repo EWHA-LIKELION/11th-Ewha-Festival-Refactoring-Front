@@ -2,8 +2,6 @@ import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
-//img
-
 const CommonModal = ({ openCommonModal, closeCommonModal, modalCase }) => {
   const navigate = useNavigate();
   const containerRef = useRef(null);

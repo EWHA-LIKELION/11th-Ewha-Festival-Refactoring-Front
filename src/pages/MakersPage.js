@@ -1,14 +1,11 @@
 //loginpage
 import React, { useState } from "react";
 import styled from "styled-components";
-
 //component
 import TopBar from "../components/_common/TopBar";
 import Footer from "../components/_common/Footer";
-
 import Team from "../components/MakersPage/Team";
 import TFTeam from "../components/MakersPage/TFTeam";
-
 //img
 import title from "../assets/images/login-signup/title.svg";
 import listicon from "../assets/images/login-signup/listicon.svg";

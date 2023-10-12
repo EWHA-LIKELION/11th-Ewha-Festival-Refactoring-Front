@@ -2,8 +2,6 @@ import { styled } from "styled-components";
 import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import Degree from "../_common/Degree";
-
-//부스 대표 사진
 import boothCover from "../../assets/images/Mypage/boothcover.png";
 import { ReactComponent as PinkHeart } from "../../assets/icons/heart-full.svg";
 import { ReactComponent as EmptyHeart } from "../../assets/icons/heart-empty.svg";
@@ -29,7 +27,7 @@ const Menu = ({ menuData }) => {
           navigate(`/booth/detail/${menuData.id}`);
         }}
       />
-      {/* 메뉴사진 대신에 부스 대표 사진을 보여주기로함 */}
+
       <Tag>
         {menuData.began && <div>비건</div>}
         {menuData.wheelchair && <div>휠체어 접근 가능</div>}

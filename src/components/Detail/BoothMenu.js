@@ -1,5 +1,4 @@
 import styled from "styled-components";
-
 import { SecTitle, Line } from "./SectionExport";
 import { PatchMenuLike } from "../../api/booth";
 

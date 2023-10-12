@@ -44,7 +44,6 @@ const Booth = ({ boothData }) => {
             <Degree size="small" degree="light" />
           )}
 
-          {/* 좋아요 여부 변경되게 */}
           <LikeButton onClick={handleLikeClick}>
             {isLiked ? <PinkHeart /> : <EmptyHeart />}
           </LikeButton>

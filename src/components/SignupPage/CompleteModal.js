@@ -1,7 +1,6 @@
 import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-
 //img
 import warning from "../../assets/images/login-signup/warning.svg";
 

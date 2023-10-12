@@ -117,5 +117,5 @@ const Content = styled.div`
   font-size: 15px;
   font-style: normal;
   font-weight: 400;
-  line-height: 20px; /* 133.333% */
+  line-height: 20px;
 `;

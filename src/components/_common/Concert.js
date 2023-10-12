@@ -3,7 +3,6 @@ import "../../App.css";
 import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
 import Degree from "../_common/Degree";
-//부스 대표 사진
 import concert from "../../assets/images/Mypage/concert.png";
 import { ReactComponent as PinkHeart } from "../../assets/icons/heart-full.svg";
 import { ReactComponent as EmptyHeart } from "../../assets/icons/heart-empty.svg";

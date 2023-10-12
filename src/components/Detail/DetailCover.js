@@ -77,6 +77,6 @@ const Tag = styled.div`
     color: var(--white);
     font-size: 11px;
     font-weight: 700;
-    line-height: 11.611px; /* 105.556% */
+    line-height: 11.611px;
   }
 `;
