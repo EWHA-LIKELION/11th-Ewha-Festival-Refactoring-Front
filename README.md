@@ -58,8 +58,8 @@
 
 |이다빈|진규빈|최지원|
 |:------:|:------:|:------:|
-|<img src="https://github.com/EWHA-LIKELION/11th-Ewha-Festival-Refactoring-Front/assets/127821462/62cdedf6-824e-4e93-a969-f5a24728e964" width="100" height="100"/>|🦁|🦁|
-| 관리자 부스/공연 마이페이지 <br /> 일반유저 부스/공연 마이페이지|메인페이지 <br /> 사이드바 |프론트엔드|
+|<img src="https://github.com/EWHA-LIKELION/11th-Ewha-Festival-Refactoring-Front/assets/127821462/62cdedf6-824e-4e93-a969-f5a24728e964" width="100" height="100"/>|<img src="https://github.com/EWHA-LIKELION/11th-Ewha-Festival-Refactoring-Front/assets/127821462/def8f364-ad1a-4071-bb12-a80d7eae74eb" width="100" height="100"/>|<img src="https://github.com/EWHA-LIKELION/11th-Ewha-Festival-Refactoring-Front/assets/127821462/ec624309-b366-4bca-8299-ca6509a71e67" width="100" height="100"/>|
+| 관리자 부스/공연 마이페이지 <br /> 일반유저 부스/공연 마이페이지|메인페이지 <br /> 사이드바 |내 부스 정보 수정 <br /> 메뉴 정보 수정 목록 <br /> 메뉴 정보 수정 상세 |
 
 
  ### 개발 기간 

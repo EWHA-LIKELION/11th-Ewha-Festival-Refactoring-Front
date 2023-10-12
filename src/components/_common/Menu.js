@@ -15,23 +15,21 @@ const Menu = ({ menuData }) => {
 
   if (!menuData) return null;
   return (
-    <Wrapper
-      onClick={() => {
-        navigate(`/booth/detail/${menuData.id}`);
-      }}
-    >
-      <img
-        src={boothCover}
-        alt="Booth Cover"
-        onClick={() => {
-          navigate(`/booth/detail/${menuData.id}`);
-        }}
-      />
+    <Wrapper>
+      <CoverWrapper>
+        <img
+          src={boothCover}
+          alt="Booth Cover"
+          onClick={() => {
+            navigate(`/booth/detail/${menuData.id}`);
+          }}
+        />
 
-      <Tag>
-        {menuData.began && <div>비건</div>}
-        {menuData.wheelchair && <div>휠체어 접근 가능</div>}
-      </Tag>
+        <Tag>
+          {menuData.began && <div>비건</div>}
+          {menuData.wheelchair && <div>휠체어 접근 가능</div>}
+        </Tag>
+      </CoverWrapper>
 
       <InfoWrapper>
         <Place>
@@ -56,7 +54,7 @@ const Menu = ({ menuData }) => {
       </InfoWrapper>
 
       <Title>
-        {menuData.name}
+        {menuData.menu}
         <div className="price"> {menuData.price}원</div>
       </Title>
     </Wrapper>
@@ -123,10 +121,13 @@ const Title = styled.div`
     margin-top: 7px;
   }
 `;
+const CoverWrapper = styled.div`
+  position: relative;
+`;
 const Tag = styled.div`
   position: absolute;
-  top: 515px;
-  left: 760px;
+  top: 5%;
+  left: 40%;
   display: flex;
   gap: 4px;
 
