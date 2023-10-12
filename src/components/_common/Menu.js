@@ -54,7 +54,7 @@ const Menu = ({ menuData }) => {
       </InfoWrapper>
 
       <Title>
-        {menuData.name}
+        {menuData.menu}
         <div className="price"> {menuData.price}원</div>
       </Title>
     </Wrapper>
