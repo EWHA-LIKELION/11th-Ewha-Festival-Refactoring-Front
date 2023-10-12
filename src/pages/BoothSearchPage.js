@@ -18,14 +18,12 @@ const BoothSearchPage = () => {
   const [lists, setLists] = useState([]);
 
   const getResult = () => {
-    if (userInput) {
-      GetSearchResult(1, userInput)
-        .then((response) => {
-          setLists(response.data);
-          console.log(response);
-        })
-        .catch();
-    }
+    GetSearchResult(1, userInput)
+      .then((response) => {
+        setLists(response.data.data);
+        console.log(response);
+      })
+      .catch();
   };
 
   return (
