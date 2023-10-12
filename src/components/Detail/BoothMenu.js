@@ -6,7 +6,7 @@ import { PatchMenuLike } from "../../api/booth";
 import fullheart from "../../assets/images/detail/menu-fullheart.svg";
 import emptyheart from "../../assets/images/detail/menu-emptyheart.svg";
 
-const BoothMenu = ({ menuData, menuImgData, render, setRender }) => {
+const BoothMenu = ({ menuData, menuImgData, render, setRender, baseURL }) => {
   //메뉴 품절 여부에 따른 필터링
   const soldoutMenus = menuData?.filter((menu) => menu.is_soldout);
   const availableMenus = menuData?.filter((menu) => !menu.is_soldout);
@@ -31,7 +31,7 @@ const BoothMenu = ({ menuData, menuImgData, render, setRender }) => {
       <MenuImgList>
         <MenuImgBox>
           {menuImgData?.map((menu) => (
-            <MenuImg key={menu.id} src={menu.image} />
+            <MenuImg key={menu.id} src={baseURL + menu.image} />
           ))}
         </MenuImgBox>
       </MenuImgList>

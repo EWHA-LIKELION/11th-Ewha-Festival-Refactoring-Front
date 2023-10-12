@@ -4,11 +4,11 @@ import styled from "styled-components";
 import hamBackground from "../../assets/images/detail/ham-background.svg";
 import menu from "../../assets/icons/menu.svg";
 
-const DetailCover = ({ thisData, openMenu }) => {
+const DetailCover = ({ thisData, openMenu, baseURL }) => {
   return (
     <Wrapper>
       <Cover>
-        <img src={thisData.thumnail} alt="cover" />
+        <img src={baseURL + thisData.thumnail} alt="cover" />
       </Cover>
       <Ham onClick={openMenu}>
         <img src={hamBackground} alt="menu background" />

@@ -33,9 +33,9 @@ const Menu = ({ menuData }) => {
 
       <InfoWrapper>
         <Place>
-          {menuData.number}
+          {menuData.event.college}
           <span>·</span>
-          <span>{menuData.category}</span>
+          <span>{menuData.event.number}</span>
         </Place>
 
         <Heart>

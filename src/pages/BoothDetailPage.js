@@ -43,9 +43,11 @@ const BoothDetailPage = () => {
     document.body.style.overflow = "auto";
   };
 
+  const baseURL = "https://api.yewon.link/";
+
   return (
     <Wrapper>
-      <DetailCover thisData={thisData} openMenu={openMenu} />
+      <DetailCover thisData={thisData} openMenu={openMenu} baseURL={baseURL} />
       <Content>
         <DetailTitle
           event="부스"
@@ -59,6 +61,7 @@ const BoothDetailPage = () => {
           menuImgData={thisData.images}
           render={render}
           setRender={setRender}
+          baseURL={baseURL}
         />
         <DetailReview
           commentsData={thisData.comments}

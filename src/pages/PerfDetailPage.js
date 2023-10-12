@@ -44,9 +44,11 @@ const PerfDetailPage = () => {
     document.body.style.overflow = "auto";
   };
 
+  const baseURL = "https://api.yewon.link/";
+
   return (
     <Wrapper>
-      <DetailCover thisData={thisData} openMenu={openMenu} />
+      <DetailCover thisData={thisData} openMenu={openMenu} baseURL={baseURL} />
       <Content>
         <DetailTitle
           event="공연"

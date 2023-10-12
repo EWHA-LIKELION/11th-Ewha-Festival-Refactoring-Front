@@ -16,6 +16,8 @@ const Booth = ({ boothData }) => {
     setIsLiked(!isLiked);
   };
 
+  const baseURL = "https://api.yewon.link/";
+
   if (!boothData) return null;
   return (
     <Wrapper>
@@ -32,7 +34,7 @@ const Booth = ({ boothData }) => {
           {boothData.wheelchair && <div>휠체어 접근 가능</div>}
         </Tag>
       </CoverWrapper>
-
+           
       <InfoWrapper>
         <Place>
           {boothData.college}
