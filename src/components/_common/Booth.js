@@ -16,11 +16,13 @@ const Booth = ({ boothData }) => {
     setIsLiked(!isLiked);
   };
 
+  const baseURL = "https://api.yewon.link/";
+
   if (!boothData) return null;
   return (
     <Wrapper>
       <img
-        src={boothCover}
+        src={baseURL + boothData.thumnail}
         alt="Booth Cover"
         onClick={() => {
           navigate(`/booth/detail/${boothData.id}`);
