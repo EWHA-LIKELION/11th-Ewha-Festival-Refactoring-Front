@@ -193,9 +193,9 @@ export const GetPerfList = async (day, college, category) => {
 export const GetSearchResult = async (type, keyword) => {
   try {
     const response = await http.get(
-      `event/search/?type=${type}&keyword=${keyword}/`
+      `event/search/?type=${type}&keyword=${keyword}`
     );
-    return response.data;
+    return response;
   } catch (error) {
     console.error("부스/공연 검색 실패", error);
     throw error;
