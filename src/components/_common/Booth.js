@@ -19,17 +19,19 @@ const Booth = ({ boothData }) => {
   if (!boothData) return null;
   return (
     <Wrapper>
-      <img
-        src={boothCover}
-        alt="Booth Cover"
-        onClick={() => {
-          navigate(`/booth/detail/${boothData.id}`);
-        }}
-      />
-      <Tag>
-        {boothData.began && <div>비건</div>}
-        {boothData.wheelchair && <div>휠체어 접근 가능</div>}
-      </Tag>
+      <CoverWrapper>
+        <img
+          src={boothCover}
+          alt="Booth Cover"
+          onClick={() => {
+            navigate(`/booth/detail/${boothData.id}`);
+          }}
+        />
+        <Tag>
+          {boothData.began && <div>비건</div>}
+          {boothData.wheelchair && <div>휠체어 접근 가능</div>}
+        </Tag>
+      </CoverWrapper>
 
       <InfoWrapper>
         <Place>
@@ -112,10 +114,14 @@ const Title = styled.div`
     margin-top: 7px;
   }
 `;
+
+const CoverWrapper = styled.div`
+  position: relative;
+`;
 const Tag = styled.div`
   position: absolute;
-  top: 515px;
-  left: 760px;
+  top: 5%;
+  left: 40%;
   display: flex;
   gap: 4px;
 
