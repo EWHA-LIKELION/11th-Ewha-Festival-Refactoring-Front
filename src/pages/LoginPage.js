@@ -31,6 +31,7 @@ const LoginPage = () => {
     PostLogin(username, password)
       .then((data) => {
         const token = data.data.access_token;
+        localStorage.setItem("token", token);
         GetProfile(token)
           .then((res) => {
             console.log(res);
@@ -52,7 +53,7 @@ const LoginPage = () => {
       })
       .catch((error) => {
         // 에러에 따라 다른 경고 문구 출력
-        let type = error.response.data;
+        let type = error.response.data.data;
         type
           ? type.non_field_errors == "잘못된 비밀번호입니다."
             ? alert("비밀번호를 확인해주세요.")
