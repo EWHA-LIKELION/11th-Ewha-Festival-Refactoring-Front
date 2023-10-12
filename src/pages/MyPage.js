@@ -3,7 +3,6 @@ import { styled } from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "../redux/store";
 import { GetLikedBooths, GetLikedMenus, GetLikedShows } from "../api/booth";
-
 // component
 import Booth from "../components/_common/Booth";
 import Pagination from "../components/ListPage/Pagination";
@@ -18,11 +17,10 @@ import BoothAdmin from "../components/Mypage/BoothAdmin";
 import ConcertAdmin from "../components/Mypage/ConcertAdmin";
 // TF관리자 전용
 import IsTfAdmin from "../components/Mypage/IsTfAdmin";
-//image
+
 import { ReactComponent as Namecover } from "../assets/images/Mypage/nickname.svg";
 import redhover from "../assets/images/Mypage/redhover.svg";
 import yellowhover from "../assets/images/Mypage/yellowhover.svg";
-
 import { Logout } from "../api/user";
 
 const MyPage = () => {
@@ -40,10 +38,10 @@ const MyPage = () => {
   const [likeBooth, setLikeBooth] = useState("likeBooth"); //좋아요부스 vs 좋아요메뉴
 
   const [selectView, setSelectView] = useState("all");
-  const [selectDay, setSelectDay] = useState(); //nav에서 날짜 선택
+  const [selectDay, setSelectDay] = useState();
   const [selectDayId, setSelectDayId] = useState();
-  const [selectPlace, setSelectPlace] = useState(); //nav에서 장소 선택
-  const [selectCategory, setSelectCategory] = useState(); //nav에서 카테고리 선택
+  const [selectPlace, setSelectPlace] = useState();
+  const [selectCategory, setSelectCategory] = useState();
   const [selectCategoryId, setSelectCategoryId] = useState();
 
   useEffect(() => {

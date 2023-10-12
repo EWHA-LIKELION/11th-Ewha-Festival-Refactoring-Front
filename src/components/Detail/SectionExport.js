@@ -1,22 +1,22 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 //images
-import background from '../../assets/icons/title-background.svg';
-import secliststyle from '../../assets/images/detail/sec-list-style.svg';
+import background from "../../assets/icons/title-background.svg";
+import secliststyle from "../../assets/images/detail/sec-list-style.svg";
 
-const SecTitle = ({sectitle}) => {
+const SecTitle = ({ sectitle }) => {
   return (
     <SecTitleContainer>
-      <img src={background} alt='background' />
+      <img src={background} alt="background" />
       <span>{sectitle}</span>
     </SecTitleContainer>
   );
 };
 
-const SecSub = ({subtitle, children, color, overflow}) => {
+const SecSub = ({ subtitle, children, color, overflow }) => {
   return (
     <SecSubContainer>
-      <img src={secliststyle} alt='secliststyle' />
+      <img src={secliststyle} alt="secliststyle" />
       <div>
         <SubTitle>{subtitle}</SubTitle>
         <SubContent color={color} overflow={overflow}>
@@ -31,7 +31,7 @@ const Line = () => {
   return <LineStyle />;
 };
 
-export {SecTitle, SecSub, Line};
+export { SecTitle, SecSub, Line };
 
 const SecTitleContainer = styled.div`
   width: 104px;
@@ -54,7 +54,7 @@ const SecTitleContainer = styled.div`
     font-size: 18px;
     font-style: normal;
     font-weight: 700;
-    line-height: 134.895%; /* 24.281px */
+    line-height: 134.895%;
   }
 `;
 
@@ -75,22 +75,22 @@ const SubTitle = styled.div`
   font-size: 15px;
   font-style: normal;
   font-weight: 700;
-  line-height: 15px; /* 100% */
+  line-height: 15px;
 `;
 
 const SubContent = styled.div`
   margin-top: 8px;
   width: 310px;
-  color: ${({color}) => color};
+  color: ${({ color }) => color};
   text-align: justify;
   font-size: 13px;
   font-style: normal;
   font-weight: 400;
-  line-height: 14px; /* 107.692% */
+  line-height: 14px;
   word-break: break-all;
 
-  ${({overflow}) =>
-    overflow === 'on' &&
+  ${({ overflow }) =>
+    overflow === "on" &&
     `
     overflow: hidden;
     text-overflow: ellipsis;

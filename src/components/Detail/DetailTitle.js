@@ -115,7 +115,7 @@ const Left = styled.div`
     font-size: 25px;
     font-style: normal;
     font-weight: 700;
-    line-height: 22.88px; /* 91.52% */
+    line-height: 22.88px;
     letter-spacing: -0.424px;
   }
 
@@ -124,7 +124,7 @@ const Left = styled.div`
     font-size: 12px;
     font-style: normal;
     font-weight: 600;
-    line-height: 16.64px; /* 138.667% */
+    line-height: 16.64px;
 
     margin-right: 8px;
   }
@@ -134,7 +134,7 @@ const Left = styled.div`
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
-    line-height: 16.64px; /* 138.667% */
+    line-height: 16.64px;
   }
 `;
 
@@ -149,7 +149,7 @@ const Right = styled.div`
     font-size: 10px;
     font-style: normal;
     font-weight: 500;
-    line-height: 9.929px; /* 99.292% */
+    line-height: 9.929px;
   }
 `;
 

@@ -2,13 +2,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-
 //유저 정보 관련
 import { PostLogin, GetProfile } from "../api/user";
-
 import { useAppDispatch } from "../redux/store";
 import { setUser } from "../redux/userSlice";
-
 //component
 import TopBar from "../components/_common/TopBar";
 
