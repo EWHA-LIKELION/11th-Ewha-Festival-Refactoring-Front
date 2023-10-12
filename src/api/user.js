@@ -19,13 +19,6 @@ export const PostLogin = async (username, password) => {
       password: password,
     });
 
-    const tokenData = response.data;
-    const expiration = Date.now() + tokenData.expires_in * 36000; // 토큰 만료 시간 계산
-    tokenData.expiration = expiration;
-
-    // 토큰 정보를 저장
-    window.localStorage.setItem("token", JSON.stringify(tokenData));
-
     return response.data;
   } catch (error) {
     if (error.response && error.response.status === 401) {
